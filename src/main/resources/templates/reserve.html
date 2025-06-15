@@ -1,10 +1,42 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>予約</title>
 </head>
+
 <body>
 
+
+	<div>
+		<div>
+			<img th:src="${room.imgPath}" alt="部屋の写真">
+		</div>
+
+
+		<div>
+			<h2 th:text="${room.roomName}">部屋名</h2>
+			<p th:text="${room.description}">ホテルの説明文</p>
+			<p>
+				<span th:text="${room.price}"></span> 円
+			</p>
+		</div>
+	</div>
+
+	<h2>プラン</h2>
+	<form th:action="@{/rooms/{id}/reserve}" method="post">
+		姓
+		<input type="text">
+		名
+		<input type="text">
+
+		メールアドレス
+		<input type="email">
+
+		住所
+		<input type="email">
+		<button type="submit">予約</button>
+	</form>
+
 </body>
-</html>
