@@ -8,62 +8,79 @@
 	<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 </head>
 
-<body>
+<body style="text-align: center;">
 	<header th:replace="header"></header>
-	<main>
-		<form>
-			<p>キーワード検索</p>
-			<input type="text" name="keyword">
-			<div>
+	<main style="text-align: center;">
+		<div style="background-color: rgb(226, 222, 209); width: 80%; margin: 0 auto;">
+			<form action=" /room" method="get">
+				<p>キーワード検索</p>
+				<input type="text" name="keyword">
 				<div>
-					<p>部屋タイプ</p>
-					<input type="text" name="type">
-				</div>
-				<div>
-					<p>金額</p>
-					<p>￥<output id="under_value"></output>　-　￥<output id="up_value"></output></p>
-					<input id="pi_under_input" type="range" min="0" max="900000" name="underPrice" th:value="${underPrice}" step="1">
-					<input id="pi_up_input" type="range" min="100000" max="1000000" name="upPrice" th:value="${upPrice}" step="1">
-				</div>
-			</div>
-			<div style="display: flex;">
-				<div>
-					<p>チェックイン</p>
-					<span class="material-symbols-outlined" style="color: #F19E39;">calendar_month</span>
-					<input id="pi_up_input" type="text" name="checkinDate" placeholder="チェックイン">
-				</div>
-				<div>
-					<p>チェックアウト</p>
-					<input type="text" name="checkoutDate" placeholder="チェックアウト">
-				</div>
-			</div>
-		</form>
-
-		<script>
-			const underValue = document.querySelector("#under_value");
-			const underInput = document.querySelector("#pi_under_input");
-			/*初期表示*/
-			underValue.textContent = Number(underInput.value).toLocaleString();
-			/*可変時の表示*/
-			underInput.addEventListener("input", (event) => {
-				underValue.textContent = Number(event.target.value).toLocaleString();
-			});
-
-			const upValue = document.querySelector("#up_value");
-			const upInput = document.querySelector("#pi_up_input");
-			/*初期表示*/
-			upValue.textContent = Number(upInput.value).toLocaleString();
-			/*可変時の表示*/
-			upInput.addEventListener("input", (event) => {
-				upValue.textContent = Number(event.target.value).toLocaleString();
-			});
-		</script>
-
-
-		<!--ここから部屋一覧-->
-		<div ht:each="">
-
+					<div>
+						<p>部屋タイプ</p>
+						<label>
+							<input type="checkbox" name="types" value="1"
+								th:checked="${types != null and types.contains(1)}">
+							スイートルーム
+						</label>
+						<label>
+							<input type="checkbox" name="types" value="2"
+								th:checked="${types != null and types.contains(2)}">
+							ダブルルーム
+						</label>
+						<label>
+							<input type="checkbox" name="types" value="3"
+								th:checked="${types != null and types.contains(3)}">
+							シングルルーム
+						</label>
+						<div>
+							<p>金額</p>
+							<p>￥<output id="under_value"></output>　-　￥<output id="up_value"></output></p>
+							<input id="pi_under_input" type="range" min="0" max="900000" name="underPrice"
+								th:value="${underPrice}" step="1">
+							<input id="pi_up_input" type="range" min="8000" max="100000" name="upPrice"
+								th:value="${upPrice}" step="1">
+						</div>
+					</div>
+					<div>
+						<span class="material-symbols-outlined" style="color: #F19E39;">calendar_month</span>
+						<input id="pi_up_input" type="text" name="checkinDate" placeholder="チェックイン">
+						<input type="text" name="checkoutDate" placeholder="チェックアウト">
+					</div>
+					<button>検索ボタン</button>
+			</form>
 		</div>
+	</main>
+	<script>
+		const underValue = document.querySelector("#under_value");
+		const underInput = document.querySelector("#pi_under_input");
+		/*初期表示*/
+		underValue.textContent = Number(underInput.value).toLocaleString();
+		/*可変時の表示*/
+		underInput.addEventListener("input", (event) => {
+			underValue.textContent = Number(event.target.value).toLocaleString();
+		});
+
+		const upValue = document.querySelector("#up_value");
+		const upInput = document.querySelector("#pi_up_input");
+		/*初期表示*/
+		upValue.textContent = Number(upInput.value).toLocaleString();
+		/*可変時の表示*/
+		upInput.addEventListener("input", (event) => {
+			upValue.textContent = Number(event.target.value).toLocaleString();
+		});
+	</script>
+
+
+	<!--ここから部屋一覧-->
+	<div th:each="room:${rooms}">
+		-------------------------
+		<p th:text="${room.roomName}"></p>
+		<img th:src="@{${room.imgPath}}" alt="部屋">
+		<p th:text="${room.description}"></p>
+		<p><span th:text="${room.type.typeName}"></span></p>
+		<p th:text="${room.price}"></p>
+	</div>
 
 	</main>
 	<footer th:replace="footer"></footer>

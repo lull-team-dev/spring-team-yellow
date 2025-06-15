@@ -32,6 +32,7 @@ public class Room {
 	@Column(name = "img_path")
 	private String imgPath;
 
+	//説明文
 	private String description;
 
 	@Column(name = "created_at")
