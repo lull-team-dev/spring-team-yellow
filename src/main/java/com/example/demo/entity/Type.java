@@ -11,7 +11,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "types")
-public class Types {
+public class Type {
 
 	//フィールド
 	@Id
@@ -25,11 +25,11 @@ public class Types {
 	private LocalDate createdAt;
 
 	//コンストラクタ
-	public Types() {
+	public Type() {
 
 	}
 
-	public Types(String typeName) {
+	public Type(String typeName) {
 		this.typeName = typeName;
 	}
 

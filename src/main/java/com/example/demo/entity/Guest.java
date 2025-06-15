@@ -11,7 +11,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "guests")
-public class Guests {
+public class Guest {
 
 	//フィールド
 	//GenerationType.IDENTITY は、データベースの自動インクリメント機能を使用して主キーを生成する
@@ -29,11 +29,11 @@ public class Guests {
 	private LocalDate createdAt;
 
 	//コンストラクタ
-	public Guests() {
+	public Guest() {
 
 	}
 
-	public Guests(String name, String email, String address, String tel, String password) {
+	public Guest(String name, String email, String address, String tel, String password) {
 		super();
 		this.name = name;
 		this.email = email;
