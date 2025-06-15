@@ -14,7 +14,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "reservations")
-public class Reservations {
+public class Reservation {
 
 	//フィールド
 	@Id
@@ -23,11 +23,11 @@ public class Reservations {
 
 	@ManyToOne
 	@JoinColumn(name = "guest_id")
-	private Guests guest;
+	private Guest guest;
 
 	@ManyToOne
 	@JoinColumn(name = "room_id")
-	private Rooms room;
+	private Room room;
 
 	@Column(name = "total_price")
 	private Integer totalPrice;
@@ -44,11 +44,11 @@ public class Reservations {
 	private LocalDateTime reservationOn;
 
 	//コンストラクタ
-	public Reservations() {
+	public Reservation() {
 
 	}
 
-	public Reservations(Guests guest, Rooms room, Integer totalPrice, Integer stayNights, LocalDate stayDate) {
+	public Reservation(Guest guest, Room room, Integer totalPrice, Integer stayNights, LocalDate stayDate) {
 		this.guest = guest;
 		this.room = room;
 		this.totalPrice = totalPrice;
@@ -57,19 +57,19 @@ public class Reservations {
 	}
 
 	//メソッド
-	public Guests getGuest() {
+	public Guest getGuest() {
 		return guest;
 	}
 
-	public void setGuest(Guests guest) {
+	public void setGuest(Guest guest) {
 		this.guest = guest;
 	}
 
-	public Rooms getRoom() {
+	public Room getRoom() {
 		return room;
 	}
 
-	public void setRoom(Rooms room) {
+	public void setRoom(Room room) {
 		this.room = room;
 	}
 
