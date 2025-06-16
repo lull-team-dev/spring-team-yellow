@@ -15,29 +15,41 @@
 			<h2>新規登録</h2>
 		</div>
 
-		<form action="/account/register" method="post">
+		<form action="/account/register" method="post" th:object="${guest}">
 			<div>
-				<input type="text" name="name" th:value="${name}" placeholder="名前" />
+				<input type="text" th:field="${guest.name}" class=""
+				 placeholder="名前" required pattern=".{3,15}" title="※名前は3～15文字以内" />
+				<div th:if="${#fields.hasErrors('name')}" th:errors="${guest.name}"></div>
 			</div>
 			<div>
-				<input type="email" name="email" th:value="${email}" placeholder="メールアドレス" />
+				<input type="email" th:field="${guest.email}" class=""
+				 placeholder="メールアドレス" required />
+				<div th:if="${#fields.hasErrors('email')}" th:errors="${guest.email}"></div>
 			</div>
 			<div>
-				<input type="tel" name="tel" th:value="${tel}" placeholder="電話番号" />
+				<input type="tel" th:field="${guest.tel}" class=""
+				 placeholder="電話番号" required pattern="^[0-9]{10,15}$" title="※10〜15桁の数字を入力してください" />
+				<div th:if="${#fields.hasErrors('tel')}" th:errors="${guest.tel}"></div>
 			</div>
 			<div>
-				<input type="text" name="address" th:value="${address}" placeholder="住所" />
+				<input type="text" th:field="${guest.address}" class=""
+				 placeholder="住所" maxlength="120" />
+				<div th:if="${#fields.hasErrors('address')}" th:errors="${guest.address}"></div>
 			</div>
 			<div>
-				<input type="password" name="password" th:value="${password}" placeholder="パスワード" />
+				<input type="password" th:field="${guest.password}" class=""
+				 placeholder="パスワード" required pattern="^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{5,}$" title="※英数字を含む5文字以上" />
+				<div th:if="${#fields.hasErrors('password')}" th:errors="${guest.password}"></div>
 			</div>
 			<div>
-				<input type="password" name="password_confirm" placeholder="パスワード（確認）" />
+				<input type="password" name="password_confirm" class=""
+				 placeholder="パスワード（確認）" required />
+				<div th:if="${error != null}" th:text="${error}"></div>
 			</div>
 			<button>新規会員登録</button>
 		</form>
 		<div>
-			<a href="">ログインページへ</a>
+			<a href="/login">ログインページへ</a>
 		</div>
 	</main>
 
