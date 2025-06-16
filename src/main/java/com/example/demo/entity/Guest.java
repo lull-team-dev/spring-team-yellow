@@ -25,7 +25,7 @@ public class Guest {
 	private String tel;
 	private String password;
 
-	@Column(name = "created_at")
+	@Column(name = "created_at", insertable = false, updatable = false)
 	private LocalDate createdAt;
 
 	//コンストラクタ
@@ -34,7 +34,6 @@ public class Guest {
 	}
 
 	public Guest(String name, String email, String address, String tel, String password) {
-		super();
 		this.name = name;
 		this.email = email;
 		this.address = address;
