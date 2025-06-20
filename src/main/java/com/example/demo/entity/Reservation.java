@@ -2,7 +2,10 @@ package com.example.demo.entity;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,6 +13,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -19,7 +23,7 @@ public class Reservation {
 	//フィールド
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Integer id;
 
 	@ManyToOne
 	@JoinColumn(name = "guest_id")
@@ -42,6 +46,11 @@ public class Reservation {
 	//予約日
 	@Column(name = "reservation_on")
 	private LocalDateTime reservationOn;
+
+	//「親（Reservation）に対して行った操作（保存・更新・削除など）を子（ReservData）にもすべて適用する
+	//「親から外された子（孤児）をDBから自動で削除する
+	@OneToMany(mappedBy = "reservation", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<ReservData> reservData = new ArrayList<>();
 
 	//コンストラクタ
 	public Reservation() {
@@ -97,7 +106,7 @@ public class Reservation {
 		this.stayDate = stayDate;
 	}
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 

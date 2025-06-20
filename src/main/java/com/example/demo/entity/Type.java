@@ -16,7 +16,7 @@ public class Type {
 	//フィールド
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Integer id;
 
 	@Column(name = "type_name")
 	private String typeName;
@@ -42,7 +42,7 @@ public class Type {
 		this.typeName = typeName;
 	}
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 

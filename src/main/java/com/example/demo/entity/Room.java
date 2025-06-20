@@ -18,7 +18,7 @@ public class Room {
 	//フィールド
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Integer id;
 
 	@Column(name = "room_name")
 	private String roomName;
@@ -97,7 +97,7 @@ public class Room {
 		return createdAt;
 	}
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
