@@ -8,6 +8,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+// バリデーションライブラリのインポート
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "guests")
@@ -19,13 +23,28 @@ public class Guest {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@NotBlank(message = "ユーザー名を入力してください")
+	@Size(max = 15, message = "ユーザー名は15文字以内で入力してください")
 	private String name;
+
+	@NotBlank(message = "メールアドレスを入力してください")
+	@Email(message = "メールアドレスの形式が正しくありません")
+	@Size(max = 100, message = "メールアドレスは100文字以内で入力してください")
 	private String email;
+
+	@NotBlank(message = "住所を入力してください")
+	@Size(max = 120, message = "住所は120文字以内で入力してください")
 	private String address;
+
+	@NotBlank(message = "電話番号を入力してください")
+	@Size(max = 15, message = "電話番号は15文字以内で入力してください")
 	private String tel;
+
+	@NotBlank(message = "パスワードを入力してください")
+	@Size(min = 5, max = 100, message = "パスワードは5〜100文字で入力してください")
 	private String password;
 
-	@Column(name = "created_at")
+	@Column(name = "created_at", insertable = false, updatable = false)
 	private LocalDate createdAt;
 
 	//コンストラクタ
@@ -34,7 +53,6 @@ public class Guest {
 	}
 
 	public Guest(String name, String email, String address, String tel, String password) {
-		super();
 		this.name = name;
 		this.email = email;
 		this.address = address;

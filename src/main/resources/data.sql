@@ -1,5 +1,5 @@
 -- guests（宿泊者）
-INSERT INTO guests (name, mail, address, tel, password) VALUES
+INSERT INTO guests (name, email, address, tel, password) VALUES
 ('デヴィ夫人', 'ddd@mail', '東京都港区白金台5丁目12番地 プラチナレジデンス白金台 801号室', '0456-99-1234', 'pass1'),
 ('叶恭子', 'kkk@mail', '東京都大田区田園調布3丁目8番地 田園ヴィラ調布 203号室', '090-0000-0000', 'pass2'),
 ('叶美香', 'ccc@mail', '東京都品川区北品川4丁目6番地 御殿山ヒルズレジデンス 1502号室', '080-2222-3333', 'pass3'),
