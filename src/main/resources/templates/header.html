@@ -1,8 +1,7 @@
 <header>
 	<div>
 		<div class="left-item">
-			<img src="" alt="" >
-			<p>ヘッダー</p>
+			<img src="" alt="ロゴ" >
 			<div th:if="${@account.id}" class="username">[[${@account.name}]]さんようこそ</div>
 		</div>
 		<div th:if="${@account.id}" class="right-item">
