@@ -5,17 +5,17 @@
 	<title>ログインページ</title>
 </head>
 <body>
-	<header>
-
-	</header>
+	<header th:replace="header"></header>
 	<h1>ログインページ</h1>
 	<p th:if="${errorList}" th:each="error:${errorList}" th:text="${error}"></p>
 	<form action="/login" method="post">
 		<input type="text" name="email" placeholder="メールアドレス">
 		<input type="text" name="password" placeholder="パスワード">
 		<button>ログイン</button>
-		<a href="/register">新規登録</a>
+		<a href="/account/register">新規登録</a>
 	</form>
+	
+	<footer th:replace="footer"></footer>
 </body>
 
 </html>
