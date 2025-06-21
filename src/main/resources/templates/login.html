@@ -10,6 +10,7 @@
 <body>
 	<header th:replace="header"></header>
 	<main class="container">
+		<h3 class="login-title">ログイン</h3>
 		<div class="error-message" >
 			<span th:if="${errorList}" th:each="error:${errorList}" th:text="${error}"></span>
 		</div>
@@ -22,7 +23,6 @@
 				<label for="password">パスワード</label>
 				<input id="password" type="password" name="password" placeholder="abc123">
 			</div>
-
 			<button class="login-buttons">ログイン</button>
 			<div class="register-button">
 				<a href="/account/register">新規登録</a>

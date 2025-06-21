@@ -9,7 +9,7 @@ body {
 
 a {
 	text-decoration: none;
-	color: ;
+	color: #3649cf;
 }
 
 input[type="text"],
@@ -33,10 +33,6 @@ button {
 	font-weight: bold;
 	border-radius: 30px;
 	padding: 10px 100px;
-}
-
-.register-button {
-	color: #3649cf;
 }
 
 .error-message {
@@ -75,13 +71,16 @@ footer {
 }
 
 
-
 .right-item a {
 	color: #fff;
 	padding-left: 2em;
 }
 
 /* ログインページ */
+
+.login-title {
+	text-align: center;
+}
 
 .container {
 	background-color: #faf8f0;
@@ -117,4 +116,8 @@ label {
 .login-buttons {
 	margin: 10px;
 }
+
+.register-button {
+	color: #3649cf;
+	padding-bottom: 2rem;
 }
