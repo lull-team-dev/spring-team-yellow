@@ -127,7 +127,7 @@
 </head>
 
 <body>
-<!--	<header th:replace="header"></header>-->
+	<header th:replace="header"></header>
 	<main>
 		<div style="background-color: rgb(226, 222, 209); width: 80%; margin: 0 auto;">
 			<form action=" /room" method="get">
@@ -176,8 +176,8 @@
 				</div>
 				<div>
 					<span class="material-symbols-outlined" style="color: #F19E39;">calendar_month</span>
-					<input type="date" name="checkinDate" placeholder="チェックイン">
-					<input type="date" name="checkoutDate" placeholder="チェックアウト">
+					<input type="date" name="checkinDate" placeholder="チェックイン" required>
+					<input type="date" name="checkoutDate" placeholder="チェックアウト" required>
 				</div>
 				<button>検索ボタン</button>
 			</form>

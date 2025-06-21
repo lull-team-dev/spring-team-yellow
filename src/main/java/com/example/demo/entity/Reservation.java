@@ -1,7 +1,6 @@
 package com.example.demo.entity;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,7 +44,7 @@ public class Reservation {
 
 	//予約日
 	@Column(name = "reservation_on")
-	private LocalDateTime reservationOn;
+	private LocalDate reservationOn;
 
 	//「親（Reservation）に対して行った操作（保存・更新・削除など）を子（ReservData）にもすべて適用する
 	//「親から外された子（孤児）をDBから自動で削除する
@@ -110,7 +109,7 @@ public class Reservation {
 		return id;
 	}
 
-	public LocalDateTime getReservationOn() {
+	public LocalDate getReservationOn() {
 		return reservationOn;
 	}
 

@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,11 @@ public class RoomService {
 	public List<LocalDate> dateCalc(LocalDate checkinDate, LocalDate checkoutDate) {
 		List<LocalDate> stayDates = new ArrayList<>();
 
-		//まだ計算途中　ストリームを使うかかくちょ
+		Integer days = (int) ChronoUnit.DAYS.between(checkinDate, checkoutDate);
+
+		for (Integer addDays = 1; addDays < days - 1; addDays++) {
+			stayDates.add(checkinDate.plusDays(addDays));
+		}
 
 		return stayDates;
 	}
