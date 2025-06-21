@@ -1,0 +1,120 @@
+@charset "UTF-8";
+
+
+
+/* 共通 */
+body {
+	margin: 0;
+}
+
+a {
+	text-decoration: none;
+	color: ;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"]  {
+	box-shadow: none;
+	border: 1px solid #a9a9a9;
+	background-color: #fff;
+	appearance: none;
+	border-radius: 60px;
+	color: inherit;
+	width: 100%;
+	padding: 5px;
+}
+
+button {
+	box-shadow: none;
+	border: none;
+	background: linear-gradient( #217ee5,#3649cf);
+	color: #fff;
+	font-weight: bold;
+	border-radius: 30px;
+	padding: 10px 100px;
+}
+
+.register-button {
+	color: #3649cf;
+}
+
+.error-message {
+	color: red;
+	text-align: center;
+	min-height: 3em; /* おおよそ2〜3行分の高さ */
+
+	margin: 0 auto;
+	max-width: 400px;
+}
+
+.error-message span{
+	display: block;
+	
+}
+
+/* ヘッダー、フッター */
+
+header,
+footer {
+	background-color: #e77611;
+	color: #fff;
+	padding: 20px 30px;
+	font-weight: bolder;
+
+
+}
+
+header div {
+	display: flex;
+	justify-content: space-between;
+}
+
+footer {
+	text-align: center;
+}
+
+
+
+.right-item a {
+	color: #fff;
+	padding-left: 2em;
+}
+
+/* ログインページ */
+
+.container {
+	background-color: #faf8f0;
+	border: #e77611;
+	width: 80%;
+	border: 1px solid #e77611;
+	margin: 80px auto;
+	border-radius: 30px;
+	padding: 50px 0;
+}
+
+.login-items {
+	max-width: 400px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.login-item {
+  display: flex;
+  align-items: center;    /* ラベルと入力を縦中央揃え */
+  justify-content: center; /* 横方向は中央寄せ */
+  margin-bottom: 1rem;    /* 下に少し余白 */
+  gap: 1rem;              /* ラベルと入力欄の間隔 */
+  width: 100%;            /* 横いっぱいに広げる */
+}
+
+label {
+  flex-shrink: 0;         /* ラベルは縮まらない */
+  width: 120px;           /* ラベル幅固定（必要に応じて調整） */
+  text-align: right;      /* 右寄せで入力欄に近づける */
+}
+
+.login-buttons {
+	margin: 10px;
+}
+}
