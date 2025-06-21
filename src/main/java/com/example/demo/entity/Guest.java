@@ -21,7 +21,7 @@ public class Guest {
 	//GenerationType.IDENTITY は、データベースの自動インクリメント機能を使用して主キーを生成する
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Integer id;
 
 	@NotBlank(message = "ユーザー名を入力してください")
 	@Size(max = 15, message = "ユーザー名は15文字以内で入力してください")
@@ -105,7 +105,7 @@ public class Guest {
 		return createdAt;
 	}
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 

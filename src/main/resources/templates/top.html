@@ -1,16 +1,134 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<xmlns:th="http://www.thymeleaf.org">
 
 <head>
 	<meta charset="UTF-8">
 	<title>宿へようこそ</title>
 	<link rel="stylesheet" href="/css/style.css">
 	<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+	<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+	<style>
+		        .container {
+		            max-width: 400px;
+		            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+		        }
+
+		        .price-display {
+		            display: flex;
+		            justify-content: space-between;
+		            margin-bottom: 20px;
+		        }
+
+		        .price-box {
+		            background: #f8f9fa;
+		            border: 1px solid #dee2e6;
+		            border-radius: 8px;
+		            padding: 5px 10px;
+		            min-width: 120px;
+		        }
+
+		        .price-label {
+		            font-size: 12px;
+		            color: #6c757d;
+		            margin-bottom: 4px;
+		        }
+
+		        .price-value {
+		            font-size: 16px;
+		            font-weight: bold;
+		            color: #212529;
+		        }
+
+		        .slider-container {
+		            position: relative;
+		            height: 50px;
+		        }
+
+		        .slider-track {
+		            position: absolute;
+		            top: 50%;
+		            left: 0;
+		            right: 0;
+		            height: 6px;
+		            background: #e9ecef;
+		            border-radius: 3px;
+		            transform: translateY(-50%);
+		        }
+
+		        .slider-range {
+		            position: absolute;
+		            height: 6px;
+		            background: #F19E39;
+		            border-radius: 3px;
+		            top: 50%;
+		            transform: translateY(-50%);
+		        }
+
+		        .slider-lower, .slider-upper {
+		            position: absolute;
+		            top: 50%;
+		            transform: translateY(-50%);
+		            width: 100%;
+		            height: 6px;
+		            background: transparent;
+		            outline: none;
+		            -webkit-appearance: none;
+		            appearance: none;
+		            pointer-events: none;
+		        }
+
+		        .slider-lower::-webkit-slider-thumb,
+		        .slider-upper::-webkit-slider-thumb {
+		            -webkit-appearance: none;
+		            appearance: none;
+		            width: 20px;
+		            height: 20px;
+		            background: #F19E39;
+		            border-radius: 50%;
+		            cursor: pointer;
+		            pointer-events: all;
+		            border: 2px solid white;
+		            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+		        }
+
+		        .slider-lower::-moz-range-thumb,
+		        .slider-upper::-moz-range-thumb {
+		            width: 20px;
+		            height: 20px;
+		            background: #F19E39;
+		            border-radius: 50%;
+		            cursor: pointer;
+		            pointer-events: all;
+		            border: 2px solid white;
+		            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+		        }
+
+		        .slider-upper {
+		            z-index: 2;
+		        }
+
+		        .slider-lower::-webkit-slider-thumb {
+		            background: #F19E39;
+		        }
+
+		        .slider-lower::-moz-range-thumb {
+		            background: #F19E39;
+		        }
+				
+				.slider-track,
+				.slider-range,
+				.slider-lower,
+				.slider-upper {
+				  left: 0;
+				  right: 0;
+				  width: 100%;
+				}
+		    </style>	
 </head>
 
-<body style="text-align: center;">
-	<header th:replace="header"></header>
-	<main style="text-align: center;">
+<body>
+<!--	<header th:replace="header"></header>-->
+	<main>
 		<div style="background-color: rgb(226, 222, 209); width: 80%; margin: 0 auto;">
 			<form action=" /room" method="get">
 				<p>キーワード検索</p>
@@ -33,43 +151,73 @@
 								th:checked="${types != null and types.contains(3)}">
 							シングルルーム
 						</label>
-						<div>
-							<p>金額</p>
-							<p>￥<output id="under_value"></output>　-　￥<output id="up_value"></output></p>
-							<input id="pi_under_input" type="range" min="0" max="900000" name="underPrice"
-								th:value="${underPrice}" step="1">
-							<input id="pi_up_input" type="range" min="8000" max="100000" name="upPrice"
-								th:value="${upPrice}" step="1">
+						<div class="container">
+							<div class="price-display">
+								<div class="price-box">
+									<div class="price-label">下限</div>
+									<div class="price-value">¥<span id="under_value">3,004</span></div>
+								</div>
+								<div class="price-box">
+									<div class="price-label">上限</div>
+									<div class="price-value">¥<span id="up_value">282,000</span></div>
+								</div>
+							</div>
+							<div class="slider-container">
+								<div class="slider-track"></div>
+								<div class="slider-range" id="slider-range"></div>
+								<input type="range" id="pi_under_input" class="slider-lower" min="0" max="100000"
+									name="underPrice" th:value="${underPrice}" step="1"
+									data-pb-color="var(--bs-secondary-bg)">
+								<input type="range" id="pi_up_input" class="slider-upper" min="0" max="100000"
+									name="upPrice" th:value="${upPrice}" step="1" data-pb-color="var(--bs-primary)">
+							</div>
 						</div>
 					</div>
-					<div>
-						<span class="material-symbols-outlined" style="color: #F19E39;">calendar_month</span>
-						<input id="pi_up_input" type="text" name="checkinDate" placeholder="チェックイン">
-						<input type="text" name="checkoutDate" placeholder="チェックアウト">
-					</div>
-					<button>検索ボタン</button>
+				</div>
+				<div>
+					<span class="material-symbols-outlined" style="color: #F19E39;">calendar_month</span>
+					<input type="date" name="checkinDate" placeholder="チェックイン">
+					<input type="date" name="checkoutDate" placeholder="チェックアウト">
+				</div>
+				<button>検索ボタン</button>
 			</form>
 		</div>
 	</main>
 	<script>
-		const underValue = document.querySelector("#under_value");
-		const underInput = document.querySelector("#pi_under_input");
-		/*初期表示*/
-		underValue.textContent = Number(underInput.value).toLocaleString();
-		/*可変時の表示*/
-		underInput.addEventListener("input", (event) => {
-			underValue.textContent = Number(event.target.value).toLocaleString();
-		});
+	   const underInput = document.getElementById("pi_under_input");
+	   const upInput = document.getElementById("pi_up_input");
+	   const underValue = document.getElementById("under_value");
+	   const upValue = document.getElementById("up_value");
+	   const sliderRange = document.getElementById("slider-range");
 
-		const upValue = document.querySelector("#up_value");
-		const upInput = document.querySelector("#pi_up_input");
-		/*初期表示*/
-		upValue.textContent = Number(upInput.value).toLocaleString();
-		/*可変時の表示*/
-		upInput.addEventListener("input", (event) => {
-			upValue.textContent = Number(event.target.value).toLocaleString();
-		});
-	</script>
+	   function formatCurrency(val) {
+	     return Number(val).toLocaleString();
+	   }
+
+	   function updateDisplay() {
+	     const lower = parseInt(underInput.value);
+	     const upper = parseInt(upInput.value);
+	     const max = parseInt(underInput.max);
+
+	     if (lower >= upper) {
+	       underInput.value = upper - 1000;
+	     }
+
+	     underValue.textContent = formatCurrency(underInput.value);
+	     upValue.textContent = formatCurrency(upInput.value);
+
+	     const percentLeft = (underInput.value / max) * 100;
+	     const percentRight = (upInput.value / max) * 100;
+
+	     sliderRange.style.left = percentLeft + "%";
+	     sliderRange.style.width = (percentRight - percentLeft) + "%";
+	   }
+
+	   underInput.addEventListener("input", updateDisplay);
+	   upInput.addEventListener("input", updateDisplay);
+
+	   window.addEventListener("DOMContentLoaded", updateDisplay);
+	 </script>
 
 
 	<!--ここから部屋一覧-->

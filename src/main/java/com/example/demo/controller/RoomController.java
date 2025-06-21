@@ -37,17 +37,33 @@ public class RoomController {
 		//		if (checkinDate != null && checkoutDate != null) {
 		//
 		//		}
-		if (keyword != null && types != null) {
-			List<Type> typeList = typeRepository.findByIdIn(types);
-			rooms = roomRepository.findByRoomNameContainingAndTypeInAndPriceBetween(keyword, typeList, underPrice,
-					upPrice);
-		} else if (keyword != null) {
-			rooms = roomRepository.findByRoomNameContainingAndPriceBetween(keyword, underPrice, upPrice);
-		} else if (types != null) {
-			List<Type> typeList = typeRepository.findByIdIn(types);
-			rooms = roomRepository.findByTypeInAndPriceBetween(typeList, underPrice, upPrice);
+
+		if (upPrice == 100000) {
+			if (keyword != null && types != null) {
+				List<Type> typeList = typeRepository.findByIdIn(types);
+				rooms = roomRepository.findByRoomNameContainingAndTypeInAndPriceGreaterThanEqual(keyword, typeList,
+						underPrice);
+			} else if (keyword != null) {
+				rooms = roomRepository.findByRoomNameContainingAndPriceGreaterThanEqual(keyword, underPrice);
+			} else if (types != null) {
+				List<Type> typeList = typeRepository.findByIdIn(types);
+				rooms = roomRepository.findByTypeInAndPriceGreaterThanEqual(typeList, underPrice);
+			} else {
+				rooms = roomRepository.findByPriceGreaterThanEqual(underPrice);
+			}
 		} else {
-			rooms = roomRepository.findAll();
+			if (keyword != null && types != null) {
+				List<Type> typeList = typeRepository.findByIdIn(types);
+				rooms = roomRepository.findByRoomNameContainingAndTypeInAndPriceBetween(keyword, typeList, underPrice,
+						upPrice);
+			} else if (keyword != null) {
+				rooms = roomRepository.findByRoomNameContainingAndPriceBetween(keyword, underPrice, upPrice);
+			} else if (types != null) {
+				List<Type> typeList = typeRepository.findByIdIn(types);
+				rooms = roomRepository.findByTypeInAndPriceBetween(typeList, underPrice, upPrice);
+			} else {
+				rooms = roomRepository.findByPriceBetween(underPrice, upPrice);
+			}
 		}
 
 		model.addAttribute("rooms", rooms);
@@ -57,6 +73,7 @@ public class RoomController {
 		model.addAttribute("upPrice", upPrice);
 		model.addAttribute("checkinDate", checkinDate);
 		model.addAttribute("checkoutDate", checkoutDate);
+
 		return "top";
 	}
 }
