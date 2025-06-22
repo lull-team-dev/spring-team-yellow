@@ -49,7 +49,7 @@ public class LoginController {
 		}
 
 		List<Guest> guests = guestRepository.findByEmailAndPassword(email, password);
-		if (guests.size() <= 0) {
+		if ((!email.isEmpty() && !password.isEmpty()) && guests.size() <= 0) {
 			errorList.add("メールアドレスまたはパスワードが違います");
 		}
 		if (errorList.size() > 0) {
