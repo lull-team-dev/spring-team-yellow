@@ -1,8 +1,10 @@
 package com.example.demo.entity;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,24 +12,25 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "reservations")
-public class Reservations {
+public class Reservation {
 
 	//フィールド
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Integer id;
 
 	@ManyToOne
 	@JoinColumn(name = "guest_id")
-	private Guests guest;
+	private Guest guest;
 
 	@ManyToOne
 	@JoinColumn(name = "room_id")
-	private Rooms room;
+	private Room room;
 
 	@Column(name = "total_price")
 	private Integer totalPrice;
@@ -41,14 +44,19 @@ public class Reservations {
 
 	//予約日
 	@Column(name = "reservation_on")
-	private LocalDateTime reservationOn;
+	private LocalDate reservationOn;
+
+	//「親（Reservation）に対して行った操作（保存・更新・削除など）を子（ReservData）にもすべて適用する
+	//「親から外された子（孤児）をDBから自動で削除する
+	@OneToMany(mappedBy = "reservation", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<ReservData> reservData = new ArrayList<>();
 
 	//コンストラクタ
-	public Reservations() {
+	public Reservation() {
 
 	}
 
-	public Reservations(Guests guest, Rooms room, Integer totalPrice, Integer stayNights, LocalDate stayDate) {
+	public Reservation(Guest guest, Room room, Integer totalPrice, Integer stayNights, LocalDate stayDate) {
 		this.guest = guest;
 		this.room = room;
 		this.totalPrice = totalPrice;
@@ -57,19 +65,19 @@ public class Reservations {
 	}
 
 	//メソッド
-	public Guests getGuest() {
+	public Guest getGuest() {
 		return guest;
 	}
 
-	public void setGuest(Guests guest) {
+	public void setGuest(Guest guest) {
 		this.guest = guest;
 	}
 
-	public Rooms getRoom() {
+	public Room getRoom() {
 		return room;
 	}
 
-	public void setRoom(Rooms room) {
+	public void setRoom(Room room) {
 		this.room = room;
 	}
 
@@ -97,11 +105,11 @@ public class Reservations {
 		this.stayDate = stayDate;
 	}
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public LocalDateTime getReservationOn() {
+	public LocalDate getReservationOn() {
 		return reservationOn;
 	}
 

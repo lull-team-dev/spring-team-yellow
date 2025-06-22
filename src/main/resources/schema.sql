@@ -3,13 +3,14 @@ DROP TABLE IF EXISTS guests CASCADE;
 DROP TABLE IF EXISTS rooms CASCADE;
 DROP TABLE IF EXISTS types CASCADE;
 DROP TABLE IF EXISTS reservations CASCADE;
+DROP TABLE IF EXISTS reservation_details CASCADE;
 
 
 -- guests（宿泊者）
 CREATE TABLE guests(
 id SERIAL PRIMARY KEY,
 name VARCHAR(20) NOT NULL,
-mail VARCHAR(255) NOT NULL UNIQUE,
+email VARCHAR(255) NOT NULL UNIQUE,
 address VARCHAR(161) NOT NULL,
 tel VARCHAR(15) NOT NULL,
 password VARCHAR(128) NOT NULL CHECK(CHAR_LENGTH(password) >= 5),
@@ -47,4 +48,14 @@ stay_nights INTEGER CHECK (stay_nights > 0),
 reservation_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 stay_date DATE,
 FOREIGN KEY (guest_id) REFERENCES guests(id)
+);
+
+
+--reservation_details（1日ごとの予約情報）
+CREATE TABLE reservation_details(
+id SERIAL PRIMARY KEY,
+reservation_id INTEGER,
+stay_one_date DATE,
+price_per_day INTEGER,
+FOREIGN KEY (reservation_id) REFERENCES reservations(id)
 );
