@@ -54,17 +54,10 @@ public class RoomController {
 		if (checkinDate != null && checkoutDate != null) {
 			stayDates = roomService.dateCalc(checkinDate, checkoutDate);
 			List<Reservation> resevations = reservationRepository.findByReservDataStayOneDateIn(stayDates);
-			List<Room> roomAll = roomRepository.findAll();
 
-			for (Room room : roomAll) {
-				if (resevations != null) {
-					for (Reservation reserve : resevations) {
-						if (room.getId() == reserve.getRoom().getId()) {
-							roomIds.add(room.getId());
-						}
-					}
-				} else {
-					roomIds.add(room.getId());
+			if (resevations.size() != 0) {
+				for (Reservation reserve : resevations) {
+					roomIds.add(reserve.getRoom().getId());
 				}
 
 				if (upPrice == 100000) {
@@ -103,6 +96,44 @@ public class RoomController {
 								upPrice);
 					} else {
 						rooms = roomRepository.findByIdNotInAndPriceBetween(roomIds, underPrice, upPrice);
+					}
+				}
+			} else {
+				if (upPrice == 100000) {
+					if (keyword != null && types != null) {
+						List<Type> typeList = typeRepository.findByIdIn(types);
+						rooms = roomRepository.findByRoomNameContainingAndTypeInAndPriceGreaterThanEqual(
+								keyword,
+								typeList,
+								underPrice);
+					} else if (keyword != null) {
+						rooms = roomRepository.findByRoomNameContainingAndPriceGreaterThanEqual(
+								keyword,
+								underPrice);
+					} else if (types != null) {
+						List<Type> typeList = typeRepository.findByIdIn(types);
+						rooms = roomRepository.findByTypeInAndPriceGreaterThanEqual(typeList,
+								underPrice);
+					} else {
+						rooms = roomRepository.findByPriceGreaterThanEqual(underPrice);
+					}
+				} else {
+					if (keyword != null && types != null) {
+						List<Type> typeList = typeRepository.findByIdIn(types);
+						rooms = roomRepository.findByRoomNameContainingAndTypeInAndPriceBetween(
+								keyword,
+								typeList, underPrice,
+								upPrice);
+					} else if (keyword != null) {
+						rooms = roomRepository.findByRoomNameContainingAndPriceBetween(keyword,
+								underPrice,
+								upPrice);
+					} else if (types != null) {
+						List<Type> typeList = typeRepository.findByIdIn(types);
+						rooms = roomRepository.findByTypeInAndPriceBetween(typeList, underPrice,
+								upPrice);
+					} else {
+						rooms = roomRepository.findByPriceBetween(underPrice, upPrice);
 					}
 				}
 			}
