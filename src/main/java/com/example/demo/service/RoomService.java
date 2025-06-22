@@ -15,7 +15,7 @@ public class RoomService {
 
 		Integer days = (int) ChronoUnit.DAYS.between(checkinDate, checkoutDate);
 
-		for (Integer addDays = 1; addDays < days - 1; addDays++) {
+		for (Integer addDays = 0; addDays < days; addDays++) {
 			stayDates.add(checkinDate.plusDays(addDays));
 		}
 
