@@ -17,6 +17,7 @@ import com.example.demo.repository.ReservDataRepository;
 import com.example.demo.repository.ReservationRepository;
 import com.example.demo.repository.RoomRepository;
 import com.example.demo.repository.TypeRepository;
+import com.example.demo.service.ChangeCharService;
 import com.example.demo.service.RoomService;
 
 @Controller
@@ -37,6 +38,9 @@ public class RoomController {
 	@Autowired
 	RoomService roomService;
 
+	@Autowired
+	ChangeCharService changeCharService;
+
 	@GetMapping("/room")
 	public String showRoomList(
 			@RequestParam(required = false) String keyword,
@@ -51,86 +55,115 @@ public class RoomController {
 		List<LocalDate> stayDates = null;
 		List<Integer> roomIds = new ArrayList<>();
 
+		//ひらがなをカタカナに変換
+		String kanaWord = null;
+		if (keyword != null) {
+			kanaWord = changeCharService.convertHiraganaToKatakana(keyword);
+		}
+
+		//選択範囲の日付をリストにひとつずつ格納
 		if (checkinDate != null && checkoutDate != null) {
 			stayDates = roomService.dateCalc(checkinDate, checkoutDate);
 			List<Reservation> resevations = reservationRepository.findByReservDataStayOneDateIn(stayDates);
 
+			//予約が入っていた場合（Not nullへ対応するため）
 			if (resevations.size() != 0) {
 				for (Reservation reserve : resevations) {
 					roomIds.add(reserve.getRoom().getId());
 				}
 
+				//100,000以上の場合の検索
 				if (upPrice == 100000) {
+
+					//ルーム名　+　タイプの検索 + 予約あり（金額は最低金額以上）
 					if (keyword != null && types != null) {
 						List<Type> typeList = typeRepository.findByIdIn(types);
 						rooms = roomRepository.findByIdNotInAndRoomNameContainingAndTypeInAndPriceGreaterThanEqual(
 								roomIds,
-								keyword,
+								kanaWord,
 								typeList,
 								underPrice);
 					} else if (keyword != null) {
-						rooms = roomRepository.findByIdNotInAndRoomNameContainingAndPriceGreaterThanEqual(roomIds,
-								keyword,
+						rooms = roomRepository.findByIdNotInAndRoomNameContainingAndPriceGreaterThanEqual(
+								roomIds,
+								kanaWord,
 								underPrice);
 					} else if (types != null) {
 						List<Type> typeList = typeRepository.findByIdIn(types);
-						rooms = roomRepository.findByIdNotInAndTypeInAndPriceGreaterThanEqual(roomIds, typeList,
+						rooms = roomRepository.findByIdNotInAndTypeInAndPriceGreaterThanEqual(
+								roomIds,
+								typeList,
 								underPrice);
 					} else {
 						rooms = roomRepository.findByIdNotInAndPriceGreaterThanEqual(roomIds, underPrice);
 					}
 				} else {
+					//ルーム名　+　タイプの検索 + 予約あり（金額は最低と最高の間）
 					if (keyword != null && types != null) {
 						List<Type> typeList = typeRepository.findByIdIn(types);
-						rooms = roomRepository.findByIdNotInAndRoomNameContainingAndTypeInAndPriceBetween(roomIds,
-								keyword,
-								typeList, underPrice,
+						rooms = roomRepository.findByIdNotInAndRoomNameContainingAndTypeInAndPriceBetween(
+								roomIds,
+								kanaWord,
+								typeList,
+								underPrice,
 								upPrice);
 					} else if (keyword != null) {
-						rooms = roomRepository.findByIdNotInAndRoomNameContainingAndPriceBetween(roomIds, keyword,
+						rooms = roomRepository.findByIdNotInAndRoomNameContainingAndPriceBetween(
+								roomIds,
+								kanaWord,
 								underPrice,
 								upPrice);
 					} else if (types != null) {
 						List<Type> typeList = typeRepository.findByIdIn(types);
-						rooms = roomRepository.findByIdNotInAndTypeInAndPriceBetween(roomIds, typeList, underPrice,
+						rooms = roomRepository.findByIdNotInAndTypeInAndPriceBetween(
+								roomIds,
+								typeList,
+								underPrice,
 								upPrice);
 					} else {
 						rooms = roomRepository.findByIdNotInAndPriceBetween(roomIds, underPrice, upPrice);
 					}
 				}
 			} else {
+				//100,000未満
 				if (upPrice == 100000) {
+					//ルーム名　+　タイプの検索 + 予約なし（金額は最低金額以上）
 					if (keyword != null && types != null) {
 						List<Type> typeList = typeRepository.findByIdIn(types);
 						rooms = roomRepository.findByRoomNameContainingAndTypeInAndPriceGreaterThanEqual(
-								keyword,
+								kanaWord,
 								typeList,
 								underPrice);
 					} else if (keyword != null) {
 						rooms = roomRepository.findByRoomNameContainingAndPriceGreaterThanEqual(
-								keyword,
+								kanaWord,
 								underPrice);
 					} else if (types != null) {
 						List<Type> typeList = typeRepository.findByIdIn(types);
-						rooms = roomRepository.findByTypeInAndPriceGreaterThanEqual(typeList,
+						rooms = roomRepository.findByTypeInAndPriceGreaterThanEqual(
+								typeList,
 								underPrice);
 					} else {
 						rooms = roomRepository.findByPriceGreaterThanEqual(underPrice);
 					}
 				} else {
+					//ルーム名　+　タイプの検索 + 予約なし（金額は最低と最高の間）
 					if (keyword != null && types != null) {
 						List<Type> typeList = typeRepository.findByIdIn(types);
 						rooms = roomRepository.findByRoomNameContainingAndTypeInAndPriceBetween(
-								keyword,
+								kanaWord,
 								typeList, underPrice,
 								upPrice);
 					} else if (keyword != null) {
-						rooms = roomRepository.findByRoomNameContainingAndPriceBetween(keyword,
+						rooms = roomRepository.findByRoomNameContainingAndPriceBetween(
+								kanaWord,
 								underPrice,
 								upPrice);
 					} else if (types != null) {
 						List<Type> typeList = typeRepository.findByIdIn(types);
-						rooms = roomRepository.findByTypeInAndPriceBetween(typeList, underPrice,
+						rooms = roomRepository.findByTypeInAndPriceBetween(
+								typeList,
+								underPrice,
 								upPrice);
 					} else {
 						rooms = roomRepository.findByPriceBetween(underPrice, upPrice);
@@ -138,7 +171,12 @@ public class RoomController {
 				}
 			}
 		} else {
+			//検索内容がない場合全件表示
 			rooms = roomRepository.findAll();
+		}
+
+		if (rooms.size() == 0) {
+			model.addAttribute("message", "検索がヒットしません");
 		}
 
 		model.addAttribute("stayDates", stayDates);

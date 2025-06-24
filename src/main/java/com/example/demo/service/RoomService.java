@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class RoomService {
 
+	//選択範囲の日付をリストにひとつずつ格納
 	public List<LocalDate> dateCalc(LocalDate checkinDate, LocalDate checkoutDate) {
 		List<LocalDate> stayDates = new ArrayList<>();
 
@@ -21,4 +22,5 @@ public class RoomService {
 
 		return stayDates;
 	}
+
 }
