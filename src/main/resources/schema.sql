@@ -4,6 +4,7 @@ DROP TABLE IF EXISTS rooms CASCADE;
 DROP TABLE IF EXISTS types CASCADE;
 DROP TABLE IF EXISTS reservations CASCADE;
 DROP TABLE IF EXISTS reservation_details CASCADE;
+DROP TABLE IF EXISTS plans CASCADE;
 
 
 -- guests（宿泊者）
@@ -43,6 +44,7 @@ CREATE TABLE reservations (
 id SERIAL PRIMARY KEY,
 guest_id INTEGER,
 room_id INTEGER,
+plan_id INTEGER,
 total_price INTEGER,
 stay_nights INTEGER CHECK (stay_nights > 0),
 reservation_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -58,4 +60,11 @@ reservation_id INTEGER,
 stay_one_date DATE,
 price_per_day INTEGER,
 FOREIGN KEY (reservation_id) REFERENCES reservations(id)
+);
+
+CREATE TABLE plans(
+id SERIAL PRIMARY KEY,
+name TEXT,
+details TEXT,
+price INTEGER
 );

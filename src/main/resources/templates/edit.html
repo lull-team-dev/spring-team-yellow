@@ -3,8 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+	<header th:replace="header"></header>
+	<main>
+		
+		<div class="room-edit">
+			<img th:src="@{${room.imgPath}}" th:alt="@{${room.roomName}}">
+			
+			<div class="room-message">
+				<h3 th:text="${room.roomName}"></h3>
+				<p th:text="${room.description}"></p>
+				
+				<div class="room-price">
+					<p th:text="${room.price} + '円'"></p>
+				</div>
+			</div>
+			
+		</div>
+		<div class="room-plans">
+			
+		</div>
+		
+		
+	</main>
 
+	
 </body>
 </html>
