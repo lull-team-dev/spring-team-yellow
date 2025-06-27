@@ -32,6 +32,7 @@ room_name TEXT,
 price INTEGER,
 type_id INTEGER,
 img_path TEXT,
+img_path2 TEXT,
 description TEXT,
 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 FOREIGN KEY (type_id) REFERENCES types(id)

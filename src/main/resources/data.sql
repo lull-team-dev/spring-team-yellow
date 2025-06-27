@@ -17,31 +17,31 @@ INSERT INTO types (type_name) VALUES
 
 
 -- rooms（部屋）
-INSERT INTO rooms (room_name, price, type_id, img_path, description) VALUES
-('オーシャンスイート', 55000, 3, '/uploads/images/underthesea.jpg', '海と空を独り占めできる贅沢なスイート'),
-('シーサイドヴィラ', 60000, 3, '/uploads/images/underthesea.jpg', 'プライベートビーチ直結の開放的なヴィラ'),
-('マリンデラックス', 48000, 2, '/uploads/images/underthesea.jpg', '海を感じるモダンインテリアのダブルルーム'),
-('サンセットスイート', 52000, 3, '/uploads/images/underthesea.jpg', 'サンセットを一望できるロマンチックなスイート'),
-('パームガーデンルーム', 45000, 2, '/uploads/images/underthesea.jpg', '南国のパームツリーに囲まれた癒しのダブルルーム'),
-('コーラルルーム', 43000, 2, '/uploads/images/underthesea.jpg', 'サンゴ礁をモチーフにした明るいダブルルーム'),
-('ラグーンスイート', 57000, 3, '/uploads/images/underthesea.jpg', 'ラグーンビューの極上スイート'),
-('マーメイドルーム', 46000, 2, '/uploads/images/underthesea.jpg', '海の妖精をテーマにした幻想的なダブルルーム'),
-('ホライズンスイート', 54000, 3, '/uploads/images/underthesea.jpg', '地平線まで続くオーシャンビューが魅力のスイート'),
-('シェルルーム', 42000,1, '/uploads/images/underthesea.jpg', '貝殻モチーフの上品なシングルルーム'),
-('マリンシングル', 41000, 1, '/uploads/images/underthesea.jpg', 'ひとり旅に最適な落ち着いたマリンスタイルの空間'),
-('ブルーラグーンサイドルーム', 41500, 1, '/uploads/images/underthesea.jpg', '青いラグーンを眺めながらくつろげるシングルルーム'),
-('アクアスイート', 56000, 3, '/uploads/images/underthesea.jpg', '水面の煌めきに包まれた優雅なスイート'),
-('オーシャンテラスルーム', 47000, 2, '/uploads/images/underthesea.jpg', '海風が心地よい開放的なテラス付きダブルルーム'),
-('ネプチューンルーム', 44000, 2, '/uploads/images/underthesea.jpg', '海神ネプチューンをイメージした神秘的な空間'),
-('サーフサイドスイート', 53000, 3, '/uploads/images/underthesea.jpg', 'サーフィンをテーマにしたスタイリッシュなスイート'),
-('シーブルールーム', 43000, 2, '/uploads/images/underthesea.jpg', '青と白で統一された爽やかなダブルルーム'),
-('クリスタルウェーブルーム', 45500, 2, '/uploads/images/underthesea.jpg', '水晶の波を感じさせる静寂なダブルルーム'),
-('アトランティススイート', 59000, 3, '/uploads/images/underthesea.jpg', '伝説の海底都市を思わせる幻想的なスイート'),
-('カリビアンルーム', 46500, 2, '/uploads/images/underthesea.jpg', 'カリブの陽気な風を感じるリゾート感満載のダブルルーム'),
-('コーストラインルーム', 42000, 1, '/uploads/images/underthesea.jpg', '海岸線を望む静かなシングルルーム'),
-('ノーチラスルーム', 42500, 1, '/uploads/images/underthesea.jpg', '潜水艦をモチーフにしたクールなシングルルーム'),
-('アズールシングル', 41500, 1, '/uploads/images/underthesea.jpg', '地中海の青をイメージした落ち着きのあるシングルルーム'),
-('リーフサイドルーム', 41800, 1, '/uploads/images/underthesea.jpg', 'サンゴ礁に囲まれたような自然派シングルルーム');
+INSERT INTO rooms (room_name, price, type_id, img_path, img_path2, description) VALUES
+('オーシャンスイート', 55000, 3, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea.jpg', '海と空を独り占めできる贅沢なスイート'),
+('シーサイドヴィラ', 60000, 3, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea.jpg','プライベートビーチ直結の開放的なヴィラ'),
+('マリンデラックス', 48000, 2, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea.jpg', '海を感じるモダンインテリアのダブルルーム'),
+('サンセットスイート', 52000, 3, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea.jpg', 'サンセットを一望できるロマンチックなスイート'),
+('パームガーデンルーム', 45000, 2, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea.jpg', '南国のパームツリーに囲まれた癒しのダブルルーム'),
+('コーラルルーム', 43000, 2, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea.jpg', 'サンゴ礁をモチーフにした明るいダブルルーム'),
+('ラグーンスイート', 57000, 3, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea.jpg', 'ラグーンビューの極上スイート'),
+('マーメイドルーム', 46000, 2, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea.jpg', '海の妖精をテーマにした幻想的なダブルルーム'),
+('ホライズンスイート', 54000, 3, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea.jpg', '地平線まで続くオーシャンビューが魅力のスイート'),
+('シェルルーム', 42000,1, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea.jpg', '貝殻モチーフの上品なシングルルーム'),
+('マリンシングル', 41000, 1, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea.jpg', 'ひとり旅に最適な落ち着いたマリンスタイルの空間'),
+('ブルーラグーンサイドルーム', 41500, 1, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea.jpg', '青いラグーンを眺めながらくつろげるシングルルーム'),
+('アクアスイート', 56000, 3, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea.jpg', '水面の煌めきに包まれた優雅なスイート'),
+('オーシャンテラスルーム', 47000, 2, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea.jpg', '海風が心地よい開放的なテラス付きダブルルーム'),
+('ネプチューンルーム', 44000, 2, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea.jpg', '海神ネプチューンをイメージした神秘的な空間'),
+('サーフサイドスイート', 53000, 3, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea.jpg', 'サーフィンをテーマにしたスタイリッシュなスイート'),
+('シーブルールーム', 43000, 2, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea.jpg', '青と白で統一された爽やかなダブルルーム'),
+('クリスタルウェーブルーム', 45500, 2, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea.jpg', '水晶の波を感じさせる静寂なダブルルーム'),
+('アトランティススイート', 59000, 3, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea.jpg', '伝説の海底都市を思わせる幻想的なスイート'),
+('カリビアンルーム', 46500, 2, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea.jpg', 'カリブの陽気な風を感じるリゾート感満載のダブルルーム'),
+('コーストラインルーム', 42000, 1, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea.jpg', '海岸線を望む静かなシングルルーム'),
+('ノーチラスルーム', 42500, 1, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea.jpg', '潜水艦をモチーフにしたクールなシングルルーム'),
+('アズールシングル', 41500, 1, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea.jpg', '地中海の青をイメージした落ち着きのあるシングルルーム'),
+('リーフサイドルーム', 41800, 1, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea.jpg', 'サンゴ礁に囲まれたような自然派シングルルーム');
 
 
 -- reservations(予約情報)
@@ -171,6 +171,6 @@ INSERT INTO reservation_details(reservation_id, stay_one_date, price_per_day) VA
 
 -- plans（プラン情報）
 INSERT INTO plans(name,details,price) VALUES
-('素泊まり', '食事なし', 0),
-('朝食付き', '朝食のみついてます。季節のビュッフェ', 1000),
-('朝・夕食付き', '朝食は季節のビュッフェ、夕食はBBQ', 2000);
+('素泊まり', '【食事なし】迷ったらコレ！食事なしシンプルステイ', 0),
+('朝食付き', '【朝食あり】季節のビュッフェ付き', 1000),
+('朝・夕食付き', '【朝・夕食あり】朝食は季節のビュッフェ、夕食はBBQ付き', 2000);

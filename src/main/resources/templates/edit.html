@@ -8,27 +8,36 @@
 <body>
 	<header th:replace="header"></header>
 	<main>
-		
-		<div class="room-edit">
-			<img th:src="@{${room.imgPath}}" th:alt="@{${room.roomName}}">
-			
-			<div class="room-message">
-				<h3 th:text="${room.roomName}"></h3>
-				<p th:text="${room.description}"></p>
-				
-				<div class="room-price">
-					<p th:text="${room.price} + '円'"></p>
-				</div>
-			</div>
-			
-		</div>
-		<div class="room-plans">
-			
-		</div>
-		
-		
-	</main>
+		<div class="details-box">
+			<div class="room-edit">
+						<div class="room-img">
+							<img th:src="@{${room.imgPath}}" th:alt="@{${room.roomName}}">
+						</div>			
+						<div class="room-text">
+							<h3  class="room-name" th:text="${room.roomName}"></h3>
+							<p class="room-message" th:text="${room.description}"></p>
+							
+							<div class="room-price">
+								<p th:text="${room.price} + '円'"></p>
+							</div>
+						</div>
+						
+					</div>
+					<div class="room-plans">
+						<ul class="plans">
+								<li class="plan" th:each="plan:${plans}">
+									<a th:href="@{/rooms/{id}/reserve(id=${room.id},planId=${plan.id})}">
+										<p  th:text="${plan.name}"></p>
+										<p th:text="${plan.details}"></p>
+									</a>
+									
+								</li>
 
+						</ul>
+					</div>
+		</div>
+	</main>
+<footer th:replace="footer"></footer>
 	
 </body>
 </html>
