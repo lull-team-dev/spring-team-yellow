@@ -6,7 +6,9 @@
 		<title>宿へようこそ</title>
 		<link rel="stylesheet" href="/css/style.css">
 		<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-		<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+		<!--flatpickr(カレンダー）-->
+		<!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">-->
+		<!--<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>-->
 		<style>
 			.contanabox {
 				max-width: 400px;
@@ -124,6 +126,27 @@
 				right: 0;
 				width: 100%;
 			}
+
+			/*カレンダーのcss*/
+			.calendar {
+				display: flex;
+				gap: 30px;
+				text-align: center;	
+			}
+
+			.week {
+				padding: 5px;
+			}
+			
+			.calender_button {
+				appearance: none;
+			}
+			
+			.is-disabled{
+				color: #ccc;
+			}
+			
+			
 		</style>
 	</head>
 
@@ -185,37 +208,58 @@
 						</div>
 						<div>
 							<span class="material-symbols-outlined" style="color: #F19E39;">calendar_month</span>
-							<input type="date" name="checkinDate" placeholder="チェックイン" th:value="${checkinDate}"
+							<input type="text" id="checkinDate" name="checkinDate" placeholder="チェックイン" th:value="${checkinDate}"
 								required>
-							<input type="date" name="checkoutDate" placeholder="チェックアウト" th:value="${checkoutDate}"
+							<input type="text" id="checkoutDate" name="checkoutDate" placeholder="チェックアウト" th:value="${checkoutDate}"
 								required>
 							<!-- カレンダー -->
-							<div id="calendar"></div>
+							<div id="show_calender">
+								<div class="calender_button"></div>
+								<button type="button" id="prev"> ＜ </button>
+								<button type="button" id="next"> ＞ </button>
+								</div>
+								<div id="calendar" class="calendar"></div>
+							</div>
 						</div>
+						<!--flatpickr(カレンダー）-->
+						<!--<input type="text" id="flatpickr">-->
+						<!--<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>-->
+						<!--<script>-->
+						<!--flatpickr("#flatpickr", {-->
+						<!--locale: "ja"-->
+						<!--});-->
+						<!--</script>-->
 						<button>検索ボタン</button>
 					</form>
 				</div>
 			</div>
 		</main>
 
-
 		<!--ここから部屋一覧-->
 		<p th:text="${message}"></p>
 
+			
 		<div th:each="room:${rooms}">
 			-------------------------
+		<a th:href="@{/edit/{roomId}(roomId=${room.id})}">
+			<div>
 			<p th:text="${room.roomName}"></p>
 			<img th:src="@{${room.imgPath}}" alt="部屋">
 			<p th:text="${room.description}"></p>
 			<p><span th:text="${room.type.typeName}"></span></p>
 			<p th:text="${room.price}"></p>
+			</div>
+		</a>
 		</div>
 
 		</main>
 		<footer th:replace="footer"></footer>
 
 		<script src="js/range.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 		<script src="js/calendar.js"></script>
 	</body>
+
+
 
 	</html>
