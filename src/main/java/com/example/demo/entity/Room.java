@@ -40,11 +40,9 @@ public class Room {
 
 	//コンストラクタ
 	public Room() {
-		super();
 	}
 
 	public Room(String roomName, Integer price, Type type, String imgPath, String description) {
-		super();
 		this.roomName = roomName;
 		this.price = price;
 		this.type = type;
