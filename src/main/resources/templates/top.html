@@ -241,7 +241,7 @@
 			
 		<div th:each="room:${rooms}">
 			-------------------------
-		<a th:href="@{/edit/{roomId}(roomId=${room.id})}">
+		<a th:href="@{/rooms/{roomId}(roomId=${room.id})}">
 			<div>
 			<p th:text="${room.roomName}"></p>
 			<img th:src="@{${room.imgPath}}" alt="部屋">
