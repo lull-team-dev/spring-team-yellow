@@ -167,3 +167,10 @@ INSERT INTO reservation_details(reservation_id, stay_one_date, price_per_day) VA
 (30, '2025-07-21', 52000),
 (30, '2025-07-22', 52000),
 (30, '2025-07-23', 52000);
+
+
+-- plans（プラン情報）
+INSERT INTO plans(name,details,price) VALUES
+('素泊まり', '食事なし', 0),
+('朝食付き', '朝食のみついてます。季節のビュッフェ', 1000),
+('朝・夕食付き', '朝食は季節のビュッフェ、夕食はBBQ', 2000);
