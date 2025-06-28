@@ -27,12 +27,14 @@ public class EditController {
 
 		//部屋の情報取得
 		Room room = roomRepository.findById(id).get();
+		//画像をリストにする
+		List<String> imgList = List.of(room.getImgPath(), room.getImgPath2());
 		//プラン情報取得
 		List<Plan> plans = planRepository.findAll();
-		
+
 		model.addAttribute("room", room);
 		model.addAttribute("plans", plans);
-
+		model.addAttribute("imgList", imgList);
 
 		return "edit";
 	}

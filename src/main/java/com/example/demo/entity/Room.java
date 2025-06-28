@@ -86,7 +86,7 @@ public class Room {
 	public void setImgPath(String imgPath) {
 		this.imgPath = imgPath;
 	}
-
+	
 	public String getImgPath2() {
 		return imgPath2;
 	}
