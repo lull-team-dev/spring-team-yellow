@@ -14,8 +14,8 @@
 			<div class="room-edit">
 				<div class="room-img" id="slide">
 					<img th:src="@{${room.imgPath}}" th:alt="@{${room.roomName}}" id="room-img">
-					<span id="prevBtn" style="cursor:pointer; font-size:2rem; user-select:none; padding:0 10px;" onclick="prev()">&lt;</span>
-					<span id="nextBtn" style="cursor:pointer; font-size:2rem; user-select:none; padding:0 10px;" onclick="next()">&gt;</span>
+					<span id="prevBtn" onclick="prev()">&lt;</span>
+					<span id="nextBtn" onclick="next()">&gt;</span>
 
 					<script th:inline="javascript">
 						

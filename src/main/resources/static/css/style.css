@@ -159,11 +159,31 @@ label {
 
 .room-img {
 	width: 100%;
+	position: relative;
 }
 
 .room-img img {
 	width: 100%;
 	border-radius: 60px;
+}
+
+.room-img span {
+	cursor: pointer;
+	font-size: 5rem;
+	font-weight: bold;
+	user-select: none;
+	padding: 0 10px;
+	position: absolute;
+	top: 50%;
+	color: #fff;
+}
+
+#prevBtn {
+	left: 0;
+}
+
+#nextBtn {
+	right: 0;
 }
 
 .room-text {
@@ -180,9 +200,6 @@ label {
 	border-radius: 10px;
 	padding: 10px;
 }
-
-.room-message {}
-
 
 .room-plice {
 	font-weight: bold;
