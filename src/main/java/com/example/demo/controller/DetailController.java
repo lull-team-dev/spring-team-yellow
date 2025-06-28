@@ -14,7 +14,7 @@ import com.example.demo.repository.PlanRepository;
 import com.example.demo.repository.RoomRepository;
 
 @Controller
-public class EditController {
+public class DetailController {
 
 	@Autowired
 	RoomRepository roomRepository;
@@ -36,7 +36,7 @@ public class EditController {
 		model.addAttribute("plans", plans);
 		model.addAttribute("imgList", imgList);
 
-		return "edit";
+		return "detail";
 	}
 
 }
