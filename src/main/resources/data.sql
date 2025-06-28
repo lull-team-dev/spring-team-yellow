@@ -18,14 +18,14 @@ INSERT INTO types (type_name) VALUES
 
 -- rooms（部屋）
 INSERT INTO rooms (room_name, price, type_id, img_path, img_path2, description) VALUES
-('オーシャンスイート', 55000, 3, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea2.jpg', '海と空を独り占めできる贅沢なスイート'),
-('シーサイドヴィラ', 60000, 3, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea2.jpg','プライベートビーチ直結の開放的なヴィラ'),
+('オーシャンスイート', 55000, 3, '/uploads/images/underthesea.jpg', '/uploads/images/31490506_m.jpg', '海と空を独り占めできる贅沢なスイート'),
+('シーサイドヴィラ', 60000, 3, '/uploads/images/underthesea.jpg', '/uploads/images/31490506_m.jpg','プライベートビーチ直結の開放的なヴィラ'),
 ('マリンデラックス', 48000, 2, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea2.jpg', '海を感じるモダンインテリアのダブルルーム'),
 ('サンセットスイート', 52000, 3, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea2.jpg', 'サンセットを一望できるロマンチックなスイート'),
 ('パームガーデンルーム', 45000, 2, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea2.jpg', '南国のパームツリーに囲まれた癒しのダブルルーム'),
 ('コーラルルーム', 43000, 2, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea2.jpg', 'サンゴ礁をモチーフにした明るいダブルルーム'),
 ('ラグーンスイート', 57000, 3, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea2.jpg', 'ラグーンビューの極上スイート'),
-('マーメイドルーム', 46000, 2, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea2.jpg', '海の妖精をテーマにした幻想的なダブルルーム'),
+('マーメイドルーム', 46000, 2, '/uploads/images/underthesea.jpg', '/uploads/images/31490506_m.jpg', '海の妖精をテーマにした幻想的なダブルルーム'),
 ('ホライズンスイート', 54000, 3, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea2.jpg', '地平線まで続くオーシャンビューが魅力のスイート'),
 ('シェルルーム', 42000,1, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea.jpg', '貝殻モチーフの上品なシングルルーム'),
 ('マリンシングル', 41000, 1, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea.jpg', 'ひとり旅に最適な落ち着いたマリンスタイルの空間'),

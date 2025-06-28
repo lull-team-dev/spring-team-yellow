@@ -24,6 +24,13 @@
 
 						function showImage() {
 							document.getElementById("room-img").src = imgs[num];
+							const img = document.getElementById("room-img");
+							img.classList.add("fade-out");
+
+							setTimeout(() => {
+							  img.src = imgs[num]; // 新しい画像に切り替え
+							  img.classList.remove("fade-out");
+							}, 250); // 画像切り替えはフェードの途中で実行
 						}
 
 						function next() {
