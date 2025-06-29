@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>マイページ更新</title>
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+
+
+</head>
+
+<body>
+	<header th:replace="header"></header>
+	<main>
+		<div class="edit-items" th:switch="${edit}">
+			<form th:action="@{/mypage/{edit}(edit=${edit})}" method="post">
+				<div class="edit-item" th:case="email">メール
+					<div class="">現在のメールアドレス</div>
+					<input th:value="${guest.email}" readonly>
+					<div class="">新しいメールアドレス</div>
+					<input type="email" name="email"　placeholder="メールアドレス">
+				</div>
+				<div class="edit-item" th:case="password">パスワード
+					<div class="">新しいパスワード</div>
+					<input type="password" name="password"　placeholder="パスワード">
+					<input type="password" name="password_confirm" placeholder="パウワード（確認）">
+
+				</div>
+				<div class="edit-item" th:case="profile">基本情報
+					<div class="">名前</div>
+					<input type="text" name="name" th:value="${guest.name}">
+					<div class="">住所</div>
+					<input type="text" name="address" th:value="${guest.address}">
+					<div class="">電話番号</div>
+					<input type="text" name="tel" th:value="${guest.tel}">
+				</div>
+				<p th:each="error:${errorList}" th:text="${error}"></p>
+				<button>編集する</button>
+			</form>
+		</div>
+	</main>
+	<footer th:replace="footer"></footer>
+
+
+</body>
+
+</html>

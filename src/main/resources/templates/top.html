@@ -131,22 +131,49 @@
 			.calendar {
 				display: flex;
 				gap: 30px;
-				text-align: center;	
+				text-align: center;
 			}
 
 			.week {
 				padding: 5px;
 			}
-			
+
 			.calender_button {
 				appearance: none;
 			}
-			
-			.is-disabled{
+
+			.is-disabled {
 				color: #ccc;
 			}
-			
-			
+
+			/*カレンダー入力中のみグレーアウト*/
+			.input-active {
+				background-color: #ccc !important;
+			}
+
+			/*カレンダー選択時、マーキング*/
+			.selected-checkin {
+				background: #F19E39;
+				color: #fff !important;
+				border-top-left-radius: 50%;
+				border-bottom-left-radius: 50%;
+				font-weight: bold;
+
+			}
+
+			.selected-checkout {
+				background: #F19E39;
+				color: #fff !important;
+				border-top-right-radius: 50%;
+				border-bottom-right-radius: 50%;
+				font-weight: bold;
+			}
+
+			.selected-between {
+				background: #f5b05b;
+				color: #fff;
+				border-radius: 0;
+			}
 		</style>
 	</head>
 
@@ -208,27 +235,20 @@
 						</div>
 						<div>
 							<span class="material-symbols-outlined" style="color: #F19E39;">calendar_month</span>
-							<input type="text" id="checkinDate" name="checkinDate" placeholder="チェックイン" th:value="${checkinDate}"
-								required>
-							<input type="text" id="checkoutDate" name="checkoutDate" placeholder="チェックアウト" th:value="${checkoutDate}"
-								required>
+							<input type="text" id="checkinDate" name="checkinDate" placeholder="チェックイン"
+								th:value="${checkinDate}" required readonly>
+							<input type="text" id="checkoutDate" name="checkoutDate" placeholder="チェックアウト"
+								th:value="${checkoutDate}" required readonly>
 							<!-- カレンダー -->
-							<div id="show_calender">
+							<div id="calendarArea" style="display: none;">
 								<div class="calender_button"></div>
+
 								<button type="button" id="prev"> ＜ </button>
 								<button type="button" id="next"> ＞ </button>
-								</div>
 								<div id="calendar" class="calendar"></div>
+								<button type="button" id="closeCalendar">閉じる</button>
 							</div>
 						</div>
-						<!--flatpickr(カレンダー）-->
-						<!--<input type="text" id="flatpickr">-->
-						<!--<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>-->
-						<!--<script>-->
-						<!--flatpickr("#flatpickr", {-->
-						<!--locale: "ja"-->
-						<!--});-->
-						<!--</script>-->
 						<button>検索ボタン</button>
 					</form>
 				</div>
@@ -238,25 +258,24 @@
 		<!--ここから部屋一覧-->
 		<p th:text="${message}"></p>
 
-			
+
 		<div th:each="room:${rooms}">
 			-------------------------
-		<a th:href="@{/edit/{roomId}(roomId=${room.id})}">
-			<div>
-			<p th:text="${room.roomName}"></p>
-			<img th:src="@{${room.imgPath}}" alt="部屋">
-			<p th:text="${room.description}"></p>
-			<p><span th:text="${room.type.typeName}"></span></p>
-			<p th:text="${room.price}"></p>
-			</div>
-		</a>
+			<a th:href="@{/rooms/{roomId}(roomId=${room.id}, checkinDate=${checkinDate}, checkoutDate=${checkoutDate})}">
+				<div>
+					<p th:text="${room.roomName}"></p>
+					<img th:src="@{${room.imgPath}}" alt="部屋">
+					<p th:text="${room.description}"></p>
+					<p><span th:text="${room.type.typeName}"></span></p>
+					<p th:text="${room.price}"></p>
+				</div>
+			</a>
 		</div>
 
 		</main>
 		<footer th:replace="footer"></footer>
 
 		<script src="js/range.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 		<script src="js/calendar.js"></script>
 	</body>
 

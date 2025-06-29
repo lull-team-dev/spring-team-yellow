@@ -32,6 +32,9 @@ public class Room {
 	@Column(name = "img_path")
 	private String imgPath;
 
+	@Column(name = "img_path2")
+	private String imgPath2;
+
 	//説明文
 	private String description;
 
@@ -42,11 +45,12 @@ public class Room {
 	public Room() {
 	}
 
-	public Room(String roomName, Integer price, Type type, String imgPath, String description) {
+	public Room(String roomName, Integer price, Type type, String imgPath, String imgPath2, String description) {
 		this.roomName = roomName;
 		this.price = price;
 		this.type = type;
 		this.imgPath = imgPath;
+		this.imgPath2 = imgPath2;
 		this.description = description;
 	}
 
@@ -81,6 +85,14 @@ public class Room {
 
 	public void setImgPath(String imgPath) {
 		this.imgPath = imgPath;
+	}
+	
+	public String getImgPath2() {
+		return imgPath2;
+	}
+
+	public void setImgPath2(String imgPath2) {
+		this.imgPath2 = imgPath2;
 	}
 
 	public String getDescription() {
