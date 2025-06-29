@@ -5,6 +5,12 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<link rel="stylesheet" href="/css/style.css">
+	
+	<style>
+		.plan-button {
+			all: unset;
+		}
+	</style>
 </head>
 
 <body>
@@ -18,34 +24,30 @@
 					<span id="nextBtn" onclick="next()">&gt;</span>
 
 					<script th:inline="javascript">
-						
+
 						const imgs = /*[[${imgList}]]*/[]; //画像の配列
 						let num = 0;
-
 						function showImage() {
 							document.getElementById("room-img").src = imgs[num];
 							const img = document.getElementById("room-img");
 							img.classList.add("fade-out");
-
 							setTimeout(() => {
-							  img.src = imgs[num]; // 新しい画像に切り替え
-							  img.classList.remove("fade-out");
+								img.src = imgs[num]; // 新しい画像に切り替え
+								img.classList.remove("fade-out");
 							}, 250); // 画像切り替えはフェードの途中で実行
 						}
-
 						function next() {
-						  num = (num + 1) % imgs.length;  // 配列の最後までいったら先頭に戻る
-						  showImage(); //現在の num の値に対応する画像を画面に表示するための関数を呼び出し
+							num = (num + 1) % imgs.length;  // 配列の最後までいったら先頭に戻る
+							showImage(); //現在の num の値に対応する画像を画面に表示するための関数を呼び出し
 						}
-
 						function prev() {
-						  num = (num - 1 + imgs.length) % imgs.length;  // 最初の画像の前は最後に戻る
-						  showImage(); //現在の num の値に対応する画像を画面に表示するための関数を呼び出し
+							num = (num - 1 + imgs.length) % imgs.length;  // 最初の画像の前は最後に戻る
+							showImage(); //現在の num の値に対応する画像を画面に表示するための関数を呼び出し
 						}
 
 						// ページ読み込み時に最初の画像表示
 						showImage();
-						
+
 					</script>
 
 				</div>
@@ -62,13 +64,16 @@
 			<div class="room-plans">
 				<ul class="plans">
 					<li class="plan" th:each="plan:${plans}">
-						<a th:href="@{/rooms/{id}/reserve(id=${room.id},planId=${plan.id})}">
-							<p th:text="${plan.name}"></p>
-							<p th:text="${plan.details}"></p>
-						</a>
-
+						<form th:action="@{/rooms/{id}/reserve}">
+							<input type="hidden" name="planId" th:value="${plan.id}">
+							<input type="hidden" name="checkinDate" th:value="${checkinDate}">
+							<input type="hidden" name="checkoutDate" th:value="${checkoutDate}">
+							<button class="plan-button">
+								<p th:text="${plan.name}"></p>
+								<p th:text="${plan.details}"></p>
+							</button>
+						</form>
 					</li>
-
 				</ul>
 			</div>
 		</div>
