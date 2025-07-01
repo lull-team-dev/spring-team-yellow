@@ -64,7 +64,7 @@
 			<div class="room-plans">
 				<ul class="plans">
 					<li class="plan" th:each="plan:${plans}">
-						<form th:action="@{/rooms/{id}/reserve}">
+						<form th:action="@{/rooms/{id}/reserve(id=${room.id})}">
 							<input type="hidden" name="planId" th:value="${plan.id}">
 							<input type="hidden" name="checkinDate" th:value="${checkinDate}">
 							<input type="hidden" name="checkoutDate" th:value="${checkoutDate}">
