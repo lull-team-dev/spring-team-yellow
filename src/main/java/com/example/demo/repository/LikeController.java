@@ -42,6 +42,6 @@ public class LikeController {
 
 		likeService.toggleLike(account.getId(), id);
 
-		return "redirect:/like";
+		return "redirect:/like#" + id;
 	}
 }

@@ -14,7 +14,7 @@
 		<div th:each="room:${rooms}">
 			-------------------------
 			<a th:href="@{/rooms/{roomId}(roomId=${room.id}, checkinDate=${checkinDate}, checkoutDate=${checkoutDate})}">
-				<div>
+				<div th:id="${id}">
 					<p th:text="${room.roomName}"></p>
 					<img th:src="@{${room.imgPath}}" alt="部屋">
 					<p th:text="${room.description}"></p>
