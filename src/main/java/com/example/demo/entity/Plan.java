@@ -33,4 +33,10 @@ public class Plan {
 		return price;
 	}
 
+	//ルームのトータル金額計算
+	public Integer calcTotalPrice(Integer roomPrice) {
+		Integer totalPrice = roomPrice + this.price;
+		return totalPrice;
+	}
+
 }

@@ -64,7 +64,7 @@ public class RoomController {
 		//選択範囲の日付をリストにひとつずつ格納
 		if (checkinDate != null && checkoutDate != null) {
 			stayDates = roomService.dateCalc(checkinDate, checkoutDate);
-			List<Reservation> resevations = reservationRepository.findByReservDataStayOneDateIn(stayDates);
+			List<Reservation> resevations = reservationRepository.findByReservDatasStayOneDateIn(stayDates);
 
 			//予約が入っていた場合（Not nullへ対応するため）
 			if (resevations.size() != 0) {

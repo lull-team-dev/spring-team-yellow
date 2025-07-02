@@ -9,6 +9,6 @@ import com.example.demo.entity.Reservation;
 
 public interface ReservationRepository extends JpaRepository<Reservation, Integer> {
 
-	List<Reservation> findByReservDataStayOneDateIn(List<LocalDate> stayDates);
+	List<Reservation> findByReservDatasStayOneDateIn(List<LocalDate> stayDates);
 
 }
