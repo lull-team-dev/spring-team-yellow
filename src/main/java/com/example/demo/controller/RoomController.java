@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.demo.entity.Like;
 import com.example.demo.entity.Reservation;
 import com.example.demo.entity.Room;
 import com.example.demo.entity.Type;
@@ -22,7 +21,7 @@ import com.example.demo.repository.ReservationRepository;
 import com.example.demo.repository.RoomRepository;
 import com.example.demo.repository.TypeRepository;
 import com.example.demo.service.ChangeCharService;
-import com.example.demo.service.LikeSeravice;
+import com.example.demo.service.LikeService;
 import com.example.demo.service.RoomService;
 
 @Controller
@@ -50,7 +49,7 @@ public class RoomController {
 	ChangeCharService changeCharService;
 
 	@Autowired
-	LikeSeravice likeSeravice;
+	LikeService likeService;
 
 	@Autowired
 	Account account;
@@ -193,11 +192,8 @@ public class RoomController {
 			model.addAttribute("message", "検索がヒットしません");
 		}
 
-		List<Like> likes = likeRepository.findByGuestId(account.getId());
-		List<Integer> likeRoom = new ArrayList<>();
-		for (Like like : likes) {
-			likeRoom.add(like.getRoomId());
-		}
+		//いいね一覧取得
+		List<Integer> likeRoom = likeService.likeIcon();
 
 		model.addAttribute("stayDates", stayDates);
 		model.addAttribute("rooms", rooms);
@@ -216,7 +212,7 @@ public class RoomController {
 	public String like(@PathVariable("id") Integer id,
 			Model model) {
 
-		likeSeravice.toggleLike(account.getId(), id);
+		likeService.toggleLike(account.getId(), id);
 
 		return "redirect:/room";
 
