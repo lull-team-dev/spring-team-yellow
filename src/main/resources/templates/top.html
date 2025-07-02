@@ -272,8 +272,8 @@
 			</div>
 			</a>
 			<a th:href="@{/rooms/{roomId}/like(roomId=${room.id})}">
-				<i th:if="${like.contains(room.id) == true}" class="fa-solid fa-heart"></i>
-				<i th:unless="${like.contains(room.id) == true}" class="fa-regular fa-heart"></i>	
+			<i th:if="${like.contains(room.id) == true}" class="fa-solid fa-star"></i>
+			<i th:unless="${like.contains(room.id) == true}" class="fa-regular fa-star"></i>	
 			</a>
 		</div>
 

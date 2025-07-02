@@ -11,8 +11,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.Plan;
 import com.example.demo.entity.Room;
+import com.example.demo.model.Account;
+import com.example.demo.repository.LikeRepository;
 import com.example.demo.repository.PlanRepository;
 import com.example.demo.repository.RoomRepository;
+import com.example.demo.service.LikeService;
 
 @Controller
 public class DetailController {
@@ -21,6 +24,12 @@ public class DetailController {
 	RoomRepository roomRepository;
 	@Autowired
 	PlanRepository planRepository;
+	@Autowired
+	LikeRepository likeRepository;
+	@Autowired
+	LikeService likeService;
+	@Autowired
+	Account account;
 
 	@GetMapping("/rooms/{id}")
 	public String showRoomDetails(@PathVariable("id") Integer id,
@@ -36,6 +45,10 @@ public class DetailController {
 		//プラン情報取得
 		List<Plan> plans = planRepository.findAll();
 
+		//		いいね一覧取得
+		List<Integer> likeRoom = likeService.likeIcon();
+		model.addAttribute("like", likeRoom);
+
 		model.addAttribute("room", room);
 		model.addAttribute("plans", plans);
 		model.addAttribute("imgList", imgList);
@@ -43,6 +56,16 @@ public class DetailController {
 		model.addAttribute("checkoutDate", checkoutDate);
 
 		return "detail";
+	}
+
+	//	お気に入り処理
+	@GetMapping("/detail/{id}/like")
+	public String like(@PathVariable("id") Integer id,
+			Model model) {
+
+		likeService.toggleLike(account.getId(), id);
+
+		return "redirect:/rooms/{id}#" + id;
 	}
 
 }

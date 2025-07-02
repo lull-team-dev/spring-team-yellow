@@ -5,7 +5,8 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<link rel="stylesheet" href="/css/style.css">
-	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 	<style>
 		.plan-button {
 			all: unset;
@@ -50,6 +51,13 @@
 				</div>
 				<div class="room-text">
 					<h3 class="room-name" th:text="${room.roomName}"></h3>
+					<div class="" id="${room.id}"> 
+						<a th:href="@{/detail/{roomId}/like(roomId=${room.id})}">
+							<i th:if="${like.contains(room.id) == true}" class="fa-solid fa-star"></i>
+							<i th:unless="${like.contains(room.id) == true}" class="fa-regular fa-star"></i>
+						</a>
+					</div>
+
 					<p class="room-message" th:text="${room.description}"></p>
 
 					<div class="room-price">
@@ -75,6 +83,8 @@
 				</ul>
 			</div>
 		</div>
+		
+		
 	</main>
 	<footer th:replace="footer"></footer>
 
