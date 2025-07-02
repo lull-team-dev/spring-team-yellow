@@ -6,6 +6,7 @@
 		<title>宿へようこそ</title>
 		<link rel="stylesheet" href="/css/style.css">
 		<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 		<!--flatpickr(カレンダー）-->
 		<!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">-->
 		<!--<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>-->
@@ -261,13 +262,18 @@
 		<div th:each="room:${rooms}">
 			-------------------------
 			<a th:href="@{/rooms/{roomId}(roomId=${room.id}, checkinDate=${checkinDate}, checkoutDate=${checkoutDate})}">
-				<div>
+				<div th:id="${room.id}">
 					<p th:text="${room.roomName}"></p>
 					<img th:src="@{${room.imgPath}}" alt="部屋">
 					<p th:text="${room.description}"></p>
 					<p><span th:text="${room.type.typeName}"></span></p>
 					<p th:text="${room.price}"></p>
-				</div>
+
+			</div>
+			</a>
+			<a th:href="@{/rooms/{roomId}/like(roomId=${room.id})}">
+				<i th:if="${like.contains(room.id) == true}" class="fa-solid fa-heart"></i>
+				<i th:unless="${like.contains(room.id) == true}" class="fa-regular fa-heart"></i>	
 			</a>
 		</div>
 

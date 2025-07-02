@@ -5,6 +5,7 @@ DROP TABLE IF EXISTS types CASCADE;
 DROP TABLE IF EXISTS reservations CASCADE;
 DROP TABLE IF EXISTS reservation_details CASCADE;
 DROP TABLE IF EXISTS plans CASCADE;
+DROP TABLE IF EXISTS likes CASCADE;
 
 
 -- guests（宿泊者）
@@ -68,4 +69,10 @@ id SERIAL PRIMARY KEY,
 name TEXT,
 details TEXT,
 price INTEGER
+);
+
+CREATE TABLE likes (
+	id SERIAL PRIMARY KEY,
+    guest_id INTEGER,
+    room_id INTEGER
 );
