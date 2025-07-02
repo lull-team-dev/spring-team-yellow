@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.Like;
+import com.example.demo.entity.Room;
 import com.example.demo.model.Account;
 import com.example.demo.repository.LikeRepository;
+import com.example.demo.repository.RoomRepository;
 
 @Service
 public class LikeService {
@@ -18,6 +20,10 @@ public class LikeService {
 	@Autowired
 	private LikeRepository likeRepository;
 
+	@Autowired
+	RoomRepository roomRepository;
+
+	//いいねされてる部屋のidを取得
 	public List<Integer> likeIcon() {
 		List<Like> likes = likeRepository.findByGuestId(account.getId());
 		List<Integer> likeRoom = new ArrayList<>();
@@ -39,4 +45,17 @@ public class LikeService {
 			likeRepository.save(like);
 		}
 	}
+
+	//	いいねした部屋を取得
+	public List<Room> getLikedRooms(Integer guestId) {
+		List<Like> likes = likeRepository.findByGuestId(account.getId());
+		List<Room> rooms = new ArrayList<>();
+		for (Like like : likes) {
+			//			（= nullじゃなければ）、rooms リストに追加する
+			//			rooms::add は room -> rooms.add(room) と同じ意味。
+			roomRepository.findById(like.getRoomId()).ifPresent(rooms::add);
+		}
+		return rooms;
+	}
+
 }

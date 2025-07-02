@@ -208,13 +208,13 @@ public class RoomController {
 		return "top";
 	}
 
+	//	お気に入り処理
 	@GetMapping("/rooms/{id}/like")
 	public String like(@PathVariable("id") Integer id,
 			Model model) {
 
 		likeService.toggleLike(account.getId(), id);
 
-		return "redirect:/room";
-
+		return "redirect:/room#" + id;
 	}
 }
