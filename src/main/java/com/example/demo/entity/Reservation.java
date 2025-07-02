@@ -32,9 +32,14 @@ public class Reservation {
 	@JoinColumn(name = "room_id")
 	private Room room;
 
+	@ManyToOne
+	@JoinColumn(name = "plan_id")
+	private Plan plan;
+
 	@Column(name = "total_price")
 	private Integer totalPrice;
 
+	//何日宿泊するか
 	@Column(name = "stay_nights")
 	private Integer stayNights;
 
@@ -49,16 +54,17 @@ public class Reservation {
 	//「親（Reservation）に対して行った操作（保存・更新・削除など）を子（ReservData）にもすべて適用する
 	//「親から外された子（孤児）をDBから自動で削除する
 	@OneToMany(mappedBy = "reservation", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<ReservData> reservData = new ArrayList<>();
+	private List<ReservData> reservDatas = new ArrayList<>();
 
 	//コンストラクタ
 	public Reservation() {
 
 	}
 
-	public Reservation(Guest guest, Room room, Integer totalPrice, Integer stayNights, LocalDate stayDate) {
+	public Reservation(Guest guest, Room room, Plan plan, Integer totalPrice, Integer stayNights, LocalDate stayDate) {
 		this.guest = guest;
 		this.room = room;
+		this.plan = plan;
 		this.totalPrice = totalPrice;
 		this.stayNights = stayNights;
 		this.stayDate = stayDate;
@@ -79,6 +85,14 @@ public class Reservation {
 
 	public void setRoom(Room room) {
 		this.room = room;
+	}
+
+	public Plan getPlan() {
+		return plan;
+	}
+
+	public void setPlan(Plan plan) {
+		this.plan = plan;
 	}
 
 	public Integer getTotalPrice() {
@@ -111,6 +125,14 @@ public class Reservation {
 
 	public LocalDate getReservationOn() {
 		return reservationOn;
+	}
+
+	public List<ReservData> getReservDatas() {
+		return reservDatas;
+	}
+
+	public void setReservDatas(List<ReservData> reservDatas) {
+		this.reservDatas = reservDatas;
 	}
 
 }
