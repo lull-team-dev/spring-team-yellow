@@ -13,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 
 @Entity
@@ -135,4 +136,10 @@ public class Reservation {
 		this.reservDatas = reservDatas;
 	}
 
+	@PrePersist
+	public void prePersist() {
+		if (reservationOn == null) {
+			reservationOn = LocalDate.now();
+		}
+	}
 }

@@ -4,9 +4,12 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
+import jakarta.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.example.demo.dto.reserveDto;
 import com.example.demo.entity.Guest;
 import com.example.demo.entity.Plan;
 import com.example.demo.entity.ReservData;
@@ -70,33 +74,38 @@ public class ReserveController {
 		model.addAttribute("room", room);
 		model.addAttribute("plan", plan);
 		model.addAttribute("imgList", imgList);
-		model.addAttribute("checkinDate", checkinDate);
-		model.addAttribute("checkoutDate", checkoutDate);
 
-		//リダイレクトの場合のmodel送信
+		reserveDto dto = new reserveDto();
+
+		//リダイレクトの場合内容を送られてきた情報をそのままセット
 		if (guestName != null && !guestName.isBlank()) {
-			model.addAttribute("guestName", guestName);
+			dto.setGuestName(guestName);
 		} else {
-			model.addAttribute("guestName", guest.getName());
+			dto.setGuestName(guest.getName());
 		}
 
 		if (email != null && !email.isBlank()) {
-			model.addAttribute("email", email);
+			dto.setEmail(email);
 		} else {
-			model.addAttribute("email", guest.getEmail());
+			dto.setEmail(guest.getEmail());
 		}
 
 		if (tel != null && !tel.isBlank()) {
-			model.addAttribute("tel", tel);
+			dto.setTel(tel);
 		} else {
-			model.addAttribute("tel", guest.getTel());
+			dto.setTel(guest.getTel());
 		}
 
 		if (address != null && !address.isBlank()) {
-			model.addAttribute("address", address);
+			dto.setAddress(address);
 		} else {
-			model.addAttribute("address", guest.getAddress());
+			dto.setAddress(guest.getAddress());
 		}
+
+		dto.setCheckinDate(checkinDate);
+		dto.setCheckoutDate(checkoutDate);
+
+		model.addAttribute("reserveDto", dto);
 
 		return "reserve";
 	}
@@ -105,13 +114,9 @@ public class ReserveController {
 	@PostMapping("/rooms/{id}/reserve")
 	public String reserve(
 			@PathVariable("id") Integer roomId,
-			@RequestParam(required = false) String guestName,
-			@RequestParam(required = false) String email,
-			@RequestParam(required = false) String tel,
-			@RequestParam(required = false) String address,
 			@RequestParam(required = false) Integer planId,
-			@RequestParam(required = false) LocalDate checkinDate,
-			@RequestParam(required = false) LocalDate checkoutDate,
+			@ModelAttribute("reserveDto") @Valid reserveDto form,
+			BindingResult bindingResult,
 			Model model) {
 
 		//部屋の情報取得
@@ -121,22 +126,44 @@ public class ReserveController {
 		//プラン情報取得
 		Plan plan = planRepository.findById(planId).get();
 
-		//（プラン料金＋ルーム料金）×宿泊日
-		Integer countDay = (int) ChronoUnit.DAYS.between(checkinDate, checkoutDate);
-		Integer TotalPrice = plan.calcTotalPrice(room.getPrice()) * countDay;
-		model.addAttribute("countDay", countDay);
-
-		model.addAttribute("guestName", guestName);
-		model.addAttribute("email", email);
-		model.addAttribute("tel", tel);
-		model.addAttribute("address", address);
 		model.addAttribute("room", room);
 		model.addAttribute("plan", plan);
-		model.addAttribute("TotalPrice", TotalPrice);
 		model.addAttribute("imgList", imgList);
-		model.addAttribute("checkinDate", checkinDate);
-		model.addAttribute("checkoutDate", checkoutDate);
 
+		//通常バリデーション
+		if (bindingResult.hasErrors()) {
+			return "reserve";
+		}
+
+		//予約詳細の日付細分化
+		List<LocalDate> stayDates = roomService.dateCalc(form.getCheckinDate(), form.getCheckoutDate());
+
+		// 空き部屋チェック
+		if (roomService.isRoomAvailable(roomId, stayDates)) {
+			bindingResult.rejectValue("checkinDate", "room.notAvailable", "選択した日付は既に予約されています");
+			return "reserve"; // エラー時は入力画面に戻す
+		}
+
+		// 宿泊者の重複予約チェック
+		if (roomService.hasGuestReservedOnDates(stayDates)) {
+			bindingResult.rejectValue("checkinDate", "guest.duplicateReservation", "ご自身ですでにこの日程で予約があります");
+			return "reserve";
+		}
+
+		//（プラン料金＋ルーム料金）×宿泊日
+		Integer countDay = (int) ChronoUnit.DAYS.between(form.getCheckinDate(), form.getCheckoutDate());
+		Integer TotalPrice = plan.calcTotalPrice(room.getPrice()) * countDay;
+
+		//問題ないため、全てのデータをバリューに送る。
+		model.addAttribute("TotalPrice", TotalPrice);
+		model.addAttribute("TotalPrice", TotalPrice);
+		model.addAttribute("countDay", countDay);
+		model.addAttribute("guestName", form.getGuestName());
+		model.addAttribute("email", form.getEmail());
+		model.addAttribute("tel", form.getTel());
+		model.addAttribute("address", form.getAddress());
+		model.addAttribute("checkinDate", form.getCheckinDate());
+		model.addAttribute("checkoutDate", form.getCheckoutDate());
 		return "reserveConf";
 	}
 

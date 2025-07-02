@@ -9,4 +9,7 @@ import com.example.demo.entity.Guest;
 public interface GuestRepository extends JpaRepository<Guest, Integer> {
 	List<Guest> findByEmailAndPassword(String email, String password);
 
+	//メールアドレスがあるかの判定
+	boolean existsByEmail(String email);
+
 }
