@@ -24,7 +24,6 @@
 					<span id="nextBtn" onclick="next()">&gt;</span>
 
 					<script th:inline="javascript">
-
 						const imgs = /*[[${imgList}]]*/[]; //画像の配列
 						let num = 0;
 						function showImage() {
@@ -44,10 +43,8 @@
 							num = (num - 1 + imgs.length) % imgs.length;  // 最初の画像の前は最後に戻る
 							showImage(); //現在の num の値に対応する画像を画面に表示するための関数を呼び出し
 						}
-
 						// ページ読み込み時に最初の画像表示
 						showImage();
-
 					</script>
 
 				</div>
@@ -56,7 +53,7 @@
 					<p class="room-message" th:text="${room.description}"></p>
 
 					<div class="room-price">
-						<p th:text="${room.price} + '円'"></p>
+						<p th:text="${room.price} + '円~'"></p>
 					</div>
 				</div>
 
@@ -71,6 +68,7 @@
 							<button class="plan-button">
 								<p th:text="${plan.name}"></p>
 								<p th:text="${plan.details}"></p>
+								<p th:text="${plan.calcTotalPrice(room.price)} + '円 /人'"></p>
 							</button>
 						</form>
 					</li>
