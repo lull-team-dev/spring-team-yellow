@@ -39,10 +39,19 @@ public class AccountController {
 			RedirectAttributes redirectAttributes,
 			Model model) {
 
+		// バリデーションにエラーがある場合
 		if (bindingResult.hasErrors()) {
 			return "register";
 		}
 
+		// メールアドレスの重複チェック
+		if (guestRepository.findByEmail(guest.getEmail()).isPresent()) {
+			model.addAttribute("error", "このメールアドレスはすでに登録されています");
+			model.addAttribute("guest", guest);
+			return "register";
+		}
+
+		// パスワードの一致チェック
 		if (!guest.getPassword().equals(password_confirm)) {
 			model.addAttribute("error", "パスワードが一致しません");
 			model.addAttribute("guest", guest);
