@@ -1,6 +1,7 @@
 package com.example.demo.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -11,5 +12,8 @@ public interface GuestRepository extends JpaRepository<Guest, Integer> {
 
 	//メールアドレスがあるかの判定
 	boolean existsByEmail(String email);
+
+	// メールアドレスの重複チェック用クエリメソッド
+	Optional<Guest> findByEmail(String email);
 
 }
