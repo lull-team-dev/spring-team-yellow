@@ -72,10 +72,7 @@ price INTEGER
 );
 
 CREATE TABLE likes (
-    guest_id BIGINT NOT NULL,
-    room_id BIGINT NOT NULL,
-    liked_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (guest_id, room_id),
-    FOREIGN KEY (guest_id) REFERENCES guests(id),
-    FOREIGN KEY (room_id) REFERENCES rooms(id)
+	id SERIAL PRIMARY KEY,
+    guest_id INTEGER,
+    room_id INTEGER
 );

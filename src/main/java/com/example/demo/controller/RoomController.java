@@ -8,16 +8,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.entity.Like;
 import com.example.demo.entity.Reservation;
 import com.example.demo.entity.Room;
 import com.example.demo.entity.Type;
+import com.example.demo.model.Account;
+import com.example.demo.repository.LikeRepository;
 import com.example.demo.repository.ReservDataRepository;
 import com.example.demo.repository.ReservationRepository;
 import com.example.demo.repository.RoomRepository;
 import com.example.demo.repository.TypeRepository;
 import com.example.demo.service.ChangeCharService;
+import com.example.demo.service.LikeSeravice;
 import com.example.demo.service.RoomService;
 
 @Controller
@@ -30,6 +35,9 @@ public class RoomController {
 	TypeRepository typeRepository;
 
 	@Autowired
+	LikeRepository likeRepository;
+
+	@Autowired
 	ReservationRepository reservationRepository;
 
 	@Autowired
@@ -40,6 +48,12 @@ public class RoomController {
 
 	@Autowired
 	ChangeCharService changeCharService;
+
+	@Autowired
+	LikeSeravice likeSeravice;
+
+	@Autowired
+	Account account;
 
 	@GetMapping("/room")
 	public String showRoomList(
@@ -179,6 +193,12 @@ public class RoomController {
 			model.addAttribute("message", "検索がヒットしません");
 		}
 
+		List<Like> likes = likeRepository.findByGuestId(account.getId());
+		List<Integer> likeRoom = new ArrayList<>();
+		for (Like like : likes) {
+			likeRoom.add(like.getRoomId());
+		}
+
 		model.addAttribute("stayDates", stayDates);
 		model.addAttribute("rooms", rooms);
 		model.addAttribute("keyword", keyword);
@@ -187,7 +207,18 @@ public class RoomController {
 		model.addAttribute("upPrice", upPrice);
 		model.addAttribute("checkinDate", checkinDate);
 		model.addAttribute("checkoutDate", checkoutDate);
+		model.addAttribute("like", likeRoom);
 
 		return "top";
+	}
+
+	@GetMapping("/rooms/{id}/like")
+	public String like(@PathVariable("id") Integer id,
+			Model model) {
+
+		likeSeravice.toggleLike(account.getId(), id);
+
+		return "redirect:/room";
+
 	}
 }
