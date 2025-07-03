@@ -29,6 +29,8 @@
 			<p>合計金額：</p>
 			<div class="" th:text="${reservationHistory.totalPrice}"></div>
 			<p>人数</p>
+			<div class="" th:text="${reservationHistory.guestCount} + '人'"></div>
+
 
 
 			<div class="room-img" id="slide">
@@ -59,6 +61,7 @@
 					// ページ読み込み時に最初の画像表示
 					showImage();
 				</script>
+				
 			</div>
 
 		</div>

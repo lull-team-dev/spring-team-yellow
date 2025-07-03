@@ -44,7 +44,6 @@ public class ReservationHistoryController {
 
 		Guest guest = guestRepository.findById(account.getId()).get();
 		Reservation reservationHistory = reservationRepository.findById(id).get();
-		//		ReservData reservDataHistry = reservDataRepository.findByReservation_Id(id);
 
 		//チェックアウト日を計算
 		LocalDate stayDate = reservationHistory.getStayDate(); //チェックイン
@@ -58,8 +57,6 @@ public class ReservationHistoryController {
 		model.addAttribute("checkoutDate", checkoutDate);
 		model.addAttribute("reservationHistory", reservationHistory);
 		model.addAttribute("imgList", imgList);
-
-		//		model.addAttribute("reservDataHistry", reservDataHistry);
 
 		return "reservation-detail";
 	}
