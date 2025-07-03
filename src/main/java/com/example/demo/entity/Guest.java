@@ -11,6 +11,7 @@ import jakarta.persistence.Table;
 // バリデーションライブラリのインポート
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -23,6 +24,7 @@ public class Guest {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
+	// @NotBlankは、NULL・空文字・空白・" " 全てNG
 	@NotBlank(message = "ユーザー名を入力してください")
 	@Size(max = 15, message = "ユーザー名は15文字以内で入力してください")
 	private String name;
@@ -36,12 +38,13 @@ public class Guest {
 	@Size(max = 120, message = "住所は120文字以内で入力してください")
 	private String address;
 
+	// @Patternは、設定したルール(正規表現)に合ってるかのチェック → 10〜15桁の数字でなければエラー
 	@NotBlank(message = "電話番号を入力してください")
-	@Size(max = 15, message = "電話番号は15文字以内で入力してください")
+	@Pattern(regexp = "^[0-9]{10,15}$", message = "電話番号は10〜15桁の数字で入力してください")
 	private String tel;
 
 	@NotBlank(message = "パスワードを入力してください")
-	@Size(min = 5, max = 100, message = "パスワードは5〜100文字で入力してください")
+	@Pattern(regexp = "^(?=.*[a-zA-Z])(?=.*\\d)[a-zA-Z\\d]{5,100}$", message = "パスワードは英数字を含む5～100文字で入力してください")
 	private String password;
 
 	@Column(name = "created_at", insertable = false, updatable = false)
