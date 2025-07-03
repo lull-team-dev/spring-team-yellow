@@ -5,10 +5,19 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.example.demo.model.Account;
+import com.example.demo.repository.ReservDataRepository;
 
 @Service
 public class RoomService {
+
+	@Autowired
+	Account account;
+	@Autowired
+	ReservDataRepository reservDataRepository;
 
 	//選択範囲の日付をリストにひとつずつ格納
 	public List<LocalDate> dateCalc(LocalDate checkinDate, LocalDate checkoutDate) {
@@ -23,4 +32,22 @@ public class RoomService {
 		return stayDates;
 	}
 
+	//予約済みの部屋じゃないかのチェック
+	public boolean isRoomAvailable(
+			Integer roomId,
+			List<LocalDate> stayDates) {
+		boolean roomExists = reservDataRepository.existsByReservationRoomIdAndStayOneDateIn(roomId, stayDates);
+
+		return roomExists;
+	}
+
+	//宿泊者が同日に予約していないかのチェック
+	public boolean hasGuestReservedOnDates(List<LocalDate> stayDates) {
+		boolean guestExists = reservDataRepository.existsByReservationGuestIdAndStayOneDateIn(account.getId(),
+				stayDates);
+
+		return guestExists;
+	}
+
+	//人数チェックのエラー文作成
 }
