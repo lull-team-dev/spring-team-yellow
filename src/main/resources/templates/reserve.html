@@ -273,6 +273,12 @@
 							<div id="calendar" class="calendar"></div>
 							<button type="button" id="closeCalendar">閉じる</button>
 						</div>
+						<p>宿泊者数</p>
+						<select name="guestCount" id="guestCount" th:field="*{guestCount}">
+						  <option th:each="count:${maxGuestCount}" th:text="${count}" th:value="${count}"></option>
+						</select>
+						<span>人</span>
+						<div th:if="${#fields.hasErrors('guestCount')}" th:errors="*{guestCount}"></div>
 					</div>
 					<input type="hidden" name="planId" th:value="${plan.id}">
 					<button>予約確認</button>

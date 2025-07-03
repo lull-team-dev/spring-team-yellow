@@ -37,6 +37,9 @@ public class Reservation {
 	@JoinColumn(name = "plan_id")
 	private Plan plan;
 
+	@Column(name = "guest_count")
+	private Integer guestCount;
+
 	@Column(name = "total_price")
 	private Integer totalPrice;
 
@@ -62,10 +65,12 @@ public class Reservation {
 
 	}
 
-	public Reservation(Guest guest, Room room, Plan plan, Integer totalPrice, Integer stayNights, LocalDate stayDate) {
+	public Reservation(Guest guest, Room room, Plan plan, Integer guestCount, Integer totalPrice, Integer stayNights,
+			LocalDate stayDate) {
 		this.guest = guest;
 		this.room = room;
 		this.plan = plan;
+		this.guestCount = guestCount;
 		this.totalPrice = totalPrice;
 		this.stayNights = stayNights;
 		this.stayDate = stayDate;
@@ -94,6 +99,14 @@ public class Reservation {
 
 	public void setPlan(Plan plan) {
 		this.plan = plan;
+	}
+
+	public Integer getGuestCount() {
+		return guestCount;
+	}
+
+	public void setGuestCount(Integer guestCount) {
+		this.guestCount = guestCount;
 	}
 
 	public Integer getTotalPrice() {

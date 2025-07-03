@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.validation.Valid;
@@ -56,6 +57,7 @@ public class ReserveController {
 			@RequestParam(required = false) Integer planId,
 			@RequestParam(required = false) LocalDate checkinDate,
 			@RequestParam(required = false) LocalDate checkoutDate,
+			@RequestParam(required = false) Integer guestCount,
 			Model model,
 			@ModelAttribute("guestName") String guestName,
 			@ModelAttribute("email") String email,
@@ -71,9 +73,24 @@ public class ReserveController {
 		//プラン情報取得
 		Plan plan = planRepository.findById(planId).get();
 
+		//部屋タイプに応じた宿泊者数の制限
+		//部屋タイプに応じた宿泊者数の制限
+		List<Integer> maxGuestCount = new ArrayList<>();
+		int max = 1; // シングル
+		if (room.getType().getId() == 2) {
+			max = 2; // ダブル
+		} else if (room.getType().getId() == 3) {
+			max = 4; // スイート
+		}
+
+		for (int i = 1; i <= max; i++) {
+			maxGuestCount.add(i);
+		}
+
 		model.addAttribute("room", room);
 		model.addAttribute("plan", plan);
 		model.addAttribute("imgList", imgList);
+		model.addAttribute("maxGuestCount", maxGuestCount);
 
 		reserveDto dto = new reserveDto();
 
@@ -102,6 +119,7 @@ public class ReserveController {
 			dto.setAddress(guest.getAddress());
 		}
 
+		dto.setGuestCount(guestCount);
 		dto.setCheckinDate(checkinDate);
 		dto.setCheckoutDate(checkoutDate);
 
@@ -126,9 +144,22 @@ public class ReserveController {
 		//プラン情報取得
 		Plan plan = planRepository.findById(planId).get();
 
+		//部屋タイプに応じた宿泊者数の制限
+		List<Integer> maxGuestCount = new ArrayList<>();
+		int max = 1; // シングル
+		if (room.getType().getId() == 2) {
+			max = 2; // ダブル
+		} else if (room.getType().getId() == 3) {
+			max = 4; // スイート
+		}
+		for (int i = 1; i <= max; i++) {
+			maxGuestCount.add(i);
+		}
+
 		model.addAttribute("room", room);
 		model.addAttribute("plan", plan);
 		model.addAttribute("imgList", imgList);
+		model.addAttribute("maxGuestCount", maxGuestCount);
 
 		//通常バリデーション
 		if (bindingResult.hasErrors()) {
@@ -159,6 +190,7 @@ public class ReserveController {
 		model.addAttribute("TotalPrice", TotalPrice);
 		model.addAttribute("countDay", countDay);
 		model.addAttribute("guestName", form.getGuestName());
+		model.addAttribute("guestCount", form.getGuestCount());
 		model.addAttribute("email", form.getEmail());
 		model.addAttribute("tel", form.getTel());
 		model.addAttribute("address", form.getAddress());
@@ -176,6 +208,7 @@ public class ReserveController {
 			@RequestParam(required = false) String tel,
 			@RequestParam(required = false) String address,
 			@RequestParam(required = false) Integer planId,
+			@RequestParam(required = false) Integer guestCount,
 			@RequestParam(required = false) LocalDate checkinDate,
 			@RequestParam(required = false) LocalDate checkoutDate,
 			@RequestParam(required = false) Integer status,
@@ -186,6 +219,7 @@ public class ReserveController {
 			redirectAttributes.addAttribute("planId", planId);
 			redirectAttributes.addAttribute("checkinDate", checkinDate);
 			redirectAttributes.addAttribute("checkoutDate", checkoutDate);
+			redirectAttributes.addAttribute("guestCount", guestCount);
 			redirectAttributes.addFlashAttribute("guestName", guestName);
 			redirectAttributes.addFlashAttribute("email", email);
 			redirectAttributes.addFlashAttribute("tel", tel);
@@ -213,7 +247,7 @@ public class ReserveController {
 		Integer totalPrice = dayTotalPrice * countDay;
 
 		//予約の作成
-		Reservation reserve = new Reservation(guest, room, plan, totalPrice, countDay, checkinDate);
+		Reservation reserve = new Reservation(guest, room, plan, guestCount, totalPrice, countDay, checkinDate);
 
 		//予約詳細の日付細分化
 		List<LocalDate> stayDates = roomService.dateCalc(checkinDate, checkoutDate);

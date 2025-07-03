@@ -48,4 +48,6 @@ public class RoomService {
 
 		return guestExists;
 	}
+
+	//人数チェックのエラー文作成
 }
