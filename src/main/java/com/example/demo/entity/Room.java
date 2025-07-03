@@ -13,49 +13,54 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "rooms")
-public class Rooms {
+public class Room {
 
 	//フィールド
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Integer id;
 
-	private String name;
+	@Column(name = "room_name")
+	private String roomName;
+
 	private Integer price;
 
 	@ManyToOne
 	@JoinColumn(name = "type_id")
-	private Types type;
+	private Type type;
 
 	@Column(name = "img_path")
 	private String imgPath;
 
+	@Column(name = "img_path2")
+	private String imgPath2;
+
+	//説明文
 	private String description;
 
 	@Column(name = "created_at")
 	private LocalDate createdAt;
 
 	//コンストラクタ
-	public Rooms() {
-		super();
+	public Room() {
 	}
 
-	public Rooms(String name, Integer price, Types type, String imgPath, String description) {
-		super();
-		this.name = name;
+	public Room(String roomName, Integer price, Type type, String imgPath, String imgPath2, String description) {
+		this.roomName = roomName;
 		this.price = price;
 		this.type = type;
 		this.imgPath = imgPath;
+		this.imgPath2 = imgPath2;
 		this.description = description;
 	}
 
 	//メソッド
-	public String getName() {
-		return name;
+	public String getRoomName() {
+		return roomName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setRoomName(String roomName) {
+		this.roomName = roomName;
 	}
 
 	public Integer getPrice() {
@@ -66,11 +71,11 @@ public class Rooms {
 		this.price = price;
 	}
 
-	public Types getType() {
+	public Type getType() {
 		return type;
 	}
 
-	public void setType(Types type) {
+	public void setType(Type type) {
 		this.type = type;
 	}
 
@@ -80,6 +85,14 @@ public class Rooms {
 
 	public void setImgPath(String imgPath) {
 		this.imgPath = imgPath;
+	}
+
+	public String getImgPath2() {
+		return imgPath2;
+	}
+
+	public void setImgPath2(String imgPath2) {
+		this.imgPath2 = imgPath2;
 	}
 
 	public String getDescription() {
@@ -94,7 +107,7 @@ public class Rooms {
 		return createdAt;
 	}
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 

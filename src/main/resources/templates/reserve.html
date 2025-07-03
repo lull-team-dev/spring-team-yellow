@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>予約ページ</title>
+	<link rel="stylesheet" href="/css/style.css">
+	<style>
+		.contanabox {
+			max-width: 400px;
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+		}
+
+		.price-display {
+			display: flex;
+			justify-content: space-between;
+			margin-bottom: 20px;
+		}
+
+		.price-box {
+			background: #f8f9fa;
+			border: 1px solid #dee2e6;
+			border-radius: 8px;
+			padding: 5px 10px;
+			min-width: 120px;
+		}
+
+		.price-label {
+			font-size: 12px;
+			color: #6c757d;
+			margin-bottom: 4px;
+		}
+
+		.price-value {
+			font-size: 16px;
+			font-weight: bold;
+			color: #212529;
+		}
+
+		.slider-contanabox {
+			position: relative;
+			height: 50px;
+		}
+
+		.slider-track {
+			position: absolute;
+			top: 50%;
+			left: 0;
+			right: 0;
+			height: 6px;
+			background: #e9ecef;
+			border-radius: 3px;
+			transform: translateY(-50%);
+		}
+
+		.slider-range {
+			position: absolute;
+			height: 6px;
+			background: #F19E39;
+			border-radius: 3px;
+			top: 50%;
+			transform: translateY(-50%);
+		}
+
+		.slider-lower,
+		.slider-upper {
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			width: 100%;
+			height: 6px;
+			background: transparent;
+			outline: none;
+			-webkit-appearance: none;
+			appearance: none;
+			pointer-events: none;
+		}
+
+		.slider-lower::-webkit-slider-thumb,
+		.slider-upper::-webkit-slider-thumb {
+			-webkit-appearance: none;
+			appearance: none;
+			width: 20px;
+			height: 20px;
+			background: #F19E39;
+			border-radius: 50%;
+			cursor: pointer;
+			pointer-events: all;
+			border: 2px solid white;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+		}
+
+		.slider-lower::-moz-range-thumb,
+		.slider-upper::-moz-range-thumb {
+			width: 20px;
+			height: 20px;
+			background: #F19E39;
+			border-radius: 50%;
+			cursor: pointer;
+			pointer-events: all;
+			border: 2px solid white;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+		}
+
+		.slider-upper {
+			z-index: 2;
+		}
+
+		.slider-lower::-webkit-slider-thumb {
+			background: #F19E39;
+		}
+
+		.slider-lower::-moz-range-thumb {
+			background: #F19E39;
+		}
+
+		.slider-track,
+		.slider-range,
+		.slider-lower,
+		.slider-upper {
+			left: 0;
+			right: 0;
+			width: 100%;
+		}
+
+		/*カレンダーのcss*/
+		.calendar {
+			display: flex;
+			gap: 30px;
+			text-align: center;
+		}
+
+		.week {
+			padding: 5px;
+		}
+
+		.calender_button {
+			appearance: none;
+		}
+
+		.is-disabled {
+			color: #ccc;
+		}
+
+		/*カレンダー入力中のみグレーアウト*/
+		.input-active {
+			background-color: #ccc !important;
+		}
+
+		/*カレンダー選択時、マーキング*/
+		.selected-checkin {
+			background: #F19E39;
+			color: #fff !important;
+			border-top-left-radius: 50%;
+			border-bottom-left-radius: 50%;
+			font-weight: bold;
+
+		}
+
+		.selected-checkout {
+			background: #F19E39;
+			color: #fff !important;
+			border-top-right-radius: 50%;
+			border-bottom-right-radius: 50%;
+			font-weight: bold;
+		}
+
+		.selected-between {
+			background: #f5b05b;
+			color: #fff;
+			border-radius: 0;
+		}
+
+		.plan-button {
+			all: unset;
+		}
+	</style>
+</head>
+
+<body>
+	<header th:replace="header"></header>
+	<main>
+		<div class="details-box">
+			<div class="room-ditail">
+				<div class="room-img" id="slide">
+					<img th:src="@{${room.imgPath}}" th:alt="@{${room.roomName}}" id="room-img">
+					<span id="prevBtn" onclick="prev()">&lt;</span>
+					<span id="nextBtn" onclick="next()">&gt;</span>
+
+					<script th:inline="javascript">
+
+						const imgs = /*[[${imgList}]]*/[]; //画像の配列
+						let num = 0;
+						function showImage() {
+							document.getElementById("room-img").src = imgs[num];
+							const img = document.getElementById("room-img");
+							img.classList.add("fade-out");
+							setTimeout(() => {
+								img.src = imgs[num]; // 新しい画像に切り替え
+								img.classList.remove("fade-out");
+							}, 250); // 画像切り替えはフェードの途中で実行
+						}
+						function next() {
+							num = (num + 1) % imgs.length;  // 配列の最後までいったら先頭に戻る
+							showImage(); //現在の num の値に対応する画像を画面に表示するための関数を呼び出し
+						}
+						function prev() {
+							num = (num - 1 + imgs.length) % imgs.length;  // 最初の画像の前は最後に戻る
+							showImage(); //現在の num の値に対応する画像を画面に表示するための関数を呼び出し
+						}
+
+						// ページ読み込み時に最初の画像表示
+						showImage();
+
+					</script>
+
+				</div>
+				<div class="room-text">
+					<h3 class="room-name" th:text="${room.roomName}"></h3>
+					<p class="room-message" th:text="${room.description}"></p>
+
+					<div class="room-price">
+						<p th:text="${room.price} + '円'"></p>
+					</div>
+				</div>
+
+				<div class="plan-text">
+					<p th:text="${plan.name}"></p>
+					<p th:text="${plan.details}"></p>
+					<p th:text="'合計：' + ${plan.calcTotalPrice(room.price)} + '円(1日あたり）'"></p>
+				</div>
+
+			</div>
+			<form th:action="@{/rooms/{id}/reserve(id=${room.id})}" method="post">
+				<div class="login-items">
+					<h3>予約者情報</h3>
+					<div class="login-items">
+						<label for="name">名前</label>
+						<input id="name" type="name" name="guestName" th:value="${guestName}">
+					</div>
+					<div class="login-items">
+						<label for="email">メールアドレス</label>
+						<input id="email" type="name" name="email" th:value="${email}">
+					</div>
+					<div class="login-items">
+						<label for="tel">電話番号</label>
+						<input id="tel" type="name" name="tel" th:value="${tel}">
+					</div>
+					<div class="login-items">
+						<label for="address">住所</label>
+						<input id="address" type="name" name="address" th:value="${address}">
+					</div>
+				</div>
+
+				<div class="login-items">
+					<h3>宿泊情報詳細</h3>
+					<div>
+						<p>宿泊予定日</p>
+						<input type="text" id="checkinDate" name="checkinDate" placeholder="チェックイン"
+							th:value="${checkinDate}" required readonly>
+						<input type="text" id="checkoutDate" name="checkoutDate" placeholder="チェックアウト"
+							th:value="${checkoutDate}" required readonly>
+						カレンダー
+						<div id="calendarArea" style="display: none;">
+							<div class="calender_button"></div>
+
+							<button type="button" id="prev"> ＜ </button>
+							<button type="button" id="next"> ＞ </button>
+							<div id="calendar" class="calendar"></div>
+							<button type="button" id="closeCalendar">閉じる</button>
+						</div>
+					</div>
+					<input type="hidden" name="planId" th:value="${plan.id}">
+					<button>予約確認</button>
+				</div>
+			</form>
+		</div>
+	</main>
+	<footer th:replace="footer"></footer>
+	<script src="/js/calendar.js"></script>
+</body>
+
+</html>

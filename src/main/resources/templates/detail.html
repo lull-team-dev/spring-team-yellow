@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+	<style>
+		.plan-button {
+			all: unset;
+		}
+	</style>
+</head>
+
+<body>
+	<header th:replace="header"></header>
+	<main>
+		<div class="details-box">
+			<div class="room-ditail">
+				<div class="room-img" id="slide">
+					<img th:src="@{${room.imgPath}}" th:alt="@{${room.roomName}}" id="room-img">
+					<span id="prevBtn" onclick="prev()">&lt;</span>
+					<span id="nextBtn" onclick="next()">&gt;</span>
+
+					<script th:inline="javascript">
+						const imgs = /*[[${imgList}]]*/[]; //画像の配列
+						let num = 0;
+						function showImage() {
+							document.getElementById("room-img").src = imgs[num];
+							const img = document.getElementById("room-img");
+							img.classList.add("fade-out");
+							setTimeout(() => {
+								img.src = imgs[num]; // 新しい画像に切り替え
+								img.classList.remove("fade-out");
+							}, 250); // 画像切り替えはフェードの途中で実行
+						}
+						function next() {
+							num = (num + 1) % imgs.length;  // 配列の最後までいったら先頭に戻る
+							showImage(); //現在の num の値に対応する画像を画面に表示するための関数を呼び出し
+						}
+						function prev() {
+							num = (num - 1 + imgs.length) % imgs.length;  // 最初の画像の前は最後に戻る
+							showImage(); //現在の num の値に対応する画像を画面に表示するための関数を呼び出し
+						}
+						// ページ読み込み時に最初の画像表示
+						showImage();
+					</script>
+
+				</div>
+				<div class="room-text">
+					<h3 class="room-name" th:text="${room.roomName}"></h3>
+					<div class="" id="${room.id}"> 
+						<a th:href="@{/detail/{roomId}/like(roomId=${room.id})}">
+							<i th:if="${like.contains(room.id) == true}" class="fa-solid fa-star"></i>
+							<i th:unless="${like.contains(room.id) == true}" class="fa-regular fa-star"></i>
+						</a>
+					</div>
+
+					<p class="room-message" th:text="${room.description}"></p>
+
+					<div class="room-price">
+						<p th:text="${room.price} + '円~'"></p>
+					</div>
+				</div>
+
+			</div>
+			<div class="room-plans">
+				<ul class="plans">
+					<li class="plan" th:each="plan:${plans}">
+						<form th:action="@{/rooms/{id}/reserve(id=${room.id})}">
+							<input type="hidden" name="planId" th:value="${plan.id}">
+							<input type="hidden" name="checkinDate" th:value="${checkinDate}">
+							<input type="hidden" name="checkoutDate" th:value="${checkoutDate}">
+							<button class="plan-button">
+								<p th:text="${plan.name}"></p>
+								<p th:text="${plan.details}"></p>
+								<p th:text="${plan.calcTotalPrice(room.price)} + '円 /人'"></p>
+							</button>
+						</form>
+					</li>
+				</ul>
+			</div>
+		</div>
+		
+		
+	</main>
+	<footer th:replace="footer"></footer>
+
+</body>
+
+</html>
