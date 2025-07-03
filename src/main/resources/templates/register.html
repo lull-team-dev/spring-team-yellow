@@ -27,8 +27,8 @@
 				<div th:if="${#fields.hasErrors('email')}" th:errors="${guest.email}"></div>
 			</div>
 			<div>
-				<input type="tel" th:field="${guest.tel}" class=""
-				 placeholder="電話番号" required pattern="^[0-9]{10,15}$" title="※10〜15桁の数字を入力してください" />
+				<input type="tel" th:field="${guest.tel}" placeholder="電話番号(ハイフンなし)" required pattern="^[0-9]{10,15}$"
+				         title="※10〜15桁の数字を入力してください(ハイフンなし)" maxlength="15" />
 				<div th:if="${#fields.hasErrors('tel')}" th:errors="${guest.tel}"></div>
 			</div>
 			<div>
