@@ -93,7 +93,7 @@ public class ReserveController {
 
 		//リダイレクトの場合内容を送られてきた情報をそのままセット
 		if (guestName != null && !guestName.isBlank()) {
-			dto.setGuestName(guestName);	
+			dto.setGuestName(guestName);
 		} else {
 			dto.setGuestName(guest.getName());
 		}
@@ -163,6 +163,13 @@ public class ReserveController {
 			return "reserve";
 		}
 
+		//メールアドレスチェック
+		boolean uniqueEmail = guestRepository.existsByIdNotAndEmail(account.getId(), form.getEmail());
+		if (uniqueEmail) {
+			bindingResult.rejectValue("email", "uniqueEmail", "このメールアドレスは使用できません");
+			return "reserve"; // エラー時は入力画面に戻す
+		}
+
 		//予約詳細の日付細分化
 		List<LocalDate> stayDates = roomService.dateCalc(form.getCheckinDate(), form.getCheckoutDate());
 
@@ -198,7 +205,7 @@ public class ReserveController {
 		return "reserveConf";
 	}
 
-	//予約
+	//予約ロジック
 	@PostMapping("/rooms/{id}/reserveConf")
 	public String reserveConf(
 			@PathVariable("id") Integer roomId,
@@ -260,7 +267,10 @@ public class ReserveController {
 
 		reserveRepository.save(reserve);
 
-		return "reserveComp";
+		redirectAttributes.addAttribute("id", reserve.getId());
+		redirectAttributes.addAttribute("afterReserve", true);
+
+		return "redirect:/reservationHistory/{id}";
 	}
 
 }

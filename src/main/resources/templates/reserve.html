@@ -227,7 +227,7 @@
 				<div class="plan-text">
 					<p th:text="${plan.name}"></p>
 					<p th:text="${plan.details}"></p>
-					<p th:text="'合計：' + ${plan.calcTotalPrice(room.price)} + '円(/日(人)）'"></p>
+					<p th:text="'合計：' + ${plan.calcTotalPrice(room.price)} + '円/人(1日あたり）'"></p>
 				</div>
 
 			</div>
@@ -243,6 +243,8 @@
 						<label for="email">メールアドレス</label>
 						<input id="email" type="text" th:field="*{email}" />
 						<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+						<!--メールアドレス重複チェック用-->
+						<div th:if="${#fields.hasGlobalErrors()}" th:each="error:${#fields.globalErrors()}" th:text="${error}"></div>
 					</div>
 					<div class="login-items">
 						<label for="tel">電話番号</label>
@@ -261,8 +263,8 @@
 					<div>
 						<p>宿泊予定日</p>
 						<input id="checkinDate" type="text" th:field="*{checkinDate}" readonly>
-						<div th:if="${#fields.hasErrors('checkinDate')}" th:errors="*{checkinDate}"></div>
 						<input id="checkoutDate" type="text" th:field="*{checkoutDate}" readonly>
+						<div th:if="${#fields.hasErrors('checkinDate')}" th:errors="*{checkinDate}"></div>
 						<div th:if="${#fields.hasErrors('checkoutDate')}" th:errors="*{checkoutDate}"></div>
 						<!--カレンダー-->
 						<div id="calendarArea" style="display: none;">
