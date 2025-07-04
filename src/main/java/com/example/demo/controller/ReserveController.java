@@ -30,7 +30,6 @@ import com.example.demo.repository.PlanRepository;
 import com.example.demo.repository.ReservationRepository;
 import com.example.demo.repository.RoomRepository;
 import com.example.demo.service.RoomService;
-import com.example.demo.service.TotalPriceService;
 
 @Controller
 public class ReserveController {
@@ -45,8 +44,6 @@ public class ReserveController {
 	GuestRepository guestRepository;
 	@Autowired
 	ReservationRepository reserveRepository;
-	@Autowired
-	TotalPriceService totalPriceService;
 	@Autowired
 	RoomService roomService;
 
@@ -83,7 +80,7 @@ public class ReserveController {
 			max = 4; // スイート
 		}
 
-		for (int i = 1; i <= max; i++) {
+		for (int i = max; i >= 1; i--) {
 			maxGuestCount.add(i);
 		}
 
@@ -181,12 +178,14 @@ public class ReserveController {
 			return "reserve";
 		}
 
-		//（プラン料金＋ルーム料金）×宿泊日
+		//１日あたりのプラン料金+ルーム料金+宿泊者人数
+		Integer dayTotalPrice = plan.calcTotalPrice(room.getPrice()) * form.getGuestCount();
+		//（１日あたりのプラン料金+ルーム料金+宿泊者人数）×宿泊日
 		Integer countDay = (int) ChronoUnit.DAYS.between(form.getCheckinDate(), form.getCheckoutDate());
-		Integer TotalPrice = plan.calcTotalPrice(room.getPrice()) * countDay;
+
+		Integer TotalPrice = dayTotalPrice * countDay;
 
 		//問題ないため、全てのデータをバリューに送る。
-		model.addAttribute("TotalPrice", TotalPrice);
 		model.addAttribute("TotalPrice", TotalPrice);
 		model.addAttribute("countDay", countDay);
 		model.addAttribute("guestName", form.getGuestName());
