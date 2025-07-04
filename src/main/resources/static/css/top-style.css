@@ -1,0 +1,498 @@
+
+
+/* --- 検索フォーム --- */
+.search-form-outer {
+	display: flex;
+	justify-content: center;
+	margin-top: 42px;
+	margin-bottom: 70px;
+}
+
+.search-form-box {
+	background: #fff;
+	border-radius: 18px;
+	box-shadow: 0 1px 4px 0 #555;
+	padding: 40px 32px 32px;
+	width: 600px;
+	min-width: 380px;
+	max-width: 90vw;
+	display: flex;
+	flex-direction: column;
+	gap: 28px;
+}
+
+.search-form-box p {
+	margin: 0 0 4px;
+	font-size: 15px;
+	color: #f19e39;
+	font-weight: 600;
+	letter-spacing: 0.02em;
+}
+
+.search-form-box input[type="text"] {
+	border: 1.5px solid #f19e39;
+	border-radius: 22px;
+	padding: 0.7em 1em;
+	font-size: 16px;
+	outline: none;
+	width: 100%;
+	margin-bottom: 18px;
+	box-sizing: border-box;
+}
+
+/* --- 部屋タイプ チェックボックスを中央寄せ --- */
+.room-type-center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 28px;
+	margin-top: 8px;
+	margin-bottom: 10px;
+}
+
+.room-type-center label {
+	font-size: 15px;
+	color: #555;
+	margin-right: 0;
+}
+
+.room-type-center input[type=checkbox] {
+	accent-color: #f19e39;
+	margin-right: 6px;
+	transform: scale(1.15);
+}
+
+/* --- 予算全体を中央・横並び --- */
+.contanabox {
+	max-width: 400px;
+	margin: 0 auto;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.price-display {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 20px;
+}
+
+.price-box {
+	background: #f8f9fa;
+	border: 1px solid #dee2e6;
+	border-radius: 8px;
+	padding: 5px 10px;
+	min-width: 120px;
+}
+
+.price-label {
+	font-size: 12px;
+	color: #6c757d;
+	margin-bottom: 4px;
+}
+
+.price-value {
+	font-size: 16px;
+	font-weight: bold;
+	color: #212529;
+}
+
+.slider-contanabox {
+	position: relative;
+	height: 50px;
+}
+
+.slider-track {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	right: 0;
+	height: 6px;
+	background: #e9ecef;
+	border-radius: 3px;
+	transform: translateY(-50%);
+}
+
+.slider-range {
+	position: absolute;
+	height: 6px;
+	background: #F19E39;
+	border-radius: 3px;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.slider-lower,
+.slider-upper {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 100%;
+	height: 6px;
+	background: transparent;
+	outline: none;
+	-webkit-appearance: none;
+	appearance: none;
+	pointer-events: none;
+}
+
+.slider-lower::-webkit-slider-thumb,
+.slider-upper::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 20px;
+	height: 20px;
+	background: #F19E39;
+	border-radius: 50%;
+	cursor: pointer;
+	pointer-events: all;
+	border: 2px solid white;
+	box-shadow: 0 1px 3px #555;
+}
+
+.slider-lower::-moz-range-thumb,
+.slider-upper::-moz-range-thumb {
+	width: 20px;
+	height: 20px;
+	background: #F19E39;
+	border-radius: 50%;
+	cursor: pointer;
+	pointer-events: all;
+	border: 2px solid white;
+	box-shadow: 0 1px 3px #555;
+}
+
+.slider-upper {
+	z-index: 2;
+}
+
+.slider-lower::-webkit-slider-thumb {
+	background: #F19E39;
+}
+
+.slider-lower::-moz-range-thumb {
+	background: #F19E39;
+}
+
+.slider-track,
+.slider-range,
+.slider-lower,
+.slider-upper {
+	left: 0;
+	right: 0;
+	width: 100%;
+}
+
+/* --- カレンダー --- */
+.calendar-group {
+	margin-bottom: 18px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 8px;
+	width: 100%;
+}
+
+.calendar-label-row {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	margin-bottom: 6px;
+}
+
+.calendar-input-row {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 28px;
+	width: 100%;
+	margin-bottom: 0;
+}
+
+.calendar-tilde {
+	font-size: 20px;
+	color: #888;
+	margin: 0 5px;
+	font-weight: 700;
+}
+
+.calendar-input-wrap {
+	position: relative;
+	width: 190px;
+}
+
+.calendar-input-wrap .material-symbols-outlined {
+	position: absolute;
+	left: 18px;
+	top: 53%;
+	transform: translateY(-50%);
+	font-size: 22px;
+	color: #f19e39;
+	pointer-events: none;
+}
+
+.calendar-input-wrap input[type="text"] {
+	width: 100%;
+	background: #faf7f0;
+	font-size: 15px;
+	border: 1.3px solid #f19e39;
+	border-radius: 14px;
+	text-align: left;
+	padding: 0.7em 1.2em 0.7em 2.6em;
+	color: #565656;
+	letter-spacing: 0.05em;
+	box-sizing: border-box;
+	margin: 0;
+}
+
+/* --- カレンダー本体（input直下絶対位置！）--- */
+#calendarArea {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 115%;
+	z-index: 99;
+	width: 420px;
+	background: #fff;
+	border-radius: 18px;
+	box-shadow: 0 2px 10px #555;
+	margin: 0 auto;
+	padding: 24px 28px 22px 28px;
+	display: none;
+}
+
+#calendar {
+	display: flex;
+	gap: 32px;
+	justify-content: center;
+	align-items: flex-start;
+}
+
+.calendar-nav-row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0;
+	width: 100%;
+	margin-bottom: 14px;
+}
+
+.calendar-nav-btn {
+	background: #f19e39;
+	color: #fff;
+	border: none;
+	border-radius: 14px;
+	font-size: 26px;
+	width: 44px;
+	height: 44px;
+	box-shadow: 0 1px 4px #555;
+	cursor: pointer;
+	transition: 0.12s;
+}
+
+.calendar-nav-btn[disabled] {
+	visibility: hidden;
+}
+
+.calendar-nav-space {
+	flex: 1;
+}
+
+#closeCalendar {
+	display: block;
+	margin: 26px auto 0 auto;
+	background: #f19e39;
+	color: #fff;
+	border: none;
+	padding: 0.7em 2.4em;
+	border-radius: 20px;
+	font-size: 18px;
+	font-weight: 600;
+	cursor: pointer;
+	letter-spacing: 0.04em;
+	transition: background 0.13s;
+}
+
+#closeCalendar:hover {
+	background: #f8b550;
+}
+
+.week {
+	padding: 5px;
+}
+
+.is-disabled {
+	color: #ccc;
+}
+
+.input-active {
+	background-color: #ccc !important;
+}
+
+.selected-checkin {
+	background: #F19E39;
+	color: #fff !important;
+	border-top-left-radius: 50%;
+	border-bottom-left-radius: 50%;
+	font-weight: bold;
+}
+
+.selected-checkout {
+	background: #F19E39;
+	color: #fff !important;
+	border-top-right-radius: 50%;
+	border-bottom-right-radius: 50%;
+	font-weight: bold;
+}
+
+.selected-between {
+	background: #f5b05b;
+	color: #fff;
+	border-radius: 0;
+}
+
+/* ==============================
+   客室リスト・ルームカード関連のCSS
+   ============================== */
+
+/* 客室セクション全体 */
+.rooms-section {
+	margin: 72px auto 48px auto;
+	max-width: 1120px;
+	padding: 0 20px;
+}
+
+.section-title {
+	font-size: 2.0em;
+	font-weight: bold;
+	margin-bottom: 4px;
+	color: #222;
+	letter-spacing: 0.04em;
+}
+
+.section-subtitle {
+	font-size: 1.09em;
+	color: #777;
+	margin-bottom: 24px;
+	font-weight: 500;
+}
+
+/* ===========================
+   客室カードグリッド2列固定
+   =========================== */
+.rooms-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 32px 32px;
+	width: 100%;
+	margin: 0 auto;
+}
+
+@media (max-width: 800px) {
+	.rooms-grid {
+		grid-template-columns: 1fr;
+	}
+}
+
+/* ================== 客室カード本体 ================== */
+.room-card {
+  background: #fff;
+  border-radius: 22px;
+  box-shadow: 0 2px 8px #555;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.18s;
+  height: 100%;
+}
+.room-card:hover {
+  box-shadow: 0 4px 16px #555;
+}
+.room-card-image {
+  width: 100%;
+  height: 188px;
+  object-fit: cover;
+  display: block;
+  border-top-left-radius: 22px;
+  border-top-right-radius: 22px;
+}
+.room-card-content {
+  padding: 22px 24px 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.room-card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.room-card-title {
+  font-size: 1.18em;
+  font-weight: 700;
+  color: #f19e39;
+  letter-spacing: 0.04em;
+}
+.room-card-type {
+  font-size: 0.95em;
+  color: #f19e39;
+  background: #fff7e1;
+  padding: 3px 12px;
+  border-radius: 10px;
+  font-weight: 600;
+  margin-left: 6px;
+}
+.room-card-desc {
+  font-size: 0.98em;
+  color: #666;
+  margin: 0 0 3px 0;
+  line-height: 1.5;
+}
+
+/* ================== 金額＆星を横並びで右端に揃える ================== */
+.room-card-row-horizontal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+  gap: 14px;
+}
+
+/* 金額 */
+.room-card-price {
+  font-size: 1.11em;
+  font-weight: 700;
+  color: #d97d13;
+  background: #fff7e1;
+  padding: 4px 16px;
+  border-radius: 16px;
+  letter-spacing: 0.02em;
+  box-shadow: 0 2px 8px #ffd18f44;  /* ←色変更前（薄い黄色シャドウ） */
+}
+
+/* 星ボタン（右端） */
+.like-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6em;
+  color: #222;
+  background: #fff;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  box-shadow: 0 1px 3px #555;
+  text-decoration: none;
+  transition: color 0.14s, background 0.13s;
+}
+.fa-solid.fa-star {
+  color: #f6cb34;
+}
+.like-link:hover {
+  color: #e9af13;
+  background: #fff7e1;
+}
+.fa-regular.fa-star,
+.fa-solid.fa-star {
+  transition: color 0.14s;
+  color: inherit;
+}
