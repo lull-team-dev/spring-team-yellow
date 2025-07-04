@@ -1,5 +1,3 @@
-
-
 /* --- 検索フォーム --- */
 .search-form-outer {
 	display: flex;
@@ -364,8 +362,9 @@
 	font-size: 2.0em;
 	font-weight: bold;
 	margin-bottom: 4px;
-	color: #222;
+	color: #f19e39;
 	letter-spacing: 0.04em;
+	text-align: center;
 }
 
 .section-subtitle {
@@ -373,6 +372,7 @@
 	color: #777;
 	margin-bottom: 24px;
 	font-weight: 500;
+	text-align: center;
 }
 
 /* ===========================
@@ -466,7 +466,7 @@
   padding: 4px 16px;
   border-radius: 16px;
   letter-spacing: 0.02em;
-  box-shadow: 0 2px 8px #ffd18f44;  /* ←色変更前（薄い黄色シャドウ） */
+  box-shadow: 0 2px 8px #ffd18f44;  /* ←薄い黄色シャドウはこのまま */
 }
 
 /* 星ボタン（右端） */
@@ -475,24 +475,27 @@
   align-items: center;
   justify-content: center;
   font-size: 1.6em;
-  color: #222;
-  background: #fff;
+  color: #222;           /* 通常は黒 */
+  background: #fff;      /* 常に白 */
   border-radius: 50%;
   width: 36px;
   height: 36px;
-  box-shadow: 0 1px 3px #555;
+  /* box-shadow: 0 1px 3px #555; ← 完全削除、影なし */
   text-decoration: none;
   transition: color 0.14s, background 0.13s;
+  border: none;          /* 枠線も無し */
 }
+
+/* 選択（お気に入り時）だけ星アイコンを黄色 */
 .fa-solid.fa-star {
-  color: #f6cb34;
+  color: #f6cb34 !important; /* お気に入り時は黄色 */
 }
-.like-link:hover {
-  color: #e9af13;
-  background: #fff7e1;
+.fa-regular.fa-star {
+  color: #222 !important;    /* 通常は黒 */
 }
-.fa-regular.fa-star,
-.fa-solid.fa-star {
-  transition: color 0.14s;
-  color: inherit;
+
+.like-link:hover,
+.like-link:focus {
+  color: #e9af13;      /* ホバー時は星がちょっと濃い黄色 */
+  background: #fff;    /* 背景は常に白で変化させない */
 }
