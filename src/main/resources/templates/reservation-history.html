@@ -14,7 +14,7 @@
 	<h1>予約履歴</h1>
 	<ul>
 		<li th:each="reservHistory:${reservationHistorys}">
-			<a th:href="@{/reservationHistory/{id}(id=${reservHistory.id})}">
+			
 				<div class="">
 					<img th:src="@{${reservHistory.room.imgPath}}" alt="部屋">
 				</div>
@@ -24,7 +24,7 @@
 					<div class="" th:text="${reservHistory.StayDate}"></div>
 					<div class="" th:text="${reservHistory.totalPrice}" ></div>
 				</div>
-			</a>
+			<a th:href="@{/reservationHistory/{id}(id=${reservHistory.id})}">詳細を見る</a>
 		</li>
 	</ul>
 </main>

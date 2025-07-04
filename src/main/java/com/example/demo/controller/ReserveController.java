@@ -93,7 +93,7 @@ public class ReserveController {
 
 		//リダイレクトの場合内容を送られてきた情報をそのままセット
 		if (guestName != null && !guestName.isBlank()) {
-			dto.setGuestName(guestName);
+			dto.setGuestName(guestName);	
 		} else {
 			dto.setGuestName(guest.getName());
 		}
