@@ -51,7 +51,7 @@
 				</div>
 				<div class="room-text">
 					<h3 class="room-name" th:text="${room.roomName}"></h3>
-					<div class="" id="${room.id}"> 
+					<div class="" id="${room.id}">
 						<a th:href="@{/detail/{roomId}/like(roomId=${room.id})}">
 							<i th:if="${like.contains(room.id) == true}" class="fa-solid fa-star"></i>
 							<i th:unless="${like.contains(room.id) == true}" class="fa-regular fa-star"></i>
@@ -82,9 +82,15 @@
 					</li>
 				</ul>
 			</div>
+
+			<!--/* レビュー一覧表示 */-->
+			<div th:if="${reviews != null and !reviews.isEmpty()}"
+				th:replace="~{review/list :: reviewList(${reviews})}">
+			</div>
+
 		</div>
-		
-		
+
+
 	</main>
 	<footer th:replace="footer"></footer>
 
