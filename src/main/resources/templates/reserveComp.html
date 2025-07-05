@@ -1,10 +1,35 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>予約完了！</title>
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+
 </head>
+
 <body>
-<p>予約完了</p>
+	<header th:replace="header"></header>
+<main>
+	<h1>予約が完了しました</h1>
+	<ul>
+		<li th:each="reservHistory:${reservationHistorys}">
+			
+				<div class="">
+					<img th:src="@{${reservHistory.room.imgPath}}" alt="部屋">
+				</div>
+				<div class="">
+					<div class="" th:text="${reservHistory.room.roomName}"></div>
+					<div class="" th:text="${reservHistory.plan.name}"></div>
+					<div class="" th:text="${reservHistory.StayDate}"></div>
+					<div class="" th:text="${reservHistory.totalPrice}" ></div>
+				</div>
+			<a th:href="@{/reservationHistory/{id}(id=${reservHistory.id})}">詳細を見る</a>
+		</li>
+	</ul>
+</main>
+<footer th:replace="footer"></footer>
+
 </body>
+
 </html>
