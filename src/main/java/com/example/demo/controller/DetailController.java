@@ -1,3 +1,4 @@
+// ログアウト状態でもOK
 package com.example.demo.controller;
 
 import java.util.List;
@@ -67,16 +68,6 @@ public class DetailController {
 		model.addAttribute("avgRating", avgRating);
 
 		return "detail";
-	}
-
-	//	お気に入り処理
-	@GetMapping("/detail/{id}/like")
-	public String like(@PathVariable("id") Integer id,
-			Model model) {
-
-		likeService.toggleLike(account.getId(), id);
-
-		return "redirect:/rooms/{id}#" + id;
 	}
 
 }

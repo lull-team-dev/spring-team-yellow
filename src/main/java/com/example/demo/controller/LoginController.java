@@ -1,3 +1,4 @@
+// ログアウト状態でもOK
 package com.example.demo.controller;
 
 import java.util.ArrayList;
@@ -19,12 +20,12 @@ import com.example.demo.repository.GuestRepository;
 @Controller
 public class LoginController {
 
-	//	@Autowired
-	//	HttpSession session;
-	@Autowired
-	Account account;
 	@Autowired
 	GuestRepository guestRepository;
+	@Autowired
+	HttpSession session;
+	@Autowired
+	Account account;
 
 	//ログイン画面の表示
 	@GetMapping({ "/", "/login", "/logout" })
@@ -34,9 +35,7 @@ public class LoginController {
 			Model model) {
 
 		// セッションが存在する場合のみ破棄する
-		if (session != null) {
-			session.invalidate();
-		}
+		session.invalidate();
 
 		// クエリパラメータで"notLoggedIn"を受け取った場合
 		if (error.equals("notLoggedIn")) {
