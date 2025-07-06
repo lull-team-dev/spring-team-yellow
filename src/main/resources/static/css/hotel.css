@@ -1,0 +1,547 @@
+@charset "UTF-8";/* メインビジュアル */
+	.hero {
+		height: 100vh;
+		background: linear-gradient(135deg, rgba(255, 107, 53, 0.3), rgba(0, 123, 191, 0.3)), url('/uploads/images/underthesea.jpg');
+		background-size: cover;
+		background-position: center;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		color: white;
+		position: relative;
+		overflow: hidden;
+	}
+
+	.hero::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: linear-gradient(45deg, rgba(255, 107, 53, 0.2), rgba(0, 123, 191, 0.2));
+		animation: shimmer 4s ease-in-out infinite;
+	}
+
+	@keyframes shimmer {
+
+		0%,
+		100% {
+			opacity: 0.2;
+		}
+
+		50% {
+			opacity: 0.4;
+		}
+	}
+
+	.hero-content {
+		z-index: 10;
+		max-width: 800px;
+		padding: 2rem;
+		animation: fadeInUp 1s ease-out;
+	}
+
+	@keyframes fadeInUp {
+		from {
+			opacity: 0;
+			transform: translateY(30px);
+		}
+
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	.hero h1 {
+		font-size: 3.5rem;
+		margin-bottom: 1rem;
+		font-weight: 300;
+		text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+	}
+
+	.hero p {
+		font-size: 1.3rem;
+		margin-bottom: 2rem;
+		opacity: 0.9;
+		text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+	}
+
+	.cta-button {
+		background: linear-gradient(45deg, #ff6b35, #ff8555);
+		color: white;
+		padding: 1rem 2.5rem;
+		border: none;
+		border-radius: 50px;
+		font-size: 1.1rem;
+		font-weight: 600;
+		cursor: pointer;
+		transition: all 0.3s ease;
+		box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+		text-decoration: none;
+		display: inline-block;
+	}
+
+	.cta-button:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 6px 20px rgba(255, 107, 53, 0.6);
+	}
+
+	/* セクション共通スタイル */
+	.section {
+		padding: 5rem 2rem;
+		max-width: 1200px;
+		margin: 0 auto;
+	}
+
+	.section h2 {
+		text-align: center;
+		font-size: 2.5rem;
+		margin-bottom: 1rem;
+		color: #333;
+		position: relative;
+	}
+
+	.section h2::after {
+		content: '';
+		position: absolute;
+		bottom: -10px;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 60px;
+		height: 4px;
+		background: linear-gradient(45deg, #ff6b35, #ff8555);
+		border-radius: 2px;
+	}
+
+	.section-subtitle {
+		text-align: center;
+		font-size: 1.2rem;
+		color: #666;
+		margin-bottom: 3rem;
+	}
+
+	/* ホテル概要セクション */
+	.about {
+		background: white;
+		border-radius: 30px;
+		padding: 4rem 3rem;
+		margin: 3rem 0;
+		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+	}
+
+	.about-content {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 3rem;
+		align-items: center;
+	}
+
+	.about-text {
+		font-size: 1.1rem;
+		line-height: 1.8;
+		color: #555;
+	}
+
+	.about-image {
+		position: relative;
+		overflow: hidden;
+		border-radius: 20px;
+		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+	}
+
+	.about-image img {
+		width: 100%;
+		height: 300px;
+		object-fit: cover;
+		border-radius: 20px;
+		transition: transform 0.3s ease;
+	}
+
+	.about-image:hover img {
+		transform: scale(1.05);
+	}
+
+	.about-image-overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: linear-gradient(135deg, rgba(255, 107, 53, 0.2), rgba(0, 123, 191, 0.2));
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: white;
+		font-size: 1.2rem;
+		font-weight: 600;
+		text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+		opacity: 0;
+		transition: opacity 0.3s ease;
+	}
+
+	.about-image:hover .about-image-overlay {
+		opacity: 1;
+	}
+
+	/* ルームタイプセクション */
+	.rooms {
+		background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+		border-radius: 30px;
+		padding: 4rem 3rem;
+		margin: 3rem 0;
+	}
+
+	.rooms-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: 2rem;
+		margin-top: 2rem;
+	}
+
+	.room-card {
+		background: white;
+		border-radius: 20px;
+		padding: 0;
+		text-align: center;
+		box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+		transition: transform 0.3s ease, box-shadow 0.3s ease;
+		overflow: hidden;
+	}
+
+	.room-card:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+	}
+
+	.room-image {
+		width: 100%;
+		height: 200px;
+		background: url('/uploads/images/underthesea.jpg');
+		background-size: cover;
+		background-position: center;
+		position: relative;
+		overflow: hidden;
+	}
+
+	.room-image::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: linear-gradient(135deg, rgba(255, 107, 53, 0.3), rgba(0, 123, 191, 0.3));
+	}
+
+	.room-content {
+		padding: 2rem;
+	}
+
+	.room-icon {
+		width: 80px;
+		height: 80px;
+		background: linear-gradient(45deg, #ff6b35, #ff8555);
+		border-radius: 50%;
+		margin: -40px auto 1rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: white;
+		font-size: 2rem;
+		font-weight: bold;
+		position: relative;
+		z-index: 10;
+		box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+	}
+
+	.room-card h3 {
+		font-size: 1.5rem;
+		margin-bottom: 1rem;
+		color: #333;
+	}
+
+	.room-card p {
+		color: #666;
+		margin-bottom: 1.5rem;
+		line-height: 1.6;
+	}
+
+	.room-price {
+		font-size: 1.2rem;
+		font-weight: bold;
+		color: #ff6b35;
+		margin-bottom: 1rem;
+	}
+
+	.room-button {
+		background: linear-gradient(45deg, #ff6b35, #ff8555);
+		color: white;
+		padding: 0.8rem 2rem;
+		border: none;
+		border-radius: 25px;
+		font-weight: 600;
+		cursor: pointer;
+		transition: all 0.3s ease;
+	}
+
+	.room-button:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+	}
+
+	/* 食事セクション */
+	.dining {
+		background: white;
+		border-radius: 30px;
+		padding: 4rem 3rem;
+		margin: 3rem 0;
+		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+	}
+
+	.dining-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 3rem;
+		margin-top: 2rem;
+	}
+
+	.dining-card {
+		text-align: center;
+		padding: 0;
+		background: white;
+		border-radius: 20px;
+		transition: transform 0.3s ease;
+		box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+		overflow: hidden;
+	}
+
+	.dining-card:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+	}
+
+	.dining-image {
+		width: 100%;
+		height: 250px;
+		background: url('/uploads/images/underthesea.jpg');
+		background-size: cover;
+		background-position: center;
+		position: relative;
+		overflow: hidden;
+	}
+
+	.dining-image::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: linear-gradient(135deg, rgba(255, 107, 53, 0.4), rgba(0, 123, 191, 0.4));
+	}
+
+	.dining-content {
+		padding: 2rem;
+	}
+
+	.dining-icon {
+		width: 100px;
+		height: 100px;
+		background: linear-gradient(45deg, #ff6b35, #ff8555);
+		border-radius: 50%;
+		margin: -50px auto 1.5rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: white;
+		font-size: 2.5rem;
+		position: relative;
+		z-index: 10;
+		box-shadow: 0 5px 20px rgba(255, 107, 53, 0.3);
+	}
+
+	.dining-card h3 {
+		font-size: 1.8rem;
+		margin-bottom: 1rem;
+		color: #333;
+	}
+
+	.dining-card p {
+		color: #666;
+		line-height: 1.6;
+	}
+
+	/* 特典・サービスセクション */
+	.services {
+		background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+		border-radius: 30px;
+		padding: 4rem 3rem;
+		margin: 3rem 0;
+	}
+
+	.services-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: 2rem;
+		margin-top: 2rem;
+	}
+
+	.service-card {
+		background: white;
+		border-radius: 15px;
+		padding: 1.5rem;
+		text-align: center;
+		box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+		transition: transform 0.3s ease;
+	}
+
+	.service-card:hover {
+		transform: translateY(-3px);
+	}
+
+	.service-icon {
+		width: 60px;
+		height: 60px;
+		background: linear-gradient(45deg, #ff6b35, #ff8555);
+		border-radius: 50%;
+		margin: 0 auto 1rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: white;
+		font-size: 1.5rem;
+	}
+
+	.service-card h4 {
+		font-size: 1.2rem;
+		margin-bottom: 0.5rem;
+		color: #333;
+	}
+
+	.service-card p {
+		color: #666;
+		font-size: 0.9rem;
+		line-height: 1.5;
+	}
+
+	/* ギャラリーセクション */
+	.gallery {
+		background: white;
+		border-radius: 30px;
+		padding: 4rem 3rem;
+		margin: 3rem 0;
+		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+	}
+
+	.gallery-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: 1.5rem;
+		margin-top: 2rem;
+	}
+
+	.gallery-item {
+		position: relative;
+		overflow: hidden;
+		border-radius: 15px;
+		box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+		transition: transform 0.3s ease;
+	}
+
+	.gallery-item:hover {
+		transform: scale(1.02);
+	}
+
+	.gallery-item img {
+		width: 100%;
+		height: 250px;
+		object-fit: cover;
+		transition: transform 0.3s ease;
+	}
+
+	.gallery-item:hover img {
+		transform: scale(1.1);
+	}
+
+	.gallery-overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: linear-gradient(135deg, rgba(255, 107, 53, 0.3), rgba(0, 123, 191, 0.3));
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: white;
+		font-weight: 600;
+		font-size: 1.1rem;
+		text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+		opacity: 0;
+		transition: opacity 0.3s ease;
+	}
+
+	.gallery-item:hover .gallery-overlay {
+		opacity: 1;
+	}
+
+	.footer {
+		background: #333;
+		color: white;
+		padding: 3rem 2rem 1rem;
+		text-align: center;
+	}
+
+	.footer-content {
+		max-width: 1200px;
+		margin: 0 auto;
+	}
+
+	.footer-links {
+		display: flex;
+		justify-content: center;
+		gap: 2rem;
+		margin-bottom: 2rem;
+	}
+
+	.footer-links a {
+		color: white;
+		text-decoration: none;
+		transition: color 0.3s ease;
+	}
+
+	.footer-links a:hover {
+		color: #ff6b35;
+	}
+
+	.footer-bottom {
+		border-top: 1px solid #555;
+		padding-top: 1rem;
+		margin-top: 2rem;
+	}
+
+	/* レスポンシブデザイン */
+	@media (max-width: 768px) {
+		.hero h1 {
+			font-size: 2.5rem;
+		}
+
+		.hero p {
+			font-size: 1.1rem;
+		}
+
+		.about-content {
+			grid-template-columns: 1fr;
+		}
+
+		.dining-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.nav-links {
+			display: none;
+		}
+	}
