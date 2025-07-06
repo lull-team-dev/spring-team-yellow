@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.Plan;
+import com.example.demo.entity.Review;
 import com.example.demo.entity.Room;
 import com.example.demo.model.Account;
 import com.example.demo.repository.LikeRepository;
 import com.example.demo.repository.PlanRepository;
+import com.example.demo.repository.ReviewRepository;
 import com.example.demo.repository.RoomRepository;
 import com.example.demo.service.LikeService;
 
@@ -26,6 +28,8 @@ public class DetailController {
 	PlanRepository planRepository;
 	@Autowired
 	LikeRepository likeRepository;
+	@Autowired
+	ReviewRepository reviewRepository;
 	@Autowired
 	LikeService likeService;
 	@Autowired
@@ -45,15 +49,22 @@ public class DetailController {
 		//プラン情報取得
 		List<Plan> plans = planRepository.findAll();
 
-		//		いいね一覧取得
+		// いいね一覧取得
 		List<Integer> likeRoom = likeService.likeIcon();
 		model.addAttribute("like", likeRoom);
+
+		// レビュー一覧取得
+		List<Review> reviews = reviewRepository.findByRoomIdAndDeletedAtIsNullOrderByCreatedAtDesc(id);
+		// レビューの平均値を取得
+		Double avgRating = reviewRepository.findAverageRatingByRoomId(id);
 
 		model.addAttribute("room", room);
 		model.addAttribute("plans", plans);
 		model.addAttribute("imgList", imgList);
 		model.addAttribute("checkinDate", checkinDate);
 		model.addAttribute("checkoutDate", checkoutDate);
+		model.addAttribute("reviews", reviews);
+		model.addAttribute("avgRating", avgRating);
 
 		return "detail";
 	}

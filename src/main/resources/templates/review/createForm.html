@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>レビュー投稿</title>
+	<link rel="stylesheet" th:href="@{/css/review.css}">
+</head>
+
+<body>
+	<h1>レビュー投稿</h1>
+
+	<div class="">
+		<div>
+			<span>部屋名：</span>
+			<span class="" th:text="${reservation.room.roomName}"></span>
+		</div>
+		<div>
+			<span>プラン名：</span>
+			<span class="" th:text="${reservation.plan.name}"></span>
+		</div>
+		<div>
+			<span>チェックイン〜チェックアウト：</span>
+			<span class="" th:text="${reservation.StayDate}"></span>
+			<span class="" th:text="${checkoutDate}"></span>
+		</div>
+		<div>
+			<span>合計金額：</span>
+			<span class="" th:text="${reservation.totalPrice}"></span>
+		</div>
+		<div>
+			<span>人数</span>
+			<span class="" th:text="${reservation.guestCount} + '人'"></span>
+		</div>
+	</div>
+
+	<!-- レビュー投稿フォーム -->
+	<form th:action="@{/reviews/create}" th:object="${reviewForm}" method="post">
+		<!-- ID項目は hiddenで保持 -->
+		<input type="hidden" th:field="*{guestId}" />
+		<input type="hidden" th:field="*{roomId}" />
+		<input type="hidden" th:field="*{reservationId}" />
+
+		<div class="form-group">
+			<label class="form-label">評価（★1〜5）:</label>
+			<div class="star-rating">
+				<input type="radio" id="star5" name="rating" value="5" th:checked="*{rating == 5}" />
+				<label for="star5">★</label>
+				<input type="radio" id="star4" name="rating" value="4" th:checked="*{rating == 4}" />
+				<label for="star4">★</label>
+				<input type="radio" id="star3" name="rating" value="3" th:checked="*{rating == 3}" />
+				<label for="star3">★</label>
+				<input type="radio" id="star2" name="rating" value="2" th:checked="*{rating == 2}" />
+				<label for="star2">★</label>
+				<input type="radio" id="star1" name="rating" value="1" th:checked="*{rating == 1}" />
+				<label for="star1">★</label>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="form-label">コメント:</label>
+			<textarea th:field="*{comment}" rows="4" cols="50" placeholder="レビューをご記入ください" required></textarea>
+		</div>
+
+		<div class="form-group">
+			<button type="submit" class="button-submit">レビューを投稿する</button>
+		</div>
+	</form>
+
+
+</body>
+
+</html>

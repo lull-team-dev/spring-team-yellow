@@ -11,7 +11,8 @@
 	<header th:replace="header"></header>
 	<main class="container">
 		<h3 class="login-title">ログイン</h3>
-		<div class="error-message" >
+		<div class="error-message">
+			<span th:if="${error}" th:text="${error}" class="error-message"></span>
 			<span th:if="${errorList}" th:each="error:${errorList}" th:text="${error}"></span>
 		</div>
 		<form class="login-items" action="/login" method="post">
@@ -19,7 +20,7 @@
 				<label for="email">メールアドレス</label>
 				<input id="email" type="email" name="email" th:value="${email}" placeholder="×××@gmail.com">
 			</div>
-			<div  class="login-item">
+			<div class="login-item">
 				<label for="password">パスワード</label>
 				<input id="password" type="password" name="password" placeholder="abc123">
 			</div>

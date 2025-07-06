@@ -28,8 +28,20 @@ public class LoginController {
 
 	//ログイン画面の表示
 	@GetMapping({ "/", "/login", "/logout" })
-	private String loginIndex() {
-		session.invalidate();
+	private String loginIndex(
+			@RequestParam(defaultValue = "") String error,
+			Model model) {
+
+		// セッションが存在する場合のみ破棄する
+		if (session != null) {
+			session.invalidate();
+		}
+
+		// クエリパラメータで"notLoggedIn"を受け取った場合
+		if (error.equals("notLoggedIn")) {
+			model.addAttribute("error", "ログインしてください");
+		}
+
 		return "login";
 	}
 
