@@ -34,21 +34,19 @@ public class CheckLoginAspect {
 	}
 
 	// 未ログインの場合ログインページにリダイレクト
-	@Around("execution(* com.example.demo.controller..*.*(..))")
+	@Around("execution(* com.example.demo.controller.DetailController.*(..)) ||"
+			+ "execution(* com.example.demo.controller.MypageController.*(..)) ||"
+			+ "execution(* com.example.demo.controller.ReservationController.*(..)) ||"
+			+ "execution(* com.example.demo.controller.ReservationHistoryController.*(..)) ||"
+			+ "execution(* com.example.demo.controller.ReviewController.*(..))")
 	public Object checkLogin(ProceedingJoinPoint jp) throws Throwable {
-		String className = jp.getSignature().getDeclaringTypeName();
 
-		// AccountControllerとLoginControllerはログインしてなくても表示
-		if (className.endsWith("AccountController") || className.endsWith("LoginController")) {
-			return jp.proceed();
-		}
-
-		// それ以外はリダイレクト
 		if (!account.isLoggedIn()) {
 			System.err.println("ログインしていません!");
-			return "redirect:/login?error=notLoggedIn";
+			return "redirect:/auth/login?error=notLoggedIn";
 		}
 
+		// Controller内のメソッドの実行
 		return jp.proceed();
 	}
 
