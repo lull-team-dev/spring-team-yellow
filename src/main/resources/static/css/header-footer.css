@@ -153,6 +153,11 @@ footer {
 .footer-sns {
 	margin-bottom: 10px;
 }
+
+.footer-sns a{
+	color: #555;
+	text-decoration: none;
+}
 .footer-sns i{
 	margin-right: 25px;
 	font-size: 23px;
