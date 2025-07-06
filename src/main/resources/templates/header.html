@@ -1,16 +1,18 @@
 <header>
 	<div>
 		<div class="left-item">
-			<a href="/room"><img src="" alt="ロゴ" ></a>
-			<div th:if="${@account.id}" class="username">[[${@account.name}]]さんようこそ</div>
+			<a href="/room" class="logo"><img src="/uploads/images/logo.png" class="logo-img" alt="ロゴ" ></a>
+			<div class="hotel-name">Gran Marina Resort</div>
 		</div>
-		<div class="right-item">
+		<div class="right-item"  th:if="${@account.id}">
 			<div class="hamburger-icon" id="hamburger-icon">
 				<span class="hamburger-icon1"></span>
 				<span class="hamburger-icon2"></span>
 				<span class="hamburger-icon3"></span>
 			</div>
 			<nav id="hamburger-nav" class="hamburger-nav">
+				<div th:if="${@account.id}" class="username">[[${@account.name}]]さんようこそ</div>
+
 				<a href="/reservationHistory">予約履歴</a>
 				<a href="/like">お気に入り</a>
 				<a href="/mypage">マイページ</a>
