@@ -13,8 +13,7 @@
 
 	<main>
 
-		<h1>予約詳細</h1>
-
+		<h1 th:text="${afterReserveText}"></h1>
 
 		<div class="">
 			<p>部屋名：</p>
@@ -37,6 +36,7 @@
 				<img th:src="@{${reservationHistory.room.imgPath}}" id="room-img">
 				<span id="prevBtn" onclick="prev()">&lt;</span>
 				<span id="nextBtn" onclick="next()">&gt;</span>
+				
 
 				<script th:inline="javascript">
 					const imgs = /*[[${imgList}]]*/[]; //画像の配列
@@ -61,8 +61,10 @@
 					// ページ読み込み時に最初の画像表示
 					showImage();
 				</script>
-				
+
 			</div>
+			
+			<div><a href="/reservationHistory">予約履歴へ</a></div>
 
 		</div>
 	</main>
