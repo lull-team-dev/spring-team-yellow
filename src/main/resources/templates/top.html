@@ -127,6 +127,7 @@
 			<div class="rooms-grid">
 				<!-- ▼ ここからルームカード（繰り返し） -->
 				<div class="room-card" th:each="room : ${rooms}" th:id="${room.id}">
+					<a th:href="@{/rooms/{roomId}(roomId=${room.id}, checkinDate=${checkinDate}, checkoutDate=${checkoutDate})}">
 					<!-- 部屋画像 -->
 					<img th:src="@{${room.imgPath}}" alt="部屋" class="room-card-image">
 
@@ -153,6 +154,8 @@
 							</a>
 						</div>
 					</div>
+					</a>
+
 				</div>
 				<!-- ▲ ここまでルームカード -->
 			</div>
