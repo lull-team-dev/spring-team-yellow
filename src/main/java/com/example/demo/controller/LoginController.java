@@ -19,8 +19,8 @@ import com.example.demo.repository.GuestRepository;
 @Controller
 public class LoginController {
 
-	@Autowired
-	HttpSession session;
+	//	@Autowired
+	//	HttpSession session;
 	@Autowired
 	Account account;
 	@Autowired
@@ -30,6 +30,7 @@ public class LoginController {
 	@GetMapping({ "/", "/login", "/logout" })
 	private String loginIndex(
 			@RequestParam(defaultValue = "") String error,
+			HttpSession session,
 			Model model) {
 
 		// セッションが存在する場合のみ破棄する
@@ -52,20 +53,27 @@ public class LoginController {
 			Model model) {
 
 		//バリデーション処理
+		boolean hasError = false;
+
 		List<String> errorList = new ArrayList<>();
 		if (password.isEmpty()) {
-			errorList.add("パスワードは必須です");
+			model.addAttribute("passwordError", "パスワードは必須です");
+			hasError = true;
 		}
 		if (email.isEmpty()) {
-			errorList.add("メールアドレスは必須です");
+			model.addAttribute("emailError", "メールアドレスは必須です");
+			hasError = true;
 		}
-
 		List<Guest> guests = guestRepository.findByEmailAndPassword(email, password);
 		if ((!email.isEmpty() && !password.isEmpty()) && guests.size() <= 0) {
-			errorList.add("メールアドレスまたはパスワードが違います");
+			model.addAttribute("loginError", "メールアドレスまたはパスワードが違います");
+			hasError = true;
 		}
-		if (errorList.size() > 0) {
-			model.addAttribute("errorList", errorList);
+		//		if (errorList.size() > 0) {
+		//			model.addAttribute("errorList", errorList);
+		//			return "login";
+		//		}
+		if (hasError) {
 			return "login";
 		}
 

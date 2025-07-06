@@ -8,8 +8,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="stylesheet" href="/css/style.css">
 <link rel="stylesheet" href="/css/header-footer.css">
+<link rel="stylesheet" href="/css/login.css">
+
 
 <!--ここまで共通-->
 </head>
@@ -17,22 +20,30 @@
 <body>
 	<header th:replace="header"></header>
 	<main class="container">
-		<h3 class="login-title">ログイン</h3>
-		<div class="error-message">
-			<span th:if="${error}" th:text="${error}" class="error-message"></span>
-			<span th:if="${errorList}" th:each="error:${errorList}" th:text="${error}"></span>
-		</div>
+		<h1 class="login-title">ログイン</h1>
+
 		<form class="login-items" action="/login" method="post">
 			<div class="login-item">
 				<label for="email">メールアドレス</label>
 				<input id="email" type="email" name="email" th:value="${email}" placeholder="×××@gmail.com">
 			</div>
+<div class="error-box">
+	<span th:if="${emailError}" th:text="${emailError}" class="error-message"></span>
+
+</div>
 			<div class="login-item">
 				<label for="password">パスワード</label>
 				<input id="password" type="password" name="password" placeholder="abc123">
 			</div>
+
+			<div class="error-box">
+				<span th:if="${passwordError}" th:text="${passwordError}" class="error-message"></span>
+				<span th:if="${loginError}" th:text="${loginError}" class="error-message"></span>
+			</div>
+			
 			<button class="login-buttons">ログイン</button>
 			<div class="register-button">
+				アカウントをお持ちでない方は
 				<a href="/account/register">新規登録</a>
 			</div>
 		</form>
