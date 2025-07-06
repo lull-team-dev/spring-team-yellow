@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>予約確認ページ</title>
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+
+</head>
+
+<body>
+	<header th:replace="header"></header>
+
+	<main>
+
+		<h1 th:text="${afterReserveText}"></h1>
+
+		<div class="">
+			<p>部屋名：</p>
+			<div class="" th:text="${reservationHistory.room.roomName}"></div>
+
+			<p>プラン名：</p>
+			<div class="" th:text="${reservationHistory.plan.name}"></div>
+
+			<p>チェックイン〜チェックアウト：</p>
+			<div class="" th:text="${reservationHistory.StayDate}"></div>
+			<div class="" th:text="${checkoutDate}"></div>
+			<p>合計金額：</p>
+			<div class="" th:text="${reservationHistory.totalPrice}"></div>
+			<p>人数</p>
+			<div class="" th:text="${reservationHistory.guestCount} + '人'"></div>
+
+
+
+			<div class="room-img" id="slide">
+				<img th:src="@{${reservationHistory.room.imgPath}}" id="room-img">
+				<span id="prevBtn" onclick="prev()">&lt;</span>
+				<span id="nextBtn" onclick="next()">&gt;</span>
+				
+
+				<script th:inline="javascript">
+					const imgs = /*[[${imgList}]]*/[]; //画像の配列
+					let num = 0;
+					function showImage() {
+						document.getElementById("room-img").src = imgs[num];
+						const img = document.getElementById("room-img");
+						img.classList.add("fade-out");
+						setTimeout(() => {
+							img.src = imgs[num]; // 新しい画像に切り替え
+							img.classList.remove("fade-out");
+						}, 250); // 画像切り替えはフェードの途中で実行
+					}
+					function next() {
+						num = (num + 1) % imgs.length;  // 配列の最後までいったら先頭に戻る
+						showImage(); //現在の num の値に対応する画像を画面に表示するための関数を呼び出し
+					}
+					function prev() {
+						num = (num - 1 + imgs.length) % imgs.length;  // 最初の画像の前は最後に戻る
+						showImage(); //現在の num の値に対応する画像を画面に表示するための関数を呼び出し
+					}
+					// ページ読み込み時に最初の画像表示
+					showImage();
+				</script>
+
+			</div>
+			
+			<div><a href="/reservationHistory">予約履歴へ</a></div>
+
+		</div>
+	</main>
+
+	<footer th:replace="footer"></footer>
+
+</body>
+
+</html>

@@ -227,34 +227,33 @@
 				<div class="plan-text">
 					<p th:text="${plan.name}"></p>
 					<p th:text="${plan.details}"></p>
-					<p th:text="'合計：' + ${plan.calcTotalPrice(room.price)} + '円/人(1日あたり）'"></p>
+					<p th:text="'合計：' + ${TotalPrice} + '円'"></p>
+					<p th:text="${countDay} + '泊' + ${countDay + 1} + '日'"></p>
 				</div>
 
 			</div>
-			<form th:action="@{/rooms/{id}/reserve(id=${room.id})}" th:object="${reserveDto}" method="post">
+			<form th:action="@{/rooms/{id}/reserveConf(id=${room.id})}" method="post">
 				<div class="login-items">
 					<h3>予約者情報</h3>
 					<div class="login-items">
-						<label for="name">名前</label>
-						<input id="name" type="text" th:field="*{guestName}" />
-						<div th:if="${#fields.hasErrors('guestName')}" th:errors="*{guestName}"></div>
+						<label>名前</label>
+						<p th:text="${guestName}"></p>
+						<input type="hidden" name ="guestName" th:value="${guestName}">
 					</div>
 					<div class="login-items">
-						<label for="email">メールアドレス</label>
-						<input id="email" type="text" th:field="*{email}" />
-						<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
-						<!--メールアドレス重複チェック用-->
-						<div th:if="${#fields.hasGlobalErrors()}" th:each="error:${#fields.globalErrors()}" th:text="${error}"></div>
+						<label>メールアドレス</label>
+						<p th:text="${email}"></p>
+						<input type="hidden" name="email" th:value="${email}">
 					</div>
 					<div class="login-items">
-						<label for="tel">電話番号</label>
-						<input id="tel" type="text" th:field="*{tel}" />
-						<div th:if="${#fields.hasErrors('tel')}" th:errors="*{tel}"></div>
+						<label>電話番号</label>
+						<p th:text="${tel}"></p>
+						<input type="hidden" name="tel" th:value="${tel}">
 					</div>
 					<div class="login-items">
-						<label for="address">住所</label>
-						<input id="address" type="text" th:field="*{address}" />
-						<div th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></div>
+						<label>住所</label>
+						<p th:text="${address}"></p>
+						<input type="hidden" name="address" th:value="${address}">
 					</div>
 				</div>
 
@@ -262,34 +261,23 @@
 					<h3>宿泊情報詳細</h3>
 					<div>
 						<p>宿泊予定日</p>
-						<input id="checkinDate" type="text" th:field="*{checkinDate}" readonly>
-						<input id="checkoutDate" type="text" th:field="*{checkoutDate}" readonly>
-						<div th:if="${#fields.hasErrors('checkinDate')}" th:errors="*{checkinDate}"></div>
-						<div th:if="${#fields.hasErrors('checkoutDate')}" th:errors="*{checkoutDate}"></div>
-						<!--カレンダー-->
-						<div id="calendarArea" style="display: none;">
-							<div class="calender_button"></div>
-
-							<button type="button" id="prev"> ＜ </button>
-							<button type="button" id="next"> ＞ </button>
-							<div id="calendar" class="calendar"></div>
-							<button type="button" id="closeCalendar">閉じる</button>
-						</div>
+						<p th:text="${checkinDate}"></p>
+						～
+						<p th:text="${checkoutDate}"></p>
+						<input type="hidden" name="checkinDate" th:value="${checkinDate}">
+						<input type="hidden" name="checkoutDate" th:value="${checkoutDate}">
 						<p>宿泊者数</p>
-						<select name="guestCount" id="guestCount" th:field="*{guestCount}">
-						  <option th:each="count:${maxGuestCount}" th:text="${count}" th:value="${count}"></option>
-						</select>
-						<span>人</span>
-						<div th:if="${#fields.hasErrors('guestCount')}" th:errors="*{guestCount}"></div>
+						<p th:text="${guestCount}">人</p>
+						<input type="hidden" name="guestCount" th:value="${guestCount}">
 					</div>
 					<input type="hidden" name="planId" th:value="${plan.id}">
-					<button>予約確認</button>
+					<button type="submit" name="status" value="1">予約する</button>
+					<button type="submit" name="status" value="2">戻る</button>
 				</div>
 			</form>
 		</div>
 	</main>
 	<footer th:replace="footer"></footer>
-	<script src="/js/calendar.js"></script>
 </body>
 
 </html>
