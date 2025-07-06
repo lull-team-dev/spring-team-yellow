@@ -1,3 +1,4 @@
+// ログアウト状態でもOK
 package com.example.demo.controller;
 
 import java.time.LocalDate;
@@ -8,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.Reservation;
@@ -206,15 +206,5 @@ public class RoomController {
 		model.addAttribute("like", likeRoom);
 
 		return "top";
-	}
-
-	//	お気に入り処理
-	@GetMapping("/rooms/{id}/like")
-	public String like(@PathVariable("id") Integer id,
-			Model model) {
-
-		likeService.toggleLike(account.getId(), id);
-
-		return "redirect:/room#" + id;
 	}
 }

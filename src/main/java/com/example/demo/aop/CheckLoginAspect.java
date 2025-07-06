@@ -38,12 +38,16 @@ public class CheckLoginAspect {
 	public Object checkLogin(ProceedingJoinPoint jp) throws Throwable {
 		String className = jp.getSignature().getDeclaringTypeName();
 
-		// AccountControllerとLoginControllerはログインしてなくても表示
-		if (className.endsWith("AccountController") || className.endsWith("LoginController")) {
+		// ログイン不要なコントローラを除外
+		if (className.endsWith("LoginController") ||
+				className.endsWith("AccountController") ||
+				className.endsWith("DetailController") ||
+				className.endsWith("RoomController") ||
+				className.contains("hotelTopController")) {
 			return jp.proceed();
 		}
 
-		// それ以外はリダイレクト
+		// 未ログインならリダイレクト
 		if (!account.isLoggedIn()) {
 			System.err.println("ログインしていません!");
 			return "redirect:/login?error=notLoggedIn";
