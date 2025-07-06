@@ -1,12 +1,17 @@
 @charset "UTF-8";
 
-/* header */
-header,footer{
+
+
+/* 共通 */
+header,
+footer {
 	background-color: #fff;
 	box-shadow: 0px 0px 18px 1px rgba(0, 0, 0, 0.25);
 	color: #555;
+	font-weight: bolder;
+	padding: 20px 0px;
+	width: 100%
 
-	
 }
 
 .logo {
@@ -25,10 +30,24 @@ header {
 
 }
 
+header div {
+	display: flex;
+	justify-content: space-between;
+}
+
+.header-box {
+	margin: 0 110px;
+}
+
 .hotel-name {
 	align-items: center;
 	font-size: 30px;
+	color: #e77611;
 }
+
+
+
+
 
 /*ハンバーガー */
 .hamburger-icon {
@@ -38,6 +57,7 @@ header {
 	display: block;
 	z-index: 102;
 }
+
 .hamburger-icon1,
 .hamburger-icon2,
 .hamburger-icon3 {
@@ -47,28 +67,43 @@ header {
 	width: 100%;
 	transition: all .6s;
 }
-.hamburger-icon1{
+
+.hamburger-icon1 {
 	top: 0pc;
 }
+
 .hamburger-icon2 {
 	top: 12px;
 }
+
 .hamburger-icon3 {
 	top: 22px;
 }
+
 .active .hamburger-icon1 {
 	transform: translateY(11px) rotate(-45deg);
 	border-bottom: 2px solid #fff;
 
 }
+
 .active .hamburger-icon2 {
 	opacity: 0;
 }
+
 .active .hamburger-icon3 {
 	transform: translateY(-11px) rotate(45deg);
 	border-bottom: 2px solid #fff;
 
 }
+
+.right-item {
+	height: 100%;
+	top: 60px;
+	right: 0;
+	z-index: 100;
+}
+
+
 
 .right-item a {
 	color: #fff;
@@ -86,16 +121,57 @@ header {
 	background-color: #e77611;
 	transform: translateX(100%);
 	transition: transform .4s;
-	padding: 90px  0 0 70px;
+	padding: 90px 0 0 70px;
 }
+
 .active {
 	transform: translateX(0);
 }
+
 
 
 /* footer */
 footer {
 	height: 90px;
 	border-radius: 30px 30px 0px 0px;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	text-align: center;
+}
 
+.footer-box {
+	display: flex;
+	justify-content: space-between;
+	margin: 0 110px;
+	align-items: center;
+}
+
+.footer-left {
+	text-align: left;
+}
+.footer-sns {
+	margin-bottom: 10px;
+}
+
+.footer-sns a{
+	color: #555;
+	text-decoration: none;
+}
+.footer-sns i{
+	margin-right: 25px;
+	font-size: 23px;
+}
+
+.policies a{
+	text-align: none;
+	color: #555;
+}
+
+.footer-right {
+	display: flex;
+}
+
+.footer-logo {
+	width: 90px;
 }

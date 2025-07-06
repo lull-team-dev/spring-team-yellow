@@ -26,15 +26,15 @@ li {
 input[type="text"],
 input[type="email"],
 input[type="password"] {
-	box-shadow: none;
+	box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.25);
 	border: 1px solid #a9a9a9;
 	background-color: #fff;
 	appearance: none;
-	border-radius: 60px;
+	border-radius: 8px;
 	color: inherit;
 	width: 100%;
-	padding: 5px;
-}
+	padding: 10px;
+	}
 
 button {
 	box-shadow: none;
@@ -47,107 +47,50 @@ button {
 	width: 80%;
 }
 
-.error-message {
-	color: red;
-	text-align: center;
-	min-height: 3em;
-	/* おおよそ2〜3行分の高さ */
-
-	margin: 0 auto;
-	max-width: 400px;
-}
-
-.error-message span {
-	display: block;
-
-}
-
 main {
 	margin: 75px 120px;
 
 }
 
-/* ヘッダー、フッター */
-
-header,
-footer {
-	background-color: #e77611;
-	color: #fff;
-	padding: 20px 30px;
-	font-weight: bolder;
+h1 {
+	color: #e77611;
 }
 
-header div {
-	display: flex;
-	justify-content: space-between;
+.cormorant-garamond-hotel-logo {
+  font-family: "Cormorant Garamond", serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  color: #555;
 }
 
-footer {
+
+.error-box {
+	height: 1.5rem;
+	margin: 5px;
+	color: red;
 	text-align: center;
 }
 
-.right-item {
-	height: 100%;
-	top: 60px;
-	right: 0;
-	z-index: 100;
 
-}
-/*ハンバーガー */
-.hamburger-icon {
-	position: relative;
-	width: 30px;
-	height: 24px;
-	display: block;
-	z-index: 102;
-}
-.hamburger-icon1,
-.hamburger-icon2,
-.hamburger-icon3 {
-	display: block;
-	position: absolute;
-	border-bottom: 2px solid #fff;
-	width: 100%;
-	transition: all .6s;
-}
-.hamburger-icon1{
-	top: 0pc;
-}
-.hamburger-icon2 {
-	top: 12px;
-}
-.hamburger-icon3 {
-	top: 22px;
-}
-.active .hamburger-icon1 {
-	transform: translateY(11px) rotate(-45deg);
-}
-.active .hamburger-icon2 {
-	opacity: 0;
-}
-.active .hamburger-icon3 {
-	transform: translateY(-11px) rotate(45deg);
+
+/*ホテル名のスタイル*/
+.dm-serif-display-regular {
+  font-family: "DM Serif Display", serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
-.right-item a {
-	color: #fff;
-	display: block;
-	font-size: 18px;
-	margin-bottom: 2em;
+.dm-serif-display-regular-italic {
+  font-family: "DM Serif Display", serif;
+  font-weight: 400;
+  font-style: italic;
 }
 
-.hamburger-nav {
-	position: fixed;
-	width: 450px;
-	height: 100%;
-	top: 0;
-	right: 0;
-	background-color: #e77611;
-	transform: translateX(100%);
-	transition: transform .4s;
-	padding: 90px  0 0 70px;
-}
-.active {
-	transform: translateX(0);
-}
+
+
+
+
+
+
 
