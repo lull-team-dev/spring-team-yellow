@@ -252,7 +252,7 @@
 	pointer-events: none;
 }
 
-.calendar-input-wrap input[type="text"] 
+.calendar-input-wrap input[type="text"] {
 	width: 100%;
 	background: #faf7f0;
 	font-size: 15px;
@@ -546,3 +546,4 @@
 	background: #fff;
 	/* 背景は常に白で変化させない */
 }
+
