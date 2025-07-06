@@ -1,3 +1,4 @@
+// ログアウト状態でもOK
 package com.example.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
