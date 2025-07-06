@@ -1,289 +1,160 @@
 <!DOCTYPE html>
-<xmlns:th="http: //www.thymeleaf.org">
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
 
-	<head>
-		<meta charset="UTF-8">
-		<title>宿へようこそ</title>
-		<link rel="stylesheet" href="/css/style.css">
-		<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-		<!--flatpickr(カレンダー）-->
-		<!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">-->
-		<!--<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>-->
-		<style>
-			.contanabox {
-				max-width: 400px;
-				font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-			}
+<head>
+	<meta charset="UTF-8">
+	<title>宿へようこそ</title>
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/top-style.css">
+	<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+	<style>
+		/* 追加や一時的な上書きはここに記載 */
+	</style>
+</head>
 
-			.price-display {
-				display: flex;
-				justify-content: space-between;
-				margin-bottom: 20px;
-			}
+<body>
+	<header th:replace="header"></header>
+	<main>
+		<!-- ================== 検索フォーム ================== -->
+		<div class="search-form-outer">
+			<form class="search-form-box" action="/room" method="get">
+				<!-- キーワード検索（ルーム名で検索） -->
+				<p>●キーワード検索</p>
+				<input type="text" name="keyword" th:value="${keyword}" placeholder="ルーム名検索">
 
-			.price-box {
-				background: #f8f9fa;
-				border: 1px solid #dee2e6;
-				border-radius: 8px;
-				padding: 5px 10px;
-				min-width: 120px;
-			}
+				<!-- 部屋タイプ選択（チェックボックス） -->
+				<div class="room-type-group">
+					<p>●部屋タイプ</p>
+					<div class="room-type-center">
+						<label>
+							<input type="checkbox" name="types" value="1"
+								th:checked="${types != null and types.contains(1)}">スイートルーム
+						</label>
+						<label>
+							<input type="checkbox" name="types" value="2"
+								th:checked="${types != null and types.contains(2)}">ダブルルーム
+						</label>
+						<label>
+							<input type="checkbox" name="types" value="3"
+								th:checked="${types != null and types.contains(3)}">シングルルーム
+						</label>
+					</div>
+				</div>
 
-			.price-label {
-				font-size: 12px;
-				color: #6c757d;
-				margin-bottom: 4px;
-			}
-
-			.price-value {
-				font-size: 16px;
-				font-weight: bold;
-				color: #212529;
-			}
-
-			.slider-contanabox {
-				position: relative;
-				height: 50px;
-			}
-
-			.slider-track {
-				position: absolute;
-				top: 50%;
-				left: 0;
-				right: 0;
-				height: 6px;
-				background: #e9ecef;
-				border-radius: 3px;
-				transform: translateY(-50%);
-			}
-
-			.slider-range {
-				position: absolute;
-				height: 6px;
-				background: #F19E39;
-				border-radius: 3px;
-				top: 50%;
-				transform: translateY(-50%);
-			}
-
-			.slider-lower,
-			.slider-upper {
-				position: absolute;
-				top: 50%;
-				transform: translateY(-50%);
-				width: 100%;
-				height: 6px;
-				background: transparent;
-				outline: none;
-				-webkit-appearance: none;
-				appearance: none;
-				pointer-events: none;
-			}
-
-			.slider-lower::-webkit-slider-thumb,
-			.slider-upper::-webkit-slider-thumb {
-				-webkit-appearance: none;
-				appearance: none;
-				width: 20px;
-				height: 20px;
-				background: #F19E39;
-				border-radius: 50%;
-				cursor: pointer;
-				pointer-events: all;
-				border: 2px solid white;
-				box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-			}
-
-			.slider-lower::-moz-range-thumb,
-			.slider-upper::-moz-range-thumb {
-				width: 20px;
-				height: 20px;
-				background: #F19E39;
-				border-radius: 50%;
-				cursor: pointer;
-				pointer-events: all;
-				border: 2px solid white;
-				box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-			}
-
-			.slider-upper {
-				z-index: 2;
-			}
-
-			.slider-lower::-webkit-slider-thumb {
-				background: #F19E39;
-			}
-
-			.slider-lower::-moz-range-thumb {
-				background: #F19E39;
-			}
-
-			.slider-track,
-			.slider-range,
-			.slider-lower,
-			.slider-upper {
-				left: 0;
-				right: 0;
-				width: 100%;
-			}
-
-			/*カレンダーのcss*/
-			.calendar {
-				display: flex;
-				gap: 30px;
-				text-align: center;
-			}
-
-			.week {
-				padding: 5px;
-			}
-
-			.calender_button {
-				appearance: none;
-			}
-
-			.is-disabled {
-				color: #ccc;
-			}
-
-			/*カレンダー入力中のみグレーアウト*/
-			.input-active {
-				background-color: #ccc !important;
-			}
-
-			/*カレンダー選択時、マーキング*/
-			.selected-checkin {
-				background: #F19E39;
-				color: #fff !important;
-				border-top-left-radius: 50%;
-				border-bottom-left-radius: 50%;
-				font-weight: bold;
-
-			}
-
-			.selected-checkout {
-				background: #F19E39;
-				color: #fff !important;
-				border-top-right-radius: 50%;
-				border-bottom-right-radius: 50%;
-				font-weight: bold;
-			}
-
-			.selected-between {
-				background: #f5b05b;
-				color: #fff;
-				border-radius: 0;
-			}
-		</style>
-	</head>
-
-	<body>
-		<header th:replace="header"></header>
-		<main>
-			<div class="container" style="width: 50%;">
-				<div style="margin: 5px auto; width: 50%;">
-					<form action=" /room" method="get">
-						<p>キーワード検索</p>
-						<input type="text" name="keyword" style="padding: 0.5em;" th:value="${keyword}"
-							placeholder="ルーム名検索">
-						<div>
-							<div>
-								<p>部屋タイプ</p>
-								<label>
-									<input type="checkbox" name="types" value="1"
-										th:checked="${types != null and types.contains(1)}">
-									スイートルーム
-								</label>
-								<label>
-									<input type="checkbox" name="types" value="2"
-										th:checked="${types != null and types.contains(2)}">
-									ダブルルーム
-								</label>
-								<label>
-									<input type="checkbox" name="types" value="3"
-										th:checked="${types != null and types.contains(3)}">
-									シングルルーム
-								</label>
-								<div class="contanabox">
-									<div class="price-display">
-										<div class="price-box">
-											<div class="price-label">下限</div>
-											<div class="price-value">¥<span><input type="text" id="under_value_display"
-														style="border: none; width:80%; outline: none;"></span></div>
-										</div>
-										<div class="price-box">
-											<div class="price-label">上限</div>
-											<div class="price-value">¥<span><input type="text" id="up_value_display"
-														style="border: none; width:80%; outline: none;"></span></div>
-										</div>
-									</div>
-									<div class="slider-contanabox">
-										<div class="slider-track"></div>
-										<div class="slider-range" id="slider-range"></div>
-										<input type="range" id="pi_under_input" class="slider-lower" min="0"
-											max="100000" name="underPrice" th:value="${underPrice}" step="1"
-											data-pb-color="var(--bs-secondary-bg)">
-										<input type="range" id="pi_up_input" class="slider-upper" min="0" max="100000"
-											name="upPrice" th:value="${upPrice}" step="1"
-											data-pb-color="var(--bs-primary)">
-									</div>
-									<input type="hidden" id="under_value_input" name="underPrice"
-										th:value="${underPrice}">
-									<input type="hidden" id="up_value_input" name="upPrice" th:value="${upPrice}">
-								</div>
+				<!-- 予算ブロック（下限・上限入力＋スライダー） -->
+				<div class="room-price-group">
+					<p>●予算</p>
+					<div class="contanabox">
+						<div class="price-display">
+							<div class="price-box">
+								<div class="price-label">下限</div>
+								<div class="price-value">¥<span>
+										<input type="text" id="under_value_display"
+											style="border: none; width:80%; outline: none;">
+									</span></div>
+							</div>
+							<div class="price-box">
+								<div class="price-label">上限</div>
+								<div class="price-value">¥<span>
+										<input type="text" id="up_value_display"
+											style="border: none; width:80%; outline: none;">
+									</span></div>
 							</div>
 						</div>
-						<div>
-							<span class="material-symbols-outlined" style="color: #F19E39;">calendar_month</span>
-							<input type="text" id="checkinDate" name="checkinDate" placeholder="チェックイン"
-								th:value="${checkinDate}" required readonly>
-							<input type="text" id="checkoutDate" name="checkoutDate" placeholder="チェックアウト"
-								th:value="${checkoutDate}" required readonly>
-							<!-- カレンダー -->
-							<div id="calendarArea" style="display: none;">
-								<div class="calender_button"></div>
+						<div class="slider-contanabox">
+							<div class="slider-track"></div>
+							<div class="slider-range" id="slider-range"></div>
+							<!-- 2本のスライダー -->
+							<input type="range" id="pi_under_input" class="slider-lower" min="0" max="100000"
+								name="underPrice" th:value="${underPrice}" step="1">
+							<input type="range" id="pi_up_input" class="slider-upper" min="0" max="100000"
+								name="upPrice" th:value="${upPrice}" step="1">
+						</div>
+						<!-- 送信用hidden -->
+						<input type="hidden" id="under_value_input" name="underPrice" th:value="${underPrice}">
+						<input type="hidden" id="up_value_input" name="upPrice" th:value="${upPrice}">
+					</div>
+				</div>
 
-								<button type="button" id="prev"> ＜ </button>
-								<button type="button" id="next"> ＞ </button>
-								<div id="calendar" class="calendar"></div>
+				<!-- チェックイン・チェックアウト -->
+				<div class="calendar-group">
+					<div class="calendar-label-row">
+						<p>●チェックイン・チェックアウト</p>
+					</div>
+					<div class="calendar-input-row">
+						<div class="calendar-input-wrap calendar-checkin-wrap">
+							<span class="material-symbols-outlined">calendar_month</span>
+							<input type="text" id="checkinDate" name="checkinDate" th:value="${checkinDate}" required readonly>
+							<!-- カレンダー本体(絶対位置でinput直下) -->
+							<div id="calendarArea">
+								<div class="calendar-nav-row">
+									<button type="button" class="calendar-nav-btn calendar-nav-prev"
+										id="prev">&lt;</button>
+									<div class="calendar-nav-space"></div>
+									<button type="button" class="calendar-nav-btn calendar-nav-next"
+										id="next">&gt;</button>
+								</div>
+								<!-- ここが複数月分、横並びで生成される -->
+								<div id="calendar"></div>
 								<button type="button" id="closeCalendar">閉じる</button>
 							</div>
 						</div>
-						<button>検索ボタン</button>
-					</form>
+						<span class="calendar-tilde">～</span>
+						<div class="calendar-input-wrap">
+							<span class="material-symbols-outlined">calendar_month</span>
+							<input type="text" id="checkoutDate" name="checkoutDate" th:value="${checkoutDate}" required readonly>
+						</div>
+					</div>
 				</div>
-			</div>
-		</main>
-
-		<!--ここから部屋一覧-->
-		<p th:text="${message}"></p>
-
-		<div th:each="room:${rooms}">
-			-------------------------
-			<a th:href="@{/rooms/{roomId}(roomId=${room.id}, checkinDate=${checkinDate}, checkoutDate=${checkoutDate})}">
-				<div th:id="${room.id}">
-					<p th:text="${room.roomName}"></p>
-					<img th:src="@{${room.imgPath}}" alt="部屋">
-					<p th:text="${room.description}"></p>
-					<p><span th:text="${room.type.typeName}"></span></p>
-					<p th:text="${room.price}"></p>
-
-			</div>
-			</a>
-			<a th:href="@{/rooms/{roomId}/like(roomId=${room.id})}">
-			<i th:if="${like.contains(room.id) == true}" class="fa-solid fa-star"></i>
-			<i th:unless="${like.contains(room.id) == true}" class="fa-regular fa-star"></i>	
-			</a>
+				<!-- 検索ボタン -->
+				<div class="search-btn-wrap" style="text-align: center;">
+					<button type="submit">検索する</button>
+				</div>
+			</form>
 		</div>
 
-		</main>
-		<footer th:replace="footer"></footer>
+		<!-- ================== 部屋リスト ================== -->
+		<section class="rooms-section">
+			<h2 class="section-title">客室のご案内</h2>
+			<p class="section-subtitle">全ての客室から絶景のオーシャンビューをお楽しみいただけます</p>
+			<div class="rooms-grid">
+				<!-- ▼ ここからルームカード（繰り返し） -->
+				<div class="room-card" th:each="room : ${rooms}">
+					<!-- 部屋画像 -->
+					<img th:src="@{${room.imgPath}}" alt="部屋" class="room-card-image">
 
-		<script src="js/range.js"></script>
-		<script src="js/calendar.js"></script>
-	</body>
+					<div class="room-card-content">
+						<!-- 部屋名＋タイプ -->
+						<div class="room-card-header">
+							<span class="room-card-title" th:text="${room.roomName}"></span>
+							<span class="room-card-type" th:text="${room.type.typeName}"></span>
+						</div>
+						<!-- 部屋説明 -->
+						<div class="room-card-desc" th:text="${room.description}"></div>
 
+						<!-- 金額＆星マークを横並びで説明のすぐ下に配置 -->
+						<div class="room-card-row-horizontal">
+							<!-- 金額（左寄せ） -->
+							<span class="room-card-price"
+								th:text="'¥' + ${#numbers.formatInteger(room.price, 3, 'COMMA')} + '〜 / 泊'">
+								¥35,000〜 / 泊
+							</span>
+							<!-- いいね(星)ボタン（右端） -->
+							<a th:href="@{/rooms/{roomId}/like(roomId=${room.id})}" class="like-link">
+								<i th:if="${like.contains(room.id)}" class="fa-solid fa-star"></i>
+								<i th:unless="${like.contains(room.id)}" class="fa-regular fa-star"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+				<!-- ▲ ここまでルームカード -->
+			</div>
+		</section>
+	</main>
+	<footer th:replace="footer"></footer>
+	<script src="/js/range.js"></script>
+	<script src="/js/calendar.js"></script>
+</body>
 
-
-	</html>
+</html>
