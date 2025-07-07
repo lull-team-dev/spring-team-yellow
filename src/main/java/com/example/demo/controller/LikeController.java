@@ -1,4 +1,4 @@
-package com.example.demo.repository;
+package com.example.demo.controller;
 
 import java.util.List;
 
@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.demo.entity.Room;
 import com.example.demo.model.Account;
+import com.example.demo.repository.LikeRepository;
 import com.example.demo.service.LikeService;
 
 @Controller

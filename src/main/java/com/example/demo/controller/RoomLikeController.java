@@ -33,7 +33,7 @@ public class RoomLikeController {
 		likeService.toggleLike(account.getId(), id);
 
 		String referer = request.getHeader("Referer");
-		return "redirect:" + referer + id;
+		return "redirect:" + referer + '#' + id;
 	}
 
 	// 過去のやつ
@@ -57,6 +57,6 @@ public class RoomLikeController {
 		likeService.toggleLike(account.getId(), id);
 
 		String referer = request.getHeader("Referer");
-		return "redirect:" + referer + id;
+		return "redirect:" + referer + '#' + id;
 	}
 }
