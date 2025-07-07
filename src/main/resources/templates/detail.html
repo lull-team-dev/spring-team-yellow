@@ -4,57 +4,81 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	
-	  <!-- フォントやアイコンなどの読み込み -->
-	        <link rel="preconnect" href="https://fonts.googleapis.com">
-	        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+	<!-- フォントやアイコンなどの読み込み -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
-
-	        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-	        <link rel="stylesheet" href="/css/style.css">
-			<link rel="stylesheet" href="/css/header-footer.css">
-
-	        <!--ここまで共通-->
-	
-	<link rel="stylesheet" href="/css/style.css">
+	<!-- Font Awesome -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+	<!-- 共通CSS -->
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/header-footer.css">
+	<!--ここまで共通-->
+	<link rel="stylesheet" href="/css/detail.css">
 
-	<style>
-		.plan-button {
-			all: unset;
-		}
-	</style>
 </head>
 
 <body>
 	<header th:replace="header"></header>
+	<div class="head-img">
+		<img th:src="${room.imgPath}" th:alt="${room.roomName}">
+	</div>
 	<main>
 		<div class="details-box">
 			<div class="room-ditail">
-				<div class="room-img" id="slide">
-					<img th:src="@{${room.imgPath}}" th:alt="@{${room.roomName}}" id="room-img">
-					<span id="prevBtn" onclick="prev()">&lt;</span>
-					<span id="nextBtn" onclick="next()">&gt;</span>
-
-				</div>
-				<div class="room-text">
-					<h3 class="room-name" th:text="${room.roomName}"></h3>
-					<div class="" id="${room.id}">
+				<div class="room-top">
+					<div class="room-title">
+						<h1 class="room-name" th:text="${room.roomName}"></h1>
+						<p class="room-message" th:text="${room.description}"></p>
+					</div>
+					<div class="room-like" id="${room.id}">
 						<a th:href="@{/detail/{roomId}/like(roomId=${room.id})}">
 							<i th:if="${like.contains(room.id) == true}" class="fa-solid fa-star"></i>
 							<i th:unless="${like.contains(room.id) == true}" class="fa-regular fa-star"></i>
 						</a>
 					</div>
+				</div>
 
-					<p class="room-message" th:text="${room.description}"></p>
 
-					<div class="room-price">
-						<p th:text="${room.price} + '円~'"></p>
+				<div class="room-contain">
+					<div class="room-img" id="slide">
+						<img th:src="@{${room.imgPath}}" th:alt="@{${room.roomName}}" id="room-img">
+						<span id="prevBtn" onclick="prev()">&lt;</span>
+						<span id="nextBtn" onclick="next()">&gt;</span>
+					</div>
+
+					<div class="room-amenities">
+						<div class="room-type" th:text="${type.typeName}"></div>
+						<div class="room-price">税・サービス料込み
+							<p th:text="${room.price} + '円~'"></p>
+						</div>
+						<div class="facility-section">
+							<div class="section-title">●お部屋の設備</div>
+							<div class="section-content">
+								バス・トイレ別 / テレビ / 冷蔵庫 /
+								無料インターネットアクセス（WIFI）/
+								電話 / 金庫 / スリッパ / ルームウェア/
+								電気ケトル / ビーチサンダル / ビーチバック
+							</div>
+						</div>
+						<div class="facility-section">
+							<div class="section-title">●アメニティ</div>
+							<div class="section-content">
+								バスアメニティ（シャンプー / コンディショナー / 
+								固形ソープ / ボディウォッシュ / ボディローション）
+								バスリネン（バスタオル / フェイスタオル / ハンド
+								タオル）
+								バスローブ / 歯ブラシ / コットン / 綿棒 / ヘアドラ
+								イヤー / ヘアブラシ / 拡大鏡
+							</div>
+						</div>
 					</div>
 				</div>
 
 			</div>
 			<div class="room-plans">
+				<h3 class="room-plans-title">選べるプラン</h3>
 				<ul class="plans">
 					<li class="plan" th:each="plan:${plans}">
 						<form th:action="@{/rooms/{id}/reserve(id=${room.id})}">
@@ -83,9 +107,9 @@
 	<footer th:replace="footer"></footer>
 	<script src="/js/room-slider.js"></script>
 	<script th:inline="javascript">
-	  // Thymeleafから画像リストを受け取って初期化
-	  const imgList = /*[[${imgList}]]*/ [];
-	  initSlider(imgList);
+		// Thymeleafから画像リストを受け取って初期化
+		const imgList = /*[[${imgList}]]*/[];
+		initSlider(imgList);
 	</script>
 
 </body>
