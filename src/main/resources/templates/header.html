@@ -11,8 +11,14 @@
 				<span class="hamburger-icon3"></span>
 			</div>
 			<nav id="hamburger-nav" class="hamburger-nav">
-				<div th:if="${@account.id}" class="username">[[${@account.name}]]さんようこそ</div>
 
+				<div class="hamburger-icon-active" id="hamburger-icon">
+					<span class="hamburger-icon1-active"></span>
+					<span class="hamburger-icon2-active"></span>
+					<span class="hamburger-icon3-active"></span>
+				</div>
+				
+				<div th:if="${@account.id}" class="username">[[${@account.name}]]さんようこそ</div>
 				<a href="/reservationHistory">予約履歴</a>
 				<a href="/like">お気に入り</a>
 				<a href="/mypage">マイページ</a>
