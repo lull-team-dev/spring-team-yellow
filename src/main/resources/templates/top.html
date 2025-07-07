@@ -148,6 +148,8 @@
 								¥35,000〜 / 泊
 							</span>
 							<!-- いいね(星)ボタン（右端） -->
+							<a th:href="@{/like/{roomId}/like(roomId=${room.id})}" class="like-link">
+
 							<a th:href="@{/rooms/{roomId}/like(roomId=${room.id})}" class="like-link">
 								<i th:if="${like.contains(room.id)}" class="fa-solid fa-star"></i>
 								<i th:unless="${like.contains(room.id)}" class="fa-regular fa-star"></i>
