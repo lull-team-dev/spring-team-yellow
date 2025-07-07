@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.demo.entity.Plan;
 import com.example.demo.entity.Review;
 import com.example.demo.entity.Room;
+import com.example.demo.entity.Type;
 import com.example.demo.model.Account;
 import com.example.demo.repository.LikeRepository;
 import com.example.demo.repository.PlanRepository;
@@ -45,6 +46,8 @@ public class DetailController {
 
 		//部屋の情報取得
 		Room room = roomRepository.findById(id).get();
+		//部屋タイプ取得
+		Type type = room.getType();
 		//画像をリストにする
 		List<String> imgList = List.of(room.getImgPath(), room.getImgPath2());
 		//プラン情報取得
@@ -60,6 +63,7 @@ public class DetailController {
 		Double avgRating = reviewRepository.findAverageRatingByRoomId(id);
 
 		model.addAttribute("room", room);
+		model.addAttribute("type", type);
 		model.addAttribute("plans", plans);
 		model.addAttribute("imgList", imgList);
 		model.addAttribute("checkinDate", checkinDate);
