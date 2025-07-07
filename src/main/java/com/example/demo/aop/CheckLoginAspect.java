@@ -43,7 +43,7 @@ public class CheckLoginAspect {
 				className.endsWith("AccountController") ||
 				className.endsWith("DetailController") ||
 				className.endsWith("RoomController") ||
-				className.contains("hotelTopController")) {
+				className.contains("HotelTopController")) {
 			return jp.proceed();
 		}
 
