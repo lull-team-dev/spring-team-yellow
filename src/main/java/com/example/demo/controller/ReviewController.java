@@ -4,9 +4,12 @@ package com.example.demo.controller;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import jakarta.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -82,8 +85,20 @@ public class ReviewController {
 	// レビュー投稿処理
 	@PostMapping("/create")
 	public String createReview(
-			@ModelAttribute ReviewForm reviewForm,
-			RedirectAttributes redirectAttributes) {
+			@Valid @ModelAttribute ReviewForm reviewForm,
+			BindingResult bindingResult,
+			RedirectAttributes redirectAttributes,
+			Model model) {
+
+		if (bindingResult.hasErrors()) {
+			Reservation reservation = reservationRepository.findById(reviewForm.getReservationId()).orElseThrow();
+			LocalDate checkoutDate = reservation.getStayDate().plusDays(reservation.getStayNights());
+
+			model.addAttribute("reservation", reservation);
+			model.addAttribute("checkoutDate", checkoutDate);
+
+			return "review/createForm";
+		}
 
 		Guest guest = guestRepository.findById(reviewForm.getGuestId()).orElseThrow();
 		Room room = roomRepository.findById(reviewForm.getRoomId()).orElseThrow();

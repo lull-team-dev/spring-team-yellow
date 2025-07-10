@@ -41,18 +41,30 @@
 		<input type="hidden" th:field="*{roomId}" />
 		<input type="hidden" th:field="*{reservationId}" />
 
+		<!-- エラーメッセージー -->
+		<div th:if="${#fields.hasErrors() or error != null}">
+			<div class="message-box error">
+				<!-- フィールドごとのエラー -->
+				<ul>
+					<li th:each="err : ${#fields.errors()}" th:text="${err}"></li>
+				</ul>
+				<!-- サーバー側から渡されるエラー -->
+				<p th:if="${error != null}" th:text="${error}"></p>
+			</div>
+		</div>
+
 		<div class="form-group">
 			<label class="form-label">評価（★1〜5）:</label>
 			<div class="star-rating">
-				<input type="radio" id="star5" name="rating" value="5" th:checked="*{rating == 5}" />
+				<input type="radio" th:field="*{rating}" value="5" id="star5" />
 				<label for="star5">★</label>
-				<input type="radio" id="star4" name="rating" value="4" th:checked="*{rating == 4}" />
+				<input type="radio" th:field="*{rating}" value="4" id="star4" />
 				<label for="star4">★</label>
-				<input type="radio" id="star3" name="rating" value="3" th:checked="*{rating == 3}" />
+				<input type="radio" th:field="*{rating}" value="3" id="star3" />
 				<label for="star3">★</label>
-				<input type="radio" id="star2" name="rating" value="2" th:checked="*{rating == 2}" />
+				<input type="radio" th:field="*{rating}" value="2" id="star2" />
 				<label for="star2">★</label>
-				<input type="radio" id="star1" name="rating" value="1" th:checked="*{rating == 1}" />
+				<input type="radio" th:field="*{rating}" value="1" id="star1" />
 				<label for="star1">★</label>
 			</div>
 		</div>
