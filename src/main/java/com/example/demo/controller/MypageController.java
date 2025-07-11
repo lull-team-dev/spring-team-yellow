@@ -3,6 +3,7 @@ package com.example.demo.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -56,8 +57,14 @@ public class MypageController {
 		List<String> errorList = new ArrayList<>();
 		switch (edit) {
 		case "email":
+
+			//登録があるメールアドレスか
+			Optional<Guest> emails = guestRepository.findByEmail(email);
+
 			if (email == null || email.isEmpty()) {
 				errorList.add("メールアドレスの入力は必須です");
+			} else if (!emails.isEmpty()) {
+				errorList.add("すでに登録のあるメールアドレスです");
 			} else {
 				guest.setEmail(email);
 			}
@@ -72,6 +79,8 @@ public class MypageController {
 		case "password":
 			if (password == null || password.isEmpty()) {
 				errorList.add("パスワードの入力は必須です");
+			} else if (password_confirm == null || password_confirm.isEmpty()) {
+				errorList.add("パスワード(確認)の入力は必須です");
 			} else if (password == null || password.length() < 5 || password.length() > 100) {
 				errorList.add("パスワードは5〜100文字");
 			} else if (password != null || !password.equals(password_confirm)) {
