@@ -4,10 +4,15 @@
 <head>
 	<meta charset="UTF-8">
 	<title>宿へようこそ</title>
-	<link rel="stylesheet" href="/css/style.css">
-	<link rel="stylesheet" href="/css/top-style.css">
-	<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+	<!-- フォント・アイコン・共通CSS -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/header-footer.css">
+	<!--ここまで-->
+	<link rel="stylesheet" href="/css/top-style.css">
 	<style>
 		/* 追加や一時的な上書きはここに記載 */
 	</style>
@@ -24,7 +29,8 @@
 					<div class="">
 						<!-- キーワード検索（ルーム名で検索） -->
 						<p>●キーワード検索</p>
-						<input type="text" name="keyword" th:value="${keyword}" placeholder="ルーム名検索" class="keyword-search">
+						<input type="text" name="keyword" th:value="${keyword}" placeholder="ルーム名検索"
+							class="keyword-search">
 
 						<!-- 部屋タイプ選択（チェックボックス） -->
 						<div class="room-type-group">
@@ -89,7 +95,8 @@
 							<div class="calendar-input-row">
 								<div class="calendar-input-wrap calendar-checkin-wrap">
 									<span class="material-symbols-outlined">calendar_month</span>
-									<input type="text" id="checkinDate" name="checkinDate" th:value="${checkinDate}" required readonly>
+									<input type="text" id="checkinDate" name="checkinDate" th:value="${checkinDate}"
+										required readonly>
 									<!-- カレンダー本体(絶対位置でinput直下) -->
 									<div id="calendarArea">
 										<div class="calendar-nav-row">
@@ -107,7 +114,8 @@
 								<span class="calendar-tilde">～</span>
 								<div class="calendar-input-wrap">
 									<span class="material-symbols-outlined">calendar_month</span>
-									<input type="text" id="checkoutDate" name="checkoutDate" th:value="${checkoutDate}" required readonly>
+									<input type="text" id="checkoutDate" name="checkoutDate" th:value="${checkoutDate}"
+										required readonly>
 								</div>
 							</div>
 						</div>
@@ -127,35 +135,36 @@
 			<div class="rooms-grid">
 				<!-- ▼ ここからルームカード（繰り返し） -->
 				<div class="room-card" th:each="room : ${rooms}" th:id="${room.id}">
-					<a th:href="@{/rooms/{roomId}(roomId=${room.id}, checkinDate=${checkinDate}, checkoutDate=${checkoutDate})}">
-					<!-- 部屋画像 -->
-					<img th:src="@{${room.imgPath}}" alt="部屋" class="room-card-image">
+					<a
+						th:href="@{/rooms/{roomId}(roomId=${room.id}, checkinDate=${checkinDate}, checkoutDate=${checkoutDate})}">
+						<!-- 部屋画像 -->
+						<img th:src="@{${room.imgPath}}" alt="部屋" class="room-card-image">
 
-					<div class="room-card-content">
-						<!-- 部屋名＋タイプ -->
-						<div class="room-card-header">
-							<span class="room-card-title" th:text="${room.roomName}"></span>
-							<span class="room-card-type" th:text="${room.type.typeName}"></span>
+						<div class="room-card-content">
+							<!-- 部屋名＋タイプ -->
+							<div class="room-card-header">
+								<span class="room-card-title" th:text="${room.roomName}"></span>
+								<span class="room-card-type" th:text="${room.type.typeName}"></span>
+							</div>
+							<!-- 部屋説明 -->
+							<div class="room-card-desc" th:text="${room.description}"></div>
+
+							<!-- 金額＆星マークを横並びで説明のすぐ下に配置 -->
+							<div class="room-card-row-horizontal">
+								<!-- 金額（左寄せ） -->
+								<span class="room-card-price"
+									th:text="'¥' + ${#numbers.formatInteger(room.price, 3, 'COMMA')} + '〜 / 泊'">
+									¥35,000〜 / 泊
+								</span>
+								<!-- いいね(星)ボタン（右端） -->
+								<a th:href="@{/like/{roomId}/like(roomId=${room.id})}" class="like-link">
+
+									<a th:href="@{/rooms/{roomId}/like(roomId=${room.id})}" class="like-link">
+										<i th:if="${like.contains(room.id)}" class="fa-solid fa-star"></i>
+										<i th:unless="${like.contains(room.id)}" class="fa-regular fa-star"></i>
+									</a>
+							</div>
 						</div>
-						<!-- 部屋説明 -->
-						<div class="room-card-desc" th:text="${room.description}"></div>
-
-						<!-- 金額＆星マークを横並びで説明のすぐ下に配置 -->
-						<div class="room-card-row-horizontal">
-							<!-- 金額（左寄せ） -->
-							<span class="room-card-price"
-								th:text="'¥' + ${#numbers.formatInteger(room.price, 3, 'COMMA')} + '〜 / 泊'">
-								¥35,000〜 / 泊
-							</span>
-							<!-- いいね(星)ボタン（右端） -->
-							<a th:href="@{/like/{roomId}/like(roomId=${room.id})}" class="like-link">
-
-							<a th:href="@{/rooms/{roomId}/like(roomId=${room.id})}" class="like-link">
-								<i th:if="${like.contains(room.id)}" class="fa-solid fa-star"></i>
-								<i th:unless="${like.contains(room.id)}" class="fa-regular fa-star"></i>
-							</a>
-						</div>
-					</div>
 					</a>
 
 				</div>
