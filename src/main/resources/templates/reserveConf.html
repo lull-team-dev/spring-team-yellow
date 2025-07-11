@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
 <head>
 	<meta charset="UTF-8">
 	<title>予約内容確認</title>
@@ -8,6 +9,7 @@
 	<link rel="stylesheet" href="/css/detail.css">
 	<link rel="stylesheet" href="/css/reserve.css">
 </head>
+
 <body>
 	<header th:replace="header"></header>
 
@@ -17,10 +19,12 @@
 			<div class="room-ditail" style="margin-bottom:32px;">
 				<div class="room-contain">
 					<div class="room-img" id="slide" style="width:46%;">
-						<img th:src="@{${room.imgPath}}" th:alt="@{${room.roomName}}" id="room-img" style="width:100%;border-radius:30px;">
+						<img th:src="@{${room.imgPath}}" th:alt="@{${room.roomName}}" id="room-img"
+							style="width:100%;border-radius:30px;">
 					</div>
 					<div class="room-amenities" style="width:54%;">
-						<div class="room-name" th:text="${room.roomName}" style="font-size:1.38rem;margin-bottom:10px;"></div>
+						<div class="room-name" th:text="${room.roomName}" style="font-size:1.38rem;margin-bottom:10px;">
+						</div>
 						<div class="room-type" th:text="${room.type.typeName}" style="margin-bottom:7px;"></div>
 						<div class="room-message" th:text="${room.description}" style="margin-bottom:13px;"></div>
 						<div class="room-price">
@@ -30,7 +34,8 @@
 						<div class="facility-section">
 							<div class="section-title">●お部屋の設備</div>
 							<div class="section-content">
-								バス・トイレ別 / テレビ / 冷蔵庫 / 無料インターネットアクセス（WIFI）/ 電話 / 金庫 / スリッパ / ルームウェア / 電気ケトル / ビーチサンダル / ビーチバック
+								バス・トイレ別 / テレビ / 冷蔵庫 / 無料インターネットアクセス（WIFI）/ 電話 / 金庫 / スリッパ / ルームウェア / 電気ケトル / ビーチサンダル /
+								ビーチバック
 							</div>
 						</div>
 					</div>
@@ -41,17 +46,20 @@
 			<div class="room-plans" style="margin-bottom:26px;">
 				<h3 class="room-plans-title">選択中プラン</h3>
 				<div class="plan">
-					<div class="plan-button">
-						<p th:text="${plan.name}"></p>
-						<p th:text="${plan.details}"></p>
-						<p th:text="'合計：' + ${TotalPrice} + '円'"></p>
-						<p th:text="${countDay} + '泊'"></p>
+					<div class="plan-card-content">
+						<div>
+							<p class="plan-title" th:text="${plan.name}"></p>
+							<p th:text="${countDay} + '泊' + ${countDay + 1} + '日'"></p>
+							<p class="plan-desc" th:text="${plan.details}"></p>
+						</div>
+						<p class="plan-price" th:text="${plan.calcTotalPrice(room.price)} + '円 /人'"></p>
 					</div>
 				</div>
 			</div>
 
 			<!-- ========== 予約内容確認フォーム ========== -->
-			<form class="reserve-card" th:action="@{/rooms/{id}/reserveConf(id=${room.id})}" method="post" autocomplete="off">
+			<form class="reserve-card" th:action="@{/rooms/{id}/reserveConf(id=${room.id})}" method="post"
+				autocomplete="off" style="width: 97%;">
 				<!-- --------- 予約者情報 --------- -->
 				<div class="reserve-form-block">
 					<h3 class="section-title">予約者情報</h3>
@@ -102,12 +110,15 @@
 
 				<!-- --------- ボタン --------- -->
 				<div class="reserve-button-block" style="display:flex;gap:22px;">
-					<button type="submit" name="status" value="1" class="reserve-submit-btn" style="margin-bottom:0;">予約する</button>
-					<button type="submit" name="status" value="2" class="reserve-submit-btn" style="background:#ccc;color:#715c37;">戻る</button>
+					<button type="submit" name="status" value="1" class="reserve-submit-btn"
+						style="margin-bottom:0;">予約する</button>
+					<button type="submit" name="status" value="2" class="reserve-submit-btn"
+						style="background:#ccc;color:#715c37;">戻る</button>
 				</div>
 			</form>
 		</div>
 	</main>
 	<footer th:replace="footer"></footer>
 </body>
+
 </html>

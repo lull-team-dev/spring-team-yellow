@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+.edit-form {
+	text-align: center;
+}
+
+.edit-form button {
+	width: 50%;
+	margin-top: 60px;
+}
+
+.edit-item {
+	text-align: left;
+}
+
+.info-form {
+	width: 80%;
+	margin: 0 auto;
+}
+
+.info-label {
+	font-size: 18px;
+	color: #555;
+	display: inline-block;
+}
+
+.info-form input {
+	margin-bottom: 20px;
+}
+
+.email-display-input {
+	box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.25);
+	border: 1px solid #a9a9a9;
+	background-color: #fff;
+	appearance: none;
+	border-radius: 8px;
+	color: inherit;
+	width: 100%;
+	padding: 10px;
+
+}
+
+.back-link {
+	color: #555;
+	display: block;
+	margin-top: 20px;
+}

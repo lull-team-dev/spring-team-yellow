@@ -16,6 +16,8 @@
 	<link rel="stylesheet" href="/css/header-footer.css">
 	<!--ここまで共通-->
 	<link rel="stylesheet" href="/css/detail.css">
+	<link rel="stylesheet" href="/css/star-icon.css">
+
 
 </head>
 
@@ -33,7 +35,7 @@
 						<p class="room-message" th:text="${room.description}"></p>
 					</div>
 					<div class="room-like" id="${room.id}">
-						<a th:href="@{/detail/{roomId}/like(roomId=${room.id})}">
+						<a th:href="@{/detail/{roomId}/like(roomId=${room.id})}" class="like-link">
 							<i th:if="${like.contains(room.id) == true}" class="fa-solid fa-star"></i>
 							<i th:unless="${like.contains(room.id) == true}" class="fa-regular fa-star"></i>
 						</a>
@@ -65,7 +67,7 @@
 						<div class="facility-section">
 							<div class="section-title">●アメニティ</div>
 							<div class="section-content">
-								バスアメニティ（シャンプー / コンディショナー / 
+								バスアメニティ（シャンプー / コンディショナー /
 								固形ソープ / ボディウォッシュ / ボディローション）
 								バスリネン（バスタオル / フェイスタオル / ハンド
 								タオル）
@@ -86,9 +88,11 @@
 							<input type="hidden" name="checkinDate" th:value="${checkinDate}">
 							<input type="hidden" name="checkoutDate" th:value="${checkoutDate}">
 							<button class="plan-button">
-								<p th:text="${plan.name}"></p>
-								<p th:text="${plan.details}"></p>
-								<p th:text="${plan.calcTotalPrice(room.price)} + '円 /人'"></p>
+								<div>
+									<p class="plan-title" th:text="${plan.name}"></p>
+									<p class="plan-desc" th:text="${plan.details}"></p>
+								</div>
+								<p class="plan-price" th:text="${plan.calcTotalPrice(room.price)} + '円 /人'"></p>
 							</button>
 						</form>
 					</li>

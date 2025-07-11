@@ -11,7 +11,6 @@ footer {
 	font-weight: bolder;
 	padding: 20px 0px;
 	width: 100%
-
 }
 
 .logo {
@@ -70,7 +69,7 @@ header div {
 
 .hamburger-icon1 {
 	top: 0pc;
-	
+
 }
 
 .hamburger-icon2 {
@@ -96,6 +95,18 @@ header div {
 
 }
 
+/*　メニューバー　*/
+.username {
+	border: 2px solid #fff;
+	border-radius: 30px;
+	background-color: rgba(255, 255, 255, 0.1);
+	display: inline-block;
+	padding: 17px 35px;
+	color: #fff;
+	margin: 20px 100px;
+}
+
+
 .right-item {
 	height: 100%;
 	top: 60px;
@@ -108,20 +119,30 @@ header div {
 .right-item a {
 	color: #fff;
 	display: block;
-	font-size: 18px;
-	margin-bottom: 2em;
+	font-size: 20px;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+	padding: 2em 2.5em;
+}
+
+.right-item a:hover {
+	background-color: rgba(255, 255, 255, 0.2);
+	/* 好きな色に変更 */
+	color: #fff;
+	transition: 0.2s;
 }
 
 .hamburger-nav {
 	position: fixed;
-	width: 450px;
+	width: 550px;
 	height: 100%;
 	top: 0;
 	right: 0;
 	background-color: #e77611;
 	transform: translateX(100%);
 	transition: transform .4s;
-	padding: 90px 0 0 70px;
+	padding: 90px 0;
+	box-shadow: 0px 0px 18px 1px rgba(0, 0, 0, 0.25);
+	border-radius: 30px 0;
 }
 
 .active {
@@ -132,6 +153,7 @@ header div {
 .hamburger-icon.active {
 	margin: -30px;
 }
+
 
 
 
@@ -154,20 +176,22 @@ footer {
 .footer-left {
 	text-align: left;
 }
+
 .footer-sns {
 	margin-bottom: 10px;
 }
 
-.footer-sns a{
+.footer-sns a {
 	color: #555;
 	text-decoration: none;
 }
-.footer-sns i{
+
+.footer-sns i {
 	margin-right: 25px;
 	font-size: 23px;
 }
 
-.policies a{
+.policies a {
 	text-align: none;
 	color: #555;
 }

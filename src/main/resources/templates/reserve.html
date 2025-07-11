@@ -72,17 +72,19 @@
 		<div class="room-plans">
 			<h3 class="room-plans-title">選べるプラン</h3>
 			<div class="plan">
-				<div class="plan-button">
-					<p th:text="${plan.name}"></p>
-					<p th:text="${plan.details}"></p>
-					<p th:text="${plan.calcTotalPrice(room.price)} + '円 /人（1泊あたり）'"></p>
-				</div>
+				<button class="plan-card-content">
+					<div>
+						<p class="plan-title" th:text="${plan.name}"></p>
+						<p class="plan-desc" th:text="${plan.details}"></p>
+					</div>
+					<p class="plan-price" th:text="${plan.calcTotalPrice(room.price)} + '円 /人'"></p>
+				</button>
 			</div>
 		</div>
 
 		<!-- ========== 予約フォーム ========== -->
 		<form class="reserve-card" th:action="@{/rooms/{id}/reserve(id=${room.id})}" th:object="${reserveDto}"
-			method="post" autocomplete="off">
+			method="post" autocomplete="off" style="width: 96%;">
 			<!-- --------- 宿泊情報 --------- -->
 			<div class="reserve-form-block">
 				<h3 class="section-title">宿泊情報詳細</h3>
