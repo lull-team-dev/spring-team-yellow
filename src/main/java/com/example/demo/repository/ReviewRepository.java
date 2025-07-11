@@ -13,6 +13,8 @@ public interface ReviewRepository extends JpaRepository<Review, Integer> {
 
 	List<Review> findByRoomIdAndDeletedAtIsNullOrderByCreatedAtDesc(Integer roomId);
 
+	List<Review> findByGuestIdAndDeletedAtIsNullOrderByCreatedAtDesc(Integer guestId);
+
 	@Query("SELECT r FROM Reservation r WHERE r.guest.id = :guestId AND r.room.id = :roomId AND r.stayDate < CURRENT_DATE")
 	List<Reservation> findPastReservations(Integer guestId, Integer roomId);
 

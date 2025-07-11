@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>レビュー一覧</title>
+	<!-- フォントやアイコンなどの読み込み -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+	<link rel="stylesheet" href="/css/style.css">
+	<!--ここまで共通-->
+</head>
+
+<body>
+
+	<h2>レビュー一覧</h2>
+
+	<!--/* レビュー一覧表示 */-->
+	<div th:if="${reviews != null and !reviews.isEmpty()}" th:replace="~{review/list :: reviewList(${reviews})}">
+	</div>
+
+</body>
+
+</html>

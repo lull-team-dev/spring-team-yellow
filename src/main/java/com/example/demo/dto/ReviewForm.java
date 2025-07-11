@@ -1,12 +1,28 @@
 package com.example.demo.dto;
 
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 // レビュー投稿フォームDTO
 public class ReviewForm {
 
+	@NotNull
 	private Integer guestId;
+
+	@NotNull
 	private Integer roomId;
+
+	@NotNull
 	private Integer reservationId;
+
+	@NotNull(message = "評価は必須です")
+	@Min(value = 1, message = "評価は1以上で入力してください")
+	@Max(value = 5, message = "評価は5以下で入力してください")
 	private Integer rating;
+
+	@Size(max = 400, message = "コメントは400文字以内で入力してください")
 	private String comment;
 
 	// ゲッター・セッター

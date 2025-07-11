@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -27,8 +28,8 @@ public class Review {
 	@JoinColumn(name = "room_id", nullable = false)
 	private Room room;
 
-	@ManyToOne
-	@JoinColumn(name = "reservation_id", nullable = false)
+	@OneToOne
+	@JoinColumn(name = "reservation_id", nullable = false, unique = true)
 	private Reservation reservation;
 
 	@Column(nullable = false)
