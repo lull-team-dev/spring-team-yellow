@@ -3,6 +3,7 @@ package com.example.demo.controller;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import jakarta.validation.Valid;
 
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.dto.ReviewForm;
@@ -113,25 +115,100 @@ public class ReviewController {
 		review.setCreatedAt(LocalDateTime.now());
 
 		reviewRepository.save(review);
-		return "redirect:/room";
+		return "redirect:/rooms/" + reviewForm.getRoomId();
+	}
+
+	// 投稿したレビューの一覧表示
+	@GetMapping("/myList")
+	public String showMyList(
+			Model model) {
+
+		Integer loginGuestId = account.getId();
+		List<Review> myReviews = reviewRepository.findByGuestIdAndDeletedAtIsNullOrderByCreatedAtDesc(loginGuestId);
+
+		model.addAttribute("reviews", myReviews);
+
+		return "review/myList";
 	}
 
 	// レビュー編集フォーム表示
-	@GetMapping("/edit/{id}")
-	public String showEditForm() {
-		return "review";
+	@GetMapping("/edit/{reviewId}")
+	public String showEditForm(
+			@PathVariable Integer reviewId,
+			Model model) {
+
+		Integer loginGuestId = account.getId();
+		Review review = reviewRepository.findById(reviewId).orElseThrow();
+
+		// ログイン中ユーザーがレビュー投稿者本人かチェック
+		if (!review.getGuest().getId().equals(loginGuestId)) {
+			return "redirect:/reservationHistory";
+		}
+
+		Reservation reservation = review.getReservation();
+		Guest guest = review.getGuest();
+		Room room = review.getRoom();
+
+		// チェックアウト日を計算
+		LocalDate stayDate = reservation.getStayDate();
+		Integer stayNights = reservation.getStayNights();
+		LocalDate checkoutDate = stayDate.plusDays(stayNights);
+
+		// フォームにレビュー情報を詰める
+		ReviewForm reviewForm = new ReviewForm();
+		reviewForm.setGuestId(guest.getId());
+		reviewForm.setRoomId(room.getId());
+		reviewForm.setReservationId(reservation.getId());
+		reviewForm.setRating(review.getRating());
+		reviewForm.setComment(review.getComment());
+
+		model.addAttribute("reservation", reservation);
+		model.addAttribute("checkoutDate", checkoutDate);
+		model.addAttribute("reviewForm", reviewForm);
+		model.addAttribute("reviewId", reviewId);
+
+		return "review/updateForm";
 	}
 
 	// レビュー更新処理
 	@PostMapping("/update/{id}")
-	public String updateReview() {
-		return "review";
+	public String updateReview(
+			@PathVariable("id") Integer reviewId,
+			@Valid @ModelAttribute ReviewForm reviewForm,
+			BindingResult bindingResult,
+			Model model) {
+
+		if (bindingResult.hasErrors()) {
+			Reservation reservation = reservationRepository.findById(reviewForm.getReservationId()).orElseThrow();
+			LocalDate checkoutDate = reservation.getStayDate().plusDays(reservation.getStayNights());
+
+			model.addAttribute("reservation", reservation);
+			model.addAttribute("checkoutDate", checkoutDate);
+			model.addAttribute("reviewId", reviewId);
+
+			return "review/updateForm";
+		}
+
+		Review review = reviewRepository.findById(reviewId).orElseThrow();
+
+		review.setRating(reviewForm.getRating());
+		review.setComment(reviewForm.getComment());
+		review.setUpdatedAt(LocalDateTime.now());
+
+		reviewRepository.save(review);
+		return "redirect:/rooms/" + reviewForm.getRoomId();
 	}
 
 	// レビュー削除
-	@PostMapping("/delete/{id}")
-	public String deleteReview() {
-		return "review";
+	@PostMapping("/delete")
+	public String deleteReview(@RequestParam Integer reviewId) {
+		Review review = reviewRepository.findById(reviewId).orElseThrow();
+
+		// 論理削除
+		review.setDeletedAt(LocalDateTime.now());
+		reviewRepository.save(review);
+
+		return "redirect:/rooms/" + review.getRoom().getId();
 	}
 
 }
