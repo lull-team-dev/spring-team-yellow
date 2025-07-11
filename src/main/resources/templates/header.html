@@ -19,21 +19,14 @@
 				</div>
 				
 				<div th:if="${@account.id}" class="username">[[${@account.name}]]さんようこそ</div>
+				<a href="/hotel">ホテル詳細</a>
 				<a href="/reservationHistory">予約履歴</a>
 				<a href="/like">お気に入り</a>
 				<a href="/mypage">マイページ</a>
 				<a href="/logout">ログアウト</a>
 			</nav>
 		</div>
-		
-		<script th:inline="javascript">
-			const icon = document.getElementById("hamburger-icon");
-			const nav = document.getElementById("hamburger-nav",)
-			icon.addEventListener('click',() =>{
-				nav.classList.toggle('active');
-				icon.classList.toggle('active');
-
-			});
-		</script>
 	</div>
 </header>
+
+<script src="/js/hamburger.js"></script>
