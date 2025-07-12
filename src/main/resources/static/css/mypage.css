@@ -33,3 +33,14 @@ dl {
 .profile-update-button  {
 	margin-top: 3em;
 }
+
+.profile-label {
+}
+
+.profile-item dt {
+	width: 5em;
+}
+
+.profile-item dd {
+	margin: 0;
+}
