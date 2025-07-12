@@ -89,9 +89,11 @@
 							<input type="hidden" name="checkinDate" th:value="${checkinDate}">
 							<input type="hidden" name="checkoutDate" th:value="${checkoutDate}">
 							<button class="plan-button">
-								<p th:text="${plan.name}"></p>
-								<p th:text="${plan.details}"></p>
-								<p th:text="${plan.calcTotalPrice(room.price)} + '円 /人'"></p>
+								<div>
+									<p class="plan-title" th:text="${plan.name}"></p>
+									<p class="plan-desc" th:text="${plan.details}"></p>
+								</div>
+								<p class="plan-price" th:text="${plan.calcTotalPrice(room.price)} + '円 /人'"></p>
 							</button>
 						</form>
 					</li>

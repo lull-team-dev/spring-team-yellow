@@ -127,17 +127,65 @@ main {
 .room-plans {
 	margin-top: 40px;
 }
+
 .room-plans-title {
 	color: #e77611;
 	font-weight: bold;
 }
+
 .plan {
 	border-radius: 30px;
 	margin-bottom: 35px;
 }
 
-.plan-button {
-	padding: 20px 30px;
+.plan-button,
+.plan-card-content {
+	box-shadow: 0px 0px 18px 1px rgba(0, 0, 0, 0.25);
+	border-radius: 22px;
+	margin-bottom: 35px;
+	background: #fff;
+	padding: 26px 30px;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	width: 97%;
+}
+
+.plan-card-content{
+	width: 100%;
+}
+
+
+.plan-button:hover {
+	box-shadow: 0 4px 16px #555;
+}
+
+/* プラン名 */
+.plan-title {
+	font-size: 1.1em;
+	font-weight: bold;
+	color: #e77611;
+}
+
+/* プラン説明 */
+.plan-desc {
+	color: #555;
+	font-size: 0.96em;
+	line-height: 1.6;
+}
+
+/* 金額部分のみふんわり余白付き */
+.plan-price {
+	font-size: 1.05em;
+	font-weight: bold;
+	color: #d97d13;
+	background: linear-gradient(to right, #fff7e1, #ffeac9);
+	padding: 10px 20px;
+	border-radius: 20px;
+	letter-spacing: 0.02em;
+	box-shadow: 0 4px 10px #ffd18f66;
+	display: inline-block;
+	align-self: flex-start;
 }
 
 
@@ -145,5 +193,3 @@ main {
 .like-link {
 	align-items: normal;
 }
-
-
