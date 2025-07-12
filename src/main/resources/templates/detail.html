@@ -16,7 +16,7 @@
 	<link rel="stylesheet" href="/css/header-footer.css">
 	<!--ここまで共通-->
 	<link rel="stylesheet" href="/css/detail.css">
-	<link rel="stylesheet" href="/css/star-icon.css">
+	<link rel="stylesheet" href="/css/heart-icon.css">
 
 
 </head>
@@ -36,8 +36,8 @@
 					</div>
 					<div class="room-like" id="${room.id}">
 						<a th:href="@{/detail/{roomId}/like(roomId=${room.id})}" class="like-link">
-							<i th:if="${like.contains(room.id) == true}" class="fa-solid fa-star"></i>
-							<i th:unless="${like.contains(room.id) == true}" class="fa-regular fa-star"></i>
+							<i th:if="${like.contains(room.id) == true}" class="fa-solid fa-heart"></i>
+							<i th:unless="${like.contains(room.id) == true}" class="fa-regular fa-heart"></i>
 						</a>
 					</div>
 				</div>

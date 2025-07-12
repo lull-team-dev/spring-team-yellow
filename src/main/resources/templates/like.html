@@ -16,7 +16,7 @@
 	<!--ここまで共通-->
 	<link rel="stylesheet" href="/css/top-style.css">
 	<link rel="stylesheet" href="/css/like-page.css">
-	<link rel="stylesheet" href="/css/star-icon.css">
+	<link rel="stylesheet" href="/css/heart-icon.css">
 
 
 </head>
@@ -53,8 +53,8 @@
 							</span>
 							<!-- いいね(星)ボタン（右端） -->
 							<a th:href="@{/like/{roomId}/like(roomId=${room.id})}" class="like-link">
-								<i th:if="${like.contains(room.id)}" class="fa-solid fa-star"></i>
-								<i th:unless="${like.contains(room.id)}" class="fa-regular fa-star"></i>
+								<i th:if="${like.contains(room.id)}" class="fa-solid fa-heart"></i>
+								<i th:unless="${like.contains(room.id)}" class="fa-regular fa-heart"></i>
 							</a>
 						</div>
 					</div>
