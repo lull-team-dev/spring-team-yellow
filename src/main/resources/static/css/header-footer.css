@@ -155,6 +155,16 @@ header div {
 	margin: -30px;
 }
 
+.not-login a{
+	color: #555;
+}
+
+.not-login a:hover{
+	color: #C0C0C0;
+	transition: 0.2s;
+		cursor : pointer;
+}
+
 
 
 
