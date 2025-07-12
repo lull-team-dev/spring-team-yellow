@@ -32,10 +32,11 @@
 					<div class="" th:text="${reservHistory.totalPrice}"></div>
 				</div>
 				<a th:href="@{/reservationHistory/{id}(id=${reservHistory.id})}">詳細を見る</a>
-				<a th:if="${reservHistory.review == null}" th:href="@{/reviews/new/{id}(id=${reservHistory.id})}">
+				<a th:if="${!reservHistory.isReviewedBy(loginGuestId)}"
+					th:href="@{/reviews/new/{id}(id=${reservHistory.id})}">
 					レビューを書く
 				</a>
-				<span th:if="${reservHistory.review != null}">
+				<span th:if="${reservHistory.isReviewedBy(loginGuestId)}">
 					レビュー投稿済み
 				</span>
 			</li>

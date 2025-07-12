@@ -168,4 +168,13 @@ public class Reservation {
 	public void setReview(Review review) {
 		this.review = review;
 	}
+
+	public boolean isReviewedBy(Integer loginGuestId) {
+		return review != null
+				&& review.getDeletedAt() == null
+				&& review.getGuest() != null
+				&& review.getGuest().getId().equals(loginGuestId)
+				&& review.getRating() != null;
+	}
+
 }
