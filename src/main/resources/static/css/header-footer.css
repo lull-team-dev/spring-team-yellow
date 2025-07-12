@@ -26,6 +26,7 @@ header {
 	height: 80px;
 	border-radius: 0px 0px 30px 30px;
 	position: fixed;
+	z-index: 100;
 }
 
 header div {
