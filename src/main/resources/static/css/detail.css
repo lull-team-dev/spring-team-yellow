@@ -52,7 +52,6 @@ main {
 .room-img {
 	width: 60%;
 	position: relative;
-	box-shadow: 0px 0px 18px 1px rgba(0, 0, 0, 0.25);
 	border-radius: 30px;
 
 
@@ -85,7 +84,6 @@ main {
 
 
 .room-amenities {
-	box-shadow: 0px 0px 18px 1px rgba(0, 0, 0, 0.25);
 	border-radius: 30px;
 	padding: 40px;
 	width: 40%;
@@ -136,7 +134,6 @@ main {
 }
 
 .plan {
-	box-shadow: 0px 0px 18px 1px rgba(0, 0, 0, 0.25);
 	border-radius: 30px;
 	margin-bottom: 35px;
 }

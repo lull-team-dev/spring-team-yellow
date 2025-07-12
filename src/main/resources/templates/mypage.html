@@ -12,6 +12,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 	<!-- 共通CSS -->
 	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/shadow.css">
 	<link rel="stylesheet" href="/css/header-footer.css">
 	<!--ここまで共通-->
 	<link rel="stylesheet" href="/css/mypage.css">
@@ -22,7 +23,7 @@
 	<header th:replace="header"></header>
 	<main>
 		<h1>マイページ</h1>
-		<dl class="profile">
+		<dl class="profile main-shadow">
 			<h3 class="profile-category">
 				<i class="fa-solid fa-user"></i>
 				<span>基本情報</span>
@@ -46,7 +47,7 @@
 			</div>
 		</dl>
 
-		<dl class="mail">
+		<dl class="mail main-shadow">
 			<h3 class="profile-category">
 				<i class="fa-solid fa-envelope"></i>
 				<dt class="">メールアドレス</dt>
@@ -56,7 +57,7 @@
 				<a th:href="@{/mypage/{edit}(edit='email')}" class="button">編集する</a>
 			</div>
 		</dl>
-		<dl class="password">
+		<dl class="password main-shadow">
 			<h3 class="profile-category">
 				<i class="fa-solid fa-key"></i>
 				<dt>パスワード</dt>

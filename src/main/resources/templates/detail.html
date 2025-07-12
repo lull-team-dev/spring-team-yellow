@@ -13,10 +13,11 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 	<!-- 共通CSS -->
 	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/shadow.css">
 	<link rel="stylesheet" href="/css/header-footer.css">
 	<!--ここまで共通-->
 	<link rel="stylesheet" href="/css/detail.css">
-	<link rel="stylesheet" href="/css/star-icon.css">
+	<link rel="stylesheet" href="/css/heart-icon.css">
 
 
 </head>
@@ -36,21 +37,21 @@
 					</div>
 					<div class="room-like" id="${room.id}">
 						<a th:href="@{/detail/{roomId}/like(roomId=${room.id})}" class="like-link">
-							<i th:if="${like.contains(room.id) == true}" class="fa-solid fa-star"></i>
-							<i th:unless="${like.contains(room.id) == true}" class="fa-regular fa-star"></i>
+							<i th:if="${like.contains(room.id) == true}" class="fa-solid fa-heart"></i>
+							<i th:unless="${like.contains(room.id) == true}" class="fa-regular fa-heart"></i>
 						</a>
 					</div>
 				</div>
 
 
 				<div class="room-contain">
-					<div class="room-img" id="slide">
+					<div class="room-img main-shadow" id="slide">
 						<img th:src="@{${room.imgPath}}" th:alt="@{${room.roomName}}" id="room-img">
 						<span id="prevBtn" onclick="prev()">&lt;</span>
 						<span id="nextBtn" onclick="next()">&gt;</span>
 					</div>
 
-					<div class="room-amenities">
+					<div class="room-amenities main-shadow">
 						<div class="room-type" th:text="${type.typeName}"></div>
 						<div class="room-price">税・サービス料込み
 							<p th:text="${room.price} + '円~'"></p>
@@ -82,7 +83,7 @@
 			<div class="room-plans">
 				<h3 class="room-plans-title">選べるプラン</h3>
 				<ul class="plans">
-					<li class="plan" th:each="plan:${plans}">
+					<li class="plan main-shadow" th:each="plan:${plans}">
 						<form th:action="@{/rooms/{id}/reserve(id=${room.id})}">
 							<input type="hidden" name="planId" th:value="${plan.id}">
 							<input type="hidden" name="checkinDate" th:value="${checkinDate}">
