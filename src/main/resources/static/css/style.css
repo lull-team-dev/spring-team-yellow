@@ -12,9 +12,10 @@ html, body {
 
 body {
 	background: #fff;
-	font-family: 'Segoe UI', 'Noto Sans JP', 'ヒラギノ角ゴ ProN', Meiryo, sans-serif;
 	color: #2b2b2b;
 	margin: 0;
+	font-family: "Hiragino Mincho ProN", "游明朝", "Yu Mincho", "MS Mincho", serif;
+	
 }
 
 
