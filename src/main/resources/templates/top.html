@@ -4,20 +4,16 @@
 <head>
 	<meta charset="UTF-8">
 	<title>宿へようこそ</title>
-<<<<<<< HEAD
 	<!-- フォントやアイコンなどの読み込み -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 	<!-- Font Awesome -->
-=======
 	<!-- フォント・アイコン・共通CSS -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
->>>>>>> branch 'sub_main' of git@github.com:lull-team-dev/spring-team-yellow.git
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<<<<<<< HEAD
 	<!-- 共通CSS -->
 	<link rel="stylesheet" href="/css/style.css">
 	<link rel="stylesheet" href="/css/shadow.css">
@@ -27,14 +23,7 @@
 	<link rel="stylesheet" href="/css/heart-icon.css">
 	<link rel="stylesheet" href="/css/room.css">
 	<link rel="stylesheet" href="/css/top-style.css">
-
-
-=======
-	<link rel="stylesheet" href="/css/style.css">
 	<link rel="stylesheet" href="/css/header-footer.css">
-	<!--ここまで-->
-	<link rel="stylesheet" href="/css/top-style.css">
->>>>>>> branch 'sub_main' of git@github.com:lull-team-dev/spring-team-yellow.git
 	<style>
 		/* 追加や一時的な上書きはここに記載 */
 	</style>
@@ -184,8 +173,6 @@
 									<a th:href="@{/rooms/{roomId}/like(roomId=${room.id})}" class="like-link">
 										<i th:if="${like.contains(room.id)}" class="fa-solid fa-heart"></i>
 										<i th:unless="${like.contains(room.id)}" class="fa-regular fa-heart"></i>
-										<i th:if="${like.contains(room.id)}" class="fa-solid fa-star"></i>
-										<i th:unless="${like.contains(room.id)}" class="fa-regular fa-star"></i>
 									</a>
 							</div>
 						</div>
