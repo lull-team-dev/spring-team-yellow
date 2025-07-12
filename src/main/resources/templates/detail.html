@@ -18,6 +18,9 @@
 	<!--ここまで共通-->
 	<link rel="stylesheet" href="/css/detail.css">
 	<link rel="stylesheet" href="/css/heart-icon.css">
+	<link rel="stylesheet" href="/css/button.css">
+	<link rel="stylesheet" href="/css/shadow.css">
+
 
 
 </head>
@@ -83,12 +86,12 @@
 			<div class="room-plans">
 				<h3 class="room-plans-title">選べるプラン</h3>
 				<ul class="plans">
-					<li class="plan main-shadow" th:each="plan:${plans}">
+					<li class="plan a-button main-shadow" th:each="plan:${plans}">
 						<form th:action="@{/rooms/{id}/reserve(id=${room.id})}">
 							<input type="hidden" name="planId" th:value="${plan.id}">
 							<input type="hidden" name="checkinDate" th:value="${checkinDate}">
 							<input type="hidden" name="checkoutDate" th:value="${checkoutDate}">
-							<button class="plan-button">
+							<button class="plan-button main-shadow">
 								<div>
 									<p class="plan-title" th:text="${plan.name}"></p>
 									<p class="plan-desc" th:text="${plan.details}"></p>

@@ -35,3 +35,17 @@ button:hover,
 	color: #fff;
 	background-color: #808080;
 }
+
+.a-button:hover {
+	color: rgb(236, 146, 78);
+	transition: 0.2s;
+	cursor : pointer;
+}
+
+#prevBtn:hover {
+  cursor: pointer;
+}
+
+#nextBtn:hover {
+	cursor: pointer;
+}
