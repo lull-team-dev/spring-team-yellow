@@ -34,7 +34,7 @@
 		</div>
 		<div class="rooms-grid">
 			<!-- ▼ ここからルームカード（繰り返し） -->
-			<div class="room-card" th:each="room : ${rooms}" th:id="${room.id}">
+			<div class="room-card main-shadow" th:each="room : ${rooms}" th:id="${room.id}">
 				<a th:href="@{/rooms/{roomId}(roomId=${room.id})}">
 					<!-- 部屋画像 -->
 					<img th:src="@{${room.imgPath}}" alt="部屋" class="room-card-image">
@@ -67,29 +67,6 @@
 			</div>
 			<!-- ▲ ここまでルームカード -->
 		</div>
-
-		<!--
-			<div th:each="room:${rooms}">
-				-------------------------
-				<a th:href="@{/rooms/{roomId}(roomId=${room.id}, checkinDate=${checkinDate}, checkoutDate=${checkoutDate})}">
-					<div th:id="${id}">
-						<p th:text="${room.roomName}"></p>
-						<img th:src="@{${room.imgPath}}" alt="部屋">
-						<p th:text="${room.description}"></p>
-						<p><span th:text="${room.type.typeName}"></span></p>
-						<p th:text="${room.price}"></p>
-
-				</div>
-				</a>
-				<a th:href="@{/like/{roomId}/like(roomId=${room.id})}">
-					<i th:if="${like.contains(room.id) == true}" class="fa-solid fa-star"></i>
-					<i th:unless="${like.contains(room.id) == true}" class="fa-regular fa-star"></i>	
-				</a>
-			</div>
-		-->
-
-
-
 	</main>
 
 	<footer th:replace="footer"></footer>

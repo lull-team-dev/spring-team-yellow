@@ -2,6 +2,14 @@
 
 .plan-button {
 	all: unset;
+	border: 1px solid #fff;
+}
+
+.plan-button:hover {
+	background-color: #fff;
+	border: 1px solid #e77611;
+	box-shadow: inherit;
+	box-shadow: 0px 0px 5px 1px rgba(231, 118, 17, 0.1);
 }
 
 header {
@@ -140,7 +148,6 @@ main {
 
 .plan-button,
 .plan-card-content {
-	box-shadow: 0px 0px 18px 1px rgba(0, 0, 0, 0.25);
 	border-radius: 22px;
 	margin-bottom: 35px;
 	background: #fff;
@@ -155,10 +162,6 @@ main {
 	width: 100%;
 }
 
-
-.plan-button:hover {
-	box-shadow: 0 4px 16px #555;
-}
 
 /* プラン名 */
 .plan-title {
