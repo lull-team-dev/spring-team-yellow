@@ -32,6 +32,12 @@
 	color: #e77611;
 }
 
+.register-button a:hover {
+	color: rgb(236, 146, 78);
+	transition: 0.2s;
+	cursor : pointer;
+}
+
 
 
 

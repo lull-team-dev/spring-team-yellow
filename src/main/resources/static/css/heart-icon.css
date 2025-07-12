@@ -21,19 +21,19 @@
 }
 
 /* 選択（お気に入り時）だけ星アイコンを黄色 */
-.fa-solid.fa-star {
-	color: #f6cb34 !important;
+.fa-solid.fa-heart {
+	color: #FF6666 !important;
 	/* お気に入り時は黄色 */
 }
 
-.fa-regular.fa-star {
-	color: #222 !important;
+.fa-regular.fa-heart {
+	color: #FF6666 !important;
 	/* 通常は黒 */
 }
 
 .like-link:hover,
 .like-link:focus {
-	color: #e9af13;
+	color: #FF6666;
 	/* ホバー時は星がちょっと濃い黄色 */
 	background: #fff;
 	/* 背景は常に白で変化させない */
