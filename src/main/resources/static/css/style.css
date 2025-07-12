@@ -81,6 +81,18 @@ button:hover,
 	cursor : pointer;
 } 
 
+.return-button {
+	box-shadow: none;
+	border: none;
+	background: #555;
+	color: #fff;
+	border-radius: 30px;
+	width: 50%;
+	padding: 10px 0;
+	display: block;
+	margin: 20px auto;
+}
+
 main {
 	margin: 155px 120px 75px 120px;
 	flex-grow: 1;

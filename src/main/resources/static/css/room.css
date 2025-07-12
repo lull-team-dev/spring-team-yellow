@@ -41,8 +41,8 @@
 .room-card {
 	background: #fff;
 	border-radius: 22px;
-	box-shadow: 0 2px 8px #555;
-	overflow: hidden;
+ box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);	overflow: hidden;
+ border: 1px solid rgba(255, 255, 255, 0);;
 	position: relative;
 	display: flex;
 	flex-direction: column;
@@ -51,7 +51,10 @@
 }
 
 .room-card:hover {
-	box-shadow: 0 4px 16px #555;
+	box-shadow: 0px 0px 5px 1px rgba(231, 118, 17, 0.25);
+		overflow: hidden;
+		border: 1px solid #e77611;
+
 }
 
 .room-card-image {
