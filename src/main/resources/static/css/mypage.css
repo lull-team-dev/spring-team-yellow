@@ -1,7 +1,6 @@
 @charset "UTF-8";
 
 dl {
-	box-shadow: 0 1px 4px 0 #555;
 	border-radius: 30px;
 	width: 80%;
 	margin: 0 auto 20px auto;
@@ -34,6 +33,10 @@ dl {
 	margin-top: 3em;
 }
 
+.profile-update-button a:hover {
+	color: #fff;
+}
+
 .profile-label {
 }
 
@@ -44,3 +47,4 @@ dl {
 .profile-item dd {
 	margin: 0;
 }
+
