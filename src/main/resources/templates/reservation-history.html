@@ -7,40 +7,63 @@
 	<!-- フォントやアイコンなどの読み込み -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+	<!-- 共通CSS -->
 	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/shadow.css">
+	<link rel="stylesheet" href="/css/header-footer.css">
 	<!--ここまで共通-->
-	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<link rel="stylesheet" href="/css/history-contents.css">
+
 
 </head>
 
 <body>
 	<header th:replace="header"></header>
-	<main>
-		<h1>予約履歴</h1>
-		<ul>
-			<li th:each="reservHistory:${reservationHistorys}">
 
-				<div class="">
-					<img th:src="@{${reservHistory.room.imgPath}}" alt="部屋">
+	<main class="reservation-history">
+
+		<h1>予約履歴</h1>
+
+		<div class="history-list" th:each="reservHistory:${reservationHistorys}">
+			<div class="list-contents">
+				<div>
+					<img class="history-img" th:src="@{${reservHistory.room.imgPath}}" alt="部屋">
 				</div>
-				<div class="">
-					<div class="" th:text="${reservHistory.room.roomName}"></div>
-					<div class="" th:text="${reservHistory.plan.name}"></div>
-					<div class="" th:text="${reservHistory.StayDate}"></div>
-					<div class="" th:text="${reservHistory.totalPrice}"></div>
+				<div class="history-info">
+					<div class="history-info__contents">
+						<h3>宿泊部屋：<span class="theme-color">[[${reservHistory.room.roomName}]]</span></h3>
+						<div>ステータス：</div>
+						<div>プラン：[[${reservHistory.plan.name}]]</div>
+						<div>宿泊日：[[${reservHistory.StayDate}]]</div>
+					</div>
+
+					<div class="history-info__btn">
+						<a th:href="@{/reservationHistory/{id}(id=${reservHistory.id})}">
+							<button class="history-btn">
+								<i class="fa-solid fa-circle-info"></i>
+								ご予約内容の確認
+							</button>
+						</a>
+						<a th:if="${!reservHistory.isReviewedBy(loginGuestId)}"
+							th:href="@{/reviews/new/{id}(id=${reservHistory.id})}">
+							<button class="review-btn" type="button">
+								<i class="fa-solid fa-comment"></i>
+								レビューを書く
+							</button>
+						</a>
+						<span th:if="${reservHistory.isReviewedBy(loginGuestId)}">
+							<button class="review-disabled" type="button">
+								<i class="fa-solid fa-comment"></i>
+								レビュー投稿済み
+							</button>
+						</span>
+					</div>
 				</div>
-				<a th:href="@{/reservationHistory/{id}(id=${reservHistory.id})}">詳細を見る</a>
-				<a th:if="${!reservHistory.isReviewedBy(loginGuestId)}"
-					th:href="@{/reviews/new/{id}(id=${reservHistory.id})}">
-					レビューを書く
-				</a>
-				<span th:if="${reservHistory.isReviewedBy(loginGuestId)}">
-					レビュー投稿済み
-				</span>
-			</li>
-		</ul>
+			</div>
+		</div>
 	</main>
 	<footer th:replace="footer"></footer>
 
