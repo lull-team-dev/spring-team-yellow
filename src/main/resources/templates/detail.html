@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Insert title here</title>
+	<title>ルーム詳細</title>
 
 	<!-- フォントやアイコンなどの読み込み -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -104,10 +104,10 @@
 			</div>
 
 			<!--/* レビュー一覧表示 */-->
-			<div th:if="${reviews != null and !reviews.isEmpty()}"
-				th:replace="~{review/list :: reviewList(${reviews})}">
+			<div class="review-section main-shadow" th:if="${reviews != null and !reviews.isEmpty()}">
+				<h3 class="section-title">レビュー一覧表示</h3>
+				<div th:replace="~{review/list :: reviewList(${reviews})}"></div>
 			</div>
-
 		</div>
 
 
