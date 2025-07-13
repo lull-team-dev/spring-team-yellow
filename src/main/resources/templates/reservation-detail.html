@@ -4,67 +4,71 @@
 <head>
 	<meta charset="UTF-8">
 	<title>予約確認ページ</title>
-	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<!-- フォントやアイコンなどの読み込み -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+	<!-- 共通CSS -->
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/shadow.css">
+	<link rel="stylesheet" href="/css/header-footer.css">
+	<!--ここまで共通-->
+	<link rel="stylesheet" href="/css/history-contents.css">
 
 </head>
 
 <body>
 	<header th:replace="header"></header>
 
-	<main>
+	<main class="reservation-history">
 
 		<h1 th:text="${afterReserveText}"></h1>
 
-		<div class="">
-			<p>部屋名：</p>
-			<div class="" th:text="${reservationHistory.room.roomName}"></div>
+		<div class="history-detail">
 
-			<p>プラン名：</p>
-			<div class="" th:text="${reservationHistory.plan.name}"></div>
-
-			<p>チェックイン〜チェックアウト：</p>
-			<div class="" th:text="${reservationHistory.StayDate}"></div>
-			<div class="" th:text="${checkoutDate}"></div>
-			<p>合計金額：</p>
-			<div class="" th:text="${reservationHistory.totalPrice}"></div>
-			<p>人数</p>
-			<div class="" th:text="${reservationHistory.guestCount} + '人'"></div>
+			<img class="history-detail__img" th:src="@{${reservationHistory.room.imgPath}}">
 
 
-
-			<div class="room-img" id="slide">
-				<img th:src="@{${reservationHistory.room.imgPath}}" id="room-img">
-				<span id="prevBtn" onclick="prev()">&lt;</span>
-				<span id="nextBtn" onclick="next()">&gt;</span>
-				
-
-				<script th:inline="javascript">
-					const imgs = /*[[${imgList}]]*/[]; //画像の配列
-					let num = 0;
-					function showImage() {
-						document.getElementById("room-img").src = imgs[num];
-						const img = document.getElementById("room-img");
-						img.classList.add("fade-out");
-						setTimeout(() => {
-							img.src = imgs[num]; // 新しい画像に切り替え
-							img.classList.remove("fade-out");
-						}, 250); // 画像切り替えはフェードの途中で実行
-					}
-					function next() {
-						num = (num + 1) % imgs.length;  // 配列の最後までいったら先頭に戻る
-						showImage(); //現在の num の値に対応する画像を画面に表示するための関数を呼び出し
-					}
-					function prev() {
-						num = (num - 1 + imgs.length) % imgs.length;  // 最初の画像の前は最後に戻る
-						showImage(); //現在の num の値に対応する画像を画面に表示するための関数を呼び出し
-					}
-					// ページ読み込み時に最初の画像表示
-					showImage();
-				</script>
-
+			<div class="history-detail__contents">
+				<div class="detail-contents-row">
+					<div class="detail-contents__title">ステータス</div>
+					<div class="detail-contents__body">[[${reservationHistory.room.roomName}]]</div>
+				</div>
+				<div class="detail-contents-row">
+					<div class="detail-contents__title">宿泊部屋</div>
+					<div class="detail-contents__body">[[${reservationHistory.room.roomName}]]</div>
+				</div>
+				<div class="detail-contents-row">
+					<div class="detail-contents__title">プラン</div>
+					<div class="detail-contents__body">[[${reservationHistory.plan.name}]]</div>
+				</div>
+				<div class="detail-contents-row">
+					<div class="detail-contents__title">チェックイン日</div>
+					<div class="detail-contents__body">[[${reservationHistory.StayDate}]]</div>
+				</div>
+				<div class="detail-contents-row">
+					<div class="detail-contents__title">チェックアウト日</div>
+					<div class="detail-contents__body">[[${checkoutDate}]]</div>
+				</div>
+				<div class="detail-contents-row">
+					<div class="detail-contents__title">宿泊人数</div>
+					<div class="detail-contents__body">[[${reservationHistory.guestCount}]]人</div>
+				</div>
+				<div class="detail-contents-row">
+					<div class="detail-contents__title">合計金額</div>
+					<div class="detail-contents__body">[[${reservationHistory.totalPrice}]]円</div>
+				</div>
 			</div>
-			
-			<div><a href="/reservationHistory">予約履歴へ</a></div>
+
+			<div class="history-detail-btn">
+				<a href="/reservationHistory">
+					<button type="button">
+						予約履歴一覧へ
+					</button>
+				</a>
+			</div>
 
 		</div>
 	</main>
