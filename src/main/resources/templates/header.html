@@ -1,31 +1,37 @@
-<header>
-	<div>
+<header class="main-shadow">
+	<div class="header-box">
 		<div class="left-item">
-			<a href="/room"><img src="" alt="ロゴ" ></a>
-			<div th:if="${@account.id}" class="username">[[${@account.name}]]さんようこそ</div>
+			<a href="/room" class="logo"><img src="/uploads/images/logo.png" class="logo-img" alt="ロゴ" ></a>
+			<div class="hotel-name dm-serif-display-regular ">Gran Marina Resort</div>
 		</div>
-		<div class="right-item">
+		<!-- ログイン済み時の表示 -->
+		<div class="right-item"  th:if="${@account.id}">
 			<div class="hamburger-icon" id="hamburger-icon">
 				<span class="hamburger-icon1"></span>
 				<span class="hamburger-icon2"></span>
 				<span class="hamburger-icon3"></span>
 			</div>
 			<nav id="hamburger-nav" class="hamburger-nav">
+
+				<div class="hamburger-icon-active" id="hamburger-icon">
+					<span class="hamburger-icon1-active"></span>
+					<span class="hamburger-icon2-active"></span>
+					<span class="hamburger-icon3-active"></span>
+				</div>
+				
+				<div th:if="${@account.id}" class="username">[[${@account.name}]]さんようこそ</div>
+				<a href="/hotel">ホテル詳細</a>
 				<a href="/reservationHistory">予約履歴</a>
 				<a href="/like">お気に入り</a>
 				<a href="/mypage">マイページ</a>
 				<a href="/logout">ログアウト</a>
 			</nav>
 		</div>
-		
-		<script th:inline="javascript">
-			const icon = document.getElementById("hamburger-icon");
-			const nav = document.getElementById("hamburger-nav",)
-			icon.addEventListener('click',() =>{
-				nav.classList.toggle('active');
-				icon.classList.toggle('active');
-
-			});
-		</script>
+		<!-- 未ログイン時の表示 -->
+		<div class="right-item not-login"  th:unless="${@account.id}">
+			<a href="/login">ログイン画面へ</a>
+		</div>
 	</div>
 </header>
+
+<script src="/js/hamburger.js"></script>

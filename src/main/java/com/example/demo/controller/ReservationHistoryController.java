@@ -1,3 +1,4 @@
+// ログインのみ
 package com.example.demo.controller;
 
 import java.time.LocalDate;
@@ -35,6 +36,7 @@ public class ReservationHistoryController {
 		List<Reservation> reservationHistorys = reservationRepository.findByGuest(guest);
 
 		model.addAttribute("reservationHistorys", reservationHistorys);
+		model.addAttribute("loginGuestId", guest.getId());
 		return "reservation-history";
 	}
 

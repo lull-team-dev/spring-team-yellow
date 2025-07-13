@@ -1,13 +1,15 @@
 -- guests（宿泊者）
 INSERT INTO guests (name, email, address, tel, password) VALUES
-('デヴィ夫人', 'ddd@mail.com', '東京都港区白金台5丁目12番地 プラチナレジデンス白金台 801号室', '0456991234', 'pass1'),
+('デヴィスカルノ', 'ddd@mail.com', '東京都港区白金台5丁目12番地 プラチナレジデンス白金台 801号室', '0456991234', 'pass1'),
 ('叶恭子', 'kkk@mail.com', '東京都大田区田園調布3丁目8番地 田園ヴィラ調布 203号室', '09000000000', 'pass2'),
 ('叶美香', 'ccc@mail.com', '東京都品川区北品川4丁目6番地 御殿山ヒルズレジデンス 1502号室', '08022223333', 'pass3'),
 ('芦屋 紗栄子', 'saeko@richmail.com', '兵庫県芦屋市六麓荘町12-1 六麓パークレジデンス 301号室', '07811112222', 'pass4'),
 ('西園寺 光子', 'mitsu@luxmail.jp', '東京都渋谷区広尾4丁目9番地 広尾ガーデンヒルズ 502号室', '0333334444', 'pass5'),
 ('東雲 麗華', 'reika@elite.jp', '東京都千代田区一番町10-3 番町レジデンス 702号室', '0355556666', 'pass6'),
 ('大蔵 財子', 'zaiko@vipmail.jp', '東京都港区赤坂9丁目7番地 ミッドタウンレジデンス 1101号室', '0377778888', 'pass7'),
-('御園 翠', 'midori@gold.jp', '東京都中央区銀座6丁目10番地 銀座プレミアムタワー 2601号室', '0399990000', 'pass8');
+('御園 翠', 'midori@gold.jp', '東京都中央区銀座6丁目10番地 銀座プレミアムタワー 2601号室', '0399990000', 'pass8'),
+('テストユーザー', 'testuser@com', '東京都中央区銀座6丁目10番地 銀座プレミアムタワー 9999号室', '00000000000', 'testuser123');
+
 
 -- types（部屋タイプ）
 INSERT INTO types (type_name) VALUES
@@ -18,30 +20,30 @@ INSERT INTO types (type_name) VALUES
 
 -- rooms（部屋）
 INSERT INTO rooms (room_name, price, type_id, img_path, img_path2, description) VALUES
-('オーシャンスイート', 55000, 3, '/uploads/images/underthesea.jpg', '/uploads/images/31490506_m.jpg', '海と空を独り占めできる贅沢なスイート'),
-('シーサイドヴィラ', 60000, 3, '/uploads/images/underthesea.jpg', '/uploads/images/31490506_m.jpg','プライベートビーチ直結の開放的なヴィラ'),
-('マリンデラックス', 48000, 2, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea2.jpg', '海を感じるモダンインテリアのダブルルーム'),
-('サンセットスイート', 52000, 3, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea2.jpg', 'サンセットを一望できるロマンチックなスイート'),
-('パームガーデンルーム', 45000, 2, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea2.jpg', '南国のパームツリーに囲まれた癒しのダブルルーム'),
-('コーラルルーム', 43000, 2, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea2.jpg', 'サンゴ礁をモチーフにした明るいダブルルーム'),
-('ラグーンスイート', 57000, 3, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea2.jpg', 'ラグーンビューの極上スイート'),
-('マーメイドルーム', 46000, 2, '/uploads/images/underthesea.jpg', '/uploads/images/31490506_m.jpg', '海の妖精をテーマにした幻想的なダブルルーム'),
-('ホライズンスイート', 54000, 3, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea2.jpg', '地平線まで続くオーシャンビューが魅力のスイート'),
-('シェルルーム', 42000,1, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea.jpg', '貝殻モチーフの上品なシングルルーム'),
-('マリンシングル', 41000, 1, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea.jpg', 'ひとり旅に最適な落ち着いたマリンスタイルの空間'),
-('ブルーラグーンサイドルーム', 41500, 1, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea.jpg', '青いラグーンを眺めながらくつろげるシングルルーム'),
-('アクアスイート', 56000, 3, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea.jpg', '水面の煌めきに包まれた優雅なスイート'),
-('オーシャンテラスルーム', 47000, 2, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea.jpg', '海風が心地よい開放的なテラス付きダブルルーム'),
-('ネプチューンルーム', 44000, 2, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea.jpg', '海神ネプチューンをイメージした神秘的な空間'),
-('サーフサイドスイート', 53000, 3, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea.jpg', 'サーフィンをテーマにしたスタイリッシュなスイート'),
-('シーブルールーム', 43000, 2, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea.jpg', '青と白で統一された爽やかなダブルルーム'),
-('クリスタルウェーブルーム', 45500, 2, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea.jpg', '水晶の波を感じさせる静寂なダブルルーム'),
-('アトランティススイート', 59000, 3, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea.jpg', '伝説の海底都市を思わせる幻想的なスイート'),
-('カリビアンルーム', 46500, 2, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea.jpg', 'カリブの陽気な風を感じるリゾート感満載のダブルルーム'),
-('コーストラインルーム', 42000, 1, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea.jpg', '海岸線を望む静かなシングルルーム'),
-('ノーチラスルーム', 42500, 1, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea.jpg', '潜水艦をモチーフにしたクールなシングルルーム'),
-('アズールシングル', 41500, 1, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea.jpg', '地中海の青をイメージした落ち着きのあるシングルルーム'),
-('リーフサイドルーム', 41800, 1, '/uploads/images/underthesea.jpg', '/uploads/images/underthesea.jpg', 'サンゴ礁に囲まれたような自然派シングルルーム');
+('オーシャンスイート', 55000, 3, '/uploads/images/oceansweet1.png', '/uploads/images/oceansweet2.png', '海と空を独り占めできる贅沢なスイート'),
+('シーサイドヴィラ', 60000, 3, '/uploads/images/seasidevilla1.png', '/uploads/images/seasidevilla2.png','プライベートビーチ直結の開放的なヴィラ'),
+('マリンデラックス', 48000, 2, '/uploads/images/marinedeluxe1.png', '/uploads/images/marinedeluxe2.png', '海を感じるモダンインテリアのダブルルーム'),
+('サンセットスイート', 52000, 3, '/uploads/images/sunsetsweet1.png', '/uploads/images/sunsetsweet2.png', 'サンセットを一望できるロマンチックなスイート'),
+('パームガーデンルーム', 45000, 2, '/uploads/images/palmgardenroom1.png', '/uploads/images/palmgardenroom2.png', '南国のパームツリーに囲まれた癒しのダブルルーム'),
+('コーラルルーム', 43000, 2, '/uploads/images/coralroom1.png', '/uploads/images/coralroom2.png', 'サンゴ礁をモチーフにした明るいダブルルーム'),
+('アクアリウムスイート', 87000, 3, '/uploads/images/aquariumsweet1.png', '/uploads/images/aquariumsweet2.png', 'まるで水族館にいるような、色とりどりの魚たちと一緒に過ごせる幻想的なスイートルームです。'),
+('マーメイドルーム', 46000, 2, '/uploads/images/mermaidroom1.png', '/uploads/images/mermaidroom2.png', '海の妖精をテーマにした幻想的なダブルルーム'),
+('ホライズンスイート', 54000, 3, '/uploads/images/horizonsweet1.png', '/uploads/images/horizonsweet2.png', '地平線まで続くオーシャンビューが魅力のスイート'),
+('シェルルーム', 42000,1, '/uploads/images/shellroom1.png', '/uploads/images/shellview.jpg', '貝殻モチーフの上品なシングルルーム'),
+('マリンシングル', 41000, 1, '/uploads/images/marinesingle1.png', '/uploads/images/marinesingle2.png', 'ひとり旅に最適な落ち着いたマリンスタイルの空間'),
+('オーシャンビューシングルルーム', 41500, 1, '/uploads/images/oceanviewsingle1.png', '/uploads/images/oceanviewsingle2.png', '大きな窓から青い海を一望できる、上質で贅沢なひとり時間を叶えるシングルルームです'),
+('クリスタルアクアスイート', 56000, 3, '/uploads/images/crystalaquasweet1.png', '/uploads/images/crystalaquasweet1crystalaquasweet2.png', '水面の煌めきに包まれた優雅なスイート'),
+('オーシャンテラスルーム', 47000, 2, '/uploads/images/oceanterraceroom1.png', '/uploads/images/oceanterraceroom2.png', '海風が心地よい開放的なテラス付きダブルルーム'),
+('ネプチューンルーム', 44000, 2, '/uploads/images/Neptuneroom1.png', '/uploads/images/Neptuneroom2.png', '海神ネプチューンをイメージした神秘的な空間'),
+('サーフサイドスイート', 53000, 3, '/uploads/images/surfsidesweet1.png', '/uploads/images/surfsidesweet2.png', 'サーフィンをテーマにしたスタイリッシュなスイート'),
+('シーブルールーム', 43000, 2, '/uploads/images/seablueroom1.png', '/uploads/images/seablueroom2.png', '青と白で統一された爽やかなダブルルーム'),
+('クリスタルウェーブルーム', 45500, 2, '/uploads/images/crystalwaveroom1.png', '/uploads/images/crystalwaveroom2.png', '水晶の波を感じさせる静寂なダブルルーム'),
+('アトランティススイート', 89000, 3, '/uploads/images/Atlantissweet1.png', '/uploads/images/Atlantissweet1.png', '伝説の海底都市を思わせる幻想的なスイート'),
+('カリビアンルーム', 46500, 2, '/uploads/images/Caribbeanroom1.png', '/uploads/images/Caribbeanroom1.png', 'カリブの陽気な風を感じるリゾート感満載のダブルルーム'),
+('コーストラインルーム', 42000, 1, '/uploads/images/coastlineroom1.png', '/uploads/images/coastlineroom2.png', '海岸線を望む静かなシングルルーム'),
+('ノーチラスルーム', 52500, 1, '/uploads/images/nautilusroom1.png', '/uploads/images/nautilusroom2.png', '潜水艦をモチーフにしたクールなシングルルーム'),
+('アズールシングル', 41500, 1, '/uploads/images/Azuresingle1.png', '/uploads/images/Azuresingle2.png', '地中海の青をイメージした落ち着きのあるシングルルーム'),
+('リーフサイドルーム', 41800, 1, '/uploads/images/leafsideroom1.png', '/uploads/images/leafsideroom2.png', 'サンゴ礁に囲まれたような自然派シングルルーム');
 
 
 -- reservations(予約情報)
@@ -105,7 +107,31 @@ INSERT INTO reservations (guest_id, room_id, plan_id, guest_count, total_price, 
 -- room_id=8: ダブル(2人), 46,000円, 2泊→46,000*2*2=184,000
 (1, 8, 3, 2, 184000, 2, '2025-07-29'),
 -- room_id=4: スイート(4人), 52,000円, 3泊→52,000*3*4=624,000
-(3, 4, 3, 4, 624000, 3, '2025-07-21');
+(3, 4, 3, 4, 624000, 3, '2025-07-21'),
+-- テスト用
+(9, 1, 1, 1, 55000, 1, '2025-07-10'),
+(9, 2, 1, 1, 60000, 1, '2025-07-10'),
+(9, 3, 1, 1, 48000, 1, '2025-07-10'),
+(9, 4, 1, 1, 52000, 1, '2025-07-10'),
+(9, 5, 1, 1, 45000, 1, '2025-07-10'),
+(9, 6, 1, 1, 43000, 1, '2025-07-10'),
+(9, 7, 1, 1, 57000, 1, '2025-07-10'),
+(9, 8, 1, 1, 46000, 1, '2025-07-10'),
+(9, 9, 1, 1, 54000, 1, '2025-07-10'),
+(9, 10, 1, 1, 42000, 1, '2025-07-10'),
+(9, 11, 1, 1, 41000, 1, '2025-07-10'),
+(9, 12, 1, 1, 41500, 1, '2025-07-10'),
+(9, 13, 1, 1, 56000, 1, '2025-07-10'),
+(9, 14, 1, 1, 47000, 1, '2025-07-10'),
+(9, 15, 1, 1, 44000, 1, '2025-07-10'),
+(9, 16, 1, 1, 53000, 1, '2025-07-10'),
+(9, 17, 1, 1, 43000, 1, '2025-07-10'),
+(9, 18, 1, 1, 45500, 1, '2025-07-10'),
+(9, 19, 1, 1, 59000, 1, '2025-07-10'),
+(9, 20, 1, 1, 46500, 1, '2025-07-10'),
+(9, 21, 1, 1, 42000, 1, '2025-07-10'),
+(9, 22, 1, 1, 42500, 1, '2025-07-10'),
+(9, 23, 1, 1, 41500, 1, '2025-07-10');
 
 
 INSERT INTO reservation_details(reservation_id, stay_one_date, price_per_day) VALUES
@@ -233,3 +259,25 @@ INSERT INTO plans(name,details,price) VALUES
 ('素泊まり', '【食事なし】迷ったらコレ！食事なしシンプルステイ', 0),
 ('朝食付き', '【朝食あり】季節のビュッフェ付き', 1000),
 ('朝・夕食付き', '【朝・夕食あり】朝食は季節のビュッフェ、夕食はBBQ付き', 2000);
+
+
+-- reviews（レビュー情報）
+INSERT INTO reviews (guest_id, room_id, reservation_id, rating, comment)
+VALUES
+(1, 4, 5, 5, '眺めが最高で、まるで夢のような滞在でした。また来たいです。'),
+(2, 12, 6, 4, '静かで落ち着いた部屋でした。ひとり旅にはぴったりです。'),
+(4, 6, 1, 5, 'サンゴ礁のデザインが可愛くて癒されました。清潔感も◎'),
+(4, 9, 4, 4, 'オーシャンビューが綺麗でした。やや設備が古い気もしました。'),
+(5, 9, 3, 5, '接客もお部屋も素晴らしく、期待以上の体験でした。'),
+(5, 11, 22, 3, '部屋は清潔でしたが、音が少し気になりました。'),
+(6, 3, 7, 4, 'モダンなインテリアで、カップルにもおすすめです。'),
+(7, 7, 19, 5, 'ラグジュアリー感が素晴らしく、リラックスできました。'),
+(1, 1, 10, 5, '最高の眺めで記念日が特別な思い出になりました。'),
+(2, 2, 8, 4, '部屋が広くて快適でした。もう少し照明が明るいと◎'),
+(4, 8, 9, 4, 'マーメイドの内装が可愛かったです。カップルにおすすめ。'),
+(5, 10, 25, 3, 'シンプルで使いやすい部屋。音漏れが少し気になりました。'),
+(6, 13, 14, 5, '幻想的な雰囲気が素敵で、写真映えもバッチリ！'),
+(7, 14, 27, 4, 'テラスが開放的で心地よかったです。夜風が最高。'),
+(8, 15, 30, 4, '海神ネプチューンのテーマがユニークで楽しめました。'),
+(6, 21, 21, 3, '落ち着いた雰囲気で、ビジネス利用にも良さそうです。'),
+(8, 23, 23, 3, '静かで快適でしたが、少し湿気が気になりました。');

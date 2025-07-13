@@ -14,6 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 
@@ -60,6 +61,9 @@ public class Reservation {
 	//「親から外された子（孤児）をDBから自動で削除する
 	@OneToMany(mappedBy = "reservation", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<ReservData> reservDatas = new ArrayList<>();
+
+	@OneToOne(mappedBy = "reservation", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Review review;
 
 	//コンストラクタ
 	public Reservation() {
@@ -156,4 +160,21 @@ public class Reservation {
 			reservationOn = LocalDateTime.now();
 		}
 	}
+
+	public Review getReview() {
+		return review;
+	}
+
+	public void setReview(Review review) {
+		this.review = review;
+	}
+
+	public boolean isReviewedBy(Integer loginGuestId) {
+		return review != null
+				&& review.getDeletedAt() == null
+				&& review.getGuest() != null
+				&& review.getGuest().getId().equals(loginGuestId)
+				&& review.getRating() != null;
+	}
+
 }

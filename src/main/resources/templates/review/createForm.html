@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>レビュー投稿</title>
+	<!-- フォントやアイコンなどの読み込み -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+	<link rel="stylesheet" href="/css/style.css">
+	<!--ここまで共通-->
+	<link rel="stylesheet" th:href="@{/css/review.css}">
+</head>
+
+<body>
+	<h1>レビュー投稿</h1>
+
+	<div class="">
+		<div>
+			<span>部屋名：</span>
+			<span class="" th:text="${reservation.room.roomName}"></span>
+		</div>
+		<div>
+			<span>プラン名：</span>
+			<span class="" th:text="${reservation.plan.name}"></span>
+		</div>
+		<div>
+			<span>チェックイン〜チェックアウト：</span>
+			<span class="" th:text="${reservation.StayDate}"></span>
+			<span class="" th:text="${checkoutDate}"></span>
+		</div>
+		<div>
+			<span>合計金額：</span>
+			<span class="" th:text="${reservation.totalPrice}"></span>
+		</div>
+		<div>
+			<span>人数</span>
+			<span class="" th:text="${reservation.guestCount} + '人'"></span>
+		</div>
+	</div>
+
+	<!-- レビュー投稿フォーム -->
+	<form th:action="@{/reviews/create}" th:object="${reviewForm}" method="post">
+		<div th:insert="~{review/formFragment :: reviewFormFragment('レビューを投稿する')}"></div>
+	</form>
+
+</body>
+
+</html>

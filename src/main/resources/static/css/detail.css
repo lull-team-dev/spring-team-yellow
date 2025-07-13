@@ -1,0 +1,198 @@
+@charset "UTF-8";
+
+.plan-button {
+	all: unset;
+	border: 1px solid #fff;
+}
+
+.plan-button:hover {
+	background-color: #fff;
+	border: 1px solid #e77611;
+	box-shadow: inherit;
+	box-shadow: 0px 0px 5px 1px rgba(231, 118, 17, 0.1);
+}
+
+header {
+	position: relative;
+	z-index: 10;
+}
+
+main {
+	margin: 545px 120px;
+}
+
+.head-img {
+	width: 100%;
+	height: 600px;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.head-img img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.room-top {
+	display: flex;
+	justify-content: center;
+
+}
+
+.room-title {
+	text-align: center;
+}
+
+.room-like {
+	margin-top: 2em;
+}
+
+/* 設備説明 */
+
+.room-contain {
+	display: flex;
+	gap: 1em;
+	margin-top: 30px;
+}
+
+.room-img {
+	width: 60%;
+	position: relative;
+	border-radius: 30px;
+
+
+}
+
+.room-img img {
+	width: 100%;
+	height: 100%;
+	border-radius: 30px;
+}
+
+#prevBtn,
+#nextBtn {
+	position: absolute;
+	top: 50%;
+	color: #fff;
+	font-size: 75px;
+	font-weight: bold;
+	transform: translateY(-50%);
+
+}
+
+#prevBtn {
+	left: 30px;
+}
+
+#nextBtn {
+	right: 30px;
+}
+
+
+.room-amenities {
+	border-radius: 30px;
+	padding: 40px;
+	width: 40%;
+}
+
+.room-type {
+	display: inline;
+	color: #e77611;
+	background-color: rgba(231, 118, 17, 0.2);
+	border-radius: 7px;
+	padding: 9px;
+}
+
+.room-price {
+	display: flex;
+	align-items: center;
+	font-size: 14px;
+	margin-top: 20px;
+}
+
+.room-price p {
+	font-weight: bold;
+	font-size: 18px;
+	margin-left: 15px;
+}
+
+.facility-section {
+	margin-bottom: 10px;
+}
+
+.section-title {
+	color: #e77611;
+}
+
+.section-content {
+	font-size: 14px;
+}
+
+
+/*　プラン　*/
+.room-plans {
+	margin-top: 40px;
+}
+
+.room-plans-title {
+	color: #e77611;
+	font-weight: bold;
+}
+
+.plan {
+	border-radius: 30px;
+	margin-bottom: 35px;
+}
+
+.plan-button,
+.plan-card-content {
+	border-radius: 22px;
+	margin-bottom: 35px;
+	background: #fff;
+	padding: 26px 30px;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	width: 97%;
+}
+
+.plan-card-content{
+	width: 100%;
+}
+
+
+/* プラン名 */
+.plan-title {
+	font-size: 1.1em;
+	font-weight: bold;
+	color: #e77611;
+}
+
+/* プラン説明 */
+.plan-desc {
+	color: #555;
+	font-size: 0.96em;
+	line-height: 1.6;
+}
+
+/* 金額部分のみふんわり余白付き */
+.plan-price {
+	font-size: 1.05em;
+	font-weight: bold;
+	color: #d97d13;
+	background: linear-gradient(to right, #fff7e1, #ffeac9);
+	padding: 10px 20px;
+	border-radius: 20px;
+	letter-spacing: 0.02em;
+	box-shadow: 0 4px 10px #ffd18f66;
+	display: inline-block;
+	align-self: flex-start;
+}
+
+
+
+.like-link {
+	align-items: normal;
+}

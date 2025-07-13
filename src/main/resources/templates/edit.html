@@ -4,8 +4,21 @@
 <head>
 	<meta charset="UTF-8">
 	<title>マイページ更新</title>
-	<link rel="stylesheet" type="text/css" href="/css/style.css">
-
+	        <!-- フォントやアイコンなどの読み込み -->
+	        <link rel="preconnect" href="https://fonts.googleapis.com">
+	        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+	        <!-- Font Awesome -->
+	        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+	        <!-- 共通CSS -->
+	        <link rel="stylesheet" href="/css/style.css">
+	        <link rel="stylesheet" href="/css/shadow.css">
+	        <link rel="stylesheet" href="/css/button.css">
+	        <link rel="stylesheet" href="/css/header-footer.css">
+	        <!--ここまで共通-->
+			<link rel="stylesheet" href="/css/mypage.css">
+			<link rel="stylesheet" href="/css/button.css">
+			<link rel="stylesheet" href="/css/edit.css">
 
 </head>
 
@@ -13,29 +26,54 @@
 	<header th:replace="header"></header>
 	<main>
 		<div class="edit-items" th:switch="${edit}">
-			<form th:action="@{/mypage/{edit}(edit=${edit})}" method="post">
-				<div class="edit-item" th:case="email">メール
-					<div class="">現在のメールアドレス</div>
-					<input th:value="${guest.email}" readonly>
-					<div class="">新しいメールアドレス</div>
-					<input type="email" name="email"　placeholder="メールアドレス">
+			<form class="edit-form" th:action="@{/mypage/{edit}(edit=${edit})}" method="post">
+				<div class="edit-item" th:case="email">
+					<h3 class="profile-category">
+						<i class="fa-solid fa-envelope"></i>
+						<dt class="">メールアドレス</dt>
+					</h3>
+					<div class="info-form">
+						<div class="">現在のメールアドレス</div>
+						<input class="email-display-input" th:value="${guest.email}" readonly>
+						<label for="email" class="info-label">新しいメールアドレス</label>
+						<input id="email" type="email" name="email"　placeholder="メールアドレス">
+					</div>
 				</div>
-				<div class="edit-item" th:case="password">パスワード
-					<div class="">新しいパスワード</div>
-					<input type="password" name="password"　placeholder="パスワード">
-					<input type="password" name="password_confirm" placeholder="パウワード（確認）">
+				
+				<div class="edit-item" th:case="password">
+					<h3 class="profile-category">
+						<i class="fa-solid fa-key"></i>
+						<dt>パスワード</dt>
+					</h3>
+					<div class="info-form">
+						<label for="password" class="info-label">新しいパスワード</label>
+						<input id="password" type="password" name="password"　placeholder="パスワード">
+						<label for="password_confirm" class="info-label">新しいパスワード(確認)</label>
+						<input type="password" id="password_confirm" name="password_confirm" placeholder="パウワード（確認）">
+					</div>
+				</div>
+				
+				<div class="edit-item" th:case="profile">
+					<h3 class="profile-category">
+						<i class="fa-solid fa-user"></i>
+						<span>基本情報</span>
+					</h3>
+					<div class="info-form">
+						<label for="name" class="info-label">名前</label>
+						<input type="text" id="name" name="name" th:value="${guest.name}">
+						<label for="address" class="info-label">住所</label>
+						<input type="text" id="address" name="address" th:value="${guest.address}">
+						<label for="tel" class="info-label">電話番号</label>
+						<input type="text" id="tel" name="tel" th:value="${guest.tel}">
+					</div>
+				</div>
+				<div class="error-box">
+					<span th:each="error:${errorList}" th:text="${error}" class="error-message"></span>
 
 				</div>
-				<div class="edit-item" th:case="profile">基本情報
-					<div class="">名前</div>
-					<input type="text" name="name" th:value="${guest.name}">
-					<div class="">住所</div>
-					<input type="text" name="address" th:value="${guest.address}">
-					<div class="">電話番号</div>
-					<input type="text" name="tel" th:value="${guest.tel}">
-				</div>
-				<p th:each="error:${errorList}" th:text="${error}"></p>
+				
 				<button>編集する</button>
+				<a class="return-button" href="/mypage">戻る</a>
 			</form>
 		</div>
 	</main>

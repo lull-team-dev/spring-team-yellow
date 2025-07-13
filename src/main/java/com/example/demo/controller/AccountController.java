@@ -1,3 +1,4 @@
+// ログアウト状態でもOK
 package com.example.demo.controller;
 
 import jakarta.validation.Valid;

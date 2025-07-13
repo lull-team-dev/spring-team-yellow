@@ -6,6 +6,7 @@ DROP TABLE IF EXISTS reservations CASCADE;
 DROP TABLE IF EXISTS reservation_details CASCADE;
 DROP TABLE IF EXISTS plans CASCADE;
 DROP TABLE IF EXISTS likes CASCADE;
+DROP TABLE IF EXISTS reviews CASCADE;
 
 
 -- guests（宿泊者）
@@ -19,12 +20,14 @@ password VARCHAR(128) NOT NULL CHECK(CHAR_LENGTH(password) >= 5),
 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+
 -- types（タイプ）
 CREATE TABLE types(
 id SERIAL PRIMARY KEY,
 type_name TEXT,
 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
 
 --  rooms（部屋）
 CREATE TABLE rooms(
@@ -65,6 +68,7 @@ price_per_day INTEGER,
 FOREIGN KEY (reservation_id) REFERENCES reservations(id)
 );
 
+
 CREATE TABLE plans(
 id SERIAL PRIMARY KEY,
 name TEXT,
@@ -72,8 +76,22 @@ details TEXT,
 price INTEGER
 );
 
+
 CREATE TABLE likes (
 	id SERIAL PRIMARY KEY,
     guest_id INTEGER,
     room_id INTEGER
+);
+
+
+CREATE TABLE reviews (
+    id SERIAL PRIMARY KEY,
+    guest_id INTEGER NOT NULL,
+    room_id INTEGER NOT NULL,
+    reservation_id INTEGER NOT NULL,
+    rating INTEGER NOT NULL CHECK (rating BETWEEN 1 AND 5),
+    comment TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP,
+    deleted_at TIMESTAMP
 );

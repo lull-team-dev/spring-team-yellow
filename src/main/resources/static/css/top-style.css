@@ -3,17 +3,24 @@
 	display: flex;
 	justify-content: center;
 	margin-top: 42px;
-	margin-bottom: 70px;
+	margin-bottom: 85px;
 }
+
+.search-form-wrap {
+	width: 100%;
+	box-shadow: 0 1px 4px 0 #555;
+	border-radius: 18px;
+}
+
 
 .search-form-box {
 	background: #fff;
-	border-radius: 18px;
-	box-shadow: 0 1px 4px 0 #555;
-	padding: 40px 32px 32px;
-	width: 600px;
+	margin: 0 auto;
+	padding: 70px 20%;
+	width: 100%;
 	min-width: 380px;
-	max-width: 90vw;
+	max-width: 620px;
+	/*90vw*/
 	display: flex;
 	flex-direction: column;
 	gap: 28px;
@@ -22,49 +29,66 @@
 .search-form-box p {
 	margin: 0 0 4px;
 	font-size: 15px;
-	color: #f19e39;
+	color: #e77611;
 	font-weight: 600;
 	letter-spacing: 0.02em;
+	max-width: 620px;
 }
 
 .search-form-box input[type="text"] {
-	border: 1.5px solid #f19e39;
+	border: 1.5px solid #e77611;
 	border-radius: 22px;
 	padding: 0.7em 1em;
 	font-size: 16px;
 	outline: none;
 	width: 100%;
-	margin-bottom: 18px;
+	margin: 10px 0 35px 0;
 	box-sizing: border-box;
+}
+
+.keyword-search {
+	margin: 0 auto;
+	max-width: 620px;
+	display: block;
+
 }
 
 /* --- 部屋タイプ チェックボックスを中央寄せ --- */
 .room-type-center {
 	display: flex;
-	justify-content: center;
+	justify-content: space-between;
 	align-items: center;
 	gap: 28px;
-	margin-top: 8px;
-	margin-bottom: 10px;
+
+	margin: 20px auto;
+	max-width: 620px;
 }
 
 .room-type-center label {
 	font-size: 15px;
-	color: #555;
+	color: #e77611;
 	margin-right: 0;
 }
 
 .room-type-center input[type=checkbox] {
-	accent-color: #f19e39;
+	accent-color: #e77611;
 	margin-right: 6px;
 	transform: scale(1.15);
 }
 
 /* --- 予算全体を中央・横並び --- */
 .contanabox {
-	max-width: 400px;
-	margin: 0 auto;
+	max-width: 620px;
+	margin: 10px auto;
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.price-separator {
+	line-height: 100px;
+	font-size: 20px;
+	color: #888;
+	margin: 0 5px;
+	font-weight: 700;
 }
 
 .price-display {
@@ -112,7 +136,7 @@
 .slider-range {
 	position: absolute;
 	height: 6px;
-	background: #F19E39;
+	background: #e77611;
 	border-radius: 3px;
 	top: 50%;
 	transform: translateY(-50%);
@@ -138,7 +162,7 @@
 	appearance: none;
 	width: 20px;
 	height: 20px;
-	background: #F19E39;
+	background: #e77611;
 	border-radius: 50%;
 	cursor: pointer;
 	pointer-events: all;
@@ -150,7 +174,7 @@
 .slider-upper::-moz-range-thumb {
 	width: 20px;
 	height: 20px;
-	background: #F19E39;
+	background: #e77611;
 	border-radius: 50%;
 	cursor: pointer;
 	pointer-events: all;
@@ -163,11 +187,11 @@
 }
 
 .slider-lower::-webkit-slider-thumb {
-	background: #F19E39;
+	background: #e77611;
 }
 
 .slider-lower::-moz-range-thumb {
-	background: #F19E39;
+	background: #e77611;
 }
 
 .slider-track,
@@ -198,11 +222,12 @@
 
 .calendar-input-row {
 	display: flex;
-	justify-content: center;
+	justify-content: space-between;
 	align-items: center;
 	gap: 28px;
 	width: 100%;
-	margin-bottom: 0;
+	max-width: 620px;
+	margin: 0 auto;
 }
 
 .calendar-tilde {
@@ -223,7 +248,7 @@
 	top: 53%;
 	transform: translateY(-50%);
 	font-size: 22px;
-	color: #f19e39;
+	color: #e77611;
 	pointer-events: none;
 }
 
@@ -231,7 +256,7 @@
 	width: 100%;
 	background: #faf7f0;
 	font-size: 15px;
-	border: 1.3px solid #f19e39;
+	border: 1.3px solid #e77611;
 	border-radius: 14px;
 	text-align: left;
 	padding: 0.7em 1.2em 0.7em 2.6em;
@@ -248,7 +273,7 @@
 	right: 0;
 	top: 115%;
 	z-index: 99;
-	width: 420px;
+	width: 570px;
 	background: #fff;
 	border-radius: 18px;
 	box-shadow: 0 2px 10px #555;
@@ -274,7 +299,7 @@
 }
 
 .calendar-nav-btn {
-	background: #f19e39;
+	background: #e77611;
 	color: #fff;
 	border: none;
 	border-radius: 14px;
@@ -297,7 +322,7 @@
 #closeCalendar {
 	display: block;
 	margin: 26px auto 0 auto;
-	background: #f19e39;
+	background: #e77611;
 	color: #fff;
 	border: none;
 	padding: 0.7em 2.4em;
@@ -326,7 +351,7 @@
 }
 
 .selected-checkin {
-	background: #F19E39;
+	background: #e77611;
 	color: #fff !important;
 	border-top-left-radius: 50%;
 	border-bottom-left-radius: 50%;
@@ -334,7 +359,7 @@
 }
 
 .selected-checkout {
-	background: #F19E39;
+	background: #e77611;
 	color: #fff !important;
 	border-top-right-radius: 50%;
 	border-bottom-right-radius: 50%;
@@ -342,9 +367,13 @@
 }
 
 .selected-between {
-	background: #f5b05b;
+	background: #e77611;
 	color: #fff;
 	border-radius: 0;
+}
+
+.search-btn {
+	margin-top: 30px;
 }
 
 /* ==============================
@@ -353,16 +382,18 @@
 
 /* 客室セクション全体 */
 .rooms-section {
+	/*
 	margin: 72px auto 48px auto;
 	max-width: 1120px;
 	padding: 0 20px;
+	*/
 }
 
 .section-title {
 	font-size: 2.0em;
 	font-weight: bold;
 	margin-bottom: 4px;
-	color: #f19e39;
+	color: #e77611;
 	letter-spacing: 0.04em;
 	text-align: center;
 }
@@ -370,132 +401,7 @@
 .section-subtitle {
 	font-size: 1.09em;
 	color: #777;
-	margin-bottom: 24px;
+	margin-bottom: 60px;
 	font-weight: 500;
 	text-align: center;
-}
-
-/* ===========================
-   客室カードグリッド2列固定
-   =========================== */
-.rooms-grid {
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	gap: 32px 32px;
-	width: 100%;
-	margin: 0 auto;
-}
-
-@media (max-width: 800px) {
-	.rooms-grid {
-		grid-template-columns: 1fr;
-	}
-}
-
-/* ================== 客室カード本体 ================== */
-.room-card {
-  background: #fff;
-  border-radius: 22px;
-  box-shadow: 0 2px 8px #555;
-  overflow: hidden;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  transition: box-shadow 0.18s;
-  height: 100%;
-}
-.room-card:hover {
-  box-shadow: 0 4px 16px #555;
-}
-.room-card-image {
-  width: 100%;
-  height: 188px;
-  object-fit: cover;
-  display: block;
-  border-top-left-radius: 22px;
-  border-top-right-radius: 22px;
-}
-.room-card-content {
-  padding: 22px 24px 22px 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.room-card-header {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.room-card-title {
-  font-size: 1.18em;
-  font-weight: 700;
-  color: #f19e39;
-  letter-spacing: 0.04em;
-}
-.room-card-type {
-  font-size: 0.95em;
-  color: #f19e39;
-  background: #fff7e1;
-  padding: 3px 12px;
-  border-radius: 10px;
-  font-weight: 600;
-  margin-left: 6px;
-}
-.room-card-desc {
-  font-size: 0.98em;
-  color: #666;
-  margin: 0 0 3px 0;
-  line-height: 1.5;
-}
-
-/* ================== 金額＆星を横並びで右端に揃える ================== */
-.room-card-row-horizontal {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 10px;
-  gap: 14px;
-}
-
-/* 金額 */
-.room-card-price {
-  font-size: 1.11em;
-  font-weight: 700;
-  color: #d97d13;
-  background: #fff7e1;
-  padding: 4px 16px;
-  border-radius: 16px;
-  letter-spacing: 0.02em;
-  box-shadow: 0 2px 8px #ffd18f44;  /* ←薄い黄色シャドウはこのまま */
-}
-
-/* 星ボタン（右端） */
-.like-link {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.6em;
-  color: #222;           /* 通常は黒 */
-  background: #fff;      /* 常に白 */
-  border-radius: 50%;
-  width: 36px;
-  height: 36px;
-  /* box-shadow: 0 1px 3px #555; ← 完全削除、影なし */
-  text-decoration: none;
-  transition: color 0.14s, background 0.13s;
-  border: none;          /* 枠線も無し */
-}
-
-/* 選択（お気に入り時）だけ星アイコンを黄色 */
-.fa-solid.fa-star {
-  color: #f6cb34 !important; /* お気に入り時は黄色 */
-}
-.fa-regular.fa-star {
-  color: #222 !important;    /* 通常は黒 */
-}
-
-.like-link:hover,
-.like-link:focus {
-  color: #e9af13;      /* ホバー時は星がちょっと濃い黄色 */
-  background: #fff;    /* 背景は常に白で変化させない */
 }

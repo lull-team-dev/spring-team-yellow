@@ -1,0 +1,181 @@
+/* detail.css・共通cssがあればそれを利用してOK！下記は追加・補強用 */
+
+.reserve-card {
+	box-shadow: 0px 0px 18px 1px rgba(0, 0, 0, 0.25);
+	border-radius: 30px;
+	margin: 40px auto;
+	background: #fff;
+	padding: 36px 32px;
+}
+
+.reserve-form-block {
+	box-shadow: 0 0 18px 1px rgba(0, 0, 0, 0.12);
+	border-radius: 30px;
+	margin-bottom: 35px;
+	background: #fff;
+	padding: 2.3rem 2rem 2.3rem 2rem;
+}
+
+.reserve-form-block:last-child {
+	margin-bottom: 0;
+}
+
+.reserve-form-row {
+	margin-bottom: 1.4rem;
+	display: flex;
+	flex-direction: column;
+	gap: 7px;
+}
+
+.reserve-form-row label {
+	font-size: 1rem;
+	font-weight: bold;
+	color: #e77611;
+	margin-bottom: 4px;
+}
+
+/* -------------------------- */
+/* 共通input・selectサイズ調整 */
+.reserve-form-row input,
+.reserve-form-row select {
+	font-size: 1.13rem;
+	border-radius: 8px;
+	padding: 13px 18px;
+	height: 48px;
+	border: 1px solid #d6c2aa;
+	background: #fff9f4;
+	box-sizing: border-box;
+}
+
+/* カレンダー付き行だけ幅揃える */
+.calendar-input-row {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	position: relative;
+	/* これでinput直下にカレンダー絶対配置 */
+}
+
+/* カレンダーエリア */
+#calendar{
+	gap: 100px;
+}
+
+
+#calendarArea {
+	position: absolute;
+	left: 0;
+	top: 100%;
+	width: 100%;
+	background: #fff;
+	box-shadow: 0 2px 18px 0px #e5b98180;
+	border-radius: 18px;
+	z-index: 22;
+	margin-top: 6px;
+	padding: 22px 16px 16px 16px;
+	animation: fadein 0.3s;
+}
+
+.calendar-nav-btn {
+	background: #e77611;
+	color: #fff;
+	border: none;
+	border-radius: 14px;
+	font-size: 26px;
+	width: 44px;
+	height: 44px;
+	box-shadow: 0 1px 4px #555;
+	cursor: pointer;
+	transition: 0.12s;
+}
+
+.calendar-nav-btn[disabled] {
+	visibility: hidden;
+}
+
+
+@keyframes fadein {
+	from {
+		opacity: 0;
+		transform: translateY(18px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* ----- selectと「人」を横並び ----- */
+.select-flex {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.after-select {
+	font-size: 1.15rem;
+	font-weight: 600;
+	color: #ad7c2c;
+	padding-left: 2px;
+}
+
+/* -------- ラベルサイズUP -------- */
+.reserve-form-row label {
+	font-size: 1.18rem;
+	font-weight: bold;
+	color: #e77611;
+	margin-bottom: 7px;
+	letter-spacing: 0.01em;
+}
+
+/* -------- input全体のサイズ/余白 -------- */
+.reserve-form-row {
+	margin-bottom: 1.65rem;
+}
+
+.reserve-form-block {
+	margin: 50px auto;
+	max-width: 620px;
+	padding: 2.6rem 2.3rem 2.6rem 2.3rem;
+}
+
+.reserve-card {
+	width: 100%;
+}
+
+/* ---------- カレンダーのinput幅揃え ---------- */
+.calendar-input-row input[type="text"] {
+	width: 50%;
+	min-width: 0;
+	font-size: 1.12rem;
+}
+
+/* ---------- ボタンの位置 ---------- */
+.reserve-button-block {
+	max-width: 620px;
+	margin: 50px auto;
+}
+
+.reserve-submit-btn{
+	width: 100%;
+}
+
+/* ---------- カレンダーの「~」位置/余白 ---------- */
+.calendar-tilde {
+	font-size: 1.32rem;
+	color: #e77611;
+	margin: 0 10px;
+	font-weight: bold;
+}
+
+/* ------------- エラー表示 ------------- */
+.error-box {
+	color: #d13b00;
+	font-size: 1.04rem;
+	margin: 3px 0 0 2px;
+	min-height: 1.3em;
+	font-weight: 500;
+}
+
+/* カレンダーのテーブル、ボタンもdetail.cssと統一でOK */
