@@ -156,6 +156,7 @@ main {
 	flex-direction: column;
 	gap: 12px;
 	width: 97%;
+	text-align: left;
 }
 
 .plan-card-content{
@@ -196,3 +197,40 @@ main {
 .like-link {
 	align-items: normal;
 }
+
+/* レビューセクション全体の見た目統一 */
+.review-section {
+	margin-top: 40px;
+	padding: 40px;
+	border-radius: 30px;
+	background-color: #fff;
+}
+
+/* セクションタイトル（共通スタイルに合わせる） */
+.review-section .section-title {
+	color: #e77611;
+	font-weight: bold;
+	font-size: 1.2em;
+	margin-bottom: 25px;
+}
+
+/* フェードインエフェクト（必要ならJS側で制御） */
+/*
+.review-section {
+	opacity: 0;
+	transform: translateY(30px);
+	animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes fadeInUp {
+	0% {
+		opacity: 0;
+		transform: translateY(30px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+*/
+

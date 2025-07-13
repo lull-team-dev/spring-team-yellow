@@ -12,9 +12,11 @@
 
 <body>
 	<header th:replace="header"></header>
-
+	<!-- 部屋イメージヘッダー -->
+	<div class="head-img">
+		<img th:src="${room.imgPath}" th:alt="${room.roomName}">
+	</div>
 	<main>
-		<p>コミットのためだけに追記</p>
 		<div class="details-box">
 			<!-- ========== 部屋ディテール ========== -->
 			<div class="room-ditail" style="margin-bottom:32px;">
@@ -27,7 +29,8 @@
 						<div class="room-name" th:text="${room.roomName}" style="font-size:1.38rem;margin-bottom:10px;">
 						</div>
 						<div class="room-type" th:text="${room.type.typeName}" style="margin-bottom:7px;"></div>
-						<div class="room-message" th:text="${room.description}" style="margin-bottom:13px;"></div>
+						<div class="room-message" th:text="${room.description}" style="margin-bottom:13px;">
+						</div>
 						<div class="room-price">
 							税・サービス料込み　
 							<p th:text="${room.price} + '円~'"></p>
@@ -35,7 +38,8 @@
 						<div class="facility-section">
 							<div class="section-title">●お部屋の設備</div>
 							<div class="section-content">
-								バス・トイレ別 / テレビ / 冷蔵庫 / 無料インターネットアクセス（WIFI）/ 電話 / 金庫 / スリッパ / ルームウェア / 電気ケトル / ビーチサンダル /
+								バス・トイレ別 / テレビ / 冷蔵庫 / 無料インターネットアクセス（WIFI）/ 電話 / 金庫 / スリッパ / ルームウェア / 電気ケトル /
+								ビーチサンダル /
 								ビーチバック
 							</div>
 						</div>
@@ -45,7 +49,7 @@
 
 			<!-- ========== プラン情報 ========== -->
 			<div class="room-plans" style="margin-bottom:26px;">
-				<h3 class="room-plans-title">選択中プラン</h3>
+				<h3 class="room-plans-title">選択中のプラン</h3>
 				<div class="plan">
 					<div class="plan-card-content">
 						<div>
