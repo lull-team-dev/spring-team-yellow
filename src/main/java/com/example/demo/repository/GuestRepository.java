@@ -16,4 +16,6 @@ public interface GuestRepository extends JpaRepository<Guest, Integer> {
 	// メールアドレスの重複チェック用クエリメソッド
 	Optional<Guest> findByEmail(String email);
 
+	boolean existsByIdAndPassword(Integer id, String password);
+
 }
