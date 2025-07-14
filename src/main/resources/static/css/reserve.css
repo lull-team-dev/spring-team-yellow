@@ -64,7 +64,7 @@
 	position: absolute;
 	left: 0;
 	top: 100%;
-	width: 100%;
+	width: 95%;
 	background: #fff;
 	box-shadow: 0 2px 18px 0px #e5b98180;
 	border-radius: 18px;
@@ -154,6 +154,10 @@
 
 .reserve-submit-btn{
 	width: 100%;
+}
+
+.button{
+	width: 60%;
 }
 
 /* ---------- カレンダーの「~」位置/余白 ---------- */
