@@ -13,7 +13,7 @@
 	<link rel="stylesheet" href="/css/header-footer.css">
 	<link rel="stylesheet" href="/css/detail.css">
 	<!--	<link rel="stylesheet" href="/css/top-style.css"> -->
-
+	<link rel="stylesheet" href="/css/calendar.css">
 	<link rel="stylesheet" href="/css/reserve.css">
 	<link rel="stylesheet" href="/css/shadow.css">
 </head>
@@ -45,7 +45,7 @@
 						<div class="room-type" th:text="${room.type.typeName}"></div>
 						<div class="room-price">
 							税・サービス料込み
-							<p th:text="${room.price} + '円~'"></p>
+							<p th:text="${#numbers.formatInteger(room.price, 3, 'COMMA')} + '円~'"></p>
 						</div>
 						<div class="facility-section">
 							<div class="section-title">●お部屋の設備</div>
@@ -68,9 +68,9 @@
 					</div>
 				</div>
 			</div><!-- /room-ditail -->
-
-			<!-- ========== プランカード ========== -->
 		</div>
+
+		<!-- ========== プランカード ========== -->
 		<div class="room-plans">
 			<h3 class="room-plans-title">選択中のプラン</h3>
 			<div class="plan-card-content main-shadow">
@@ -79,17 +79,18 @@
 				</div>
 				<div class="plan-detile">
 					<p class="plan-desc" th:text="${plan.details}"></p>
-					<div class="plan-price" th:text="${plan.calcTotalPrice(room.price)} + '円 /人'"></div>
+					<div class="plan-price" th:text="${#numbers.formatInteger(plan.calcTotalPrice(room.price), 3, 'COMMA')} + '円 /人'"></div>
 				</div>
 			</div>
 		</div>
 
 		<!-- ========== 予約フォーム ========== -->
-		<form class="reserve-card main-shadow" th:action="@{/rooms/{id}/reserve(id=${room.id})}" th:object="${reserveDto}"
-			method="post" autocomplete="off" style="width: 96%;">
+		<h3 class="room-plans-title">予約フォーム</h3>
+		<form class="reserve-card main-shadow" th:action="@{/rooms/{id}/reserve(id=${room.id})}"
+			th:object="${reserveDto}" method="post" autocomplete="off" style="width: 96%;">
 			<!-- --------- 宿泊情報 --------- -->
 			<div class="reserve-form-block">
-				<h2 class="section-title">宿泊情報詳細</h2>
+				<h2 class="section-title">●宿泊情報詳細</h2>
 				<div class="reserve-form-row">
 					<label>宿泊予定日</label>
 					<div class="calendar-input-row">
@@ -128,7 +129,7 @@
 			</div>
 			<!-- --------- 予約者情報 --------- -->
 			<div class="reserve-form-block">
-				<h2 class="section-title">予約者情報</h2>
+				<h2 class="section-title">●予約者情報</h2>
 				<div class="reserve-form-row">
 					<label for="name">名前</label>
 					<input id="name" type="text" th:field="*{guestName}" placeholder="山田 太郎" />
@@ -165,28 +166,11 @@
 	<footer th:replace="footer"></footer>
 
 	<!-- ========== 画像スライダー ========== -->
+	<script src="/js/room-slider.js"></script>
 	<script th:inline="javascript">
-		const imgs = /*[[${imgList}]]*/[];
-		let num = 0;
-		function showImage() {
-			const img = document.getElementById("room-img");
-			img.classList.add("fade-out");
-			setTimeout(() => {
-				img.src = imgs[num];
-				img.classList.remove("fade-out");
-			}, 250);
-		}
-		function next() {
-			num = (num + 1) % imgs.length;
-			showImage();
-		}
-		function prev() {
-			num = (num - 1 + imgs.length) % imgs.length;
-			showImage();
-		}
-		window.addEventListener('DOMContentLoaded', function () {
-			showImage();
-		});
+		// Thymeleafから画像リストを受け取って初期化
+		const imgList = /*[[${imgList}]]*/[];
+		initSlider(imgList);
 	</script>
 	<!-- ========== カレンダーJS ========== -->
 	<script src="/js/calendar.js"></script>
