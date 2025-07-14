@@ -193,7 +193,7 @@ main{
 	top: 50%;
 	transform: translateY(-50%);
 	background: none;
-	color: #555;
+	color: #fff;
 	font-size: 2.8rem;
 	border: none;
 	border-radius: 50%;
@@ -210,9 +210,10 @@ main{
 	opacity: 0.83;
 }
 .about-image button:hover {
-	color: #e77611;
+	color: #c0c0c0;
 	opacity: 1;
 }
+
 #prev-btn {
 	left: 22px;
 }
