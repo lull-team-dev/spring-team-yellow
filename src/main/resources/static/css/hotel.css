@@ -154,7 +154,6 @@ main{
 /***** ホテル概要 *****/
 .about-content {
 	display: flex;
-	gap: 7vw;
 	align-items: center;
 	justify-content: center;
 }

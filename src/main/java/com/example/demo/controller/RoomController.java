@@ -62,6 +62,7 @@ public class RoomController {
 			@RequestParam(required = false, defaultValue = "100000") Integer upPrice,
 			@RequestParam(required = false) LocalDate checkinDate,
 			@RequestParam(required = false) LocalDate checkoutDate,
+			@RequestParam(required = false, defaultValue = "0") Integer search,
 			Model model) {
 
 		List<Room> rooms = null;
@@ -185,11 +186,14 @@ public class RoomController {
 			}
 		} else {
 			//検索内容がない場合全件表示
+			if (search != 0) {
+				model.addAttribute("error", "検索出来ません。チェックイン日とチェックアウト日を必ず選択してください。");
+			}
 			rooms = roomRepository.findAll();
 		}
 
 		if (rooms.size() == 0) {
-			model.addAttribute("message", "検索がヒットしません");
+			model.addAttribute("message", "検索がヒットしませんでした");
 		}
 
 		//いいね一覧取得

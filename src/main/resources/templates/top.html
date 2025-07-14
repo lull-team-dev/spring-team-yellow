@@ -127,7 +127,11 @@
 										required readonly>
 								</div>
 							</div>
+							<div class="error-box">
+								<span th:if="${error}" th:text="${error}" class="error-message"></span>
+							</div>
 						</div>
+						<input type="hidden" name="search" value="1">
 						<!-- 検索ボタン -->
 						<div class="search-btn-wrap" style="text-align: center;">
 							<button type="submit" class="search-btn">検索する</button>
@@ -179,9 +183,13 @@
 				</div>
 				<!-- ▲ ここまでルームカード -->
 			</div>
+			<div class="search-nothing" th:if="${message}">
+				<img class="search-logo" src="/uploads/images/search-logo.png">
+				<h2 class="search-message" th:text="${message}"></h2>
+			</div>
 		</section>
 	</main>
-	<footer th:replace="footer"></footer>
+	<footer th:replace=" footer"></footer>
 	<script src="/js/range.js"></script>
 	<script src="/js/calendar.js"></script>
 </body>
