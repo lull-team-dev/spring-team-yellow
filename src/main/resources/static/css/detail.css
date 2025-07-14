@@ -144,18 +144,16 @@ main {
 .plan {
 	border-radius: 30px;
 	margin-bottom: 35px;
-}
+	margin: 0}
 
 .plan-button,
 .plan-card-content {
 	border-radius: 22px;
 	margin-bottom: 35px;
 	background: #fff;
-	padding: 26px 30px;
-	display: flex;
-	flex-direction: column;
-	gap: 12px;
-	width: 97%;
+	padding: 26px 40px;
+	box-sizing: border-box;
+	width: 100%;
 	text-align: left;
 }
 
@@ -169,6 +167,11 @@ main {
 	font-size: 1.1em;
 	font-weight: bold;
 	color: #e77611;
+}
+
+.plan-detile {
+	display: flex;
+	justify-content: space-between;
 }
 
 /* プラン説明 */
