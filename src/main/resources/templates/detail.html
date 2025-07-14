@@ -96,7 +96,7 @@
 									<p class="plan-title" th:text="${plan.name}"></p>
 									<p class="plan-desc" th:text="${plan.details}"></p>
 								</div>
-								<p class="plan-price" th:text="${plan.calcTotalPrice(room.price)} + '円 /人'"></p>
+								<div class="plan-price" th:text="${plan.calcTotalPrice(room.price)} + '円 /人'"></div>
 							</button>
 						</form>
 					</li>
