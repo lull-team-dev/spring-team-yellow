@@ -212,5 +212,19 @@ footer {
 }
 
 .footer-logo {
-	width: 90px;
+  width: 180px;
+  height: 100px;
+  display: flex;
+  justify-content: flex-end;  /* 右寄せ */
+  align-items: center;
+  overflow: hidden;
+  background-color: transparent;
+}
+
+.logo-gif {
+  height: 100%;
+  width: auto;                  /* 幅を自動で調整して比率を維持 */
+  object-fit: contain;          /* 画像が収まるように表示 */
+  object-position: right;       /* ← 右端を基準に配置 */
+  display: block;
 }
