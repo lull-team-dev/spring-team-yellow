@@ -4,8 +4,18 @@
 <head>
 	<meta charset="UTF-8">
 	<title>予約内容確認</title>
+	<!-- フォントやアイコンなどの読み込み -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+	<!-- 共通CSS -->
 	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/shadow.css">
+	<link rel="stylesheet" href="/css/button.css">
 	<link rel="stylesheet" href="/css/header-footer.css">
+	<!--ここまで共通-->
 	<link rel="stylesheet" href="/css/detail.css">
 	<link rel="stylesheet" href="/css/reserve.css">
 </head>
@@ -25,7 +35,7 @@
 						<img th:src="@{${room.imgPath}}" th:alt="@{${room.roomName}}" id="room-img"
 							style="width:100%;border-radius:30px;">
 					</div>
-					<div class="room-amenities" style="width:54%;">
+					<div class="room-amenities main-shadow" style="width:54%;">
 						<div class="room-name" th:text="${room.roomName}" style="font-size:1.38rem;margin-bottom:10px;">
 						</div>
 						<div class="room-type" th:text="${room.type.typeName}" style="margin-bottom:7px;"></div>
@@ -51,7 +61,7 @@
 			<div class="room-plans" style="margin-bottom:26px;">
 				<h3 class="room-plans-title">選択中のプラン</h3>
 				<div class="plan">
-					<div class="plan-card-content">
+					<div class="plan-card-content main-shadow">
 						<div>
 							<p class="plan-title" th:text="${plan.name}"></p>
 							<p th:text="${countDay} + '泊' + ${countDay + 1} + '日'"></p>
@@ -63,11 +73,35 @@
 			</div>
 
 			<!-- ========== 予約内容確認フォーム ========== -->
-			<form class="reserve-card" th:action="@{/rooms/{id}/reserveConf(id=${room.id})}" method="post"
+			<form class="reserve-card main-shadow" th:action="@{/rooms/{id}/reserveConf(id=${room.id})}" method="post"
 				autocomplete="off" style="width: 97%;">
-				<!-- --------- 予約者情報 --------- -->
+
+				<!-- --------- 宿泊情報 --------- -->
 				<div class="reserve-form-block">
-					<h3 class="section-title">予約者情報</h3>
+					<h2 class="section-title">宿泊情報詳細</h2>
+					<div class="reserve-form-row">
+						<label>宿泊予定日</label>
+						<p>
+							<span th:text="${checkinDate}"></span>
+							<span class="calendar-tilde">~</span>
+							<span th:text="${checkoutDate}"></span>
+						</p>
+						<input type="hidden" name="checkinDate" th:value="${checkinDate}">
+						<input type="hidden" name="checkoutDate" th:value="${checkoutDate}">
+					</div>
+					<div class="reserve-form-row">
+						<label>宿泊者数</label>
+						<p>
+							<span th:text="${guestCount}"></span>人
+						</p>
+						<input type="hidden" name="guestCount" th:value="${guestCount}">
+					</div>
+					<input type="hidden" name="planId" th:value="${plan.id}">
+				</div>
+
+				<!-- --------- 予約者情報 --------- -->
+				<div class="reserve-form-block main-shadow">
+					<h2 class="section-title">予約者情報</h2>
 					<div class="reserve-form-row">
 						<label>名前</label>
 						<p th:text="${guestName}" class="confirm-value"></p>
@@ -88,29 +122,6 @@
 						<p th:text="${address}" class="confirm-value"></p>
 						<input type="hidden" name="address" th:value="${address}">
 					</div>
-				</div>
-
-				<!-- --------- 宿泊情報 --------- -->
-				<div class="reserve-form-block">
-					<h3 class="section-title">宿泊情報詳細</h3>
-					<div class="reserve-form-row">
-						<label>宿泊予定日</label>
-						<p>
-							<span th:text="${checkinDate}"></span>
-							<span class="calendar-tilde">~</span>
-							<span th:text="${checkoutDate}"></span>
-						</p>
-						<input type="hidden" name="checkinDate" th:value="${checkinDate}">
-						<input type="hidden" name="checkoutDate" th:value="${checkoutDate}">
-					</div>
-					<div class="reserve-form-row">
-						<label>宿泊者数</label>
-						<p>
-							<span th:text="${guestCount}"></span>人
-						</p>
-						<input type="hidden" name="guestCount" th:value="${guestCount}">
-					</div>
-					<input type="hidden" name="planId" th:value="${plan.id}">
 				</div>
 
 				<!-- --------- ボタン --------- -->
