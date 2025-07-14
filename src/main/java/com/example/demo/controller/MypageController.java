@@ -50,6 +50,7 @@ public class MypageController {
 			@RequestParam(required = false) String address,
 			@RequestParam(required = false) String tel,
 			@RequestParam(required = false) String password,
+			@RequestParam(required = false) String newPassword,
 			@RequestParam(required = false) String password_confirm,
 			Model model) {
 
@@ -77,8 +78,15 @@ public class MypageController {
 			break;
 
 		case "password":
-			if (password == null || password.isEmpty()) {
-				errorList.add("パスワードの入力は必須です");
+			if ((password == null && newPassword == null) || (password.isEmpty() && newPassword.isEmpty())) {
+				errorList.add("現在のパスワードの入力は必須です");
+				errorList.add("新しいパスワードの入力は必須です");
+			} else if (password == null || password.isEmpty()) {
+				errorList.add("現在のパスワードの入力は必須です");
+			} else if (password != null && !guestRepository.existsByIdAndPassword(account.getId(), password)) {
+				errorList.add("現在のパスワードが間違っています");
+			} else if (newPassword == null || newPassword.isEmpty()) {
+				errorList.add("新しいパスワードの入力は必須です");
 			} else if (password_confirm == null || password_confirm.isEmpty()) {
 				errorList.add("パスワード(確認)の入力は必須です");
 			} else if (password == null || password.length() < 5 || password.length() > 100) {
@@ -91,9 +99,8 @@ public class MypageController {
 				model.addAttribute("errorList", errorList);
 				model.addAttribute("edit", edit);
 				return "edit";
-			}
-			if (password != null || !password.isEmpty()) {
-				guest.setPassword(password);
+			} else {
+				guest.setPassword(newPassword);
 			}
 			break;
 
