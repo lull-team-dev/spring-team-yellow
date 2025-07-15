@@ -37,6 +37,10 @@ public class MypageController {
 			Model model) {
 		Guest guest = guestRepository.findById(account.getId()).get();
 		model.addAttribute("guest", guest);
+		model.addAttribute("name", guest.getName());
+		model.addAttribute("address", guest.getAddress());
+		model.addAttribute("tel", guest.getTel());
+
 		model.addAttribute("edit", edit);
 
 		return "edit";
@@ -45,13 +49,13 @@ public class MypageController {
 	@PostMapping("/mypage/{edit}")
 	public String updata(
 			@PathVariable("edit") String edit,
-			@RequestParam(required = false) String name,
-			@RequestParam(required = false) String email,
-			@RequestParam(required = false) String address,
-			@RequestParam(required = false) String tel,
-			@RequestParam(required = false) String password,
-			@RequestParam(required = false) String newPassword,
-			@RequestParam(required = false) String password_confirm,
+			@RequestParam(name = "name", required = false) String name,
+			@RequestParam(name = "email", required = false) String email,
+			@RequestParam(name = "address", required = false) String address,
+			@RequestParam(name = "tel", required = false) String tel,
+			@RequestParam(name = "password", required = false) String password,
+			@RequestParam(name = "newPassword", required = false) String newPassword,
+			@RequestParam(name = "password_confirm", required = false) String password_confirm,
 			Model model) {
 
 		Guest guest = guestRepository.findById(account.getId()).get();
@@ -73,6 +77,8 @@ public class MypageController {
 				model.addAttribute("guest", guest);
 				model.addAttribute("errorList", errorList);
 				model.addAttribute("edit", edit);
+				model.addAttribute("email", email);
+
 				return "edit";
 			}
 			break;
@@ -126,11 +132,16 @@ public class MypageController {
 				model.addAttribute("guest", guest);
 				model.addAttribute("errorList", errorList);
 				model.addAttribute("edit", edit);
+				model.addAttribute("name", name);
+				model.addAttribute("address", address);
+				model.addAttribute("tel", tel);
+
 				return "edit";
 			}
 			//			セット
 			if (name != null || !name.isEmpty()) {
 				guest.setName(name);
+				account.setName(name);
 			}
 			if (address != null || !address.isEmpty()) {
 				guest.setAddress(address);
