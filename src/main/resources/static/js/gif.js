@@ -10,5 +10,5 @@ function playGifOnce() {
 
 	setTimeout(() => {
 		logo.src = staticImg;
-	}, 1000); // GIFの長さに応じて調整
+	}, 1500); // GIFの長さに応じて調整
 }
