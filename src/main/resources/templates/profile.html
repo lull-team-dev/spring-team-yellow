@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>マイページ</title>
+	<!-- フォントやアイコンなどの読み込み -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+	<!-- 共通CSS -->
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/shadow.css">
+	<link rel="stylesheet" href="/css/header-footer.css">
+	<!--ここまで共通-->
+	<link rel="stylesheet" href="/css/mypage.css">
+
+</head>
+
+<body>
+	<header th:replace="header"></header>
+	<main>
+		<h1>プロフィール</h1>
+		<dl class="profile main-shadow">
+			<h3 class="profile-category">
+				<i class="fa-solid fa-user"></i>
+				<span>基本情報</span>
+			</h3>
+			<div class="profile-items">
+				<div class="profile-item">
+					<dt class="">名前:</dt>
+					<dd th:text="${guest.name}"></dd>
+				</div>
+				<div class="profile-item">
+					<dt>住所:</dt>
+					<dd th:text="${guest.address}"></dd>
+				</div>
+				<div class="profile-item">
+					<dt>電話番号:</dt>
+					<dd th:text="${guest.tel}"></dd>
+				</div>
+			</div>
+			<div class="profile-update-button">
+				<a th:href="@{/mypage/{edit}(edit='profile')}" class="button">編集する</a>
+			</div>
+		</dl>
+
+		<dl class="mail main-shadow">
+			<h3 class="profile-category">
+				<i class="fa-solid fa-envelope"></i>
+				<dt class="">メールアドレス</dt>
+			</h3>
+			<dd class="" th:text="${guest.email}"></dd>
+			<div class="profile-update-button">
+				<a th:href="@{/mypage/{edit}(edit='email')}" class="button">編集する</a>
+			</div>
+		</dl>
+		<dl class="password main-shadow">
+			<h3 class="profile-category">
+				<i class="fa-solid fa-key"></i>
+				<dt>パスワード</dt>
+			</h3>
+			<div class="profile-update-button">
+				<a th:href="@{/mypage/{edit}(edit='password')}" class="button">編集する</a>
+
+			</div>
+		</dl>
+
+	</main>
+	<footer th:replace="footer"></footer>
+
+</body>
+
+</html>
