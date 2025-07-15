@@ -23,8 +23,8 @@ function updateFromSlider() {
 	let upper = parseInt(upSlider.value);    // 上限スライダーの値
 
 	// 上限が1000円以下の場合は強制的に1000円に補正
-	if (upper <= 1000) {
-		upper = 1000;
+	if (upper <= 41000) {
+		upper = 41000;
 		upSlider.value = upper;
 	}
 

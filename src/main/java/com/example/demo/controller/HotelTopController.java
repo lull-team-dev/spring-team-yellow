@@ -27,4 +27,14 @@ public class HotelTopController {
 		model.addAttribute("imgList", imgList);
 		return "hotel";
 	}
+
+	@GetMapping("/privacy")
+	public String privacy() {
+		return "privacy";
+	}
+
+	@GetMapping("/terms")
+	public String terms() {
+		return "terms";
+	}
 }
