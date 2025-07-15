@@ -103,7 +103,6 @@ header div {
 	margin: 20px 100px;
 }
 
-
 .right-item {
 	height: 100%;
 	top: 60px;
@@ -111,10 +110,9 @@ header div {
 	z-index: 100;
 }
 
-
-
 .right-item a {
 	color: #fff;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.7);
 	display: block;
 	font-size: 20px;
 	padding: 2em 2.5em;
@@ -122,6 +120,7 @@ header div {
 
 .right-item a:hover {
 	/* 好きな色に変更 */
+	background-color: rgba(255, 255, 255, 0.2);
 	color: #fff;
 	transition: 0.2s;
 }
@@ -151,6 +150,9 @@ header div {
 
 .not-login a{
 	color: #555;
+	display: block;
+		font-size: 20px;
+		padding: 2em 2.5em;
 }
 
 .not-login a:hover{
