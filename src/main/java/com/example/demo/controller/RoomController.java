@@ -22,6 +22,7 @@ import com.example.demo.repository.RoomRepository;
 import com.example.demo.repository.TypeRepository;
 import com.example.demo.service.ChangeCharService;
 import com.example.demo.service.LikeService;
+import com.example.demo.service.RandomImg;
 import com.example.demo.service.RoomService;
 
 @Controller
@@ -50,6 +51,9 @@ public class RoomController {
 
 	@Autowired
 	LikeService likeService;
+
+	@Autowired
+	RandomImg randomImg;
 
 	@Autowired
 	Account account;
@@ -193,6 +197,7 @@ public class RoomController {
 		}
 
 		if (rooms.size() == 0) {
+			model.addAttribute("randomImg", randomImg.showImg());
 			model.addAttribute("message", "検索がヒットしませんでした");
 		}
 

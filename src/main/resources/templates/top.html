@@ -184,7 +184,7 @@
 				<!-- ▲ ここまでルームカード -->
 			</div>
 			<div class="search-nothing" th:if="${message}">
-				<img class="search-logo" src="/uploads/images/search-logo.png">
+				<img class="search-logo" th:src="${randomImg}">
 				<h2 class="search-message" th:text="${message}"></h2>
 			</div>
 		</section>
