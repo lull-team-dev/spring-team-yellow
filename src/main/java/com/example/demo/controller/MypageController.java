@@ -1,9 +1,7 @@
 // ログインのみ
 package com.example.demo.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -66,7 +64,6 @@ public class MypageController {
 			Model model) {
 
 		Guest guest = guestRepository.findById(account.getId()).get();
-		List<String> errorList = new ArrayList<>();
 		Map<String, String> errorMap = new HashMap<>();
 
 		switch (edit) {
