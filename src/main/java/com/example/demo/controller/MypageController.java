@@ -132,6 +132,10 @@ public class MypageController {
 				model.addAttribute("guest", guest);
 				model.addAttribute("errorList", errorList);
 				model.addAttribute("edit", edit);
+				model.addAttribute("name", name);
+				model.addAttribute("address", address);
+				model.addAttribute("tel", tel);
+
 				return "edit";
 			}
 			//			セット
