@@ -17,8 +17,8 @@
 		</div>
 	</div>
 
-	<div class="form-group">
-		<label class="form-label">評価（★1〜5）:</label>
+	<div class="review-contents__box">
+		<div class="review-label">お部屋はいかがでしたか？（★1〜5）</div>
 		<div class="star-rating">
 			<input type="radio" th:field="*{rating}" value="5" id="star5" />
 			<label for="star5">★</label>
@@ -33,12 +33,12 @@
 		</div>
 	</div>
 
-	<div class="form-group">
-		<label class="form-label">コメント:</label>
-		<textarea th:field="*{comment}" rows="4" cols="50" placeholder="レビューをご記入ください"></textarea>
+	<div class="review-contents__box">
+		<div class="review-label">レビューをご記入ください</div>
+		<textarea class="review-comment" th:field="*{comment}" placeholder="お部屋の雰囲気や接客、設備の使い心地など、ご感想をご自由にお書きください"></textarea>
 	</div>
 
-	<div class="form-group">
+	<div class="review-contents__btn">
 		<button type="submit" class="button-submit" th:text="${buttonLabel}">送信</button>
 	</div>
 </div>

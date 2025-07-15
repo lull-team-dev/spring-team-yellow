@@ -1,3 +1,14 @@
+/**
+ * 全体のレイアウト
+ */
+
+textarea::placeholder {
+	color: rgba(0, 0, 0, 0.3);
+}
+
+.error {
+	color: red;
+}
 
 /**
  * レビュー時の星のレイアウト
@@ -19,8 +30,95 @@
 	transition: color 0.3s ease;
 }
 
-.star-rating input:checked ~ label,
+.star-rating input:checked~label,
 .star-rating label:hover,
-.star-rating label:hover ~ label {
+.star-rating label:hover~label {
 	color: gold;
+}
+
+/**
+ * レビュー画面のレイアウト
+ */
+
+.review {
+	width: 60%;
+	box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);
+	border-radius: 8px;
+	margin: 0 auto;
+	padding: 2rem 3rem;
+}
+
+.reservation-title {
+	border-top: 1px solid rgba(0, 0, 0, 0.1);
+	margin: 0;
+	padding: 24px 0;
+}
+
+.reservation-info {
+	display: flex;
+	gap: 32px;
+}
+
+.room-img {
+	width: 320px;
+}
+
+.reservation-contents {
+	width: 100%;
+
+}
+
+.reservation__row {
+	display: flex;
+	padding-top: 16px;
+}
+
+.reservation__title {
+	width: 40%;
+	font-weight: 600;
+}
+
+.reservation__body {
+	flex: 1;
+}
+
+.review-contents {
+	padding-bottom: 24px;
+}
+
+.review-contents__box {
+	width: 100%;
+	padding-bottom: 24px;
+}
+
+.review-label {
+	padding-bottom: 16px;
+	font-weight: 600;
+}
+
+.review-comment {
+	resize: none;
+	width: 100%;
+	min-height: 160px;
+	box-sizing: border-box;
+	padding: 16px;
+	border: 2px solid rgba(0, 0, 0, 0.1);
+	border-radius: 5px;
+}
+
+.review-comment:focus {
+	background: white;
+	border: 2px solid rgba(236, 146, 78, 0.8);
+	outline: none;
+	transition: all 0.3s ease;
+}
+
+.review-contents__btn {
+	text-align: center;
+	padding-bottom: 24px;
+}
+
+.button-submit {
+	width: 168px;
+	padding: 8px;
 }
