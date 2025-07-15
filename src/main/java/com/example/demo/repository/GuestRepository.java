@@ -11,9 +11,11 @@ public interface GuestRepository extends JpaRepository<Guest, Integer> {
 	List<Guest> findByEmailAndPassword(String email, String password);
 
 	//メールアドレスがあるかの判定
-	boolean existsByEmail(String email);
+	boolean existsByIdNotAndEmail(Integer id, String email);
 
 	// メールアドレスの重複チェック用クエリメソッド
 	Optional<Guest> findByEmail(String email);
+
+	boolean existsByIdAndPassword(Integer id, String password);
 
 }

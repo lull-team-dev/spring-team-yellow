@@ -8,8 +8,6 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
-import com.example.demo.validation.UniqueEmail;
-
 public class reserveDto {
 
 	@NotBlank(message = "ユーザー名を入力してください")
@@ -20,7 +18,6 @@ public class reserveDto {
 	@NotBlank(message = "メールアドレスを入力してください")
 	@Email(message = "メールアドレスの形式が正しくありません")
 	@Size(max = 100, message = "メールアドレスは100文字以内で入力してください")
-	@UniqueEmail
 	private String email;
 
 	@NotBlank(message = "電話番号を入力してください")

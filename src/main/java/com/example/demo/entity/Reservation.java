@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 
@@ -53,12 +55,15 @@ public class Reservation {
 
 	//予約日
 	@Column(name = "reservation_on")
-	private LocalDate reservationOn;
+	private LocalDateTime reservationOn;
 
 	//「親（Reservation）に対して行った操作（保存・更新・削除など）を子（ReservData）にもすべて適用する
 	//「親から外された子（孤児）をDBから自動で削除する
 	@OneToMany(mappedBy = "reservation", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<ReservData> reservDatas = new ArrayList<>();
+
+	@OneToOne(mappedBy = "reservation", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Review review;
 
 	//コンストラクタ
 	public Reservation() {
@@ -137,7 +142,7 @@ public class Reservation {
 		return id;
 	}
 
-	public LocalDate getReservationOn() {
+	public LocalDateTime getReservationOn() {
 		return reservationOn;
 	}
 
@@ -152,7 +157,24 @@ public class Reservation {
 	@PrePersist
 	public void prePersist() {
 		if (reservationOn == null) {
-			reservationOn = LocalDate.now();
+			reservationOn = LocalDateTime.now();
 		}
 	}
+
+	public Review getReview() {
+		return review;
+	}
+
+	public void setReview(Review review) {
+		this.review = review;
+	}
+
+	public boolean isReviewedBy(Integer loginGuestId) {
+		return review != null
+				&& review.getDeletedAt() == null
+				&& review.getGuest() != null
+				&& review.getGuest().getId().equals(loginGuestId)
+				&& review.getRating() != null;
+	}
+
 }

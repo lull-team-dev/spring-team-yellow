@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>プライバシーポリシー</title>
+<!-- フォントやアイコンなどの読み込み -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<!-- 共通CSS -->
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/shadow.css">
+<link rel="stylesheet" href="/css/header-footer.css">
+<!--ここまで共通-->
+<link rel="stylesheet" href="/css/privacy.css">
+</head>
+<body>
+	  <header th:replace="header"></header>
+
+	  <main class="policy-container main-shadow">
+	    <section>
+	      <h2>第1条（適用）</h2>
+	      <p>
+	        本規約は、Gran Marina Resort（以下「当ホテル」といいます）が提供する宿泊・サービスに関し、当ホテルと利用者との間の権利義務関係を定めるものです。
+	      </p>
+	    </section>
+
+	    <section>
+	      <h2>第2条（予約）</h2>
+	      <p>
+	        宿泊予約は、公式ウェブサイト、電話、または旅行代理店を通じて行うことができます。予約確定後のキャンセルにはキャンセル料が発生する場合があります。
+	      </p>
+	    </section>
+
+	    <section>
+	      <h2>第3条（キャンセル）</h2>
+	      <p>
+	        宿泊のキャンセルは、ご宿泊予定日の◯日前までにご連絡ください。それ以降のキャンセルには、所定のキャンセル料が発生いたします。
+	      </p>
+	    </section>
+
+	    <section>
+	      <h2>第4条（禁止事項）</h2>
+	      <p>
+	        以下の行為は禁止されます：<br />
+	        ・公序良俗に反する行為<br />
+	        ・他の利用者または当ホテルに不利益を及ぼす行為<br />
+	        ・建物・設備を破損・汚損する行為
+	      </p>
+	    </section>
+
+	    <section>
+	      <h2>第5条（免責事項）</h2>
+	      <p>
+	        当ホテルは、天災地変、不可抗力等によりサービスの提供が困難になった場合、一切の責任を負いません。
+	      </p>
+	    </section>
+
+	    <section>
+	      <h2>第6条（規約の変更）</h2>
+	      <p>
+	        当ホテルは、必要と判断した場合には、利用者に通知することなく本規約を変更することができます。
+	      </p>
+	    </section>
+
+	    <section>
+	      <h2>第7条（準拠法・管轄）</h2>
+	      <p>
+	        本規約は日本法に準拠し、当ホテル所在地を管轄する裁判所を第一審の専属的合意管轄裁判所とします。
+	      </p>
+	    </section>
+	  </main>
+
+	 <footer th:replace="footer"></footer>
+
+</body>
+</html>

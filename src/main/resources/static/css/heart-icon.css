@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+/* 星ボタン（右端） */
+.like-link {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.6em;
+	color: #222;
+	/* 通常は黒 */
+	background: #fff;
+	/* 常に白 */
+	border-radius: 50%;
+	width: 36px;
+	height: 36px;
+	/* box-shadow: 0 1px 3px #555; ← 完全削除、影なし */
+	text-decoration: none;
+	transition: color 0.14s, background 0.13s;
+	border: none;
+	/* 枠線も無し */
+}
+
+/* 選択（お気に入り時）だけ星アイコンを黄色 */
+.fa-solid.fa-heart {
+	color: #FF6666 !important;
+	/* お気に入り時は黄色 */
+}
+
+.fa-regular.fa-heart {
+	color: #FF6666 !important;
+	/* 通常は黒 */
+}
+
+.like-link:hover,
+.like-link:focus {
+	color: #FF6666;
+	/* ホバー時は星がちょっと濃い黄色 */
+	background: #fff;
+	/* 背景は常に白で変化させない */
+}

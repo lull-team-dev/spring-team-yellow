@@ -25,4 +25,9 @@ public class Account {
 		this.name = name;
 	}
 
+	// ログイン状態を確認するメソッド
+	public boolean isLoggedIn() {
+		return id != null;
+	}
+
 }

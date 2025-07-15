@@ -4,28 +4,68 @@
 <head></head>
 <meta charset="UTF-8">
 <title>ログインページ</title>
-<link rel="stylesheet" type="text/css" href="/css/style.css">
+<!-- フォントやアイコンなどの読み込み -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<!-- 共通CSS -->
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/shadow.css">
+<link rel="stylesheet" href="/css/header-footer.css">
+<!--ここまで共通-->
+<link rel="stylesheet" href="/css/login.css">
+
 </head>
 
 <body>
 	<header th:replace="header"></header>
+
+	<header class="main-shadow">
+		<div class="header-box">
+				<div class="left-item">
+					<a href="/hotel" class="logo"><img src="/uploads/images/logo.png" class="logo-img" alt="ロゴ" ></a>
+					<div class="hotel-name dm-serif-display-regular ">Gran Marina Resort</div>
+				</div>
+				<!-- ログイン済み時の表示 -->
+				<div class="right-item"  th:if="${@account.id}">
+					<div class="hamburger-icon" id="hamburger-icon">
+						<span class="hamburger-icon1"></span>
+						<span class="hamburger-icon2"></span>
+						<span class="hamburger-icon3"></span>
+					</div>
+				</div>
+			</div>
+	</header>
+
+	
 	<main class="container">
-		<h3 class="login-title">ログイン</h3>
-		<div class="error-message" >
-			<span th:if="${errorList}" th:each="error:${errorList}" th:text="${error}"></span>
-		</div>
+		<h1 class="login-title">ログイン</h1>
+
 		<form class="login-items" action="/login" method="post">
 			<div class="login-item">
 				<label for="email">メールアドレス</label>
 				<input id="email" type="email" name="email" th:value="${email}" placeholder="×××@gmail.com">
 			</div>
-			<div  class="login-item">
+			<div class="error-box">
+				<span th:if="${emailError}" th:text="${emailError}" class="error-message"></span>
+
+			</div>
+			<div class="login-item">
 				<label for="password">パスワード</label>
 				<input id="password" type="password" name="password" placeholder="abc123">
 			</div>
+
+			<div class="error-box">
+				<span th:if="${passwordError}" th:text="${passwordError}" class="error-message"></span>
+				<span th:if="${loginError}" th:text="${loginError}" class="error-message"></span>
+			</div>
+
 			<button class="login-buttons">ログイン</button>
 			<div class="register-button">
-				<a href="/account/register">新規登録</a>
+				アカウントをお持ちでない方は
+				<a class="a-button" href="/account/register">新規登録</a>
 			</div>
 		</form>
 	</main>

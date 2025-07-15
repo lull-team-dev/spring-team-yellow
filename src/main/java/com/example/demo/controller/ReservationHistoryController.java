@@ -1,3 +1,4 @@
+// ログインのみ
 package com.example.demo.controller;
 
 import java.time.LocalDate;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.Guest;
 import com.example.demo.entity.Reservation;
@@ -34,12 +36,15 @@ public class ReservationHistoryController {
 		List<Reservation> reservationHistorys = reservationRepository.findByGuest(guest);
 
 		model.addAttribute("reservationHistorys", reservationHistorys);
+		model.addAttribute("loginGuestId", guest.getId());
 		return "reservation-history";
 	}
 
 	//
 	@GetMapping("/reservationHistory/{id}")
-	public String detailsReservationHistory(@PathVariable("id") Integer id,
+	public String detailsReservationHistory(
+			@PathVariable("id") Integer id,
+			@RequestParam(required = false) boolean afterReserve,
 			Model model) {
 
 		Guest guest = guestRepository.findById(account.getId()).get();
@@ -57,6 +62,12 @@ public class ReservationHistoryController {
 		model.addAttribute("checkoutDate", checkoutDate);
 		model.addAttribute("reservationHistory", reservationHistory);
 		model.addAttribute("imgList", imgList);
+
+		if (afterReserve) {
+			model.addAttribute("afterReserveText", "予約が完了しました");
+		} else {
+			model.addAttribute("afterReserveText", "予約詳細");
+		}
 
 		return "reservation-detail";
 	}

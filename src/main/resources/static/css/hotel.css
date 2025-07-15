@@ -1,0 +1,529 @@
+/***** 画面全体 *****/
+main{
+	margin:120px 0 0 0;
+}
+
+.main-content-wrapper::after {
+	content: "";
+	display: block;
+	height: 120px; /* フッターの高さ+α */
+}
+
+.hero,
+.hero-slideshow,
+.hero-slide-img,
+.hero-content {
+	z-index: 2 !important;
+}
+
+/***** hero（トップ）*****/
+.hero {
+	height: 88vh;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	color: #555;
+	position: relative;
+	overflow: hidden;
+	background: #000;
+}
+.hero-slideshow {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+}
+.hero-slide-img {
+	width: 100vw;
+	height: 100vh;
+	object-fit: cover;
+	object-position: bottom;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	opacity: 0;
+	transition: opacity 2.2s cubic-bezier(.32, .7, .51, 1.15);
+	z-index: 1;
+}
+.hero-slide-img.active {
+	opacity: 1;
+	z-index: 2;
+}
+.hero-content {
+	opacity: 0;
+	transition: none;
+	z-index: 10;
+	max-width: 800px;
+	padding: 2rem;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 20;
+}
+.hero-content.visible {
+	animation: heroContentFadeIn 1.5s cubic-bezier(.32, .7, .51, 1.15) 0.1s 1 both;
+}
+@keyframes heroContentFadeIn {
+	0% {
+		opacity: 0;
+		transform: translate(-50%, -60%) scale(0.93);
+		filter: blur(8px);
+	}
+	60% {
+		opacity: 1;
+		filter: blur(0);
+		transform: translate(-50%, -50%) scale(1.02);
+	}
+	100% {
+		opacity: 1;
+		filter: blur(0);
+		transform: translate(-50%, -50%) scale(1);
+	}
+}
+.hero-content .logo {
+	width: 180px;
+	max-width: 100%;
+	height: auto;
+	margin: 0 auto 0.5rem auto;
+	display: block;
+}
+.cormorant-garamond-hotel-logo {
+	font-size: 2.5rem;
+	line-height: 1.15;
+	font-weight: 700;
+	letter-spacing: 0.04em;
+	color: #555;
+	text-align: center;
+}
+
+/***** メインラッパー広げる *****/
+.main-content-wrapper,
+.main-content-wrapper.unified-wider {
+	max-width: none;
+	width: 80vw;
+	min-width: 320px;
+	margin: 6rem auto 0;
+	padding: 0;
+}
+
+/***** セクション共通装飾 *****/
+.section {
+	padding: 7rem 0 7rem 0;
+	background: #fff;
+	border-radius: 38px;
+	margin-bottom: 6rem;
+	width: 100%;
+}
+.section h2 {
+	text-align: center;
+	font-size: 3rem;
+	margin-bottom: 2rem;
+	color: #555;
+	position: relative;
+	letter-spacing: 0.06em;
+	font-weight: 700;
+}
+.section h2::after {
+	content: '';
+	position: absolute;
+	bottom: -15px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 80px;
+	height: 5px;
+	background: #e77611;
+	border-radius: 2px;
+}
+.section-subtitle {
+	text-align: center;
+	font-size: 1.25rem;
+	color: #555;
+	margin-bottom: 5rem;
+	letter-spacing: 0.03em;
+}
+
+/***** ホテル概要 *****/
+.about-content {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.about-text {
+	font-size: 1.3rem;
+	line-height: 2.2;
+	color: #555;
+	padding: 0 3vw 0 4vw;
+	letter-spacing: 0.01em;
+	max-width: 630px;
+}
+.about-image {
+	position: relative;
+	overflow: visible;
+	border-radius: 32px;
+	box-shadow: 0 10px 44px 4px rgba(190, 180, 150, 0.08);
+	background: #fff;
+	padding: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-right: 4vw;
+}
+.about-image img {
+	width: 100%;
+	max-width: 880px;
+	height: 570px;
+	object-fit: cover;
+	border-radius: 32px;
+	box-shadow: 0 10px 44px 4px rgba(190, 180, 150, 0.08);
+	display: block;
+	margin: 0 auto;
+}
+.about-image button {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	background: none;
+	color: #fff;
+	font-size: 2.8rem;
+	border: none;
+	border-radius: 50%;
+	width: auto;
+	height: auto;
+	cursor: pointer;
+	z-index: 2;
+	box-shadow: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0 0.08em;
+	transition: color 0.12s, opacity 0.12s;
+	opacity: 0.83;
+}
+.about-image button:hover {
+	color: #c0c0c0;
+	opacity: 1;
+}
+
+#prev-btn {
+	left: 22px;
+}
+#next-btn {
+	right: 22px;
+}
+@media (max-width: 1200px) {
+	.about-content {
+		flex-direction: column;
+		gap: 3.5rem;
+	}
+	.about-text {
+		max-width: 98vw;
+		padding: 0 4vw;
+	}
+	.about-image {
+		margin-right: 0;
+	}
+	.about-image img {
+		max-width: 98vw;
+		height: 44vw;
+		min-height: 180px;
+	}
+}
+
+/***** 客室タイプ *****/
+.rooms-grid {
+	display: flex;
+	gap: 4vw;
+	justify-content: center;
+	margin: 4.5rem 2rem 0 2rem;
+}
+.room-card {
+	background: #fff;
+	border-radius: 36px;
+	padding: 2.8rem 2.3rem 3rem 2.3rem;
+	text-align: left;
+	position: relative;
+	width: 550px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 2.2rem;
+}
+.room-image {
+	width: 100%;
+	max-width: 540px;
+	margin-bottom: 1.6rem;
+	border-radius: 28px;
+	overflow: hidden;
+	box-shadow: 0 6px 18px 2px rgba(170, 160, 120, 0.11);
+	background: #f3efe7;
+	height: 360px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.room-image img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 28px;
+}
+.room-content h3 {
+	font-size: 1.45rem;
+	margin-bottom: 1.4rem;
+	color: #555;
+	font-weight: 600;
+	letter-spacing: 0.03em;
+}
+.room-content p {
+	color: #555;
+	margin-bottom: 1.8rem;
+	line-height: 2.1;
+	font-size: 1.07rem;
+}
+.room-price {
+	font-size: 1.19rem;
+	font-weight: bold;
+	color: #e77611;
+	margin-bottom: 1.1rem;
+}
+.search-rooms-btn-wrap {
+	text-align: center;
+	margin-top: 2.5rem;
+	width: 100%;
+}
+
+/***** 食事カード *****/
+.dining-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 5vw;
+	margin-top: 4rem;
+	padding: 0 2vw;
+	box-sizing: border-box;
+}
+.dining-card {
+	background: #fff;
+	border-radius: 34px;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 2.8rem 2.2rem 3rem 2.2rem;
+	min-height: 660px;
+	transition: box-shadow 0.18s;
+}
+.dining-image {
+	width: 100%;
+	max-width: 680px;
+	height: 420px;
+	margin: 0 auto 2.3rem auto;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 26px;
+	box-shadow: 0 8px 26px rgba(200, 170, 110, 0.10);
+	background: #f5f1ea;
+}
+.dining-image img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 26px;
+	display: block;
+}
+.dining-content {
+	text-align: left;
+	width: 100%;
+	padding: 0 1vw;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+.dining-content h3 {
+	font-size: 1.72rem;
+	color: #555;
+	margin-bottom: 1.15rem;
+	letter-spacing: 0.04em;
+	font-weight: 700;
+	line-height: 1.1;
+}
+.dining-content p {
+	font-size: 1.19rem;
+	color: #555;
+	line-height: 2.2;
+	margin-bottom: 0;
+	letter-spacing: 0.01em;
+}
+@media (max-width: 1100px) {
+	.dining-grid {
+		grid-template-columns: 1fr;
+	}
+	.dining-card {
+		min-height: 380px;
+	}
+	.dining-image {
+		max-width: 96vw;
+		height: 240px;
+	}
+	.dining-content {
+		padding: 0 3vw;
+	}
+}
+@media (max-width: 700px) {
+	.dining-card {
+		min-height: 210px;
+		padding: 1.3rem 0.7rem 1.3rem 0.7rem;
+	}
+	.dining-image {
+		height: 120px;
+	}
+	.dining-content h3 {
+		font-size: 1.23rem;
+	}
+	.dining-content p {
+		font-size: 1rem;
+	}
+}
+
+/***** アメニティ *****/
+.amenities-center-wrap {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0 2vw;
+	box-sizing: border-box;
+}
+.amenities-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 3.8vw 2.7vw;
+	width: 100%;
+	max-width: 1450px;
+	margin: 0 auto;
+	justify-items: center;
+	align-items: stretch;
+	box-sizing: border-box;
+}
+.amenity-card {
+	background: #fff;
+	border-radius: 30px;
+	padding: 2.5rem 1.6rem 2.6rem 1.6rem;
+	min-height: 270px;
+	max-width: 480px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 0 auto;
+	transition: box-shadow 0.16s;
+}
+.amenity-icon {
+	font-size: 3.1rem;
+	color: #ff8555;
+	margin-bottom: 1.6rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.amenity-title {
+	font-size: 1.28rem;
+	font-weight: 700;
+	letter-spacing: 0.07em;
+	margin-bottom: 0.85rem;
+	color: #555;
+	text-align: center;
+}
+.amenity-desc {
+	font-size: 1.13rem;
+	color: #555;
+	line-height: 1.92;
+	text-align: center;
+	margin: 0;
+}
+@media (max-width: 1100px) {
+	.amenities-grid {
+		grid-template-columns: 1fr 1fr;
+		gap: 3vw 3vw;
+	}
+}
+@media (max-width: 700px) {
+	.amenities-grid {
+		grid-template-columns: 1fr;
+		gap: 2vw;
+	}
+	.amenity-card {
+		padding: 1.3rem 0.8rem 1.3rem 0.8rem;
+		min-height: 120px;
+	}
+	.amenity-title {
+		font-size: 1.02rem;
+	}
+	.amenity-desc {
+		font-size: 0.98rem;
+	}
+	.amenity-icon {
+		font-size: 2.2rem;
+	}
+}
+
+/***** ===== アクセス（GoogleMap） ===== *****/
+.access-map-wrap {
+	margin: 0 auto;
+	margin-top: 32px;
+	padding: 2.5rem 2.5rem 2.2rem 2.5rem;
+	background: #fff;
+	border-radius: 24px;
+	max-width: 1060px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	box-sizing: border-box;
+}
+iframe.access-map {
+	width: 100%;
+	max-width: 900px;
+	height: 420px;
+	border: none;
+	border-radius: 14px;
+	box-shadow: 0 2px 7px rgba(0,0,0,0.10);
+	background: #eee;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 900px) {
+	.access-map-wrap {
+		padding: 7vw 3vw 7vw 3vw;
+		max-width: 99vw;
+	}
+	iframe.access-map {
+		height: 200px;
+		max-width: 98vw;
+	}
+}
+@media (max-width: 600px) {
+	.section {
+		padding: 1.2rem 0;
+		border-radius: 18px;
+	}
+	.access-map-wrap {
+		padding: 5vw 2vw;
+		border-radius: 14px;
+	}
+	iframe.access-map {
+		height: 140px;
+		border-radius: 8px;
+	}
+}
+
+/* 必要なら他セクション用レスポンシブも今まで通り併用OK！ */

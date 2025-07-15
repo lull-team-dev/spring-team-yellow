@@ -1,3 +1,4 @@
+// ログアウト状態でもOK
 package com.example.demo.controller;
 
 import java.util.ArrayList;
@@ -20,16 +21,27 @@ import com.example.demo.repository.GuestRepository;
 public class LoginController {
 
 	@Autowired
+	GuestRepository guestRepository;
+	@Autowired
 	HttpSession session;
 	@Autowired
 	Account account;
-	@Autowired
-	GuestRepository guestRepository;
 
 	//ログイン画面の表示
 	@GetMapping({ "/", "/login", "/logout" })
-	private String loginIndex() {
+	private String loginIndex(
+			@RequestParam(defaultValue = "") String error,
+			HttpSession session,
+			Model model) {
+
+		// セッションが存在する場合のみ破棄する
 		session.invalidate();
+
+		// クエリパラメータで"notLoggedIn"を受け取った場合
+		if (error.equals("notLoggedIn")) {
+			model.addAttribute("error", "ログインしてください");
+		}
+
 		return "login";
 	}
 
@@ -40,20 +52,27 @@ public class LoginController {
 			Model model) {
 
 		//バリデーション処理
+		boolean hasError = false;
+
 		List<String> errorList = new ArrayList<>();
 		if (password.isEmpty()) {
-			errorList.add("パスワードは必須です");
+			model.addAttribute("passwordError", "パスワードは必須です");
+			hasError = true;
 		}
 		if (email.isEmpty()) {
-			errorList.add("メールアドレスは必須です");
+			model.addAttribute("emailError", "メールアドレスは必須です");
+			hasError = true;
 		}
-
 		List<Guest> guests = guestRepository.findByEmailAndPassword(email, password);
 		if ((!email.isEmpty() && !password.isEmpty()) && guests.size() <= 0) {
-			errorList.add("メールアドレスまたはパスワードが違います");
+			model.addAttribute("loginError", "メールアドレスまたはパスワードが違います");
+			hasError = true;
 		}
-		if (errorList.size() > 0) {
-			model.addAttribute("errorList", errorList);
+		//		if (errorList.size() > 0) {
+		//			model.addAttribute("errorList", errorList);
+		//			return "login";
+		//		}
+		if (hasError) {
 			return "login";
 		}
 
