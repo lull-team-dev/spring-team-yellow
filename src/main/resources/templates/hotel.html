@@ -4,202 +4,212 @@
 <head>
 	<meta charset="UTF-8">
 	<title>宿へようこそ</title>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-	<link rel="stylesheet" href="/css/style.css">
-	<link rel="stylesheet" href="/css/header-footer.css">
+	<!-- フォントやアイコンなどの読み込み -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+	<!-- 共通CSS -->
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/shadow.css">
+	<link rel="stylesheet" href="/css/button.css">
+	<link rel="stylesheet" href="/css/header-footer.css">
+	<!--ここまで共通-->
 	<link rel="stylesheet" href="/css/hotel.css">
 </head>
 
 <body style="background: #fff">
 	<header th:replace="header"></header>
 
-	<section class="hero">
-		<div class="hero-slideshow">
-			<img class="hero-slide-img active" src="/uploads/images/underthesea.jpg" alt="海辺1">
-			<img class="hero-slide-img" src="/uploads/images/hotel.png" alt="海辺2">
-			<img class="hero-slide-img" src="/uploads/images/Crab.png" alt="海辺3">
-			<img class="hero-slide-img" src="/uploads/images/front.png" alt="海辺4">
-		</div>
-		<div class="hero-content" id="main-hero-content">
-			<img class="logo" src="/uploads/images/logo.png">
-			<h2 class="cormorant-garamond-hotel-logo">Gran Marina Resort</h2>
-		</div>
-	</section>
-
-	<!-- ======= main-content-wrapper以降 ======= -->
-	<div class="main-content-wrapper unified-wider">
-		<!-- ホテル概要 -->
-		<section class="section">
-			<div class="about">
+	<!-- =================== メインビジュアル（スライドショー付き） =================== -->
+	<main>
+		<section class="hero">
+			<div class="hero-slideshow">
+				<img class="hero-slide-img active" src="/uploads/images/underthesea.jpg" alt="海辺1">
+				<img class="hero-slide-img" src="/uploads/images/hotel.png" alt="海辺2">
+				<img class="hero-slide-img" src="/uploads/images/Crab.png" alt="海辺3">
+				<img class="hero-slide-img" src="/uploads/images/front.png" alt="海辺4">
+			</div>
+			<div class="hero-content" id="main-hero-content">
+				<img class="logo" src="/uploads/images/logo.png">
 				<h2 class="cormorant-garamond-hotel-logo">Gran Marina Resort</h2>
-				<p class="section-subtitle">海の音を聞きながら、忘れられない思い出を</p>
-				<div class="about-content">
-					<div class="about-text">
-						<p>美しい海岸線に佇むGran Marina Resortホテルは、洗練されたサービスと心温まるおもてなしで、お客様に特別なひとときをお過ごしいただけます。</p>
-						<p>海の眺望を楽しめる客室、新鮮な海の幸を味わえるレストラン、そして心身ともにリラックスできる様々な施設をご用意しております。</p>
-						<p>大切な方との記念日や、日常から離れた特別な時間を、私たちと一緒にお過ごしください。</p>
-					</div>
-					<div class="about-image">
-						<img id="room-img" src="/uploads/images/hotel.png" alt="ホテル外観">
-						<button id="prev-btn" onclick="prev()">＜</button>
-						<button id="next-btn" onclick="next()">＞</button>
-					</div>
-				</div>
 			</div>
 		</section>
 
-		<!-- 客室タイプ -->
-		<section class="section">
-			<div class="rooms">
-				<h2>客室タイプ</h2>
-				<p class="section-subtitle">お客様のご要望に合わせた3つのお部屋をご用意</p>
-				<div class="rooms-grid">
-					<div class="room-card">
-						<div class="room-image">
-							<img src="/uploads/images/sweetroom.png" alt="スイートルーム">
+		<!-- ======= main-content-wrapper以降 ======= -->
+		<div class="main-content-wrapper unified-wider">
+			<!-- ホテル概要 -->
+			<section class="section main-shadow">
+				<div class="about">
+					<h2 class="cormorant-garamond-hotel-logo" style="color: #222; text-shadow:1px 1px 0px #fff;">Gran Marina Resort</h2>
+					<p class="section-subtitle">海の音を聞きながら、忘れられない思い出を</p>
+					<div class="about-content">
+						<div class="about-text">
+							<p>美しい海岸線に佇むGran Marina Resortホテルは、洗練されたサービスと心温まるおもてなしで、お客様に特別なひとときをお過ごしいただけます。</p>
+							<p>海の眺望を楽しめる客室、新鮮な海の幸を味わえるレストラン、そして心身ともにリラックスできる様々な施設をご用意しております。</p>
+							<p>大切な方との記念日や、日常から離れた特別な時間を、私たちと一緒にお過ごしください。</p>
 						</div>
-						<div class="room-content">
-							<h3>スイートルーム</h3>
-							<p>最高級の設備と広々とした空間。特別な日にふさわしい贅沢なお部屋です。オーシャンビューの専用バルコニー付き。</p>
-							<div class="room-price">¥35,000〜 / 泊</div>
-						</div>
-					</div>
-					<div class="room-card">
-						<div class="room-image">
-							<img src="/uploads/images/doubleroom.png" alt="ダブルルーム">
-						</div>
-						<div class="room-content">
-							<h3>ダブルルーム</h3>
-							<p>カップルやご夫婦に最適な落ち着いた雰囲気のお部屋。海の見える窓から自然光が差し込む明るい空間。</p>
-							<div class="room-price">¥18,000〜 / 泊</div>
-						</div>
-					</div>
-					<div class="room-card">
-						<div class="room-image">
-							<img src="/uploads/images/singleroom.png" alt="シングルルーム">
-						</div>
-						<div class="room-content">
-							<h3>シングルルーム</h3>
-							<p>お一人でのご滞在に最適なコンパクトながらも機能的なお部屋。ビジネスや一人旅におすすめです。</p>
-							<div class="room-price">¥12,000〜 / 泊</div>
+						<div class="about-image">
+							<img id="room-img" src="/uploads/images/hotel.png" alt="ホテル外観">
+							<button id="prev-btn" onclick="prev()">＜</button>
+							<button id="next-btn" onclick="next()">＞</button>
 						</div>
 					</div>
 				</div>
-				<div class="search-rooms-btn-wrap">
-					<a href="/room" class="search-rooms-btn">客室を検索する</a>
-				</div>
-			</div>
-		</section>
+			</section>
 
-		<!-- お食事 -->
-		<section class="section">
-			<div class="dining">
-				<h2>お食事</h2>
-				<p class="section-subtitle">海の恵みを活かした美味しい食事をお楽しみください</p>
-				<div class="dining-grid">
-					<div class="dining-card">
-						<div class="dining-image"><img src="/uploads/images/buffet.png"></div>
-						<div class="dining-content">
-							<h3>朝食ビュッフェ</h3>
-							<p>新鮮な海の幸から地元の食材まで、豊富な種類のお料理をビュッフェスタイルでご用意。海を眺めながら、一日の始まりを彩る美味しい朝食をお楽しみください。</p>
+			<!-- 客室タイプ -->
+			<section class="section main-shadow">
+				<div class="rooms">
+					<h2>客室タイプ</h2>
+					<p class="section-subtitle">お客様のご要望に合わせた3つのお部屋をご用意</p>
+					<div class="rooms-grid">
+						<div class="room-card main-shadow">
+							<div class="room-image">
+								<img src="/uploads/images/sweetroom.png" alt="スイートルーム">
+							</div>
+							<div class="room-content">
+								<h3>スイートルーム</h3>
+								<p>最高級の設備と広々とした空間。特別な日にふさわしい贅沢なお部屋です。オーシャンビューの専用バルコニー付き。</p>
+								<div class="room-price">¥52,000〜 / 泊</div>
+							</div>
+						</div>
+						<div class="room-card main-shadow">
+							<div class="room-image">
+								<img src="/uploads/images/doubleroom.png" alt="ダブルルーム">
+							</div>
+							<div class="room-content">
+								<h3>ダブルルーム</h3>
+								<p>カップルやご夫婦に最適な落ち着いた雰囲気のお部屋。海の見える窓から自然光が差し込む明るい空間。</p>
+								<div class="room-price">¥43,000〜 / 泊</div>
+							</div>
+						</div>
+						<div class="room-card main-shadow">
+							<div class="room-image">
+								<img src="/uploads/images/singleroom.png" alt="シングルルーム">
+							</div>
+							<div class="room-content">
+								<h3>シングルルーム</h3>
+								<p>お一人でのご滞在に最適なコンパクトながらも機能的なお部屋。ビジネスや一人旅におすすめです。</p>
+								<div class="room-price">¥41,000〜 / 泊</div>
+							</div>
 						</div>
 					</div>
-					<div class="dining-card">
-						<div class="dining-image"><img src="/uploads/images/bbq.png"></div>
-						<div class="dining-content">
-							<h3>夕食BBQ</h3>
-							<p>海辺のテラスで楽しむ本格BBQ。新鮮な海鮮や厳選された肉類を、潮風を感じながらお楽しみいただけます。夕日を眺めながらの特別なひとときを。</p>
+					<div class="search-rooms-btn-wrap">
+						<!--<a href="/room" class="search-rooms-btn button">客室を検索する</a>-->
+						<a href="/room" class="button">客室を検索する</a>
+					</div>
+				</div>
+			</section>
+
+			<!-- お食事 -->
+			<section class="section main-shadow">
+				<div class="dining">
+					<h2>お食事</h2>
+					<p class="section-subtitle">海の恵みを活かした美味しい食事をお楽しみください</p>
+					<div class="dining-grid">
+						<div class="dining-card main-shadow">
+							<div class="dining-image"><img src="/uploads/images/buffet.png"></div>
+							<div class="dining-content">
+								<h3>朝食ビュッフェ</h3>
+								<p>新鮮な海の幸から地元の食材まで、豊富な種類のお料理をビュッフェスタイルでご用意。海を眺めながら、一日の始まりを彩る美味しい朝食をお楽しみください。</p>
+							</div>
+						</div>
+						<div class="dining-card main-shadow">
+							<div class="dining-image"><img src="/uploads/images/bbq.png"></div>
+							<div class="dining-content">
+								<h3>夕食BBQ</h3>
+								<p>海辺のテラスで楽しむ本格BBQ。新鮮な海鮮や厳選された肉類を、潮風を感じながらお楽しみいただけます。夕日を眺めながらの特別なひとときを。</p>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</section>
+			</section>
 
-		<!-- 特典・サービス -->
-		<section class="section amenities-section">
-			<h2>特典・サービス</h2>
-			<p class="section-subtitle">お客様の快適なご滞在をサポートします</p>
-			<div class="amenities-center-wrap">
-				<div class="amenities-grid">
-					<div class="amenity-card">
-						<div class="amenity-icon"><i class="fa-solid fa-wifi"></i></div>
-						<div class="amenity-title">WI-Fi</div>
-						<div class="amenity-desc">全館で無料Wi-Fiをご利用いただけます。快適なネット環境でお過ごしください。</div>
-					</div>
-					<div class="amenity-card">
-						<div class="amenity-icon"><i class="fa-solid fa-soap"></i></div>
-						<div class="amenity-title">アメニティ</div>
-						<div class="amenity-desc">歯ブラシ・タオル・シャンプー等、各種アメニティを全室にご用意しております。</div>
-					</div>
-					<div class="amenity-card">
-						<div class="amenity-icon"><i class="fa-solid fa-broom"></i></div>
-						<div class="amenity-title">ハウスキーピング</div>
-						<div class="amenity-desc">毎日お部屋を清掃し、常に清潔な空間をご提供いたします。</div>
-					</div>
-					<div class="amenity-card">
-						<div class="amenity-icon"><i class="fa-solid fa-shirt"></i></div>
-						<div class="amenity-title">ランドリー</div>
-						<div class="amenity-desc">有料ランドリーサービスをご利用いただけます。お気軽にスタッフまでご相談ください。</div>
-					</div>
-					<div class="amenity-card">
-						<div class="amenity-icon">
-							<span class="fa-stack" style="font-size: 2.5rem;">
-								<i class="fa-solid fa-smoking fa-stack-1x"></i>
-								<i class="fa-solid fa-ban fa-stack-2x" style="color:#ff8555; opacity:.9"></i>
-							</span>
+			<!-- 特典・サービス -->
+			<section class="section amenities-section main-shadow">
+				<h2>特典・サービス</h2>
+				<p class="section-subtitle">お客様の快適なご滞在をサポートします</p>
+				<div class="amenities-center-wrap">
+					<div class="amenities-grid">
+						<div class="amenity-card main-shadow">
+							<div class="amenity-icon"><i class="fa-solid fa-wifi"></i></div>
+							<div class="amenity-title">WI-Fi</div>
+							<div class="amenity-desc">全館で無料Wi-Fiをご利用いただけます。快適なネット環境でお過ごしください。</div>
 						</div>
-						<div class="amenity-title">禁煙</div>
-						<div class="amenity-desc">当館は全館禁煙です。皆さまに快適な空間をお届けします。</div>
-					</div>
-					<div class="amenity-card">
-						<div class="amenity-icon"><i class="fa-solid fa-umbrella-beach"></i></div>
-						<div class="amenity-title">プライベートビーチ</div>
-						<div class="amenity-desc">ご宿泊者様専用のプライベートビーチで、ゆったりとお過ごしいただけます。</div>
-					</div>
-					<div class="amenity-card">
-						<div class="amenity-icon"><i class="fa-solid fa-ship"></i></div>
-						<div class="amenity-title">クルーザーツアー</div>
-						<div class="amenity-desc">豪華クルーザーで南の海をクルージング。夕焼けや星空のクルーズもご案内。</div>
-					</div>
-					<div class="amenity-card">
-						<div class="amenity-icon"><i class="fa-solid fa-user-tie"></i></div>
-						<div class="amenity-title">専属バトラー</div>
-						<div class="amenity-desc">お客様一人ひとりに専属バトラーが付き、快適な滞在をお手伝いします。</div>
-					</div>
-					<div class="amenity-card">
-						<div class="amenity-icon"><i class="fa-solid fa-concierge-bell"></i></div>
-						<div class="amenity-title">コンシェルジュサービス</div>
-						<div class="amenity-desc">観光やお食事など、旅のご相談はいつでもコンシェルジュへ。</div>
-					</div>
-					<div class="amenity-card">
-						<div class="amenity-icon"><i class="fa-solid fa-martini-glass-citrus"></i></div>
-						<div class="amenity-title">バー＆ラウンジ</div>
-						<div class="amenity-desc">地元産のドリンクやカクテルを楽しめる大人の空間。</div>
-					</div>
-					<div class="amenity-card">
-						<div class="amenity-icon"><i class="fa-solid fa-star"></i></div>
-						<div class="amenity-title">星空観察</div>
-						<div class="amenity-desc">満天の星空をテラスやビーチで。望遠鏡・星空ガイドもご用意。</div>
+						<div class="amenity-card main-shadow">
+							<div class="amenity-icon"><i class="fa-solid fa-soap"></i></div>
+							<div class="amenity-title">アメニティ</div>
+							<div class="amenity-desc">歯ブラシ・タオル・シャンプー等、各種アメニティを全室にご用意しております。</div>
+						</div>
+						<div class="amenity-card main-shadow">
+							<div class="amenity-icon"><i class="fa-solid fa-broom"></i></div>
+							<div class="amenity-title">ハウスキーピング</div>
+							<div class="amenity-desc">毎日お部屋を清掃し、常に清潔な空間をご提供いたします。</div>
+						</div>
+						<div class="amenity-card main-shadow">
+							<div class="amenity-icon"><i class="fa-solid fa-shirt"></i></div>
+							<div class="amenity-title">ランドリー</div>
+							<div class="amenity-desc">有料ランドリーサービスをご利用いただけます。お気軽にスタッフまでご相談ください。</div>
+						</div>
+						<div class="amenity-card main-shadow">
+							<div class="amenity-icon">
+								<span class="fa-stack" style="font-size: 2.5rem;">
+									<i class="fa-solid fa-smoking fa-stack-1x"></i>
+									<i class="fa-solid fa-ban fa-stack-2x" style="color:#ff8555; opacity:.9"></i>
+								</span>
+							</div>
+							<div class="amenity-title">禁煙</div>
+							<div class="amenity-desc">当館は全館禁煙です。皆さまに快適な空間をお届けします。</div>
+						</div>
+						<div class="amenity-card main-shadow">
+							<div class="amenity-icon"><i class="fa-solid fa-umbrella-beach"></i></div>
+							<div class="amenity-title">プライベートビーチ</div>
+							<div class="amenity-desc">ご宿泊者様専用のプライベートビーチで、ゆったりとお過ごしいただけます。</div>
+						</div>
+						<div class="amenity-card main-shadow">
+							<div class="amenity-icon"><i class="fa-solid fa-ship"></i></div>
+							<div class="amenity-title">クルーザーツアー</div>
+							<div class="amenity-desc">豪華クルーザーで南の海をクルージング。夕焼けや星空のクルーズもご案内。</div>
+						</div>
+						<div class="amenity-card main-shadow">
+							<div class="amenity-icon"><i class="fa-solid fa-user-tie"></i></div>
+							<div class="amenity-title">専属バトラー</div>
+							<div class="amenity-desc">お客様一人ひとりに専属バトラーが付き、快適な滞在をお手伝いします。</div>
+						</div>
+						<div class="amenity-card main-shadow">
+							<div class="amenity-icon"><i class="fa-solid fa-concierge-bell"></i></div>
+							<div class="amenity-title">コンシェルジュサービス</div>
+							<div class="amenity-desc">観光やお食事など、旅のご相談はいつでもコンシェルジュへ。</div>
+						</div>
+						<div class="amenity-card main-shadow">
+							<div class="amenity-icon"><i class="fa-solid fa-martini-glass-citrus"></i></div>
+							<div class="amenity-title">バー＆ラウンジ</div>
+							<div class="amenity-desc">地元産のドリンクやカクテルを楽しめる大人の空間。</div>
+						</div>
+						<div class="amenity-card main-shadow">
+							<div class="amenity-icon"><i class="fa-solid fa-star"></i></div>
+							<div class="amenity-title">星空観察</div>
+							<div class="amenity-desc">満天の星空をテラスやビーチで。望遠鏡・星空ガイドもご用意。</div>
+						</div>
 					</div>
 				</div>
-			</div>
-		</section>
+			</section>
 
 
-		<!-- アクセスセクション -->
-		<section class="section">
-			<h2>アクセス</h2>
-			<p class="section-subtitle">美しい南海に浮かぶ沖ノ鳥島に位置しています</p>
-			<div class="access-map-wrap">
-				<iframe class="access-map"
-					src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3327.9622024305577!2d136.08508421535136!3d20.425700986284164!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x345f35c7f97b7b87%3A0x165c06d13d3203cf!2z5b6h5a2m6aeF5bSO!5e0!3m2!1sja!2sjp!4v1719903724968!5m2!1sja!2sjp"
-					allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-			</div>
-		</section>
-
-
-	</div>
+			<!-- アクセスセクション -->
+			<section class="section main-shadow">
+				<h2>アクセス</h2>
+				<p class="section-subtitle">美しい南海に浮かぶ沖ノ鳥島に位置しています</p>
+				<div class="access-map-wrap">
+					<iframe class="access-map"
+						src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3327.9622024305577!2d136.08508421535136!3d20.425700986284164!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x345f35c7f97b7b87%3A0x165c06d13d3203cf!2z5b6h5a2m6aeF5bSO!5e0!3m2!1sja!2sjp!4v1719903724968!5m2!1sja!2sjp"
+						allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+				</div>
+			</section>
+		</div>
+	</main>
 	<!-- ▲ wider-sectionsここまで -->
 	<footer th:replace="footer"></footer>
 

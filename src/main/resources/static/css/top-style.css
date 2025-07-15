@@ -203,179 +203,6 @@
 	width: 100%;
 }
 
-/* --- カレンダー --- */
-.calendar-group {
-	margin-bottom: 18px;
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	gap: 8px;
-	width: 100%;
-}
-
-.calendar-label-row {
-	display: flex;
-	align-items: center;
-	gap: 6px;
-	margin-bottom: 6px;
-}
-
-.calendar-input-row {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	gap: 28px;
-	width: 100%;
-	max-width: 620px;
-	margin: 0 auto;
-}
-
-.calendar-tilde {
-	font-size: 20px;
-	color: #888;
-	margin: 0 5px;
-	font-weight: 700;
-}
-
-.calendar-input-wrap {
-	position: relative;
-	width: 190px;
-}
-
-.calendar-input-wrap .material-symbols-outlined {
-	position: absolute;
-	left: 18px;
-	top: 53%;
-	transform: translateY(-50%);
-	font-size: 22px;
-	color: #e77611;
-	pointer-events: none;
-}
-
-.calendar-input-wrap input[type="text"] {
-	width: 100%;
-	background: #faf7f0;
-	font-size: 15px;
-	border: 1.3px solid #e77611;
-	border-radius: 14px;
-	text-align: left;
-	padding: 0.7em 1.2em 0.7em 2.6em;
-	color: #565656;
-	letter-spacing: 0.05em;
-	box-sizing: border-box;
-	margin: 0;
-}
-
-/* --- カレンダー本体（input直下絶対位置！）--- */
-#calendarArea {
-	position: absolute;
-	left: 0;
-	right: 0;
-	top: 115%;
-	z-index: 99;
-	width: 570px;
-	background: #fff;
-	border-radius: 18px;
-	box-shadow: 0 2px 10px #555;
-	margin: 0 auto;
-	padding: 24px 28px 22px 28px;
-	display: none;
-}
-
-#calendar {
-	display: flex;
-	gap: 32px;
-	justify-content: center;
-	align-items: flex-start;
-}
-
-.calendar-nav-row {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	gap: 0;
-	width: 100%;
-	margin-bottom: 14px;
-}
-
-.calendar-nav-btn {
-	background: #e77611;
-	color: #fff;
-	border: none;
-	border-radius: 14px;
-	font-size: 26px;
-	width: 44px;
-	height: 44px;
-	box-shadow: 0 1px 4px #555;
-	cursor: pointer;
-	transition: 0.12s;
-}
-
-.calendar-nav-btn[disabled] {
-	visibility: hidden;
-}
-
-.calendar-nav-space {
-	flex: 1;
-}
-
-#closeCalendar {
-	display: block;
-	margin: 26px auto 0 auto;
-	background: #e77611;
-	color: #fff;
-	border: none;
-	padding: 0.7em 2.4em;
-	border-radius: 20px;
-	font-size: 18px;
-	font-weight: 600;
-	cursor: pointer;
-	letter-spacing: 0.04em;
-	transition: background 0.13s;
-}
-
-#closeCalendar:hover {
-	background: #f8b550;
-}
-
-.week {
-	padding: 5px;
-}
-
-.is-disabled {
-	color: #ccc;
-}
-
-.input-active {
-	background-color: #ccc !important;
-}
-
-.selected-checkin {
-	background: #e77611;
-	color: #fff !important;
-	border-top-left-radius: 50%;
-	border-bottom-left-radius: 50%;
-	font-weight: bold;
-}
-
-.selected-checkout {
-	background: #e77611;
-	color: #fff !important;
-	border-top-right-radius: 50%;
-	border-bottom-right-radius: 50%;
-	font-weight: bold;
-}
-
-.selected-between {
-	background: #e77611;
-	color: #fff;
-	border-radius: 0;
-}
-
-.search-btn {
-	margin-top: 30px;
-}
-
 /* ==============================
    客室リスト・ルームカード関連のCSS
    ============================== */
@@ -405,3 +232,13 @@
 	font-weight: 500;
 	text-align: center;
 }
+
+.search-nothing{
+	text-align: center;
+}
+
+.search-logo{
+	width: 250px;
+}
+
+

@@ -57,7 +57,7 @@
 					<div class="room-amenities main-shadow">
 						<div class="room-type" th:text="${type.typeName}"></div>
 						<div class="room-price">税・サービス料込み
-							<p th:text="${room.price} + '円~'"></p>
+							<p th:text="${#numbers.formatInteger(room.price, 3, 'COMMA')} + '円~'"></p>
 						</div>
 						<div class="facility-section">
 							<div class="section-title">●お部屋の設備</div>
@@ -97,7 +97,7 @@
 								</div>
 								<div class="plan-detile">
 									<p class="plan-desc" th:text="${plan.details}"></p>
-									<div class="plan-price" th:text="${plan.calcTotalPrice(room.price)} + '円 /人'"></div>
+									<div class="plan-price" th:text="${#numbers.formatInteger(plan.calcTotalPrice(room.price), 3, 'COMMA')} + '円 /人'"></div>
 								</div>
 							</button>
 						</form>

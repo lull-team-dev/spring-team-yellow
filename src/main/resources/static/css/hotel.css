@@ -1,4 +1,8 @@
 /***** 画面全体 *****/
+main{
+	margin:120px 0 0 0;
+}
+
 .main-content-wrapper::after {
 	content: "";
 	display: block;
@@ -14,7 +18,8 @@
 
 /***** hero（トップ）*****/
 .hero {
-	height: 100vh;
+	height: 88vh;
+	width: 100%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -38,6 +43,7 @@
 	width: 100vw;
 	height: 100vh;
 	object-fit: cover;
+	object-position: bottom;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -84,21 +90,19 @@
 	}
 }
 .hero-content .logo {
-	width: 260px;
+	width: 180px;
 	max-width: 100%;
 	height: auto;
-	margin: 0 auto 1.7rem auto;
+	margin: 0 auto 0.5rem auto;
 	display: block;
 }
 .cormorant-garamond-hotel-logo {
-	font-size: 2.9rem;
+	font-size: 2.5rem;
 	line-height: 1.15;
 	font-weight: 700;
 	letter-spacing: 0.04em;
-	color: #2d2016;
-	margin-bottom: 0.5rem;
+	color: #555;
 	text-align: center;
-	font-family: 'DM Serif Display', 'Cormorant Garamond', serif;
 }
 
 /***** メインラッパー広げる *****/
@@ -107,7 +111,7 @@
 	max-width: none;
 	width: 80vw;
 	min-width: 320px;
-	margin: 0 auto;
+	margin: 6rem auto 0;
 	padding: 0;
 }
 
@@ -116,7 +120,6 @@
 	padding: 7rem 0 7rem 0;
 	background: #fff;
 	border-radius: 38px;
-	box-shadow: 0 10px 36px rgba(0, 0, 0, 0.05);
 	margin-bottom: 6rem;
 	width: 100%;
 }
@@ -124,10 +127,9 @@
 	text-align: center;
 	font-size: 3rem;
 	margin-bottom: 2rem;
-	color: #312c26;
+	color: #555;
 	position: relative;
 	letter-spacing: 0.06em;
-	font-family: 'DM Serif Display', serif;
 	font-weight: 700;
 }
 .section h2::after {
@@ -138,31 +140,28 @@
 	transform: translateX(-50%);
 	width: 80px;
 	height: 5px;
-	background: linear-gradient(90deg, #b6976a 0%, #ddd1b2 100%);
+	background: #e77611;
 	border-radius: 2px;
 }
 .section-subtitle {
 	text-align: center;
 	font-size: 1.25rem;
-	color: #8e826e;
+	color: #555;
 	margin-bottom: 5rem;
 	letter-spacing: 0.03em;
-	font-family: 'Cormorant Garamond', serif;
 }
 
 /***** ホテル概要 *****/
 .about-content {
 	display: flex;
-	gap: 7vw;
 	align-items: center;
 	justify-content: center;
 }
 .about-text {
 	font-size: 1.3rem;
 	line-height: 2.2;
-	color: #4c4132;
+	color: #555;
 	padding: 0 3vw 0 4vw;
-	font-family: 'Cormorant Garamond', serif;
 	letter-spacing: 0.01em;
 	max-width: 630px;
 }
@@ -193,7 +192,7 @@
 	top: 50%;
 	transform: translateY(-50%);
 	background: none;
-	color: #555;
+	color: #fff;
 	font-size: 2.8rem;
 	border: none;
 	border-radius: 50%;
@@ -210,9 +209,10 @@
 	opacity: 0.83;
 }
 .about-image button:hover {
-	color: #b6976a;
+	color: #c0c0c0;
 	opacity: 1;
 }
+
 #prev-btn {
 	left: 22px;
 }
@@ -243,14 +243,13 @@
 	display: flex;
 	gap: 4vw;
 	justify-content: center;
-	margin-top: 4.5rem;
+	margin: 4.5rem 2rem 0 2rem;
 }
 .room-card {
 	background: #fff;
 	border-radius: 36px;
 	padding: 2.8rem 2.3rem 3rem 2.3rem;
 	text-align: left;
-	box-shadow: 0 4px 24px 4px rgba(110, 90, 70, 0.05);
 	position: relative;
 	width: 550px;
 	display: flex;
@@ -280,48 +279,26 @@
 .room-content h3 {
 	font-size: 1.45rem;
 	margin-bottom: 1.4rem;
-	color: #2d2212;
-	font-family: 'DM Serif Display', serif;
+	color: #555;
 	font-weight: 600;
 	letter-spacing: 0.03em;
 }
 .room-content p {
-	color: #66553b;
+	color: #555;
 	margin-bottom: 1.8rem;
 	line-height: 2.1;
 	font-size: 1.07rem;
-	font-family: 'Cormorant Garamond', serif;
 }
 .room-price {
 	font-size: 1.19rem;
 	font-weight: bold;
-	color: #b6976a;
+	color: #e77611;
 	margin-bottom: 1.1rem;
 }
 .search-rooms-btn-wrap {
 	text-align: center;
 	margin-top: 2.5rem;
 	width: 100%;
-}
-.search-rooms-btn {
-	background: linear-gradient(45deg, #bfa975, #b6976a 55%, #ccb97e);
-	color: #fff;
-	padding: 1.1rem 2.5rem;
-	border: none;
-	border-radius: 48px;
-	font-size: 1.08rem;
-	font-weight: 600;
-	cursor: pointer;
-	box-shadow: 0 4px 10px rgba(190, 167, 106, 0.10);
-	text-decoration: none;
-	display: inline-block;
-	transition: all 0.13s;
-	letter-spacing: 0.05em;
-}
-.search-rooms-btn:hover {
-	opacity: 0.90;
-	background: #b6976a;
-	color: #fff;
 }
 
 /***** 食事カード *****/
@@ -336,7 +313,6 @@
 .dining-card {
 	background: #fff;
 	border-radius: 34px;
-	box-shadow: 0 10px 36px 0 rgba(170, 170, 140, 0.10);
 	overflow: hidden;
 	display: flex;
 	flex-direction: column;
@@ -376,8 +352,7 @@
 }
 .dining-content h3 {
 	font-size: 1.72rem;
-	color: #3a2d18;
-	font-family: 'DM Serif Display', serif;
+	color: #555;
 	margin-bottom: 1.15rem;
 	letter-spacing: 0.04em;
 	font-weight: 700;
@@ -385,10 +360,9 @@
 }
 .dining-content p {
 	font-size: 1.19rem;
-	color: #54473a;
+	color: #555;
 	line-height: 2.2;
 	margin-bottom: 0;
-	font-family: 'Cormorant Garamond', serif;
 	letter-spacing: 0.01em;
 }
 @media (max-width: 1100px) {
@@ -445,7 +419,6 @@
 .amenity-card {
 	background: #fff;
 	border-radius: 30px;
-	box-shadow: 0 8px 30px 0 rgba(170, 160, 140, 0.09);
 	padding: 2.5rem 1.6rem 2.6rem 1.6rem;
 	min-height: 270px;
 	max-width: 480px;
@@ -468,15 +441,13 @@
 	font-weight: 700;
 	letter-spacing: 0.07em;
 	margin-bottom: 0.85rem;
-	color: #232020;
-	font-family: 'DM Serif Display', serif;
+	color: #555;
 	text-align: center;
 }
 .amenity-desc {
 	font-size: 1.13rem;
-	color: #4e4636;
+	color: #555;
 	line-height: 1.92;
-	font-family: 'Cormorant Garamond', serif;
 	text-align: center;
 	margin: 0;
 }
@@ -513,7 +484,6 @@
 	padding: 2.5rem 2.5rem 2.2rem 2.5rem;
 	background: #fff;
 	border-radius: 24px;
-	box-shadow: 0 4px 16px rgba(0,0,0,0.07);
 	max-width: 1060px;
 	display: flex;
 	justify-content: center;

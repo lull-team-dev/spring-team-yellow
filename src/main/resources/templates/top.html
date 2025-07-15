@@ -22,6 +22,7 @@
 	<link rel="stylesheet" href="/css/heart-icon.css">
 	<link rel="stylesheet" href="/css/room.css">
 	<link rel="stylesheet" href="/css/top-style.css">
+	<link rel="stylesheet" href="/css/calendar.css">
 	<link rel="stylesheet" href="/css/header-footer.css">
 	<style>
 		/* 追加や一時的な上書きはここに記載 */
@@ -47,16 +48,16 @@
 							<p>●部屋タイプ</p>
 							<div class="room-type-center">
 								<label>
-									<input type="checkbox" name="types" value="1"
-										th:checked="${types != null and types.contains(1)}">スイートルーム
+									<input type="checkbox" name="types" value="3"
+										th:checked="${types != null and types.contains(3)}">スイートルーム
 								</label>
 								<label>
 									<input type="checkbox" name="types" value="2"
 										th:checked="${types != null and types.contains(2)}">ダブルルーム
 								</label>
 								<label>
-									<input type="checkbox" name="types" value="3"
-										th:checked="${types != null and types.contains(3)}">シングルルーム
+									<input type="checkbox" name="types" value="1"
+										th:checked="${types != null and types.contains(1)}">シングルルーム
 								</label>
 							</div>
 						</div>
@@ -126,7 +127,11 @@
 										required readonly>
 								</div>
 							</div>
+							<div class="error-box">
+								<span th:if="${error}" th:text="${error}" class="error-message"></span>
+							</div>
 						</div>
+						<input type="hidden" name="search" value="1">
 						<!-- 検索ボタン -->
 						<div class="search-btn-wrap" style="text-align: center;">
 							<button type="submit" class="search-btn">検索する</button>
@@ -178,9 +183,13 @@
 				</div>
 				<!-- ▲ ここまでルームカード -->
 			</div>
+			<div class="search-nothing" th:if="${message}">
+				<img class="search-logo" th:src="${randomImg}">
+				<h2 class="search-message" th:text="${message}"></h2>
+			</div>
 		</section>
 	</main>
-	<footer th:replace="footer"></footer>
+	<footer th:replace=" footer"></footer>
 	<script src="/js/range.js"></script>
 	<script src="/js/calendar.js"></script>
 </body>
