@@ -58,7 +58,7 @@ public class DetailController {
 		model.addAttribute("like", likeRoom);
 
 		// レビュー一覧取得
-		List<Review> reviews = reviewRepository.findByRoomIdAndDeletedAtIsNullOrderByCreatedAtDesc(id);
+		List<Review> reviews = reviewRepository.findByRoomIdOrderByCreatedAtDesc(id);
 		// レビューの平均値を取得
 		Double avgRating = reviewRepository.findAverageRatingByRoomId(id);
 
