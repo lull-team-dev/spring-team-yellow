@@ -124,7 +124,7 @@ public class ReviewController {
 			Model model) {
 
 		Integer loginGuestId = account.getId();
-		List<Review> myReviews = reviewRepository.findByGuestIdAndDeletedAtIsNullOrderByCreatedAtDesc(loginGuestId);
+		List<Review> myReviews = reviewRepository.findByGuestIdOrderByCreatedAtDesc(loginGuestId);
 
 		model.addAttribute("reviews", myReviews);
 
@@ -202,13 +202,18 @@ public class ReviewController {
 	// レビュー削除
 	@PostMapping("/delete")
 	public String deleteReview(@RequestParam Integer reviewId) {
+
 		Review review = reviewRepository.findById(reviewId).orElseThrow();
+		Reservation reservation = review.getReservation();
 
-		// 論理削除
-		review.setDeletedAt(LocalDateTime.now());
-		reviewRepository.save(review);
+		// 予約情報のレビューをNULLに
+		reservation.setReview(null);
+		reservationRepository.save(reservation);
 
-		return "redirect:/rooms/" + review.getRoom().getId();
+		// 物理削除
+		reviewRepository.deleteById(reviewId);
+
+		return "redirect:/reviews/myList";
 	}
 
 }
