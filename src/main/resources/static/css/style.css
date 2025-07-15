@@ -112,6 +112,10 @@ h1 {
 	text-align: center;
 }
 
+dl,dt,dd {
+	margin: 0;
+}
+
 .cormorant-garamond-hotel-logo {
 	font-family: "Cormorant Garamond", serif;
 	font-optical-sizing: auto;
