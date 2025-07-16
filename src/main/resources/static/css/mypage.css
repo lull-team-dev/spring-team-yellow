@@ -1,50 +1,36 @@
 @charset "UTF-8";
 
-dl {
-	border-radius: 30px;
-	width: 80%;
-	margin: 0 auto 20px auto;
-	text-align: center;
-	padding: 30px;
-	
-}
-
-.profile-category {
+.profile-items-box {
 	display: flex;
 	justify-content: center;
+	gap: 2vw;
+	margin: 4.5rem 2rem 0 2rem;
 	color: #555;
-	align-items: center;
 }
 
-.profile-category i {
-	margin-right: 0.5em;
-}
-
-.profile-items {
-	display: inline-block;
-	text-align: left;
-}
-
-.profile-item {
+.profile-items-box li {
+	border-radius: 30px;
+	text-align: center;
+	width: 550px;
+	padding: 30px;
 	display: flex;
+	flex-direction: column;
 }
 
-.profile-update-button  {
-	margin-top: 3em;
+.button {
+	width: auto;
 }
 
-.profile-update-button a:hover {
-	color: #fff;
+.profile-message {
+	height: 40px;
 }
 
-.profile-label {
+.kapibara-like {
+	width: 110px;
+	margin: 0 auto;
 }
 
-.profile-item dt {
-	width: 5em;
+.kapibara-like img {
+	width: 100%;
+	height: 100%;
 }
-
-.profile-item dd {
-	margin: 0;
-}
-

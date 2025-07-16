@@ -29,9 +29,14 @@
 	<header th:replace="header"></header>
 	<main>
 		<h1>お気に入り</h1>
+		<!--お気に入りがまだない時-->
 		<div class="nonlike-message" th:if="${rooms == null or #lists.isEmpty(rooms)}">
 			<p>まだお気に入り登録はありません</p>
+			<div class="search-nothing">
+				<img class="search-logo" th:src="${randomImg}">
+			</div>
 		</div>
+		<!--通常時-->
 		<div class="rooms-grid">
 			<!-- ▼ ここからルームカード（繰り返し） -->
 			<div class="room-card main-shadow" th:each="room : ${rooms}" th:id="${room.id}">
