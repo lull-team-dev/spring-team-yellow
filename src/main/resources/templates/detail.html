@@ -43,7 +43,7 @@
 
 					<!--お気に入り-->
 					<div class="room-like" id="${room.id}">
-						<a th:href="@{/detail/{roomId}/like(roomId=${room.id})}" class="like-link"
+						<a class="like-link"
 							th:attr="data-room-id=${room.id}">
 							<i th:if="${like.contains(room.id) == true}" class="fa-solid fa-heart"></i>
 							<i th:unless="${like.contains(room.id) == true}" class="fa-regular fa-heart"></i>
