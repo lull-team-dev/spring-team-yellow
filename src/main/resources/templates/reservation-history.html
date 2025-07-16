@@ -30,11 +30,17 @@
 		<div class="history-list" th:each="reservHistory:${reservationHistorys}">
 			<div class="list-contents">
 				<div>
-					<img class="history-img" th:src="@{${reservHistory.room.imgPath}}" alt="部屋">
+					<a th:href="@{/rooms/{roomId}(roomId=${reservHistory.room.id}, checkinDate=${checkinDate}, checkoutDate=${checkoutDate})}">
+						<img class="history-img" th:src="@{${reservHistory.room.imgPath}}" alt="部屋">
+					</a>
 				</div>
 				<div class="history-info">
 					<div class="history-info__contents">
-						<h3>宿泊部屋：<span class="theme-color">[[${reservHistory.room.roomName}]]</span></h3>
+						<h3>宿泊部屋：
+							<a th:href="@{/rooms/{roomId}(roomId=${reservHistory.room.id}, checkinDate=${checkinDate}, checkoutDate=${checkoutDate})}">
+								<span class="theme-color">[[${reservHistory.room.roomName}]]</span>
+							</a>
+						</h3>
 						<div>ステータス：</div>
 						<div>プラン：[[${reservHistory.plan.name}]]</div>
 						<div>宿泊日：[[${reservHistory.StayDate}]]</div>
