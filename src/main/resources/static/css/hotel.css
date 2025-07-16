@@ -1,6 +1,6 @@
 /***** 画面全体 *****/
 main {
-	margin: 120px 0 0 0;
+	margin: 95px 0 0 0;
 }
 
 .main-content-wrapper::after {
@@ -24,7 +24,7 @@ main {
 
 /***** hero（トップ）*****/
 .hero {
-	height: 88vh;
+	height: 92vh;
 	width: 100%;
 	display: flex;
 	align-items: center;
