@@ -30,6 +30,7 @@ import com.example.demo.repository.GuestRepository;
 import com.example.demo.repository.PlanRepository;
 import com.example.demo.repository.ReservationRepository;
 import com.example.demo.repository.RoomRepository;
+import com.example.demo.service.ReserveCodeMail;
 import com.example.demo.service.RoomService;
 
 @Controller
@@ -47,6 +48,8 @@ public class ReserveController {
 	ReservationRepository reserveRepository;
 	@Autowired
 	RoomService roomService;
+	@Autowired
+	ReserveCodeMail reserveCodeMail;
 
 	//予約ホーム画面
 	@GetMapping("/rooms/{id}/reserve")
@@ -266,7 +269,11 @@ public class ReserveController {
 			reservDatas.add(reserveData);
 		}
 
+		//予約保存
 		reserveRepository.save(reserve);
+
+		//保存完了誤メール送信
+		reserveCodeMail.mailSend(reserve);
 
 		redirectAttributes.addAttribute("id", reserve.getId());
 		redirectAttributes.addAttribute("afterReserve", true);
