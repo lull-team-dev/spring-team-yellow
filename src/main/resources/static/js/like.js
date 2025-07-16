@@ -15,6 +15,7 @@ $(document).ready(function () {
             type: 'GET',
             success: function (response) {
                 const icon = $link.find('i');
+				   
 
                 // サーバーが状態を返す前提
                 if (response === "liked") {
@@ -25,9 +26,16 @@ $(document).ready(function () {
                     icon.removeClass('fa-solid').addClass('fa-regular');
                 }
             },
-            error: function () {
-                alert('通信エラーが発生しました。');
-            }
+			error: function (xhr, status, error) {
+			                if (xhr.status === 401) {
+			                    // 未ログイン → ログインページへリダイレクト
+			                    window.location.href = '/login?error=notLoggedIn';
+			                } else {
+			                    console.error("エラーが発生しました:", error);
+			                    alert("処理中にエラーが発生しました。");
+			                }
+			            }
+
         });
     });
 });
