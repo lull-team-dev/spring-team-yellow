@@ -147,9 +147,18 @@
 }
 
 /* ---------- ボタンの位置 ---------- */
-.reserve-button-block {
+.reserve-button-block,
+.reserve-conf-button-block {
 	max-width: 620px;
 	margin: 50px auto;
+}
+
+.reserve-conf-button-block{
+	margin: 50px auto 5px;
+}
+
+.reserve-conf-button-block button{
+	margin: 0;
 }
 
 .reserve-submit-btn{
@@ -175,6 +184,11 @@
 	margin: 3px 0 0 2px;
 	min-height: 1.3em;
 	font-weight: 500;
+}
+
+.cancel-text{
+	text-align: center;
+	color: red;
 }
 
 /* カレンダーのテーブル、ボタンもdetail.cssと統一でOK */
