@@ -17,13 +17,11 @@
 	<link rel="stylesheet" href="/css/shadow.css">
 	<link rel="stylesheet" href="/css/header-footer.css">
 	<!--ここまで共通-->
+	<link rel="stylesheet" th:href="@{/css/review.css}">
 	<link rel="stylesheet" href="/css/detail.css">
 	<link rel="stylesheet" href="/css/heart-icon.css">
 	<link rel="stylesheet" href="/css/button.css">
 	<link rel="stylesheet" href="/css/shadow.css">
-
-
-
 
 </head>
 
@@ -43,8 +41,7 @@
 
 					<!--お気に入り-->
 					<div class="room-like" id="${room.id}">
-						<a class="like-link"
-							th:attr="data-room-id=${room.id}">
+						<a class="like-link" th:attr="data-room-id=${room.id}">
 							<i th:if="${like.contains(room.id) == true}" class="fa-solid fa-heart"></i>
 							<i th:unless="${like.contains(room.id) == true}" class="fa-regular fa-heart"></i>
 						</a>
@@ -115,7 +112,7 @@
 
 			<!--/* レビュー一覧表示 */-->
 			<div class="review-section main-shadow" th:if="${reviews != null and !reviews.isEmpty()}">
-				<h3 class="section-title">レビュー一覧表示</h3>
+				<h2 class="review-title">[[${room.roomName}]]のレビュー</h2>
 				<div th:replace="~{review/list :: reviewList(${reviews})}"></div>
 			</div>
 		</div>
