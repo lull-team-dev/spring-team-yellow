@@ -36,7 +36,11 @@
 						<div class="">現在のメールアドレス</div>
 						<input class="email-display-input" th:value="${guest.email}" readonly>
 						<label for="email" class="info-label">新しいメールアドレス</label>
-						<input id="email" type="email" name="email" th:value="${email}" placeholder="メールアドレス">
+						<input class="profile-input" id="email" type="email" name="email" th:value="${email}" placeholder="メールアドレス">
+						<div class="error-box">
+							<span th:if="${errors != null and errors.containsKey('email')}" th:text="${errors.get('email')}"
+								class="error-message"></span>
+						</div>
 					</div>
 				</div>
 
@@ -47,11 +51,29 @@
 					</h3>
 					<div class="info-form">
 						<label for="password" class="info-label">現在のパスワード</label>
-						<input id="password" type="password" name="password" placeholder="現在のパスワード">
+						<input class="profile-input" id="password" type="password" name="password" placeholder="現在のパスワード">
+						<div class="error-box">
+							<span th:if="${errors != null and errors.containsKey('password')}" th:text="${errors.get('password')}"
+								class="error-message"></span>
+								</div>
+
+								
 						<label for="newPassword" class="info-label">新しいパスワード</label>
-						<input id="newPassword" type="password" name="newPassword" placeholder="新しいパスワード">
+						<input class="profile-input" id="newPassword" type="password" name="newPassword" placeholder="新しいパスワード">
+						<div class="error-box">
+							<span th:if="${errors != null and errors.containsKey('newPassword')}" th:text="${errors.get('newPassword')}"
+								class="error-message"></span>
+								</div>
+
+								
 						<label for="password_confirm" class="info-label">新しいパスワード(確認)</label>
-						<input type="password" id="password_confirm" name="password_confirm" placeholder="パスワード（確認）">
+						<input class="profile-input" type="password" id="password_confirm" name="password_confirm" placeholder="パスワード（確認）">
+						<div class="error-box">
+							<span th:if="${errors != null and errors.containsKey('password_confirm')}" th:text="${errors.get('password_confirm')}"
+								class="error-message"></span>
+								</div>
+
+								
 					</div>
 				</div>
 
@@ -61,22 +83,32 @@
 						<span>基本情報</span>
 					</h3>
 					<div class="info-form">
+						<!--名前フォーム-->
 						<label for="name" class="info-label">名前</label>
-						<input type="text" id="name" name="name" th:value="${name}">
+						<input class="profile-input" type="text" id="name" name="name" th:value="${name}">
+						<div class="error-box">
+							<span th:if="${errors != null and errors.containsKey('name')}"
+								th:text="${errors.get('name')}" class="error-message"></span>
+						</div>
+						<!--住所フォーム-->
 						<label for="address" class="info-label">住所</label>
-						<input type="text" id="address" name="address" th:value="${address}">
+						<input class="profile-input" type="text" id="address" name="address" th:value="${address}">
+						<div class="error-box">
+							<span th:if="${errors != null and errors.containsKey('address')}"
+								th:text="${errors.get('address')}" class="error-message"></span>
+						</div>
+						<!--電話フォーム-->
 						<label for="tel" class="info-label">電話番号</label>
-						<input type="text" id="tel" name="tel" th:value="${tel}">
+						<input class="profile-input" type="text" id="tel" name="tel" th:value="${tel}">
+						<div class="error-box">
+							<span th:if="${errors != null and errors.containsKey('tel')}" th:text="${errors.get('tel')}"
+								class="error-message"></span>
+						</div>
 					</div>
-				</div>
-				<div class="error-box">
-					<ul th:each="error:${errorList}">
-						<li th:text="${error}" class="error-message"></li>
-					</ul>
 				</div>
 
 				<button>編集する</button>
-				<a class="return-button" href="/mypage">戻る</a>
+				<a class="return-button" href="/profile">戻る</a>
 			</form>
 		</div>
 	</main>

@@ -1,0 +1,50 @@
+@charset "UTF-8";
+
+dl {
+	border-radius: 30px;
+	width: 80%;
+	margin: 0 auto 20px auto;
+	text-align: center;
+	padding: 30px;
+	
+}
+
+.profile-category {
+	display: flex;
+	justify-content: center;
+	color: #555;
+	align-items: center;
+}
+
+.profile-category i {
+	margin-right: 0.5em;
+}
+
+.profile-items {
+	display: inline-block;
+	text-align: left;
+}
+
+.profile-item {
+	display: flex;
+}
+
+.profile-update-button  {
+	margin-top: 3em;
+}
+
+.profile-update-button a:hover {
+	color: #fff;
+}
+
+.profile-label {
+}
+
+.profile-item dt {
+	width: 5em;
+}
+
+.profile-item dd {
+	margin: 0;
+}
+
