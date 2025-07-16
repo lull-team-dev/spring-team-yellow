@@ -3,24 +3,86 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>レビュー一覧</title>
+	<title>レビュー履歴</title>
 	<!-- フォントやアイコンなどの読み込み -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+	<!-- 共通CSS -->
 	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/shadow.css">
+	<link rel="stylesheet" href="/css/header-footer.css">
 	<!--ここまで共通-->
+	<link rel="stylesheet" th:href="@{/css/review.css}">
 </head>
 
 <body>
+	<!-- ヘッダーテンプレートの読み込み -->
+	<header th:replace="header"></header>
 
-	<h2>レビュー一覧</h2>
+	<main class="my-review">
 
-	<!--/* レビュー一覧表示 */-->
-	<div th:if="${reviews != null and !reviews.isEmpty()}" th:replace="~{review/list :: reviewList(${reviews})}">
-	</div>
+		<h1>レビュー投稿履歴</h1>
 
+		<div class="review-list">
+
+			<div th:unless="${reviews != null and !reviews.isEmpty()}" class="no-review">
+				<p>まだレビューが投稿されていません。</p>
+			</div>
+
+			<div th:if="${reviews != null and !reviews.isEmpty()}">
+				<div class="list-contents" th:each="review : ${reviews}">
+					<div>
+						<img class="review-list-img" th:src="@{${review.room.imgPath}}" alt="部屋">
+					</div>
+
+					<div class="review-list-info">
+						<div class="review-list-info__head">
+							<h3>宿泊部屋<span class="room-name">[[${review.room.roomName}]]</span></h3>
+
+							<div>
+								<small>投稿日：[[${#temporals.format(review.createdAt, 'yyyy/MM/dd')}]]</small>
+							</div>
+						</div>
+						<div class="stars">
+							<span class="score">[[${review.rating}]]／5</span>
+							<span th:each="i : ${#numbers.sequence(1, 5)}"
+								th:classappend="${i <= review.rating} ? 'star filled' : 'star'">★</span>
+						</div>
+
+						<div class="review-list-content" th:text="${review.comment}"></div>
+
+						<!-- 自分のレビューの場合のみ編集・削除 -->
+						<div class="review-list-btn" th:if="${@account.id != null and @account.id == review.guest.id}">
+							<div>
+								<a th:href="@{/reviews/edit/{id}(id=${review.id})}">
+									<button type="button" class="review-update">
+										<i class="fa-solid fa-pen-to-square"></i>
+										編集する
+									</button>
+								</a>
+							</div>
+							<div>
+								<form th:action="@{/reviews/delete}" method="post" style="display:inline;">
+									<input type="hidden" name="reviewId" th:value="${review.id}" />
+									<button type="submit" class="review-trash"
+										onclick="return confirm('このレビューを削除しますか？')">
+										<i class="fa-solid fa-trash-can"></i>
+										削除する
+									</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+
+	<!-- フッターテンプレートの読み込み -->
+	<footer th:replace="footer"></footer>
 </body>
 
 </html>

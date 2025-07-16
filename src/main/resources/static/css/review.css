@@ -1,3 +1,14 @@
+/**
+ * 全体のレイアウト
+ */
+
+textarea::placeholder {
+	color: rgba(0, 0, 0, 0.3);
+}
+
+.error {
+	color: red;
+}
 
 /**
  * レビュー時の星のレイアウト
@@ -19,8 +30,207 @@
 	transition: color 0.3s ease;
 }
 
-.star-rating input:checked ~ label,
+.star-rating input:checked~label,
 .star-rating label:hover,
-.star-rating label:hover ~ label {
+.star-rating label:hover~label {
 	color: gold;
+}
+
+/**
+ * レビュー画面のレイアウト
+ */
+
+.review {
+	width: 60%;
+	box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);
+	border-radius: 8px;
+	margin: 0 auto;
+	padding: 2rem 3rem;
+}
+
+.reservation-title {
+	border-top: 1px solid rgba(0, 0, 0, 0.1);
+	margin: 0;
+	padding: 24px 0;
+}
+
+.reservation-info {
+	display: flex;
+	gap: 32px;
+}
+
+.room-img {
+	width: 320px;
+}
+
+.reservation-contents {
+	width: 100%;
+
+}
+
+.reservation__row {
+	display: flex;
+	padding-top: 16px;
+}
+
+.reservation__title {
+	width: 40%;
+	font-weight: 600;
+}
+
+.reservation__body {
+	flex: 1;
+}
+
+.review-contents {
+	padding-bottom: 24px;
+}
+
+.review-contents__box {
+	width: 100%;
+	padding-bottom: 24px;
+}
+
+.review-label {
+	padding-bottom: 16px;
+	font-weight: 600;
+}
+
+.review-comment {
+	resize: none;
+	width: 100%;
+	min-height: 160px;
+	box-sizing: border-box;
+	padding: 16px;
+	border: 2px solid rgba(0, 0, 0, 0.1);
+	border-radius: 5px;
+}
+
+.review-comment:focus {
+	background: white;
+	border: 2px solid rgba(236, 146, 78, 0.8);
+	outline: none;
+	transition: all 0.3s ease;
+}
+
+.review-contents__btn {
+	text-align: center;
+	padding-bottom: 24px;
+}
+
+.button-submit {
+	width: 168px;
+	padding: 8px;
+}
+
+/**
+ * レビュー投稿一覧
+ */
+
+.list-contents {
+	display: flex;
+	width: 80%;
+	margin: 32px auto;
+	box-shadow: 1px 1px 2px 1px rgba(5, 5, 5, 0.1);
+	border-radius: 8px;
+	appearance: none;
+}
+
+.review-list-img {
+	max-width: 320px;
+	height: 100%;
+	border-radius: 8px 0px 0px 8px;
+}
+
+.no-review {
+	text-align: center;
+	color: #666;
+	margin-top: 5rem;
+	font-size: 1.2rem;
+}
+
+.review-list-info {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	min-height: 100%;
+	padding: 24px;
+}
+
+.review-list-info__head {
+	display: flex;
+	justify-content: space-between;
+
+	h3 {
+		margin: 0;
+	}
+}
+
+.review-list-content {
+	padding: 8px;
+}
+
+.review-list-btn {
+	display: flex;
+	justify-content: end;
+	gap: 8px;
+	margin-top: auto;
+}
+
+.room-name {
+	display: inline-block;
+	padding-left: 1em;
+	color: #e77611;
+}
+
+.stars {
+	display: inline-flex;
+	align-items: center;
+	font-size: 1.5rem;
+	padding: 8px;
+}
+
+.star {
+	color: #ccc;
+	margin-right: 2px;
+}
+
+.filled {
+	color: gold;
+}
+
+.score {
+	margin-right: 16px;
+	font-size: 1rem;
+	font-weight: 600;
+	color: #333;
+}
+
+.review-update {
+	width: 168px;
+	padding: 8px;
+	background-color: #fff;
+	color: rgb(236, 146, 78);
+	border: 1px solid rgba(236, 146, 78, 0.3);
+	border-radius: 5px;
+}
+
+.review-update:hover {
+	background-color: rgba(236, 146, 78, 0.1);
+	border: 1px solid rgba(236, 146, 78, 0.3);
+}
+
+.review-trash {
+	width: 168px;
+	padding: 8px;
+	background-color: #fff;
+	color: #dc3545;
+	border: 1px solid rgba(220, 53, 69, 0.3);
+	border-radius: 5px;
+}
+
+.review-trash:hover {
+	background-color: rgba(220, 53, 69, 0.1);
+	border: 1px solid rgba(220, 53, 69, 0.3);
+	transition: 0.2s;
 }

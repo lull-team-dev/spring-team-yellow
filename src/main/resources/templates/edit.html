@@ -36,7 +36,7 @@
 						<div class="">現在のメールアドレス</div>
 						<input class="email-display-input" th:value="${guest.email}" readonly>
 						<label for="email" class="info-label">新しいメールアドレス</label>
-						<input id="email" type="email" name="email" 　placeholder="メールアドレス">
+						<input id="email" type="email" name="email" th:value="${email}" placeholder="メールアドレス">
 					</div>
 				</div>
 
@@ -62,11 +62,11 @@
 					</h3>
 					<div class="info-form">
 						<label for="name" class="info-label">名前</label>
-						<input type="text" id="name" name="name" th:value="${guest.name}">
+						<input type="text" id="name" name="name" th:value="${name}">
 						<label for="address" class="info-label">住所</label>
-						<input type="text" id="address" name="address" th:value="${guest.address}">
+						<input type="text" id="address" name="address" th:value="${address}">
 						<label for="tel" class="info-label">電話番号</label>
-						<input type="text" id="tel" name="tel" th:value="${guest.tel}">
+						<input type="text" id="tel" name="tel" th:value="${tel}">
 					</div>
 				</div>
 				<div class="error-box">

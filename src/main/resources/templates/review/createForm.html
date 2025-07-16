@@ -7,45 +7,66 @@
 	<!-- フォントやアイコンなどの読み込み -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+	<!-- 共通CSS -->
 	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/shadow.css">
+	<link rel="stylesheet" href="/css/header-footer.css">
 	<!--ここまで共通-->
 	<link rel="stylesheet" th:href="@{/css/review.css}">
 </head>
 
 <body>
-	<h1>レビュー投稿</h1>
+	<!-- ヘッダーテンプレートの読み込み -->
+	<header th:replace="header"></header>
 
-	<div class="">
-		<div>
-			<span>部屋名：</span>
-			<span class="" th:text="${reservation.room.roomName}"></span>
-		</div>
-		<div>
-			<span>プラン名：</span>
-			<span class="" th:text="${reservation.plan.name}"></span>
-		</div>
-		<div>
-			<span>チェックイン〜チェックアウト：</span>
-			<span class="" th:text="${reservation.StayDate}"></span>
-			<span class="" th:text="${checkoutDate}"></span>
-		</div>
-		<div>
-			<span>合計金額：</span>
-			<span class="" th:text="${reservation.totalPrice}"></span>
-		</div>
-		<div>
-			<span>人数</span>
-			<span class="" th:text="${reservation.guestCount} + '人'"></span>
-		</div>
-	</div>
+	<main class="review-form">
+		<h1>レビュー投稿</h1>
+		<div class="review">
 
-	<!-- レビュー投稿フォーム -->
-	<form th:action="@{/reviews/create}" th:object="${reviewForm}" method="post">
-		<div th:insert="~{review/formFragment :: reviewFormFragment('レビューを投稿する')}"></div>
-	</form>
+			<!-- レビュー投稿フォーム -->
+			<div class="review-contents">
+				<form th:action="@{/reviews/create}" th:object="${reviewForm}" method="post">
+					<div th:insert="~{review/formFragment :: reviewFormFragment('レビューを投稿する')}"></div>
+				</form>
+			</div>
 
+			<!-- 予約内容確認 -->
+			<h3 class="reservation-title">予約内容</h3>
+			<div class="reservation-info">
+
+
+				<div class="reservation-img">
+					<img class="room-img" th:src="@{${reservation.room.imgPath}}">
+				</div>
+
+				<div class="reservation-contents">
+					<div class="reservation__row">
+						<div class="reservation__title">宿泊部屋</div>
+						<div class="reservation__body" th:text="${reservation.room.roomName}"></div>
+					</div>
+					<div class="reservation__row">
+						<div class="reservation__title">プラン</div>
+						<div class="reservation__body" th:text="${reservation.plan.name}"></div>
+					</div>
+					<div class="reservation__row">
+						<div class="reservation__title">チェックイン</div>
+						<div class="reservation__body" th:text="${reservation.StayDate}"></div>
+					</div>
+					<div class="reservation__row">
+						<div class="reservation__title">チェックアウト</div>
+						<div class="reservation__body" th:text="${checkoutDate}"></div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</main>
+
+	<!-- フッターテンプレートの読み込み -->
+	<footer th:replace="footer"></footer>
 </body>
 
 </html>
