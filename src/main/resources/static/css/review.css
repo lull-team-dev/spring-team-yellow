@@ -142,13 +142,6 @@ textarea::placeholder {
 	border-radius: 8px 0px 0px 8px;
 }
 
-.no-review {
-	text-align: center;
-	color: #666;
-	margin-top: 5rem;
-	font-size: 1.2rem;
-}
-
 .review-list-info {
 	display: flex;
 	flex-direction: column;
@@ -233,4 +226,23 @@ textarea::placeholder {
 	background-color: rgba(220, 53, 69, 0.1);
 	border: 1px solid rgba(220, 53, 69, 0.3);
 	transition: 0.2s;
+}
+
+/**
+ * レビューが無い場合のレイアウト
+ */
+
+.no-review {
+	text-align: center;
+	color: #666;
+	margin-top: 32px 0;
+	font-size: 1.2rem;
+}
+
+.search-nothing {
+	text-align: center;
+}
+
+.search-logo {
+	width: 250px;
 }
