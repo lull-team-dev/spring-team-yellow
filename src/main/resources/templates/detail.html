@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<title>ルーム詳細</title>
 
-	
+
 	<!-- フォントやアイコンなどの読み込み -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,7 +21,7 @@
 	<link rel="stylesheet" href="/css/heart-icon.css">
 	<link rel="stylesheet" href="/css/button.css">
 	<link rel="stylesheet" href="/css/shadow.css">
-	
+
 
 
 
@@ -40,17 +40,16 @@
 						<h1 class="room-name" th:text="${room.roomName}"></h1>
 						<p class="room-message" th:text="${room.description}"></p>
 					</div>
-					
+
 					<!--お気に入り-->
 					<div class="room-like" id="${room.id}">
-						<a th:href="@{/detail/{roomId}/like(roomId=${room.id})}" class="like-link" th:attr="data-room-id=${room.id}">
-						<!--	<i th:if="${like.contains(room.id) == true}" class="fa-solid fa-heart"></i>
+						<a th:href="@{/detail/{roomId}/like(roomId=${room.id})}" class="like-link"
+							th:attr="data-room-id=${room.id}">
+							<i th:if="${like.contains(room.id) == true}" class="fa-solid fa-heart"></i>
 							<i th:unless="${like.contains(room.id) == true}" class="fa-regular fa-heart"></i>
-						-->
-						<i class="fa-regular fa-heart"></i>
 						</a>
 					</div>
-					
+
 				</div>
 
 
@@ -104,7 +103,9 @@
 								</div>
 								<div class="plan-detile">
 									<p class="plan-desc" th:text="${plan.details}"></p>
-									<div class="plan-price" th:text="${#numbers.formatInteger(plan.calcTotalPrice(room.price), 3, 'COMMA')} + '円 /人'"></div>
+									<div class="plan-price"
+										th:text="${#numbers.formatInteger(plan.calcTotalPrice(room.price), 3, 'COMMA')} + '円 /人'">
+									</div>
 								</div>
 							</button>
 						</form>
@@ -122,9 +123,10 @@
 
 	</main>
 	<footer th:replace="footer"></footer>
-	
+
 	<!-- jQuery 読み込み（CDN） -->
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<!--外部js-->
 	<script src="@{/js/room-slider.js}"></script>
 	<script th:inline="javascript">
 		// Thymeleafから画像リストを受け取って初期化
