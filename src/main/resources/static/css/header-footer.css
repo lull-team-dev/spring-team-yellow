@@ -176,6 +176,7 @@ footer {
 	bottom: 0;
 	width: 100%;
 	text-align: center;
+	position: relative;
 }
 
 .footer-box {
@@ -233,3 +234,37 @@ footer {
 	/* ← 右端を基準に配置 */
 	display: block;
 }
+
+.footer-logo-gif {
+	width: 180px;
+	height: 100px;
+	display: flex;
+	position: absolute;
+	left: 15%;
+	transform: translate(-50%, 0); /* ← 初期位置はフッター内（見えない） */
+	bottom: 0; /* ← footer内に位置づけ */
+	overflow: hidden;
+	background-color: transparent;
+	transition: transform 0.5s ease, opacity 0.5s ease;
+	opacity: 0;
+	pointer-events: none;
+	z-index: -1; /* z-index: -1だと隠れてしまうので注意！ */
+}
+
+.footer-logo-gif.active {
+	transform: translate(-50%, -100%); /* ← 上にスライドして出てくる */
+	opacity: 1;
+	pointer-events: auto;
+	z-index: -1;
+}
+
+.logo-gif2 {
+	height: 100%;
+	width: auto;
+	/* 幅を自動で調整して比率を維持 */
+	object-fit: contain;
+	/* 画像が収まるように表示 */
+	display: block;
+}
+
+
