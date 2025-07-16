@@ -14,6 +14,7 @@ import com.example.demo.entity.Room;
 import com.example.demo.model.Account;
 import com.example.demo.repository.LikeRepository;
 import com.example.demo.service.LikeService;
+import com.example.demo.service.RandomImg;
 
 @Controller
 public class RoomLikeController {
@@ -26,6 +27,9 @@ public class RoomLikeController {
 
 	@Autowired
 	Account account;
+
+	@Autowired
+	RandomImg randomImg;
 
 	//	お気に入り処理
 	@GetMapping("/like/{id}")
@@ -72,6 +76,7 @@ public class RoomLikeController {
 		//		いいね一覧取得
 		List<Integer> likeRoom = likeService.likeIcon();
 		model.addAttribute("like", likeRoom);
+		model.addAttribute("randomImg", randomImg.showImg());
 
 		return "like";
 	}

@@ -19,24 +19,44 @@
 
 </head>e>Insert title here</title>
 </head>
+
 <body>
 	<header th:replace="header"></header>
 
 	<main>
 		<h1>マイページ</h1>
-		<ul class="profile-items">
-				<li>
-					<a href="/profile">プロフィール編集</a>
-				</li>
-				<li>
-					<a href="/reviews/myList">予約履歴</a>
-				</li>
-				<li>
-					<a href="/like">お気に入り</a>
-				</li>
-			</ul>
+		<ul class="profile-items-box">
+			<li class="main-shadow">
+				<h3>プロフィール編集</h3>
+				<div class="profile-message">名前やメールアドレスの変更が可能です</div>
+				<div class="kapibara-like">
+					<img src="/uploads/images/image.png" class="" alt="マイページカピバラ" >
+				</div>
+				<a class="button" href="/profile">移動する</a>
+			</li>
+			<li class="main-shadow">
+				<h3>レビュー投稿履歴</h3>
+				<div class="profile-message">投稿したレビューが確認できます</div>
+				<div class="kapibara-like">
+					<img src="/uploads/images/IMG_0424.png" class="" alt="レービュカピバラ" >
+				</div>
+				<a class="button" href="/reviews/myList">移動する</a>
+
+			</li>
+			<li class="main-shadow">
+				<h3>お気に入り</h3>
+				<div class="profile-message">ハートを押した部屋を確認できます</div>
+				<div class="kapibara-like">
+					<img src="/uploads/images/kapibara-heart.png" class="" alt="いいねカピバラ" >
+				</div>
+
+				<a class="button" href="/like">移動する</a>
+
+			</li>
+		</ul>
 	</main>
 	<footer th:replace="footer"></footer>
 
 </body>
+
 </html>
