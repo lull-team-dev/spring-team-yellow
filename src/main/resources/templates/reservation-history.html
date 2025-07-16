@@ -30,37 +30,49 @@
 		<div class="history-list" th:each="reservHistory:${reservationHistorys}">
 			<div class="list-contents">
 				<div>
-					<a th:href="@{/rooms/{roomId}(roomId=${reservHistory.room.id}, checkinDate=${checkinDate}, checkoutDate=${checkoutDate})}">
-						<img class="history-img" th:src="@{${reservHistory.room.imgPath}}" alt="部屋">
+					<a
+						th:href="@{/rooms/{roomId}(roomId=${reservHistory.reservation.room.id}, checkinDate=${checkinDate}, checkoutDate=${checkoutDate})}">
+						<img class="history-img" th:src="@{${reservHistory.reservation.room.imgPath}}" alt="部屋">
 					</a>
 				</div>
 				<div class="history-info">
 					<div class="history-info__contents">
 						<h3>宿泊部屋：
-							<a th:href="@{/rooms/{roomId}(roomId=${reservHistory.room.id}, checkinDate=${checkinDate}, checkoutDate=${checkoutDate})}">
-								<span class="theme-color">[[${reservHistory.room.roomName}]]</span>
+							<a
+								th:href="@{/rooms/{roomId}(roomId=${reservHistory.reservation.room.id}, checkinDate=${checkinDate}, checkoutDate=${checkoutDate})}">
+								<span class="theme-color">[[${reservHistory.reservation.room.roomName}]]</span>
 							</a>
 						</h3>
-						<div>ステータス：</div>
-						<div>プラン：[[${reservHistory.plan.name}]]</div>
-						<div>宿泊日：[[${reservHistory.StayDate}]]</div>
+
+						<div class="history-info__item">ステータス：
+							<span th:if="${reservHistory.status == '宿泊済み'}" class="status-label status-completed">
+								[[${reservHistory.status}]]
+							</span>
+
+							<span th:if="${reservHistory.status == '予約済み'}" class="status-label status-upcoming">
+								[[${reservHistory.status}]]
+							</span>
+						</div>
+
+						<div class="history-info__item">プラン：[[${reservHistory.reservation.plan.name}]]</div>
+						<div class="history-info__item">宿泊日：[[${reservHistory.reservation.StayDate}]]</div>
 					</div>
 
 					<div class="history-info__btn">
-						<a th:href="@{/reservationHistory/{id}(id=${reservHistory.id})}">
+						<a th:href="@{/reservationHistory/{id}(id=${reservHistory.reservation.id})}">
 							<button class="history-btn">
 								<i class="fa-solid fa-circle-info"></i>
 								ご予約内容の確認
 							</button>
 						</a>
-						<a th:if="${!reservHistory.isReviewedBy(loginGuestId)}"
-							th:href="@{/reviews/new/{id}(id=${reservHistory.id})}">
+						<a th:if="${!reservHistory.reservation.isReviewedBy(loginGuestId)}"
+							th:href="@{/reviews/new/{id}(id=${reservHistory.reservation.id})}">
 							<button class="review-btn" type="button">
 								<i class="fa-solid fa-comment"></i>
 								レビューを書く
 							</button>
 						</a>
-						<span th:if="${reservHistory.isReviewedBy(loginGuestId)}">
+						<span th:if="${reservHistory.reservation.isReviewedBy(loginGuestId)}">
 							<button class="review-disabled" type="button">
 								<i class="fa-solid fa-comment"></i>
 								レビュー投稿済み

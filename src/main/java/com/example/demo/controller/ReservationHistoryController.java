@@ -2,7 +2,10 @@
 package com.example.demo.controller;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,7 +36,20 @@ public class ReservationHistoryController {
 	public String showReservationHistory(Model model) {
 
 		Guest guest = guestRepository.findById(account.getId()).get();
-		List<Reservation> reservationHistorys = reservationRepository.findByGuest(guest);
+		List<Reservation> reservations = reservationRepository.findByGuest(guest);
+
+		List<Map<String, Object>> reservationHistorys = new ArrayList<>();
+		for (Reservation r : reservations) {
+			Map<String, Object> map = new HashMap<>();
+			map.put("reservation", r);
+
+			// 宿泊日 + 宿泊数 が 今日より前なら宿泊済み
+			LocalDate checkoutDate = r.getStayDate().plusDays(r.getStayNights());
+			String status = checkoutDate.isBefore(LocalDate.now()) ? "宿泊済み" : "予約済み";
+			map.put("status", status);
+
+			reservationHistorys.add(map);
+		}
 
 		model.addAttribute("reservationHistorys", reservationHistorys);
 		model.addAttribute("loginGuestId", guest.getId());

@@ -111,6 +111,7 @@
 	padding: 1.2rem;
 	border-bottom: 1px solid rgba(5, 5, 5, 0.1);
 }
+
 .detail-contents-row:last-child {
 	border: none;
 }
@@ -124,9 +125,36 @@
 	flex: 1;
 }
 
-.history-detail-btn button{
+.history-info__item {
+	margin-bottom: 0.3rem;
+}
+
+.history-info__item:last-child {
+	margin-bottom: 0;
+}
+
+.history-detail-btn button {
 	display: block;
 	width: 168px;
 	margin: 32px auto;
 	padding: 1rem 2rem;
+}
+
+.status-label {
+	display: inline-block;
+	padding: 4px 8px;
+	font-size: 0.8rem;
+	font-weight: 600;
+	border-radius: 8px;
+	border: 1px solid transparent;
+}
+
+.status-completed {
+	background-color: rgba(82, 186, 123, 0.15);
+	color: rgb(82, 186, 123);
+}
+
+.status-upcoming {
+	background-color: rgba(74, 144, 226, 0.15);
+	color: rgb(74, 144, 226);
 }
