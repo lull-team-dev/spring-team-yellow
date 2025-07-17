@@ -124,7 +124,8 @@
 	<!-- jQuery 読み込み（CDN） -->
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<!--外部js-->
-	<script src="@{/js/room-slider.js}"></script>
+	<!-- ========== 画像スライダー ========== -->
+	<script src="/js/room-slider.js"></script>
 	<script th:inline="javascript">
 		// Thymeleafから画像リストを受け取って初期化
 		const imgList = /*[[${imgList}]]*/[];
