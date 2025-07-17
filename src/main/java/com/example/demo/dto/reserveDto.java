@@ -21,7 +21,7 @@ public class reserveDto {
 	private String email;
 
 	@NotBlank(message = "電話番号を入力してください")
-	@Size(max = 15, message = "電話番号は15文字以内で入力してください")
+	@Size(max = 15, message = "電話番号は15桁以内で入力してください")
 	@Pattern(regexp = "^[0-9]+$", message = "電話番号は数字のみで入力してください")
 	//Pattern(regexp = "^[0-9\\-]+$", message = "電話番号は半角数字とハイフンで入力してください")
 	private String tel;

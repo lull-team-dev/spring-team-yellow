@@ -4,6 +4,7 @@ package com.example.demo.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +29,33 @@ public class LoginController {
 	Account account;
 
 	//ログイン画面の表示
-	@GetMapping({ "/", "/login", "/logout" })
+	@GetMapping("/login")
 	private String loginIndex(
+			@RequestParam(defaultValue = "") String error,
+			HttpServletRequest request,
+			Account account,
+			Model model) {
+
+		//ログイン前にいたURLの取得
+		String referer = request.getHeader("Referer");
+		System.out.println("ログイン画面if前" + referer);
+
+		if (referer != null && (!referer.contains("/login") || !referer.contains("/register"))) {
+			System.out.println("ログイン画面遷移①" + referer);
+			account.setRefererUrl(referer);
+			System.out.println("ログイン画面遷移②" + account.getRefererUrl());
+		}
+
+		// クエリパラメータで"notLoggedIn"を受け取った場合
+		if (error.equals("notLoggedIn")) {
+			model.addAttribute("error", "ログインしてください");
+		}
+
+		return "login";
+	}
+
+	@GetMapping("/logout")
+	private String logoutIndex(
 			@RequestParam(defaultValue = "") String error,
 			HttpSession session,
 			Model model) {
@@ -79,6 +105,12 @@ public class LoginController {
 		Guest guest = guests.get(0);
 		account.setId(guest.getId());
 		account.setName(guest.getName());
+
+		//セッションに保管されたURLのチェック
+		if (account.getRefererUrl() != null) {
+			System.out.println("ログインする直前" + account.getRefererUrl());
+			return "redirect:" + account.getRefererUrl();
+		}
 
 		return "redirect:/room";
 	}
