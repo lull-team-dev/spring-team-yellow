@@ -218,6 +218,11 @@ main {
 	margin-bottom: 25px;
 }
 
+.review-title {
+	margin: 0 0 24px 0;
+	color: #e77611;
+}
+
 
 
 /* フェードインエフェクト（必要ならJS側で制御） */

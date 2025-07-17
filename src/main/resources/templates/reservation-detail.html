@@ -33,10 +33,6 @@
 
 			<div class="history-detail__contents">
 				<div class="detail-contents-row">
-					<div class="detail-contents__title">ステータス</div>
-					<div class="detail-contents__body">[[${reservationHistory.room.roomName}]]</div>
-				</div>
-				<div class="detail-contents-row">
 					<div class="detail-contents__title">宿泊部屋</div>
 					<div class="detail-contents__body">[[${reservationHistory.room.roomName}]]</div>
 				</div>
@@ -58,7 +54,8 @@
 				</div>
 				<div class="detail-contents-row">
 					<div class="detail-contents__title">合計金額</div>
-					<div class="detail-contents__body">[[${#numbers.formatInteger(reservationHistory.totalPrice, 3, 'COMMA')}]]円</div>
+					<div class="detail-contents__body">[[${#numbers.formatInteger(reservationHistory.totalPrice, 3,
+						'COMMA')}]]円</div>
 				</div>
 			</div>
 

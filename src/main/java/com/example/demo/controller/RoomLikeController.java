@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.entity.Room;
 import com.example.demo.model.Account;
@@ -31,42 +32,20 @@ public class RoomLikeController {
 	@Autowired
 	RandomImg randomImg;
 
-	//	お気に入り処理
+	// いいね処理（非同期）
 	@GetMapping("/like/{id}")
+	@ResponseBody // ←追加すると明示的にJSONレスポンスにも対応
+
 	public String like(@PathVariable("id") Integer id,
 			HttpServletRequest request,
 			Model model) {
 
-		likeService.toggleLike(account.getId(), id);
+		boolean liked = likeService.toggleLike(account.getId(), id);
 
-		String referer = request.getHeader("Referer");
-		return "redirect:" + referer + '#' + id;
+		return liked ? "liked" : "unliked";
 	}
 
-	// 過去のやつ
-	@GetMapping("/rooms/{id}/like")
-	public String roomsLike(@PathVariable("id") Integer id,
-			HttpServletRequest request,
-			Model model) {
-
-		likeService.toggleLike(account.getId(), id);
-
-		String referer = request.getHeader("Referer");
-		return "redirect:" + referer + '#' + id;
-	}
-
-	// 過去のやつ
-	@GetMapping("/detail/{id}/like")
-	public String detailLike(@PathVariable("id") Integer id,
-			HttpServletRequest request,
-			Model model) {
-
-		likeService.toggleLike(account.getId(), id);
-
-		String referer = request.getHeader("Referer");
-		return "redirect:" + referer + '#' + id;
-	}
-
+	//いいね一覧表示
 	@GetMapping("/like")
 	public String showLikeRoom(Model model) {
 		//		いいねした部屋一覧
@@ -82,12 +61,33 @@ public class RoomLikeController {
 	}
 
 	//	お気に入り処理
-	@GetMapping("/like/{id}/like")
-	public String like(@PathVariable("id") Integer id,
-			Model model) {
+	//	@GetMapping("/like/{id}")
+	//	public String like(@PathVariable("id") Integer id,
+	//			HttpServletRequest request,
+	//			Model model) {
+	//
+	//		likeService.toggleLike(account.getId(), id);
+	//
+	//		String referer = request.getHeader("Referer");
+	//		return "redirect:" + referer + '#' + id;
+	//	}
+	//
+	//	@GetMapping("/rooms/{id}/like")
+	//	public String roomsLike(@PathVariable("id") Integer id,
+	//			HttpServletRequest request,
+	//			Model model) {
+	//
+	//		likeService.toggleLike(account.getId(), id);
+	//
+	//		String referer = request.getHeader("Referer");
+	//		return "redirect:" + referer + '#' + id;
+	//	}
 
-		likeService.toggleLike(account.getId(), id);
-
-		return "redirect:/like#" + id;
-	}
+	//	//	お気に入り処理
+	//	@GetMapping("/like/{id}/like")
+	//	public String like(@PathVariable("id") Integer id,
+	//			Model model) {
+	//		likeService.toggleLike(account.getId(), id);
+	//		return "redirect:/like#" + id;
+	//	}
 }

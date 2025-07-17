@@ -29,6 +29,7 @@ import com.example.demo.repository.GuestRepository;
 import com.example.demo.repository.ReservationRepository;
 import com.example.demo.repository.ReviewRepository;
 import com.example.demo.repository.RoomRepository;
+import com.example.demo.service.RandomImg;
 
 @Controller
 @RequestMapping("/reviews")
@@ -48,6 +49,9 @@ public class ReviewController {
 
 	@Autowired
 	private Account account;
+
+	@Autowired
+	private RandomImg randomImg;
 
 	// レビュー投稿フォーム表示
 	@GetMapping("/new/{reservationId}")
@@ -127,6 +131,7 @@ public class ReviewController {
 		List<Review> myReviews = reviewRepository.findByGuestIdOrderByCreatedAtDesc(loginGuestId);
 
 		model.addAttribute("reviews", myReviews);
+		model.addAttribute("randomImg", randomImg.showImg());
 
 		return "review/myList";
 	}

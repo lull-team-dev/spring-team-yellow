@@ -61,9 +61,10 @@
 								¥35,000〜 / 泊
 							</span>
 							<!-- いいね(星)ボタン（右端） -->
-							<a th:href="@{/like/{roomId}/like(roomId=${room.id})}" class="like-link">
-								<i th:if="${like.contains(room.id)}" class="fa-solid fa-heart"></i>
-								<i th:unless="${like.contains(room.id)}" class="fa-regular fa-heart"></i>
+							<a class="like-link"
+								th:attr="data-room-id=${room.id}">
+								<i th:if="${like.contains(room.id) == true}" class="fa-solid fa-heart"></i>
+								<i th:unless="${like.contains(room.id) == true}" class="fa-regular fa-heart"></i>
 							</a>
 						</div>
 					</div>
@@ -75,6 +76,11 @@
 	</main>
 
 	<footer th:replace="footer"></footer>
+	
+	<!-- jQuery 読み込み（CDN） -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<!--外部js-->
+	<script th:src="@{/js/like.js}"></script>
 </body>
 
 </html>
