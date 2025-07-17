@@ -250,6 +250,7 @@ public class ReserveController {
 		guest.setEmail(email);
 		guest.setTel(tel);
 		guest.setAddress(address);
+		account.setName(guestName);
 
 		//（プラン料金＋ルーム料金）×宿泊日
 		Integer countDay = (int) ChronoUnit.DAYS.between(checkinDate, checkoutDate);

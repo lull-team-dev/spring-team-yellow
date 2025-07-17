@@ -38,7 +38,7 @@ public class ReserveCodeMail {
 
 			helper.setTo(reserve.getGuest().getEmail());
 			helper.setFrom("t92704896@gmail.com");
-			helper.setSubject("<GranMarina Resort>予約完了");
+			helper.setSubject("<Gran Marina Resort>予約完了");
 
 			System.out.println(reserve.getGuest().getEmail());
 
