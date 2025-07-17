@@ -1,6 +1,9 @@
 // アクセス制限処理用AOP
 package com.example.demo.aop;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -8,6 +11,8 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.example.demo.model.Account;
 
@@ -49,7 +54,19 @@ public class CheckLoginAspect {
 
 		// 未ログインならリダイレクト
 		if (!account.isLoggedIn()) {
+
+			ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+			HttpServletRequest request = attr.getRequest();
+			HttpServletResponse response = attr.getResponse();
+
+			// Ajaxリクエストかどうかを判定
+			if ("XMLHttpRequest".equals(request.getHeader("X-Requested-With"))) {
+				response.sendError(401, "Unauthorized");
+				return null; // Ajaxにはエラーステータスを返して終了
+			}
+
 			System.err.println("ログインしていません!");
+
 			return "redirect:/login?error=notLoggedIn";
 		}
 
