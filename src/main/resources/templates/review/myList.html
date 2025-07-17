@@ -30,6 +30,9 @@
 
 			<div th:unless="${reviews != null and !reviews.isEmpty()}" class="no-review">
 				<p>まだレビューが投稿されていません。</p>
+				<div class="search-nothing">
+					<img class="search-logo" th:src="${randomImg}">
+				</div>
 			</div>
 
 			<div th:if="${reviews != null and !reviews.isEmpty()}">
