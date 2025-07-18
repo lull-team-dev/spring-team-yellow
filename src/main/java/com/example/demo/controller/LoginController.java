@@ -22,18 +22,17 @@ import com.example.demo.repository.GuestRepository;
 public class LoginController {
 
 	@Autowired
-	GuestRepository guestRepository;
-	@Autowired
 	HttpSession session;
 	@Autowired
 	Account account;
+	@Autowired
+	GuestRepository guestRepository;
 
 	//ログイン画面の表示
 	@GetMapping("/login")
-	private String loginIndex(
+	public String loginIndex(
 			@RequestParam(defaultValue = "") String error,
 			HttpServletRequest request,
-			Account account,
 			Model model) {
 
 		//ログイン前にいたURLの取得
@@ -55,7 +54,7 @@ public class LoginController {
 	}
 
 	@GetMapping("/logout")
-	private String logoutIndex(
+	public String logoutIndex(
 			@RequestParam(defaultValue = "") String error,
 			HttpSession session,
 			Model model) {

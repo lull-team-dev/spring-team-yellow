@@ -6,6 +6,7 @@ import org.springframework.web.context.annotation.SessionScope;
 @Component
 @SessionScope
 public class Account {
+
 	private Integer id;
 	private String name;
 	private String refererUrl;
