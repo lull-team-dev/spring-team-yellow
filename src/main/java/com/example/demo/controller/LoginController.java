@@ -39,7 +39,9 @@ public class LoginController {
 		String referer = request.getHeader("Referer");
 		System.out.println("ログイン画面if前" + referer);
 
-		if (referer != null && (!referer.contains("/login") || !referer.contains("/register"))) {
+		//取得したURLがnullじゃないかつ下記URLが含まれていない場合の処理
+		if (referer != null && !referer.contains("/login") && !referer.contains("/register")) {
+
 			System.out.println("ログイン画面遷移①" + referer);
 			account.setRefererUrl(referer);
 			System.out.println("ログイン画面遷移②" + account.getRefererUrl());
