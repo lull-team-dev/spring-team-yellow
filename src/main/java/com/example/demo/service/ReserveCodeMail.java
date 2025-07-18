@@ -61,7 +61,7 @@ public class ReserveCodeMail {
 	}
 
 	//メール送信用テキストの作成
-	private String buildWelcomeMessage(Reservation reserve) {
+	public String buildWelcomeMessage(Reservation reserve) {
 
 		try {
 			return "<html><body>" +
