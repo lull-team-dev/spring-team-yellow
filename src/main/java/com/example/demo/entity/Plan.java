@@ -17,6 +17,18 @@ public class Plan {
 	private String details;
 	private Integer price;
 
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setDetails(String details) {
+		this.details = details;
+	}
+
+	public void setPrice(Integer price) {
+		this.price = price;
+	}
+
 	public Integer getId() {
 		return id;
 	}
