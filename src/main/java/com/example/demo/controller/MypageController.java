@@ -128,7 +128,7 @@ public class MypageController {
 			} else if (address == null || address.isEmpty()) {
 				errorMap.put("address", "住所の入力は必須です");
 			}
-			if (tel.length() < 10 || tel.length() > 15) {
+			if (!tel.matches("^[0-9]{10,15}$")) {
 				errorMap.put("tel", "電話番号は10文字以上15文字以内で入力してください");
 			} else if (tel == null || tel.isEmpty()) {
 				errorMap.put("tel", "電話番号の入力は必須です");

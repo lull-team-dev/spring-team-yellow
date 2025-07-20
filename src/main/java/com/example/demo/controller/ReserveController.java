@@ -255,7 +255,7 @@ public class ReserveController {
 		//（プラン料金＋ルーム料金）×宿泊日
 		Integer countDay = (int) ChronoUnit.DAYS.between(checkinDate, checkoutDate);
 		Integer dayTotalPrice = plan.calcTotalPrice(room.getPrice());
-		Integer totalPrice = dayTotalPrice * countDay;
+		Integer totalPrice = guestCount * (dayTotalPrice * countDay);
 
 		//予約の作成
 		Reservation reserve = new Reservation(guest, room, plan, guestCount, totalPrice, countDay, checkinDate);
