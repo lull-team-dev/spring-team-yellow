@@ -100,7 +100,7 @@ public class ReserveCodeMail {
 
 	//QRコード用データの作成
 	private String buildQrContent(Reservation reserve) {
-		return "予約Id：" + reserve.getId() + "\n" +
+		return "予約番号：" + reserve.getId() + "\n" +
 				"受付日時：" + reserve.getFormatReserveOn() + "\n\n" +
 				"宿泊者名：" + reserve.getGuest().getName() + "様\n" +
 				"ご宿泊日：" + reserve.getStayDate() + "より" + reserve.getStayNights() + "泊\n";
