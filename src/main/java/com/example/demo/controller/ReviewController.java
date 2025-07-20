@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -206,7 +207,8 @@ public class ReviewController {
 
 	// レビュー削除
 	@PostMapping("/delete")
-	public String deleteReview(@RequestParam Integer reviewId) {
+	public String deleteReview(@RequestParam Integer reviewId,
+			HttpServletRequest request) {
 
 		Review review = reviewRepository.findById(reviewId).orElseThrow();
 		Reservation reservation = review.getReservation();
@@ -217,6 +219,13 @@ public class ReviewController {
 
 		// 物理削除
 		reviewRepository.deleteById(reviewId);
+
+		//削除前にいたURLの取得
+		String referer = request.getHeader("Referer");
+
+		if (referer.contains("/rooms")) {
+			return "redirect:" + referer;
+		}
 
 		return "redirect:/reviews/myList";
 	}
