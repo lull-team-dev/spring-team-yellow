@@ -107,7 +107,12 @@ public class LoginController {
 		account.setId(guest.getId());
 		account.setName(guest.getName());
 
-		//セッションに保管されたURLのチェック
+		//セッションに保管されたURLのチェック（予約中のタイムアウトの場合）
+		if (account.getRefererUrl() != null && account.getRefererUrl().contains("reserve")) {
+			return "redirect:/room";
+		}
+
+		//セッションに保管されたURLのチェック（ログイン、新規登録の場合）
 		if (account.getRefererUrl() != null) {
 			System.out.println("ログインする直前" + account.getRefererUrl());
 			return "redirect:" + account.getRefererUrl();
