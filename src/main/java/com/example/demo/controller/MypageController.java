@@ -74,8 +74,10 @@ public class MypageController {
 
 			if (email == null || email.isEmpty()) {
 				errorMap.put("email", "メールアドレスの入力は必須です");
+			} else if (guestRepository.existsByIdAndEmail(account.getId(), email)) {
+				errorMap.put("email", "現在登録中のメールアドレスです");
 			} else if (!emails.isEmpty()) {
-				errorMap.put("email", "すでに登録のあるメールアドレスです");
+				errorMap.put("email", "このメールアドレスは利用できません");
 			} else {
 				guest.setEmail(email);
 			}
@@ -101,9 +103,9 @@ public class MypageController {
 				errorMap.put("newPassword", "新しいパスワードの入力は必須です");
 			} else if (password_confirm == null || password_confirm.isEmpty()) {
 				errorMap.put("password_confirm", "パスワード(確認)の入力は必須です");
-			} else if (password == null || newPassword.length() < 5 || newPassword.length() > 100) {
+			} else if (newPassword == null || newPassword.length() < 5 || newPassword.length() > 100) {
 				errorMap.put("newPassword", "パスワードは5〜100文字");
-			} else if (password != null || !password.equals(password_confirm)) {
+			} else if (newPassword != null && !newPassword.equals(password_confirm)) {
 				errorMap.put("password_confirm", "パスワードが一致しません");
 			}
 			if (!errorMap.isEmpty()) {
@@ -117,7 +119,7 @@ public class MypageController {
 			break;
 
 		case "profile":
-			//			エラーチェック
+			//エラーチェック
 			if (name.length() > 15) {
 				errorMap.put("name", "名前は15文字以内で入力してください");
 			} else if (name == null || name.isEmpty()) {
@@ -129,7 +131,7 @@ public class MypageController {
 				errorMap.put("address", "住所の入力は必須です");
 			}
 			if (!tel.matches("^[0-9]{10,15}$")) {
-				errorMap.put("tel", "電話番号は10文字以上15文字以内で入力してください");
+				errorMap.put("tel", "電話番号は10文字以上15文字以内の数字で入力してください");
 			} else if (tel == null || tel.isEmpty()) {
 				errorMap.put("tel", "電話番号の入力は必須です");
 			}
@@ -144,7 +146,7 @@ public class MypageController {
 
 				return "edit";
 			}
-			//			セット
+			//セット
 			if (name != null || !name.isEmpty()) {
 				guest.setName(name);
 				account.setName(name);
@@ -160,7 +162,7 @@ public class MypageController {
 
 		guestRepository.save(guest);
 
-		return "redirect:/mypage";
+		return "redirect:/profile";
 	}
 
 }
