@@ -36,7 +36,7 @@ public class ReservationHistoryController {
 	public String showReservationHistory(Model model) {
 
 		Guest guest = guestRepository.findById(account.getId()).get();
-		List<Reservation> reservations = reservationRepository.findByGuest(guest);
+		List<Reservation> reservations = reservationRepository.findByGuestOrderByStayDateDesc(guest);
 
 		List<Map<String, Object>> reservationHistorys = new ArrayList<>();
 		for (Reservation r : reservations) {
