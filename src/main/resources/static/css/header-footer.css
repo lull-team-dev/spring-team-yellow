@@ -267,4 +267,6 @@ footer {
 	display: block;
 }
 
-
+.kapibara-gif:hover{
+	cursor: pointer;
+}
