@@ -1,5 +1,7 @@
 @charset "UTF-8";
 
+
+/* オレンジのボタン */
 button,
 .button {
 	box-shadow: none;
@@ -12,6 +14,7 @@ button,
 	width: 80%;
 }
 
+/* オレンジのボタン（フォバー） */
 button:hover,
 .button:hover {
 	background-color: rgb(236, 146, 78);
@@ -19,6 +22,8 @@ button:hover,
 	cursor : pointer;
 } 
 
+
+/* 戻るのボタン */
 .return-button {
 	box-shadow: none;
 	border: none;
@@ -31,9 +36,20 @@ button:hover,
 	margin: 20px auto;
 }
 
+/* 戻るのボタン（フォバー） */
 .return-button:hover {
 	color: #fff;
 	background-color: #808080;
+}
+
+
+/* スライド矢印 */
+#prevBtn:hover {
+  cursor: pointer;
+}
+
+#nextBtn:hover {
+	cursor: pointer;
 }
 
 .a-button:hover {
@@ -42,10 +58,8 @@ button:hover,
 	cursor : pointer;
 }
 
-#prevBtn:hover {
-  cursor: pointer;
-}
-
-#nextBtn:hover {
-	cursor: pointer;
+.mypage-return-button {
+	text-align: center;
+	width: 14em;
+	margin-top: 30px;
 }

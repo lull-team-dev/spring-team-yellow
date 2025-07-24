@@ -9,7 +9,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -28,8 +27,8 @@ public class Review {
 	@JoinColumn(name = "room_id", nullable = false)
 	private Room room;
 
-	@OneToOne
-	@JoinColumn(name = "reservation_id", nullable = false, unique = true)
+	@ManyToOne
+	@JoinColumn(name = "reservation_id", nullable = false)
 	private Reservation reservation;
 
 	@Column(nullable = false)
@@ -42,9 +41,6 @@ public class Review {
 
 	@Column(name = "updated_at")
 	private LocalDateTime updatedAt;
-
-	@Column(name = "deleted_at")
-	private LocalDateTime deletedAt;
 
 	// ゲッター＆セッター 
 	public Integer getId() {
@@ -109,14 +105,6 @@ public class Review {
 
 	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
-	}
-
-	public LocalDateTime getDeletedAt() {
-		return deletedAt;
-	}
-
-	public void setDeletedAt(LocalDateTime deletedAt) {
-		this.deletedAt = deletedAt;
 	}
 
 }

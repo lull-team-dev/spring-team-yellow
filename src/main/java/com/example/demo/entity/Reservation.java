@@ -2,6 +2,7 @@ package com.example.demo.entity;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,7 +63,7 @@ public class Reservation {
 	@OneToMany(mappedBy = "reservation", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<ReservData> reservDatas = new ArrayList<>();
 
-	@OneToOne(mappedBy = "reservation", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToOne(mappedBy = "reservation")
 	private Review review;
 
 	//コンストラクタ
@@ -171,10 +172,15 @@ public class Reservation {
 
 	public boolean isReviewedBy(Integer loginGuestId) {
 		return review != null
-				&& review.getDeletedAt() == null
 				&& review.getGuest() != null
 				&& review.getGuest().getId().equals(loginGuestId)
 				&& review.getRating() != null;
+	}
+
+	//受付日のフォーマット
+	public String getFormatReserveOn() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy年MM月dd日 HH時mm分");
+		return reservationOn.format(formatter);
 	}
 
 }

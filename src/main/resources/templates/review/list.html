@@ -4,32 +4,56 @@
 
 	<!-- レビューが存在する場合 -->
 	<div th:if="${reviews != null and !reviews.isEmpty()}">
-		<p th:if="${avgRating != null}">
-			平均評価：
-			<span th:text="${#numbers.formatDecimal(avgRating, 1, 1)} + ' / 5'"></span>
-		</p>
+		<div th:if="${avgRating != null}">
+			平均得点：
+			<span class="reviewAvg">[[${#numbers.formatDecimal(avgRating, 1, 1)}]]</span>
+			/ 5
+		</div>
 
-		<ul>
-			<li th:each="review : ${reviews}">
-				<p th:text="${review.guest.name}"></p>
-				<p th:text="${review.rating} + '★'"></p>
-				<small th:text="${#temporals.format(review.createdAt, 'yyyy/MM/dd')}"></small>
-				<p th:text="${review.comment}"></p>
+		<div th:each="review : ${reviews}">
+			<div class="room-review-list">
+
+				<div class="room-review-list__contents">
+					<div class="stars">
+						<span class="score">[[${review.rating}]] 点</span>
+						<span th:each="i : ${#numbers.sequence(1, 5)}"
+							th:classappend="${i <= review.rating} ? 'star filled' : 'star'">★</span>
+					</div>
+
+					<div class="room-review-list__item">
+						<div class="review-guest-name">
+							<small>[[${review.guest.name}]]</small>
+						</div>
+						<div>
+							<small>投稿日：[[${#temporals.format(review.createdAt, 'yyyy/MM/dd')}]]</small>
+						</div>
+					</div>
+				</div>
+
+				<div class="room-review-list__comment">[[${review.comment}]]</div>
 
 				<!-- 自分のレビューの場合のみ編集・削除 -->
-				<div th:if="${@account.id != null and @account.id == review.guest.id}">
+				<div class="review-list-btn" th:if="${@account.id != null and @account.id == review.guest.id}">
 					<div>
-						<a th:href="@{/reviews/edit/{id}(id=${review.id})}">編集する</a>
+						<a th:href="@{/reviews/edit/{id}(id=${review.id})}">
+							<button type="button" class="review-update">
+								<i class="fa-solid fa-pen-to-square"></i>
+								編集する
+							</button>
+						</a>
 					</div>
 					<div>
 						<form th:action="@{/reviews/delete}" method="post" style="display:inline;">
 							<input type="hidden" name="reviewId" th:value="${review.id}" />
-							<button type="submit" onclick="return confirm('このレビューを削除しますか？')">削除する</button>
+							<button type="submit" class="review-trash" onclick="return confirm('このレビューを削除しますか？')">
+								<i class="fa-solid fa-trash-can"></i>
+								削除する
+							</button>
 						</form>
 					</div>
 				</div>
-			</li>
-		</ul>
+			</div>
+		</div>
 	</div>
 
 	<!-- レビューが存在しない場合 -->

@@ -3,7 +3,8 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Insert title here</title>
+	<title>ルーム詳細</title>
+
 
 	<!-- フォントやアイコンなどの読み込み -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,12 +17,11 @@
 	<link rel="stylesheet" href="/css/shadow.css">
 	<link rel="stylesheet" href="/css/header-footer.css">
 	<!--ここまで共通-->
+	<link rel="stylesheet" th:href="@{/css/review.css}">
 	<link rel="stylesheet" href="/css/detail.css">
 	<link rel="stylesheet" href="/css/heart-icon.css">
 	<link rel="stylesheet" href="/css/button.css">
 	<link rel="stylesheet" href="/css/shadow.css">
-
-
 
 </head>
 
@@ -38,12 +38,15 @@
 						<h1 class="room-name" th:text="${room.roomName}"></h1>
 						<p class="room-message" th:text="${room.description}"></p>
 					</div>
+
+					<!--お気に入り-->
 					<div class="room-like" id="${room.id}">
-						<a th:href="@{/detail/{roomId}/like(roomId=${room.id})}" class="like-link">
+						<a class="like-link" th:attr="data-room-id=${room.id}">
 							<i th:if="${like.contains(room.id) == true}" class="fa-solid fa-heart"></i>
 							<i th:unless="${like.contains(room.id) == true}" class="fa-regular fa-heart"></i>
 						</a>
 					</div>
+
 				</div>
 
 
@@ -57,7 +60,7 @@
 					<div class="room-amenities main-shadow">
 						<div class="room-type" th:text="${type.typeName}"></div>
 						<div class="room-price">税・サービス料込み
-							<p th:text="${room.price} + '円~'"></p>
+							<p th:text="${#numbers.formatInteger(room.price, 3, 'COMMA')} + '円~'"></p>
 						</div>
 						<div class="facility-section">
 							<div class="section-title">●お部屋の設備</div>
@@ -86,7 +89,7 @@
 			<div class="room-plans">
 				<h3 class="room-plans-title">選べるプラン</h3>
 				<ul class="plans">
-					<li class="plan a-button main-shadow" th:each="plan:${plans}">
+					<li class="plan a-button" th:each="plan:${plans}">
 						<form th:action="@{/rooms/{id}/reserve(id=${room.id})}">
 							<input type="hidden" name="planId" th:value="${plan.id}">
 							<input type="hidden" name="checkinDate" th:value="${checkinDate}">
@@ -94,9 +97,13 @@
 							<button class="plan-button main-shadow">
 								<div>
 									<p class="plan-title" th:text="${plan.name}"></p>
-									<p class="plan-desc" th:text="${plan.details}"></p>
 								</div>
-								<p class="plan-price" th:text="${plan.calcTotalPrice(room.price)} + '円 /人'"></p>
+								<div class="plan-detile">
+									<p class="plan-desc" th:text="${plan.details}"></p>
+									<div class="plan-price"
+										th:text="${#numbers.formatInteger(plan.calcTotalPrice(room.price), 3, 'COMMA')} + '円 /人'">
+									</div>
+								</div>
 							</button>
 						</form>
 					</li>
@@ -104,21 +111,27 @@
 			</div>
 
 			<!--/* レビュー一覧表示 */-->
-			<div th:if="${reviews != null and !reviews.isEmpty()}"
-				th:replace="~{review/list :: reviewList(${reviews})}">
+			<div class="review-section main-shadow" th:if="${reviews != null and !reviews.isEmpty()}">
+				<h2 class="review-title">[[${room.roomName}]]のレビュー</h2>
+				<div th:replace="~{review/list :: reviewList(${reviews})}"></div>
 			</div>
-
 		</div>
 
 
 	</main>
 	<footer th:replace="footer"></footer>
+
+	<!-- jQuery 読み込み（CDN） -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<!--外部js-->
+	<!-- ========== 画像スライダー ========== -->
 	<script src="/js/room-slider.js"></script>
 	<script th:inline="javascript">
 		// Thymeleafから画像リストを受け取って初期化
 		const imgList = /*[[${imgList}]]*/[];
 		initSlider(imgList);
 	</script>
+	<script th:src="@{/js/like.js}"></script>
 
 </body>
 

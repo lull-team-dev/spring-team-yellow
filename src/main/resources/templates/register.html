@@ -4,54 +4,89 @@
 <head>
 	<meta charset="UTF-8">
 	<title>ユーザー新規登録</title>
+	<!-- フォントやアイコンなどの読み込み -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+	<!-- 共通CSS -->
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/shadow.css">
+	<link rel="stylesheet" href="/css/button.css">
+	<link rel="stylesheet" href="/css/header-footer.css">
+	<!--ここまで共通-->
+	<link rel="stylesheet" href="/css/login.css">
 </head>
 
 <body>
 
-	<header></header>
+	<header class="main-shadow">
+		<div class="header-box">
+			<a href="/hotel"  class="left-item">
+				<div class="logo"><img src="/uploads/images/logo.png" class="logo-img" alt="ロゴ" ></div>
+				<div class="hotel-name dm-serif-display-regular ">Gran Marina Resort</div>
+			</a>
+		</div>
+	</header>
 
-	<main>
+
+	<main class="container">
 		<div>
-			<h2>新規登録</h2>
+			<h1>新規登録</h1>
 		</div>
 
-		<form action="/account/register" method="post" th:object="${guest}">
-			<div>
-				<input type="text" th:field="${guest.name}" class=""
-				 placeholder="名前" required pattern=".{3,15}" title="※名前は3～15文字以内" />
+		<form class="login-items" action="/account/register" method="post" th:object="${guest}">
+			<div class="login-item">
+				<input type="text" th:field="${guest.name}" class="" placeholder="名前" required pattern=".{3,15}"
+					title="※名前は3～15文字以内" />
+			</div>
+			<div class="error-box">
 				<div th:if="${#fields.hasErrors('name')}" th:errors="${guest.name}"></div>
 			</div>
-			<div>
-				<input type="email" th:field="${guest.email}" class=""
-				 placeholder="メールアドレス" required />
+			<div class="login-item">
+				<input type="email" th:field="${guest.email}" class="" placeholder="メールアドレス" required />
+			</div>
+			<div class="error-box">
 				<div th:if="${#fields.hasErrors('email')}" th:errors="${guest.email}"></div>
 			</div>
-			<div>
+			<div class="login-item">
 				<input type="tel" th:field="${guest.tel}" placeholder="電話番号(ハイフンなし)" required pattern="^[0-9]{10,15}$"
-				         title="※10〜15桁の数字を入力してください(ハイフンなし)" maxlength="15" />
+					title="※10〜15桁の数字を入力してください(ハイフンなし)" maxlength="15" />
+			</div>
+			<div class="error-box">
 				<div th:if="${#fields.hasErrors('tel')}" th:errors="${guest.tel}"></div>
 			</div>
-			<div>
-				<input type="text" th:field="${guest.address}" class=""
-				 placeholder="住所" maxlength="120" />
+			<div class="login-item">
+				<input type="text" th:field="${guest.address}" class="" placeholder="住所" maxlength="120" />
+			</div>
+			<div class="error-box">
 				<div th:if="${#fields.hasErrors('address')}" th:errors="${guest.address}"></div>
 			</div>
-			<div>
-				<input type="password" th:field="${guest.password}" class=""
-				 placeholder="パスワード" required pattern="^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{5,}$" title="※英数字を含む5文字以上" />
+			<div class="login-item">
+				<input type="password" th:field="${guest.password}" class="" placeholder="パスワード" required
+					pattern="^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{5,}$" title="※英数字を含む5文字以上" />
+			</div>
+			<div class="error-box">
 				<div th:if="${#fields.hasErrors('password')}" th:errors="${guest.password}"></div>
 			</div>
-			<div>
-				<input type="password" name="password_confirm" class=""
-				 placeholder="パスワード（確認）" required />
+			<div class="login-item">
+				<input type="password" name="password_confirm" class="" placeholder="パスワード（確認）" required />
+			</div>
+			<div class="error-box">
 				<div th:if="${error != null}" th:text="${error}"></div>
 			</div>
-			<button>新規会員登録</button>
+			<button class="login-buttons">新規会員登録</button>
 		</form>
-		<div>
-			<a href="/login">ログインページへ</a>
+
+		<div class="register-button">
+			アカウントを既にお持ちの方は
+			<a href="/login">ログイン</a>
 		</div>
 	</main>
+
+	<!-- 共通ヘッダーの読み込み -->
+	<footer th:replace="footer"></footer>
 
 </body>
 

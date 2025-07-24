@@ -3,44 +3,85 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>予約履歴確認ページ</title>
+	<title>予約履歴一覧</title>
 	<!-- フォントやアイコンなどの読み込み -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+	<!-- 共通CSS -->
 	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/shadow.css">
+	<link rel="stylesheet" href="/css/header-footer.css">
 	<!--ここまで共通-->
-	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<link rel="stylesheet" href="/css/history-contents.css">
+
 
 </head>
 
 <body>
 	<header th:replace="header"></header>
-	<main>
-		<h1>予約履歴</h1>
-		<ul>
-			<li th:each="reservHistory:${reservationHistorys}">
 
-				<div class="">
-					<img th:src="@{${reservHistory.room.imgPath}}" alt="部屋">
+	<main class="reservation-history">
+
+		<h1>予約履歴</h1>
+
+		<div class="history-list" th:each="reservHistory:${reservationHistorys}">
+			<div class="list-contents">
+				<div>
+					<a
+						th:href="@{/rooms/{roomId}(roomId=${reservHistory.reservation.room.id}, checkinDate=${checkinDate}, checkoutDate=${checkoutDate})}">
+						<img class="history-img" th:src="@{${reservHistory.reservation.room.imgPath}}" alt="部屋">
+					</a>
 				</div>
-				<div class="">
-					<div class="" th:text="${reservHistory.room.roomName}"></div>
-					<div class="" th:text="${reservHistory.plan.name}"></div>
-					<div class="" th:text="${reservHistory.StayDate}"></div>
-					<div class="" th:text="${reservHistory.totalPrice}"></div>
+				<div class="history-info">
+					<div class="history-info__contents">
+						<h3>宿泊部屋：
+							<a
+								th:href="@{/rooms/{roomId}(roomId=${reservHistory.reservation.room.id}, checkinDate=${checkinDate}, checkoutDate=${checkoutDate})}">
+								<span class="theme-color">[[${reservHistory.reservation.room.roomName}]]</span>
+							</a>
+						</h3>
+
+						<div class="history-info__item">ステータス：
+							<span th:if="${reservHistory.status == '宿泊済み'}" class="status-label status-completed">
+								[[${reservHistory.status}]]
+							</span>
+
+							<span th:if="${reservHistory.status == '予約済み'}" class="status-label status-upcoming">
+								[[${reservHistory.status}]]
+							</span>
+						</div>
+
+						<div class="history-info__item">プラン：[[${reservHistory.reservation.plan.name}]]</div>
+						<div class="history-info__item">宿泊日：[[${reservHistory.reservation.StayDate}]]</div>
+					</div>
+
+					<div class="history-info__btn">
+						<a th:href="@{/reservationHistory/{id}(id=${reservHistory.reservation.id})}">
+							<button class="history-btn">
+								<i class="fa-solid fa-circle-info"></i>
+								ご予約内容の確認
+							</button>
+						</a>
+						<a th:if="${!reservHistory.reservation.isReviewedBy(loginGuestId)}"
+							th:href="@{/reviews/new/{id}(id=${reservHistory.reservation.id})}">
+							<button class="review-btn" type="button">
+								<i class="fa-solid fa-comment"></i>
+								レビューを書く
+							</button>
+						</a>
+						<span th:if="${reservHistory.reservation.isReviewedBy(loginGuestId)}">
+							<button class="review-disabled" type="button">
+								<i class="fa-solid fa-comment"></i>
+								レビュー投稿済み
+							</button>
+						</span>
+					</div>
 				</div>
-				<a th:href="@{/reservationHistory/{id}(id=${reservHistory.id})}">詳細を見る</a>
-				<a th:if="${!reservHistory.isReviewedBy(loginGuestId)}"
-					th:href="@{/reviews/new/{id}(id=${reservHistory.id})}">
-					レビューを書く
-				</a>
-				<span th:if="${reservHistory.isReviewedBy(loginGuestId)}">
-					レビュー投稿済み
-				</span>
-			</li>
-		</ul>
+			</div>
+		</div>
 	</main>
 	<footer th:replace="footer"></footer>
 

@@ -16,4 +16,5 @@ public interface ReservationRepository extends JpaRepository<Reservation, Intege
 
 	List<Reservation> findByGuest(Guest guest);
 
+	List<Reservation> findByGuestOrderByStayDateDesc(Guest guest);
 }

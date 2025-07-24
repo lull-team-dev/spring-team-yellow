@@ -4,21 +4,21 @@
 <head>
 	<meta charset="UTF-8">
 	<title>マイページ更新</title>
-	        <!-- フォントやアイコンなどの読み込み -->
-	        <link rel="preconnect" href="https://fonts.googleapis.com">
-	        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<!-- フォントやアイコンなどの読み込み -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
-	        <!-- Font Awesome -->
-	        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-	        <!-- 共通CSS -->
-	        <link rel="stylesheet" href="/css/style.css">
-	        <link rel="stylesheet" href="/css/shadow.css">
-	        <link rel="stylesheet" href="/css/button.css">
-	        <link rel="stylesheet" href="/css/header-footer.css">
-	        <!--ここまで共通-->
-			<link rel="stylesheet" href="/css/mypage.css">
-			<link rel="stylesheet" href="/css/button.css">
-			<link rel="stylesheet" href="/css/edit.css">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+	<!-- 共通CSS -->
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/shadow.css">
+	<link rel="stylesheet" href="/css/button.css">
+	<link rel="stylesheet" href="/css/header-footer.css">
+	<!--ここまで共通-->
+	<link rel="stylesheet" href="/css/edit.css">
+	<link rel="stylesheet" href="/css/button.css">
+	<link rel="stylesheet" href="/css/edit.css">
 
 </head>
 
@@ -36,44 +36,79 @@
 						<div class="">現在のメールアドレス</div>
 						<input class="email-display-input" th:value="${guest.email}" readonly>
 						<label for="email" class="info-label">新しいメールアドレス</label>
-						<input id="email" type="email" name="email"　placeholder="メールアドレス">
+						<input class="profile-input" id="email" type="email" name="email" th:value="${email}" placeholder="メールアドレス">
+						<div class="error-box">
+							<span th:if="${errors != null and errors.containsKey('email')}" th:text="${errors.get('email')}"
+								class="error-message"></span>
+						</div>
 					</div>
 				</div>
-				
+
 				<div class="edit-item" th:case="password">
 					<h3 class="profile-category">
 						<i class="fa-solid fa-key"></i>
 						<dt>パスワード</dt>
 					</h3>
 					<div class="info-form">
-						<label for="password" class="info-label">新しいパスワード</label>
-						<input id="password" type="password" name="password"　placeholder="パスワード">
+						<label for="password" class="info-label">現在のパスワード</label>
+						<input class="profile-input" id="password" type="password" name="password" placeholder="現在のパスワード">
+						<div class="error-box">
+							<span th:if="${errors != null and errors.containsKey('password')}" th:text="${errors.get('password')}"
+								class="error-message"></span>
+								</div>
+
+								
+						<label for="newPassword" class="info-label">新しいパスワード</label>
+						<input class="profile-input" id="newPassword" type="password" name="newPassword" placeholder="新しいパスワード">
+						<div class="error-box">
+							<span th:if="${errors != null and errors.containsKey('newPassword')}" th:text="${errors.get('newPassword')}"
+								class="error-message"></span>
+								</div>
+
+								
 						<label for="password_confirm" class="info-label">新しいパスワード(確認)</label>
-						<input type="password" id="password_confirm" name="password_confirm" placeholder="パウワード（確認）">
+						<input class="profile-input" type="password" id="password_confirm" name="password_confirm" placeholder="パスワード（確認）">
+						<div class="error-box">
+							<span th:if="${errors != null and errors.containsKey('password_confirm')}" th:text="${errors.get('password_confirm')}"
+								class="error-message"></span>
+								</div>
+
+								
 					</div>
 				</div>
-				
+
 				<div class="edit-item" th:case="profile">
 					<h3 class="profile-category">
 						<i class="fa-solid fa-user"></i>
 						<span>基本情報</span>
 					</h3>
 					<div class="info-form">
+						<!--名前フォーム-->
 						<label for="name" class="info-label">名前</label>
-						<input type="text" id="name" name="name" th:value="${guest.name}">
+						<input class="profile-input" type="text" id="name" name="name" th:value="${name}">
+						<div class="error-box">
+							<span th:if="${errors != null and errors.containsKey('name')}"
+								th:text="${errors.get('name')}" class="error-message"></span>
+						</div>
+						<!--住所フォーム-->
 						<label for="address" class="info-label">住所</label>
-						<input type="text" id="address" name="address" th:value="${guest.address}">
+						<input class="profile-input" type="text" id="address" name="address" th:value="${address}">
+						<div class="error-box">
+							<span th:if="${errors != null and errors.containsKey('address')}"
+								th:text="${errors.get('address')}" class="error-message"></span>
+						</div>
+						<!--電話フォーム-->
 						<label for="tel" class="info-label">電話番号</label>
-						<input type="text" id="tel" name="tel" th:value="${guest.tel}">
+						<input class="profile-input" type="text" id="tel" name="tel" th:value="${tel}">
+						<div class="error-box">
+							<span th:if="${errors != null and errors.containsKey('tel')}" th:text="${errors.get('tel')}"
+								class="error-message"></span>
+						</div>
 					</div>
 				</div>
-				<div class="error-box">
-					<span th:each="error:${errorList}" th:text="${error}" class="error-message"></span>
 
-				</div>
-				
 				<button>編集する</button>
-				<a class="return-button" href="/mypage">戻る</a>
+				<a class="return-button" href="/profile">戻る</a>
 			</form>
 		</div>
 	</main>

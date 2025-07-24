@@ -1,0 +1,160 @@
+@charset "UTF-8";
+
+
+/**
+ * 予約履歴
+ */
+
+.history-list {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	margin: 32px 0;
+}
+
+.list-contents {
+	display: flex;
+	width: 80%;
+	box-shadow: 1px 1px 2px 1px rgba(5, 5, 5, 0.1);
+	border-radius: 8px;
+	appearance: none;
+}
+
+.history-info {
+	width: 100%;
+	padding: 0px 24px;
+}
+
+.history-img {
+	max-width: 320px;
+	height: 100%;
+	border-radius: 8px 0px 0px 8px;
+}
+
+.theme-color {
+	color: #e77611;
+}
+
+.history-info__btn {
+	display: flex;
+	justify-content: end;
+	gap: 8px;
+	margin: 16px 0;
+}
+
+.review-btn {
+	width: 168px;
+	padding: 8px;
+	background-color: #fff;
+	color: rgb(236, 146, 78);
+	border: 1px solid rgba(236, 146, 78, 0.3);
+	border-radius: 5px;
+}
+
+.review-btn:hover {
+	background-color: rgba(236, 146, 78, 0.1);
+	border: 1px solid rgba(236, 146, 78, 0.3);
+}
+
+.history-btn {
+	width: 168px;
+	padding: 8px;
+	background-color: #fff;
+	color: rgb(74, 144, 226);
+	border: 1px solid rgba(74, 144, 226, 0.3);
+	border-radius: 5px;
+}
+
+.history-btn:hover {
+	background-color: rgba(74, 144, 226, 0.1);
+	border: 1px solid rgba(74, 144, 226, 0.3);
+}
+
+.review-disabled {
+	width: 168px;
+	padding: 8px;
+	background-color: #f8f9fa;
+	color: #adb5bd;
+	border: 1px solid #dee2e6;
+	border-radius: 5px;
+	cursor: not-allowed;
+	opacity: 0.6;
+}
+
+.review-disabled:hover {
+	background-color: #f8f9fa;
+	border: 1px solid #dee2e6;
+	cursor: not-allowed;
+}
+
+/**
+ * 予約履歴詳細
+ */
+
+.history-detail__img {
+	display: block;
+	max-width: 600px;
+	margin: 0 auto 32px auto;
+	border-radius: 16px;
+}
+
+.history-detail__contents {
+	width: 60%;
+	box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);
+	border-radius: 16px;
+	margin: 0 auto;
+	padding: 2rem 3rem;
+}
+
+.detail-contents-row {
+	display: flex;
+	padding: 1.2rem;
+	border-bottom: 1px solid rgba(5, 5, 5, 0.1);
+}
+
+.detail-contents-row:last-child {
+	border: none;
+}
+
+.detail-contents__title {
+	width: 40%;
+	font-weight: 600;
+}
+
+.detail-contents__body {
+	flex: 1;
+}
+
+.history-info__item {
+	margin-bottom: 0.3rem;
+}
+
+.history-info__item:last-child {
+	margin-bottom: 0;
+}
+
+.history-detail-btn button {
+	display: block;
+	width: 168px;
+	margin: 32px auto;
+	padding: 1rem 2rem;
+}
+
+.status-label {
+	display: inline-block;
+	padding: 4px 8px;
+	font-size: 0.8rem;
+	font-weight: 600;
+	border-radius: 8px;
+	border: 1px solid transparent;
+}
+
+.status-completed {
+	background-color: rgba(82, 186, 123, 0.15);
+	color: rgb(82, 186, 123);
+}
+
+.status-upcoming {
+	background-color: rgba(74, 144, 226, 0.15);
+	color: rgb(74, 144, 226);
+}

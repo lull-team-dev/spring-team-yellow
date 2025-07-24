@@ -12,21 +12,14 @@
 	box-shadow: 0px 0px 5px 1px rgba(231, 118, 17, 0.1);
 }
 
-header {
-	position: relative;
-	z-index: 10;
-}
-
 main {
-	margin: 545px 120px;
+	margin: 100px 120px 75px 120px;
 }
 
 .head-img {
 	width: 100%;
-	height: 600px;
-	position: absolute;
-	top: 0;
-	left: 0;
+	height: 90vh;
+	margin-top: 95px;
 }
 
 .head-img img {
@@ -82,12 +75,19 @@ main {
 
 }
 
+#prevBtn:hover,
+#nextBtn:hover {
+	color: #c0c0c0;
+}
+
 #prevBtn {
 	left: 30px;
+	font-size: 3rem;
 }
 
 #nextBtn {
 	right: 30px;
+	font-size: 3rem;
 }
 
 
@@ -128,6 +128,7 @@ main {
 
 .section-content {
 	font-size: 14px;
+	margin: 0.5rem 0 3rem;
 }
 
 
@@ -144,18 +145,17 @@ main {
 .plan {
 	border-radius: 30px;
 	margin-bottom: 35px;
-}
+	margin: 0}
 
 .plan-button,
 .plan-card-content {
 	border-radius: 22px;
 	margin-bottom: 35px;
 	background: #fff;
-	padding: 26px 30px;
-	display: flex;
-	flex-direction: column;
-	gap: 12px;
-	width: 97%;
+	padding: 26px 40px;
+	box-sizing: border-box;
+	width: 100%;
+	text-align: left;
 }
 
 .plan-card-content{
@@ -168,6 +168,11 @@ main {
 	font-size: 1.1em;
 	font-weight: bold;
 	color: #e77611;
+}
+
+.plan-detile {
+	display: flex;
+	justify-content: space-between;
 }
 
 /* プラン説明 */
@@ -196,3 +201,47 @@ main {
 .like-link {
 	align-items: normal;
 }
+
+/* レビューセクション全体の見た目統一 */
+.review-section {
+	margin-top: 40px;
+	padding: 40px;
+	border-radius: 30px;
+	background-color: #fff;
+}
+
+/* セクションタイトル（共通スタイルに合わせる） */
+.review-section .section-title {
+	color: #e77611;
+	font-weight: bold;
+	font-size: 1.2em;
+	margin-bottom: 25px;
+}
+
+.review-title {
+	margin: 0 0 24px 0;
+	color: #e77611;
+}
+
+
+
+/* フェードインエフェクト（必要ならJS側で制御） */
+/*
+.review-section {
+	opacity: 0;
+	transform: translateY(30px);
+	animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes fadeInUp {
+	0% {
+		opacity: 0;
+		transform: translateY(30px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+*/
+
