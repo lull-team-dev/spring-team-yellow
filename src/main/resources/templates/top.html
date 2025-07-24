@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>宿へようこそ</title>
+	<title>Gran Marina Resort | ルーム検索</title>
 	<!-- フォントやアイコンなどの読み込み -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,107 +35,104 @@
 	<main>
 		<!-- ================== 検索フォーム ================== -->
 		<div class="search-form-outer">
-			<div class="search-form-wrap">
+			<div class="search-form-wrap main-shadow">
 				<form class="search-form-box" action="/room" method="get">
-					<div class="">
-						<!-- キーワード検索（ルーム名で検索） -->
-						<p>●キーワード検索</p>
-						<input type="text" name="keyword" th:value="${keyword}" placeholder="ルーム名検索"
-							class="keyword-search">
+					<!-- キーワード検索（ルーム名で検索） -->
+					<p>●キーワード検索</p>
+					<input type="text" name="keyword" th:value="${keyword}" placeholder="ルーム名検索" class="keyword-search">
 
-						<!-- 部屋タイプ選択（チェックボックス） -->
-						<div class="room-type-group">
-							<p>●部屋タイプ</p>
-							<div class="room-type-center">
-								<label>
-									<input type="checkbox" name="types" value="3"
-										th:checked="${types != null and types.contains(3)}">スイートルーム
-								</label>
-								<label>
-									<input type="checkbox" name="types" value="2"
-										th:checked="${types != null and types.contains(2)}">ダブルルーム
-								</label>
-								<label>
-									<input type="checkbox" name="types" value="1"
-										th:checked="${types != null and types.contains(1)}">シングルルーム
-								</label>
-							</div>
+					<!-- 部屋タイプ選択（チェックボックス） -->
+					<div class="room-type-group">
+						<p>●部屋タイプ</p>
+						<div class="room-type-center">
+							<label>
+								<input type="checkbox" name="types" value="3"
+									th:checked="${types != null and types.contains(3)}">スイートルーム
+							</label>
+							<label>
+								<input type="checkbox" name="types" value="2"
+									th:checked="${types != null and types.contains(2)}">ダブルルーム
+							</label>
+							<label>
+								<input type="checkbox" name="types" value="1"
+									th:checked="${types != null and types.contains(1)}">シングルルーム
+							</label>
 						</div>
+					</div>
 
-						<!-- 予算ブロック（下限・上限入力＋スライダー） -->
-						<div class="room-price-group">
-							<p>●予算</p>
-							<div class="contanabox">
-								<div class="price-display">
-									<div class="price-box">
-										<div class="price-label">下限</div>
-										<div class="price-value">¥<span>
-												<input type="text" id="under_value_display"
-													style="border: none; width:80%; outline: none;">
-											</span></div>
-									</div>
-									<span class="price-separator">～</span>
-									<div class="price-box">
-										<div class="price-label">上限</div>
-										<div class="price-value">¥<span>
-												<input type="text" id="up_value_display"
-													style="border: none; width:80%; outline: none;">
-											</span></div>
-									</div>
+					<!-- 予算ブロック（下限・上限入力＋スライダー） -->
+					<div class="room-price-group">
+						<p>●予算</p>
+						<div class="contanabox">
+							<div class="price-display">
+								<div class="price-box">
+									<div class="price-label">下限</div>
+									<div class="price-value">¥<span>
+											<input type="text" id="under_value_display"
+												style="border: none; width:80%; outline: none;">
+										</span></div>
 								</div>
-								<div class="slider-contanabox">
-									<div class="slider-track"></div>
-									<div class="slider-range" id="slider-range"></div>
-									<!-- 2本のスライダー -->
-									<input type="range" id="pi_under_input" class="slider-lower" min="0" max="100000"
-										name="underPrice" th:value="${underPrice}" step="1">
-									<input type="range" id="pi_up_input" class="slider-upper" min="0" max="100000"
-										name="upPrice" th:value="${upPrice}" step="1">
+								<span class="price-separator">～</span>
+								<div class="price-box">
+									<div class="price-label">上限</div>
+									<div class="price-value">¥<span>
+											<input type="text" id="up_value_display"
+												style="border: none; width:80%; outline: none;">
+										</span></div>
 								</div>
-								<!-- 送信用hidden -->
-								<input type="hidden" id="under_value_input" name="underPrice" th:value="${underPrice}">
-								<input type="hidden" id="up_value_input" name="upPrice" th:value="${upPrice}">
 							</div>
+							<div class="slider-contanabox">
+								<div class="slider-track"></div>
+								<div class="slider-range" id="slider-range"></div>
+								<!-- 2本のスライダー -->
+								<input type="range" id="pi_under_input" class="slider-lower" min="0" max="100000"
+									name="underPrice" th:value="${underPrice}" step="1">
+								<input type="range" id="pi_up_input" class="slider-upper" min="0" max="100000"
+									name="upPrice" th:value="${upPrice}" step="1">
+							</div>
+							<!-- 送信用hidden -->
+							<input type="hidden" id="under_value_input" name="underPrice" th:value="${underPrice}">
+							<input type="hidden" id="up_value_input" name="upPrice" th:value="${upPrice}">
 						</div>
+					</div>
 
-						<!-- チェックイン・チェックアウト -->
-						<div class="calendar-group">
-							<div class="calendar-label-row">
-								<p>●チェックイン・チェックアウト</p>
-							</div>
-							<div class="calendar-input-row">
-								<div class="calendar-input-wrap calendar-checkin-wrap">
-									<input type="text" id="checkinDate" name="checkinDate" th:value="${checkinDate}"
-										required readonly>
-									<!-- カレンダー本体(絶対位置でinput直下) -->
-									<div id="calendarArea">
-										<div class="calendar-nav-row">
-											<button type="button" class="calendar-nav-btn calendar-nav-prev"
-												id="prev">&lt;</button>
-											<div class="calendar-nav-space"></div>
-											<button type="button" class="calendar-nav-btn calendar-nav-next"
-												id="next">&gt;</button>
-										</div>
-										<!-- ここが複数月分、横並びで生成される -->
-										<div id="calendar"></div>
-										<button type="button" id="closeCalendar">閉じる</button>
+					<!-- チェックイン・チェックアウト -->
+					<div class="calendar-group">
+						<div class="calendar-label-row">
+							<p>●チェックイン・チェックアウト</p>
+						</div>
+						<div class="calendar-input-row">
+							<div class="calendar-input-wrap calendar-checkin-wrap">
+								<input type="text" id="checkinDate" name="checkinDate" th:value="${checkinDate}"
+									required readonly>
+								<!-- カレンダー本体(絶対位置でinput直下) -->
+								<div id="calendarArea">
+									<div class="calendar-nav-row">
+										<button type="button" class="calendar-nav-btn calendar-nav-prev"
+											id="prev">&lt;</button>
+										<div class="calendar-nav-space"></div>
+										<button type="button" class="calendar-nav-btn calendar-nav-next"
+											id="next">&gt;</button>
 									</div>
-								</div>
-								<span class="calendar-tilde">～</span>
-								<div class="calendar-input-wrap">
-									<input type="text" id="checkoutDate" name="checkoutDate" th:value="${checkoutDate}"
-										required readonly>
+									<!-- ここが複数月分、横並びで生成される -->
+									<div id="calendar"></div>
+									<button type="button" id="closeCalendar">閉じる</button>
 								</div>
 							</div>
-							<div class="error-box">
-								<span th:if="${error}" th:text="${error}" class="error-message"></span>
+							<span class="calendar-tilde">～</span>
+							<div class="calendar-input-wrap">
+								<input type="text" id="checkoutDate" name="checkoutDate" th:value="${checkoutDate}"
+									required readonly>
 							</div>
 						</div>
-						<input type="hidden" name="search" value="1">
-						<!-- 検索ボタン -->
-						<div class="search-btn-wrap" style="text-align: center;">
-							<button type="submit" class="search-btn">検索する</button>
+						<div class="error-box">
+							<span th:if="${error}" th:text="${error}" class="error-message"></span>
 						</div>
+					</div>
+					<input type="hidden" name="search" value="1">
+					<!-- 検索ボタン -->
+					<div class="search-btn-wrap" style="text-align: center;">
+						<button type="submit" class="search-btn">検索する</button>
 					</div>
 				</form>
 			</div>
@@ -170,12 +167,11 @@
 									¥35,000〜 / 泊
 								</span>
 								<!-- いいね(星)ボタン（右端） -->
-								<a th:href="@{/like/{roomId}/like(roomId=${room.id})}" class="like-link">
-
-									<a th:href="@{/rooms/{roomId}/like(roomId=${room.id})}" class="like-link">
-										<i th:if="${like.contains(room.id)}" class="fa-solid fa-heart"></i>
-										<i th:unless="${like.contains(room.id)}" class="fa-regular fa-heart"></i>
-									</a>
+								<a class="like-link"
+									th:attr="data-room-id=${room.id}">
+									<i th:if="${like.contains(room.id) == true}" class="fa-solid fa-heart"></i>
+									<i th:unless="${like.contains(room.id) == true}" class="fa-regular fa-heart"></i>
+								</a>
 							</div>
 						</div>
 					</a>
@@ -190,6 +186,11 @@
 		</section>
 	</main>
 	<footer th:replace=" footer"></footer>
+	
+	<!-- jQuery 読み込み（CDN） -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<!--外部js-->
+	<script th:src="@{/js/like.js}"></script>
 	<script src="/js/range.js"></script>
 	<script src="/js/calendar.js"></script>
 </body>

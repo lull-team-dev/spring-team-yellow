@@ -1,12 +1,13 @@
 /***** 画面全体 *****/
-main{
-	margin:120px 0 0 0;
+main {
+	margin: 95px 0 0 0;
 }
 
 .main-content-wrapper::after {
 	content: "";
 	display: block;
-	height: 120px; /* フッターの高さ+α */
+	height: 120px;
+	/* フッターの高さ+α */
 }
 
 .hero,
@@ -16,9 +17,14 @@ main{
 	z-index: 2 !important;
 }
 
+.hero-slide-img:nth-child(2){
+	filter: drop-shadow(2px 4px 6px black);
+}
+
+
 /***** hero（トップ）*****/
 .hero {
-	height: 88vh;
+	height: 92vh;
 	width: 100%;
 	display: flex;
 	align-items: center;
@@ -29,6 +35,7 @@ main{
 	overflow: hidden;
 	background: #000;
 }
+
 .hero-slideshow {
 	position: absolute;
 	top: 0;
@@ -39,6 +46,7 @@ main{
 	height: 100%;
 	z-index: 1;
 }
+
 .hero-slide-img {
 	width: 100vw;
 	height: 100vh;
@@ -53,10 +61,12 @@ main{
 	transition: opacity 2.2s cubic-bezier(.32, .7, .51, 1.15);
 	z-index: 1;
 }
+
 .hero-slide-img.active {
 	opacity: 1;
 	z-index: 2;
 }
+
 .hero-content {
 	opacity: 0;
 	transition: none;
@@ -69,26 +79,31 @@ main{
 	transform: translate(-50%, -50%);
 	z-index: 20;
 }
+
 .hero-content.visible {
 	animation: heroContentFadeIn 1.5s cubic-bezier(.32, .7, .51, 1.15) 0.1s 1 both;
 }
+
 @keyframes heroContentFadeIn {
 	0% {
 		opacity: 0;
 		transform: translate(-50%, -60%) scale(0.93);
 		filter: blur(8px);
 	}
+
 	60% {
 		opacity: 1;
 		filter: blur(0);
 		transform: translate(-50%, -50%) scale(1.02);
 	}
+
 	100% {
 		opacity: 1;
 		filter: blur(0);
 		transform: translate(-50%, -50%) scale(1);
 	}
 }
+
 .hero-content .logo {
 	width: 180px;
 	max-width: 100%;
@@ -96,12 +111,18 @@ main{
 	margin: 0 auto 0.5rem auto;
 	display: block;
 }
+
+.name-logo{
+	width: 500px;
+}
+
+
 .cormorant-garamond-hotel-logo {
 	font-size: 2.5rem;
 	line-height: 1.15;
 	font-weight: 700;
 	letter-spacing: 0.04em;
-	color: #555;
+	color: #4e454a;
 	text-align: center;
 }
 
@@ -113,6 +134,7 @@ main{
 	min-width: 320px;
 	margin: 6rem auto 0;
 	padding: 0;
+	
 }
 
 /***** セクション共通装飾 *****/
@@ -123,6 +145,7 @@ main{
 	margin-bottom: 6rem;
 	width: 100%;
 }
+
 .section h2 {
 	text-align: center;
 	font-size: 3rem;
@@ -132,6 +155,7 @@ main{
 	letter-spacing: 0.06em;
 	font-weight: 700;
 }
+
 .section h2::after {
 	content: '';
 	position: absolute;
@@ -143,6 +167,7 @@ main{
 	background: #e77611;
 	border-radius: 2px;
 }
+
 .section-subtitle {
 	text-align: center;
 	font-size: 1.25rem;
@@ -157,6 +182,7 @@ main{
 	align-items: center;
 	justify-content: center;
 }
+
 .about-text {
 	font-size: 1.3rem;
 	line-height: 2.2;
@@ -165,6 +191,7 @@ main{
 	letter-spacing: 0.01em;
 	max-width: 630px;
 }
+
 .about-image {
 	position: relative;
 	overflow: visible;
@@ -177,6 +204,7 @@ main{
 	justify-content: center;
 	margin-right: 4vw;
 }
+
 .about-image img {
 	width: 100%;
 	max-width: 880px;
@@ -187,6 +215,7 @@ main{
 	display: block;
 	margin: 0 auto;
 }
+
 .about-image button {
 	position: absolute;
 	top: 50%;
@@ -208,6 +237,7 @@ main{
 	transition: color 0.12s, opacity 0.12s;
 	opacity: 0.83;
 }
+
 .about-image button:hover {
 	color: #c0c0c0;
 	opacity: 1;
@@ -216,21 +246,26 @@ main{
 #prev-btn {
 	left: 22px;
 }
+
 #next-btn {
 	right: 22px;
 }
+
 @media (max-width: 1200px) {
 	.about-content {
 		flex-direction: column;
 		gap: 3.5rem;
 	}
+
 	.about-text {
 		max-width: 98vw;
 		padding: 0 4vw;
 	}
+
 	.about-image {
 		margin-right: 0;
 	}
+
 	.about-image img {
 		max-width: 98vw;
 		height: 44vw;
@@ -245,6 +280,7 @@ main{
 	justify-content: center;
 	margin: 4.5rem 2rem 0 2rem;
 }
+
 .room-card {
 	background: #fff;
 	border-radius: 36px;
@@ -257,6 +293,7 @@ main{
 	align-items: flex-start;
 	gap: 2.2rem;
 }
+
 .room-image {
 	width: 100%;
 	max-width: 540px;
@@ -270,31 +307,38 @@ main{
 	justify-content: center;
 	align-items: center;
 }
+
 .room-image img {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
 	border-radius: 28px;
 }
-.room-content h3 {
-	font-size: 1.45rem;
-	margin-bottom: 1.4rem;
-	color: #555;
-	font-weight: 600;
-	letter-spacing: 0.03em;
+
+.room-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; 
+  height: 40%; 
+  padding: 1.5rem;
+  box-sizing: border-box;
 }
+
+.room-content h3,
 .room-content p {
-	color: #555;
-	margin-bottom: 1.8rem;
-	line-height: 2.1;
-	font-size: 1.07rem;
+  margin: 0 0 1rem;
+  color: #555;
+  font-size: 1rem;
+  line-height: 1.6;
 }
+
 .room-price {
-	font-size: 1.19rem;
-	font-weight: bold;
-	color: #e77611;
-	margin-bottom: 1.1rem;
+  font-size: 1.19rem;
+  font-weight: bold;
+  color: #e77611;
+  margin-top: auto; 
 }
+
 .search-rooms-btn-wrap {
 	text-align: center;
 	margin-top: 2.5rem;
@@ -310,6 +354,7 @@ main{
 	padding: 0 2vw;
 	box-sizing: border-box;
 }
+
 .dining-card {
 	background: #fff;
 	border-radius: 34px;
@@ -321,6 +366,7 @@ main{
 	min-height: 660px;
 	transition: box-shadow 0.18s;
 }
+
 .dining-image {
 	width: 100%;
 	max-width: 680px;
@@ -334,6 +380,7 @@ main{
 	box-shadow: 0 8px 26px rgba(200, 170, 110, 0.10);
 	background: #f5f1ea;
 }
+
 .dining-image img {
 	width: 100%;
 	height: 100%;
@@ -341,6 +388,7 @@ main{
 	border-radius: 26px;
 	display: block;
 }
+
 .dining-content {
 	text-align: left;
 	width: 100%;
@@ -350,6 +398,7 @@ main{
 	flex-direction: column;
 	align-items: flex-start;
 }
+
 .dining-content h3 {
 	font-size: 1.72rem;
 	color: #555;
@@ -358,6 +407,7 @@ main{
 	font-weight: 700;
 	line-height: 1.1;
 }
+
 .dining-content p {
 	font-size: 1.19rem;
 	color: #555;
@@ -365,32 +415,40 @@ main{
 	margin-bottom: 0;
 	letter-spacing: 0.01em;
 }
+
 @media (max-width: 1100px) {
 	.dining-grid {
 		grid-template-columns: 1fr;
 	}
+
 	.dining-card {
 		min-height: 380px;
 	}
+
 	.dining-image {
 		max-width: 96vw;
 		height: 240px;
 	}
+
 	.dining-content {
 		padding: 0 3vw;
 	}
 }
+
 @media (max-width: 700px) {
 	.dining-card {
 		min-height: 210px;
 		padding: 1.3rem 0.7rem 1.3rem 0.7rem;
 	}
+
 	.dining-image {
 		height: 120px;
 	}
+
 	.dining-content h3 {
 		font-size: 1.23rem;
 	}
+
 	.dining-content p {
 		font-size: 1rem;
 	}
@@ -405,6 +463,7 @@ main{
 	padding: 0 2vw;
 	box-sizing: border-box;
 }
+
 .amenities-grid {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
@@ -416,6 +475,7 @@ main{
 	align-items: stretch;
 	box-sizing: border-box;
 }
+
 .amenity-card {
 	background: #fff;
 	border-radius: 30px;
@@ -428,6 +488,7 @@ main{
 	margin: 0 auto;
 	transition: box-shadow 0.16s;
 }
+
 .amenity-icon {
 	font-size: 3.1rem;
 	color: #ff8555;
@@ -436,6 +497,7 @@ main{
 	align-items: center;
 	justify-content: center;
 }
+
 .amenity-title {
 	font-size: 1.28rem;
 	font-weight: 700;
@@ -444,6 +506,7 @@ main{
 	color: #555;
 	text-align: center;
 }
+
 .amenity-desc {
 	font-size: 1.13rem;
 	color: #555;
@@ -451,27 +514,33 @@ main{
 	text-align: center;
 	margin: 0;
 }
+
 @media (max-width: 1100px) {
 	.amenities-grid {
 		grid-template-columns: 1fr 1fr;
 		gap: 3vw 3vw;
 	}
 }
+
 @media (max-width: 700px) {
 	.amenities-grid {
 		grid-template-columns: 1fr;
 		gap: 2vw;
 	}
+
 	.amenity-card {
 		padding: 1.3rem 0.8rem 1.3rem 0.8rem;
 		min-height: 120px;
 	}
+
 	.amenity-title {
 		font-size: 1.02rem;
 	}
+
 	.amenity-desc {
 		font-size: 0.98rem;
 	}
+
 	.amenity-icon {
 		font-size: 2.2rem;
 	}
@@ -490,13 +559,14 @@ main{
 	align-items: center;
 	box-sizing: border-box;
 }
+
 iframe.access-map {
 	width: 100%;
 	max-width: 900px;
 	height: 420px;
 	border: none;
 	border-radius: 14px;
-	box-shadow: 0 2px 7px rgba(0,0,0,0.10);
+	box-shadow: 0 2px 7px rgba(0, 0, 0, 0.10);
 	background: #eee;
 }
 
@@ -506,20 +576,24 @@ iframe.access-map {
 		padding: 7vw 3vw 7vw 3vw;
 		max-width: 99vw;
 	}
+
 	iframe.access-map {
 		height: 200px;
 		max-width: 98vw;
 	}
 }
+
 @media (max-width: 600px) {
 	.section {
 		padding: 1.2rem 0;
 		border-radius: 18px;
 	}
+
 	.access-map-wrap {
 		padding: 5vw 2vw;
 		border-radius: 14px;
 	}
+
 	iframe.access-map {
 		height: 140px;
 		border-radius: 8px;

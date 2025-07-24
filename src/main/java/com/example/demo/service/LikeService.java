@@ -34,15 +34,17 @@ public class LikeService {
 	}
 
 	//	いいね押した時の処理
-	public void toggleLike(Integer guestId, Integer roomId) {
+	public boolean toggleLike(Integer guestId, Integer roomId) {
 		//		いいねされてたら、テーブルから削除
 		if (likeRepository.existsByGuestIdAndRoomId(account.getId(), roomId)) {
 			Like unLike = likeRepository.findByGuestIdAndRoomId(account.getId(), roomId);
 			likeRepository.delete(unLike);
+			return false;
 			//			いいねしてなかったら、テーブルに追加
-		} else if (!likeRepository.existsByGuestIdAndRoomId(account.getId(), roomId)) {
+		} else {
 			Like like = new Like(account.getId(), roomId);
 			likeRepository.save(like);
+			return true;
 		}
 	}
 

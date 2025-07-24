@@ -1,9 +1,9 @@
 <header class="main-shadow">
 	<div class="header-box">
-		<div class="left-item">
-			<a href="/hotel" class="logo"><img src="/uploads/images/logo.png" class="logo-img" alt="ロゴ" ></a>
+		<a href="/hotel"  class="left-item">
+			<div class="logo"><img src="/uploads/images/logo.png" class="logo-img" alt="ロゴ" ></div>
 			<div class="hotel-name dm-serif-display-regular ">Gran Marina Resort</div>
-		</div>
+		</a>
 		<!-- ログイン済み時の表示 -->
 		<div class="right-item"  th:if="${@account.id}">
 			<div class="hamburger-icon" id="hamburger-icon">
@@ -22,13 +22,12 @@
 				<div th:if="${@account.id}" class="username">[[${@account.name}]]さんようこそ</div>
 				<a href="/room">ルーム検索</a>
 				<a href="/reservationHistory">予約履歴</a>
-				<a href="/like">お気に入り</a>
 				<a href="/mypage">マイページ</a>
 				<a href="/logout">ログアウト</a>
 			</nav>
 		</div>
 		<!-- 未ログイン時の表示 -->
-		<div class="right-item not-login"  th:unless="${@account.id}">
+		<div class="not-login"  th:unless="${@account.id}">
 			<a href="/login">ログイン画面へ</a>
 		</div>
 	</div>

@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>お気に入りページ</title>
+	<title>お気に入り一覧</title>
 
 	<!-- フォントやアイコンなどの読み込み -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,19 +19,21 @@
 	<link rel="stylesheet" href="/css/like-page.css">
 	<link rel="stylesheet" href="/css/heart-icon.css">
 	<link rel="stylesheet" href="/css/room.css">
-
-
-
-
+	<link rel="stylesheet" href="/css/button.css">
 </head>
 
 <body>
 	<header th:replace="header"></header>
 	<main>
 		<h1>お気に入り</h1>
+		<!--お気に入りがまだない時-->
 		<div class="nonlike-message" th:if="${rooms == null or #lists.isEmpty(rooms)}">
 			<p>まだお気に入り登録はありません</p>
+			<div class="search-nothing">
+				<img class="search-logo" th:src="${randomImg}">
+			</div>
 		</div>
+		<!--通常時-->
 		<div class="rooms-grid">
 			<!-- ▼ ここからルームカード（繰り返し） -->
 			<div class="room-card main-shadow" th:each="room : ${rooms}" th:id="${room.id}">
@@ -56,9 +58,10 @@
 								¥35,000〜 / 泊
 							</span>
 							<!-- いいね(星)ボタン（右端） -->
-							<a th:href="@{/like/{roomId}/like(roomId=${room.id})}" class="like-link">
-								<i th:if="${like.contains(room.id)}" class="fa-solid fa-heart"></i>
-								<i th:unless="${like.contains(room.id)}" class="fa-regular fa-heart"></i>
+							<a class="like-link"
+								th:attr="data-room-id=${room.id}">
+								<i th:if="${like.contains(room.id) == true}" class="fa-solid fa-heart"></i>
+								<i th:unless="${like.contains(room.id) == true}" class="fa-regular fa-heart"></i>
 							</a>
 						</div>
 					</div>
@@ -67,9 +70,17 @@
 			</div>
 			<!-- ▲ ここまでルームカード -->
 		</div>
+		
+			<a class="mypage-return-button return-button" href="/mypage">戻る</a>
+		
 	</main>
 
 	<footer th:replace="footer"></footer>
+	
+	<!-- jQuery 読み込み（CDN） -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<!--外部js-->
+	<script th:src="@{/js/like.js}"></script>
 </body>
 
 </html>

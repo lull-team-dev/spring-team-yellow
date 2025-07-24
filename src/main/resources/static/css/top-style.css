@@ -8,22 +8,21 @@
 
 .search-form-wrap {
 	width: 100%;
-	box-shadow: 0 1px 4px 0 #555;
 	border-radius: 18px;
+	height: 80%;
 }
 
 
 .search-form-box {
 	background: #fff;
 	margin: 0 auto;
-	padding: 70px 20%;
+	padding: 22px 20%;
 	width: 100%;
 	min-width: 380px;
 	max-width: 620px;
 	/*90vw*/
 	display: flex;
 	flex-direction: column;
-	gap: 28px;
 }
 
 .search-form-box p {
@@ -194,14 +193,31 @@
 	background: #e77611;
 }
 
-.slider-track,
-.slider-range,
-.slider-lower,
+
+/*スライダーとボタンの各種調整*/
 .slider-upper {
 	left: 0;
 	right: 0;
 	width: 100%;
 }
+
+.slider-track {
+	left: 0;
+	right: 0;
+	width: 100%;
+}
+
+.slider-range {
+	left: 0;
+	right: 0;
+	width: 100%;
+}
+
+.slider-lower {
+	right: 0;
+	width: 100%;
+}
+
 
 /* ==============================
    客室リスト・ルームカード関連のCSS
@@ -233,12 +249,10 @@
 	text-align: center;
 }
 
-.search-nothing{
+.search-nothing {
 	text-align: center;
 }
 
-.search-logo{
+.search-logo {
 	width: 250px;
 }
-
-

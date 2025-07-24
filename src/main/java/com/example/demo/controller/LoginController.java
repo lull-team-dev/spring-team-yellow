@@ -4,6 +4,7 @@ package com.example.demo.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,15 +22,41 @@ import com.example.demo.repository.GuestRepository;
 public class LoginController {
 
 	@Autowired
-	GuestRepository guestRepository;
-	@Autowired
 	HttpSession session;
 	@Autowired
 	Account account;
+	@Autowired
+	GuestRepository guestRepository;
 
 	//ログイン画面の表示
-	@GetMapping({ "/", "/login", "/logout" })
-	private String loginIndex(
+	@GetMapping("/login")
+	public String loginIndex(
+			@RequestParam(defaultValue = "") String error,
+			HttpServletRequest request,
+			Model model) {
+
+		//ログイン前にいたURLの取得
+		String referer = request.getHeader("Referer");
+		System.out.println("ログイン画面if前" + referer);
+
+		//取得したURLがnullじゃないかつ下記URLが含まれていない場合の処理
+		if (referer != null && !referer.contains("/login") && !referer.contains("/register")) {
+
+			System.out.println("ログイン画面遷移①" + referer);
+			account.setRefererUrl(referer);
+			System.out.println("ログイン画面遷移②" + account.getRefererUrl());
+		}
+
+		// クエリパラメータで"notLoggedIn"を受け取った場合
+		if (error.equals("notLoggedIn")) {
+			model.addAttribute("error", "ログインしてください");
+		}
+
+		return "login";
+	}
+
+	@GetMapping("/logout")
+	public String logoutIndex(
 			@RequestParam(defaultValue = "") String error,
 			HttpSession session,
 			Model model) {
@@ -79,6 +106,17 @@ public class LoginController {
 		Guest guest = guests.get(0);
 		account.setId(guest.getId());
 		account.setName(guest.getName());
+
+		//セッションに保管されたURLのチェック（予約中のタイムアウトの場合）
+		if (account.getRefererUrl() != null && account.getRefererUrl().contains("reserve")) {
+			return "redirect:/room";
+		}
+
+		//セッションに保管されたURLのチェック（ログイン、新規登録の場合）
+		if (account.getRefererUrl() != null) {
+			System.out.println("ログインする直前" + account.getRefererUrl());
+			return "redirect:" + account.getRefererUrl();
+		}
 
 		return "redirect:/room";
 	}

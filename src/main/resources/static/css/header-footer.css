@@ -31,6 +31,11 @@ header div {
 	align-items: center;
 }
 
+.left-item {
+	display: flex;
+	align-items: center;
+}
+
 .header-box {
 	margin: 0 110px;
 }
@@ -103,7 +108,6 @@ header div {
 	margin: 20px 100px;
 }
 
-
 .right-item {
 	height: 100%;
 	top: 60px;
@@ -111,10 +115,9 @@ header div {
 	z-index: 100;
 }
 
-
-
 .right-item a {
 	color: #fff;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.7);
 	display: block;
 	font-size: 20px;
 	padding: 2em 2.5em;
@@ -122,6 +125,7 @@ header div {
 
 .right-item a:hover {
 	/* 好きな色に変更 */
+	background-color: rgba(255, 255, 255, 0.2);
 	color: #fff;
 	transition: 0.2s;
 }
@@ -149,14 +153,17 @@ header div {
 	margin: -30px;
 }
 
-.not-login a{
+.not-login a {
 	color: #555;
+	display: block;
+	font-size: 20px;
+	padding: 0em 2.5em;
 }
 
-.not-login a:hover{
+.not-login a:hover {
 	color: #C0C0C0;
 	transition: 0.2s;
-		cursor : pointer;
+	cursor: pointer;
 }
 
 
@@ -169,6 +176,7 @@ footer {
 	bottom: 0;
 	width: 100%;
 	text-align: center;
+	position: relative;
 }
 
 .footer-box {
@@ -206,19 +214,59 @@ footer {
 }
 
 .footer-logo {
-  width: 180px;
-  height: 100px;
-  display: flex;
-  justify-content: flex-end;  /* 右寄せ */
-  align-items: center;
-  overflow: hidden;
-  background-color: transparent;
+	width: 180px;
+	height: 100px;
+	display: flex;
+	justify-content: flex-end;
+	/* 右寄せ */
+	align-items: center;
+	overflow: hidden;
+	background-color: transparent;
 }
 
 .logo-gif {
-  height: 100%;
-  width: auto;                  /* 幅を自動で調整して比率を維持 */
-  object-fit: contain;          /* 画像が収まるように表示 */
-  object-position: right;       /* ← 右端を基準に配置 */
-  display: block;
+	height: 100%;
+	width: auto;
+	/* 幅を自動で調整して比率を維持 */
+	object-fit: contain;
+	/* 画像が収まるように表示 */
+	object-position: right;
+	/* ← 右端を基準に配置 */
+	display: block;
+}
+
+.footer-logo-gif {
+	width: 180px;
+	height: 100px;
+	display: flex;
+	position: absolute;
+	left: 15%;
+	transform: translate(-50%, 0); /* ← 初期位置はフッター内（見えない） */
+	bottom: 0; /* ← footer内に位置づけ */
+	overflow: hidden;
+	background-color: transparent;
+	transition: transform 0.5s ease, opacity 0.5s ease;
+	opacity: 0;
+	pointer-events: none;
+	z-index: -1; /* z-index: -1だと隠れてしまうので注意！ */
+}
+
+.footer-logo-gif.active {
+	transform: translate(-50%, -100%); /* ← 上にスライドして出てくる */
+	opacity: 1;
+	pointer-events: auto;
+	z-index: -1;
+}
+
+.logo-gif2 {
+	height: 100%;
+	width: auto;
+	/* 幅を自動で調整して比率を維持 */
+	object-fit: contain;
+	/* 画像が収まるように表示 */
+	display: block;
+}
+
+.kapibara-gif:hover{
+	cursor: pointer;
 }

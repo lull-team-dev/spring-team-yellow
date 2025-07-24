@@ -27,6 +27,15 @@ dependencies {
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	// バリデーションAPIの追加
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	//mail送信
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
+	//QRコードの生成
+	implementation 'com.google.zxing:core:3.5.2'
+    implementation 'com.google.zxing:javase:3.5.2'
+	//springセキュリティー
+//	implementation 'org.springframework.boot:spring-boot-starter-security'
+//	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+//	testImplementation 'org.springframework.security:spring-security-test'
 }
 
 tasks.named('test') {

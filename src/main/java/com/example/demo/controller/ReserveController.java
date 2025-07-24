@@ -30,6 +30,7 @@ import com.example.demo.repository.GuestRepository;
 import com.example.demo.repository.PlanRepository;
 import com.example.demo.repository.ReservationRepository;
 import com.example.demo.repository.RoomRepository;
+import com.example.demo.service.ReserveCodeMail;
 import com.example.demo.service.RoomService;
 
 @Controller
@@ -47,6 +48,8 @@ public class ReserveController {
 	ReservationRepository reserveRepository;
 	@Autowired
 	RoomService roomService;
+	@Autowired
+	ReserveCodeMail reserveCodeMail;
 
 	//予約ホーム画面
 	@GetMapping("/rooms/{id}/reserve")
@@ -247,11 +250,12 @@ public class ReserveController {
 		guest.setEmail(email);
 		guest.setTel(tel);
 		guest.setAddress(address);
+		account.setName(guestName);
 
 		//（プラン料金＋ルーム料金）×宿泊日
 		Integer countDay = (int) ChronoUnit.DAYS.between(checkinDate, checkoutDate);
 		Integer dayTotalPrice = plan.calcTotalPrice(room.getPrice());
-		Integer totalPrice = dayTotalPrice * countDay;
+		Integer totalPrice = guestCount * (dayTotalPrice * countDay);
 
 		//予約の作成
 		Reservation reserve = new Reservation(guest, room, plan, guestCount, totalPrice, countDay, checkinDate);
@@ -266,7 +270,11 @@ public class ReserveController {
 			reservDatas.add(reserveData);
 		}
 
+		//予約保存
 		reserveRepository.save(reserve);
+
+		//保存完了誤メール送信
+		reserveCodeMail.mailSend(reserve);
 
 		redirectAttributes.addAttribute("id", reserve.getId());
 		redirectAttributes.addAttribute("afterReserve", true);

@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,7 @@ import com.example.demo.repository.GuestRepository;
 import com.example.demo.repository.ReservationRepository;
 import com.example.demo.repository.ReviewRepository;
 import com.example.demo.repository.RoomRepository;
+import com.example.demo.service.RandomImg;
 
 @Controller
 @RequestMapping("/reviews")
@@ -48,6 +50,9 @@ public class ReviewController {
 
 	@Autowired
 	private Account account;
+
+	@Autowired
+	private RandomImg randomImg;
 
 	// レビュー投稿フォーム表示
 	@GetMapping("/new/{reservationId}")
@@ -124,9 +129,10 @@ public class ReviewController {
 			Model model) {
 
 		Integer loginGuestId = account.getId();
-		List<Review> myReviews = reviewRepository.findByGuestIdAndDeletedAtIsNullOrderByCreatedAtDesc(loginGuestId);
+		List<Review> myReviews = reviewRepository.findByGuestIdOrderByCreatedAtDesc(loginGuestId);
 
 		model.addAttribute("reviews", myReviews);
+		model.addAttribute("randomImg", randomImg.showImg());
 
 		return "review/myList";
 	}
@@ -201,14 +207,27 @@ public class ReviewController {
 
 	// レビュー削除
 	@PostMapping("/delete")
-	public String deleteReview(@RequestParam Integer reviewId) {
+	public String deleteReview(@RequestParam Integer reviewId,
+			HttpServletRequest request) {
+
 		Review review = reviewRepository.findById(reviewId).orElseThrow();
+		Reservation reservation = review.getReservation();
 
-		// 論理削除
-		review.setDeletedAt(LocalDateTime.now());
-		reviewRepository.save(review);
+		// 予約情報のレビューをNULLに
+		reservation.setReview(null);
+		reservationRepository.save(reservation);
 
-		return "redirect:/rooms/" + review.getRoom().getId();
+		// 物理削除
+		reviewRepository.deleteById(reviewId);
+
+		//削除前にいたURLの取得
+		String referer = request.getHeader("Referer");
+
+		if (referer.contains("/rooms")) {
+			return "redirect:" + referer;
+		}
+
+		return "redirect:/reviews/myList";
 	}
 
 }

@@ -1,8 +1,8 @@
 // ログインのみ
 package com.example.demo.controller;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,11 +25,16 @@ public class MypageController {
 	GuestRepository guestRepository;
 
 	@GetMapping("/mypage")
+	public String profile() {
+		return "mypage";
+	}
+
+	@GetMapping("/profile")
 	public String guest(Model model) {
 		//ログインユーザーの情報を取得
 		Guest guest = guestRepository.findById(account.getId()).get();
 		model.addAttribute("guest", guest);
-		return "mypage";
+		return "profile";
 	}
 
 	@GetMapping("/mypage/{edit}")
@@ -59,7 +64,8 @@ public class MypageController {
 			Model model) {
 
 		Guest guest = guestRepository.findById(account.getId()).get();
-		List<String> errorList = new ArrayList<>();
+		Map<String, String> errorMap = new HashMap<>();
+
 		switch (edit) {
 		case "email":
 
@@ -67,15 +73,17 @@ public class MypageController {
 			Optional<Guest> emails = guestRepository.findByEmail(email);
 
 			if (email == null || email.isEmpty()) {
-				errorList.add("メールアドレスの入力は必須です");
+				errorMap.put("email", "メールアドレスの入力は必須です");
+			} else if (guestRepository.existsByIdAndEmail(account.getId(), email)) {
+				errorMap.put("email", "現在登録中のメールアドレスです");
 			} else if (!emails.isEmpty()) {
-				errorList.add("すでに登録のあるメールアドレスです");
+				errorMap.put("email", "このメールアドレスは利用できません");
 			} else {
 				guest.setEmail(email);
 			}
-			if (errorList.size() > 0) {
+			if (!errorMap.isEmpty()) {
 				model.addAttribute("guest", guest);
-				model.addAttribute("errorList", errorList);
+				model.addAttribute("errors", errorMap);
 				model.addAttribute("edit", edit);
 				model.addAttribute("email", email);
 
@@ -85,24 +93,24 @@ public class MypageController {
 
 		case "password":
 			if ((password == null && newPassword == null) || (password.isEmpty() && newPassword.isEmpty())) {
-				errorList.add("現在のパスワードの入力は必須です");
-				errorList.add("新しいパスワードの入力は必須です");
+				errorMap.put("password", "現在のパスワードの入力は必須です");
+				errorMap.put("newPassword", "新しいパスワードの入力は必須です");
 			} else if (password == null || password.isEmpty()) {
-				errorList.add("現在のパスワードの入力は必須です");
+				errorMap.put("password", "現在のパスワードの入力は必須です");
 			} else if (password != null && !guestRepository.existsByIdAndPassword(account.getId(), password)) {
-				errorList.add("現在のパスワードが間違っています");
+				errorMap.put("password", "現在のパスワードが間違っています");
 			} else if (newPassword == null || newPassword.isEmpty()) {
-				errorList.add("新しいパスワードの入力は必須です");
+				errorMap.put("newPassword", "新しいパスワードの入力は必須です");
 			} else if (password_confirm == null || password_confirm.isEmpty()) {
-				errorList.add("パスワード(確認)の入力は必須です");
-			} else if (password == null || password.length() < 5 || password.length() > 100) {
-				errorList.add("パスワードは5〜100文字");
-			} else if (password != null || !password.equals(password_confirm)) {
-				errorList.add("パスワードが一致しません");
+				errorMap.put("password_confirm", "パスワード(確認)の入力は必須です");
+			} else if (newPassword == null || newPassword.length() < 5 || newPassword.length() > 100) {
+				errorMap.put("newPassword", "パスワードは5〜100文字");
+			} else if (newPassword != null && !newPassword.equals(password_confirm)) {
+				errorMap.put("password_confirm", "パスワードが一致しません");
 			}
-			if (errorList.size() > 0) {
+			if (!errorMap.isEmpty()) {
 				model.addAttribute("guest", guest);
-				model.addAttribute("errorList", errorList);
+				model.addAttribute("errors", errorMap);
 				model.addAttribute("edit", edit);
 				return "edit";
 			} else {
@@ -111,26 +119,26 @@ public class MypageController {
 			break;
 
 		case "profile":
-			//			エラーチェック
+			//エラーチェック
 			if (name.length() > 15) {
-				errorList.add("名前は15文字以内で入力してください");
+				errorMap.put("name", "名前は15文字以内で入力してください");
 			} else if (name == null || name.isEmpty()) {
-				errorList.add("名前の入力は必須です");
+				errorMap.put("name", "名前の入力は必須です");
 			}
 			if (address.length() > 120) {
-				errorList.add("住所は120文字以内で入力してください");
+				errorMap.put("address", "住所は120文字以内で入力してください");
 			} else if (address == null || address.isEmpty()) {
-				errorList.add("住所の入力は必須です");
+				errorMap.put("address", "住所の入力は必須です");
 			}
-			if (tel.length() > 15) {
-				errorList.add("電話番号は15文字以内で入力してください");
+			if (!tel.matches("^[0-9]{10,15}$")) {
+				errorMap.put("tel", "電話番号は10文字以上15文字以内の数字で入力してください");
 			} else if (tel == null || tel.isEmpty()) {
-				errorList.add("電話番号の入力は必須です");
+				errorMap.put("tel", "電話番号の入力は必須です");
 			}
 
-			if (errorList.size() > 0) {
+			if (!errorMap.isEmpty()) {
 				model.addAttribute("guest", guest);
-				model.addAttribute("errorList", errorList);
+				model.addAttribute("errors", errorMap);
 				model.addAttribute("edit", edit);
 				model.addAttribute("name", name);
 				model.addAttribute("address", address);
@@ -138,7 +146,7 @@ public class MypageController {
 
 				return "edit";
 			}
-			//			セット
+			//セット
 			if (name != null || !name.isEmpty()) {
 				guest.setName(name);
 				account.setName(name);
@@ -154,7 +162,7 @@ public class MypageController {
 
 		guestRepository.save(guest);
 
-		return "redirect:/mypage";
+		return "redirect:/profile";
 	}
 
 }

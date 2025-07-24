@@ -3,11 +3,13 @@ package com.example.demo.model;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
-@SessionScope
 @Component
+@SessionScope
 public class Account {
+
 	private Integer id;
 	private String name;
+	private String refererUrl;
 
 	public Integer getId() {
 		return id;
@@ -23,6 +25,14 @@ public class Account {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getRefererUrl() {
+		return refererUrl;
+	}
+
+	public void setRefererUrl(String refererUrl) {
+		this.refererUrl = refererUrl;
 	}
 
 	// ログイン状態を確認するメソッド

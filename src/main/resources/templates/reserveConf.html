@@ -73,17 +73,19 @@
 
 			<!-- ========== プラン情報 ========== -->
 			<div class="room-plans">
-						<h3 class="room-plans-title">選択中のプラン</h3>
-						<div class="plan-card-content main-shadow">
-							<div>
-								<p class="plan-title" th:text="${plan.name}"></p>
-							</div>
-							<div class="plan-detile">
-								<p class="plan-desc" th:text="${plan.details}"></p>
-								<div class="plan-price" th:text="${#numbers.formatInteger(plan.calcTotalPrice(room.price), 3, 'COMMA')} + '円 /人'"></div>
-							</div>
+				<h3 class="room-plans-title">選択中のプラン</h3>
+				<div class="plan-card-content main-shadow">
+					<div>
+						<p class="plan-title" th:text="${plan.name}"></p>
+					</div>
+					<div class="plan-detile">
+						<p class="plan-desc" th:text="${plan.details}"></p>
+						<div class="plan-price"
+							th:text="${#numbers.formatInteger(plan.calcTotalPrice(room.price), 3, 'COMMA')} + '円 /人'">
 						</div>
 					</div>
+				</div>
+			</div>
 
 			<!-- ========== 予約内容確認フォーム ========== -->
 			<form class="reserve-card main-shadow" th:action="@{/rooms/{id}/reserveConf(id=${room.id})}" method="post"
@@ -145,9 +147,12 @@
 				</div>
 
 				<!-- --------- ボタン --------- -->
-				<div class="reserve-button-block" style="display:flex;gap:22px;">
+				<div class="reserve-conf-button-block" style="display:flex;gap:22px;">
 					<button type="submit" name="status" value="1" class="button reserve-button-block">予約する</button>
 					<button type="submit" name="status" value="2" class="return-button reserve-button-block">戻る</button>
+				</div>
+				<div class="cancel-text">
+					<p>※完了メールが届かない場合もしくはキャンセルする際は、ホテルまで直接お電話ください。</p>
 				</div>
 			</form>
 		</div>
