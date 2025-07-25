@@ -284,7 +284,7 @@ public class ReserveController {
 			reserveCodeMail.mailSend(reserve);
 
 		} catch (Exception e) {
-			log.error("予約処理に失敗しました: {}", e.getMessage());
+			//			log.error("予約処理に失敗しました: {}", e.getMessage());
 			redirectAttributes.addAttribute("planId", planId);
 			redirectAttributes.addAttribute("checkinDate", checkinDate);
 			redirectAttributes.addAttribute("checkoutDate", checkoutDate);

@@ -101,11 +101,12 @@ button:hover,
 }
 
 main {
-	margin: 155px 120px 75px 120px;
-	flex-grow: 1;
-
-
+	/*margin: 155px 120px 75px 120px;*/
+	margin: 155px 8% 5% 8%;
+		flex-grow: 1;
 }
+
+
 
 h1 {
 	color: #e77611;
