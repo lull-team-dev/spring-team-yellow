@@ -10,6 +10,7 @@ import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,6 +34,9 @@ import com.example.demo.repository.RoomRepository;
 import com.example.demo.service.ReserveCodeMail;
 import com.example.demo.service.RoomService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j //コンソールログ用
 @Controller
 public class ReserveController {
 
@@ -63,7 +67,8 @@ public class ReserveController {
 			@ModelAttribute("guestName") String guestName,
 			@ModelAttribute("email") String email,
 			@ModelAttribute("tel") String tel,
-			@ModelAttribute("address") String address) {
+			@ModelAttribute("address") String address,
+			@ModelAttribute("reserveError") String reserveErorr) {
 
 		//宿泊予定者情報の取得
 		Guest guest = guestRepository.findById(account.getId()).get();
@@ -92,6 +97,7 @@ public class ReserveController {
 		model.addAttribute("plan", plan);
 		model.addAttribute("imgList", imgList);
 		model.addAttribute("maxGuestCount", maxGuestCount);
+		model.addAttribute("reserveError", reserveErorr);
 
 		reserveDto dto = new reserveDto();
 
@@ -210,6 +216,7 @@ public class ReserveController {
 	}
 
 	//予約ロジック
+	@Transactional
 	@PostMapping("/rooms/{id}/reserveConf")
 	public String reserveConf(
 			@PathVariable("id") Integer roomId,
@@ -270,11 +277,26 @@ public class ReserveController {
 			reservDatas.add(reserveData);
 		}
 
-		//予約保存
-		reserveRepository.save(reserve);
+		try {
+			//予約保存
+			reserveRepository.save(reserve);
+			//保存完了後メール送信
+			reserveCodeMail.mailSend(reserve);
 
-		//保存完了誤メール送信
-		reserveCodeMail.mailSend(reserve);
+		} catch (Exception e) {
+			log.error("予約処理に失敗しました: {}", e.getMessage());
+			redirectAttributes.addAttribute("planId", planId);
+			redirectAttributes.addAttribute("checkinDate", checkinDate);
+			redirectAttributes.addAttribute("checkoutDate", checkoutDate);
+			redirectAttributes.addAttribute("guestCount", guestCount);
+			redirectAttributes.addFlashAttribute("guestName", guestName);
+			redirectAttributes.addFlashAttribute("email", email);
+			redirectAttributes.addFlashAttribute("tel", tel);
+			redirectAttributes.addFlashAttribute("address", address);
+			redirectAttributes.addFlashAttribute("reserveError", "予約に失敗しました。<br>時間をおいて再度お試しください。");
+
+			throw new RuntimeException("メール送信に失敗しました", e);
+		}
 
 		redirectAttributes.addAttribute("id", reserve.getId());
 		redirectAttributes.addAttribute("afterReserve", true);
