@@ -34,3 +34,27 @@
 	width: 100%;
 	height: 100%;
 }
+
+
+ 
+
+@media(max-width:768px)  {
+	
+	.profile-items-box {
+		display: block;
+		margin: 0;
+	}
+	
+	.profile-items-box li {
+		width: 100%;
+		box-sizing: border-box;
+		padding: 10px;
+		margin-bottom: 20px;
+
+	}
+	
+	.button {
+		padding: 10px;
+	}
+}
+

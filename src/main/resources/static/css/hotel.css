@@ -257,10 +257,11 @@ main {
 		gap: 3.5rem;
 	}
 
-	.about-text {
+	.about-text p{
 		max-width: 98vw;
 		padding: 0 4vw;
-	}
+		margin-top: 0;
+		}
 
 	.about-image {
 		margin-right: 0;
@@ -601,3 +602,45 @@ iframe.access-map {
 }
 
 /* 必要なら他セクション用レスポンシブも今まで通り併用OK！ */
+
+@media(max-width:768px) {
+	.hero {
+		height: 80vh;
+	}
+	
+	.section {
+		margin-bottom: 2rem;
+	}
+	
+	.section h2 {
+		font-size: 2.3rem;
+	}
+	
+	.section-subtitle {
+		margin-bottom: 2rem;
+	}
+	
+.rooms-grid {
+	display: block;
+	margin: 0;
+}
+
+.room-card {
+	width: 100%;
+	padding: 1rem;
+	margin-top: 1.5rem;
+	gap: 0;
+	box-sizing: border-box;
+}
+
+.room-image {
+	height: 260px;
+}
+
+.main-content-wrapper::after {
+	display: none;
+}
+
+
+}
+

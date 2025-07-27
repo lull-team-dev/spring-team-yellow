@@ -3,6 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
 	<title>予約内容確認</title>
 	<!-- フォントやアイコンなどの読み込み -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -89,7 +90,7 @@
 
 			<!-- ========== 予約内容確認フォーム ========== -->
 			<form class="reserve-card main-shadow" th:action="@{/rooms/{id}/reserveConf(id=${room.id})}" method="post"
-				autocomplete="off" style="width: 97%;">
+				autocomplete="off" style="">
 
 				<!-- --------- 宿泊情報 --------- -->
 				<div class="reserve-form-block">
@@ -147,7 +148,7 @@
 				</div>
 
 				<!-- --------- ボタン --------- -->
-				<div class="reserve-conf-button-block" style="display:flex;gap:22px;">
+				<div class="reserve-conf-button-block" style="">
 					<button type="submit" name="status" value="1" class="button reserve-button-block">予約する</button>
 					<button type="submit" name="status" value="2" class="return-button reserve-button-block">戻る</button>
 				</div>

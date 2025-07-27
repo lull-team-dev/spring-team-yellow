@@ -18,8 +18,8 @@
 	margin: 0 auto;
 	padding: 22px 20%;
 	width: 100%;
-	min-width: 380px;
-	max-width: 620px;
+	/*	min-width: 380px;*/
+		max-width: 620px;
 	/*90vw*/
 	display: flex;
 	flex-direction: column;
@@ -256,3 +256,46 @@
 .search-logo {
 	width: 250px;
 }
+
+
+@media (max-width:768px) {
+	.search-form-box {
+		box-sizing: border-box;
+		padding: 22px 10%;
+	}
+	
+	.room-type-center {
+		display: block;
+	}
+	
+	.room-type-center label {
+		display: block;
+	}
+	
+	.price-display {
+		display: block;
+		text-align: center;
+	}
+	
+	.price-box {
+		text-align: left;
+	}
+	
+	.price-separator {
+		display: none;
+	}
+	
+	.search-message {
+		font-size: 1.5em;
+	}
+	
+	.section-subtitle {
+		margin: 0;
+	}
+	
+}
+
+
+
+
+

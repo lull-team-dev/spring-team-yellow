@@ -283,3 +283,53 @@ textarea::placeholder {
 .room-review-list__comment{
 	padding: 8px;
 }
+
+@media(max-width:768px) {
+	.reservation-info {
+		display: block;
+	}
+	
+	.review-contents__box {
+		text-align: center;
+	}
+
+.room-img {
+	width: 100%;
+}
+
+.reservation__row {
+	display: block;
+}
+
+.reservation__title {
+	width: 100%;
+}
+
+.reservation__body {
+	margin-left: 1em;
+}
+
+.list-contents {
+	display: block;
+}
+
+.review-list-img {
+	max-width: 100%;
+}
+.review-list-info {
+	box-sizing: border-box;
+}
+
+.review-list-btn {
+	display: block;
+	text-align: center;
+}
+.review-trash {
+	margin-top: 5px;
+}
+
+.review-list-info__head {
+	display: block;
+	text-align: center;
+}
+}

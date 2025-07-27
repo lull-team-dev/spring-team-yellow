@@ -4,7 +4,10 @@
 	text-align: center;
 }
 
-.login-title {}
+.login-title {
+	
+}
+
 
 
 
@@ -37,19 +40,6 @@
 	transition: 0.2s;
 	cursor : pointer;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -138,3 +128,22 @@
 .plan:hover {
 	background-color: #c9c9c9;
 }
+
+@media (max-width:768px) {
+	.login-title {
+		font-size: 30px;
+	}
+	
+	.login-buttons {
+		margin: 0 0 40px 0;
+	}
+	
+	.register-button {
+		margin-bottom: 20px;
+	}
+}
+
+
+
+
+

@@ -23,3 +23,9 @@ section p {
   margin: 0;
 }
 
+@media(max-width:768px)  {
+	.policy-container {
+		margin: 140px 8% 50px;
+	}
+	
+}
