@@ -46,19 +46,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* ////詳細ページ///// */
 
 .details-box {
@@ -141,3 +128,22 @@
 .plan:hover {
 	background-color: #c9c9c9;
 }
+
+@media (max-width:768px) {
+	.login-title {
+		font-size: 30px;
+	}
+	
+	.login-buttons {
+		margin: 0 0 40px 0;
+	}
+	
+	.register-button {
+		margin-bottom: 20px;
+	}
+}
+
+
+
+
+

@@ -158,3 +158,49 @@
 	background-color: rgba(74, 144, 226, 0.15);
 	color: rgb(74, 144, 226);
 }
+
+
+@media(max-width:768px)  {
+	
+	.list-contents {
+		display: block;
+		width: 100%;
+	}
+	
+	.history-info {
+		box-sizing: border-box;
+	}
+	
+	.history-img {
+		max-width: 100%;
+		border-radius: 8px;
+	}
+	.history-info__btn {
+		display: block;
+		text-align: center;
+	}
+	
+	.review-btn,
+	.review-disabled {
+		margin-top: 5px;
+	}
+	
+	.history-detail__contents {
+		width: 100%;
+		box-sizing: border-box;
+		padding: 1rem 1.5rem
+	}
+	
+	.history-detail__img {
+		max-width: 100%;
+		margin: 0 auto 15px auto;
+	}
+	
+	.detail-contents-row {
+		display: block;
+	}
+	
+	.detail-contents__title {
+		width: 100%;
+	}
+}
